@@ -13,7 +13,23 @@ class Dokter extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('dokter', function (Blueprint $table) {
+            $table->increments('id_dokter');
+            $table->string('nama_dokter',50);
+            $table->string('email',30);
+            $table->string('jenis_kelamin',30);
+            $table->text('alamat');
+            $table->string('tempat',50);
+            $table->integer('telpon');
+            $table->binary('foto');
+            $table->binary('sertifikasi');
+            $table->string('id_jabatan',11);
+            $table->text('jadwal_kerja');
+            $table->string('username',50);
+            $table->string('password',30);
+            $table->string('verifikasi',10);
+            $table->timestamp('failed_at')->useCurrent();
+        });
     }
 
     /**
@@ -23,6 +39,7 @@ class Dokter extends Migration
      */
     public function down()
     {
-        //
+        //    
+        Schema::dropIfExists('dokter');
     }
 }

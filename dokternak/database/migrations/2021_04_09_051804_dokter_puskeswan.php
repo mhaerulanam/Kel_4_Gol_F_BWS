@@ -13,7 +13,12 @@ class DokterPuskeswan extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('dokter_puskeswan', function (Blueprint $table) {
+            $table->increments('id_dp');
+            $table->string('id_puskeswan',11);
+            $table->integer('id_dokter');
+            $table->timestamp('failed_at')->useCurrent();
+        });
     }
 
     /**
@@ -23,6 +28,7 @@ class DokterPuskeswan extends Migration
      */
     public function down()
     {
-        //
+        //    
+        Schema::dropIfExists('dokter_puskeswan');
     }
 }
