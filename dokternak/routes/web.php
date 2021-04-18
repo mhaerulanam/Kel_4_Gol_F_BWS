@@ -3,39 +3,52 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Middleware\CheckAge;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+Route::get('admin/profile', function ($id) {
+    //
+})->middleware(CheckAge::class);
+
 
 Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
+    return view('welcome');
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->name('dashboard');
+// Route untuk Backend ----------------------------------------------------
+Route::group(['namespace' => 'Backend'], function()
+{
+    Route::resource('dashboard', 'DashboardController');
+});
+// ------------------------------------------------------------------------
+//Route untuk Frontend----------------------------------------------------
+Route::group(['namespace' => 'Frontend'], function()
+{
+    Route::resource('home', 'HomeController');
+});
+Auth::routes();
 
-Route::get('/', function() {
-    //
-}) -> middle('web');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::group(['middleware' => ['web']],function() {
+Route::get('admin/{id}', function ($id = null) {
+  //  
+})->middleware('auth');
+
+// Route::get('/', function ($id = null) {
+//     //  
+// })->middleware('first','second');
+
+// Route::get('/', function ($id = null) {
+//     //
+// })->middleware('web');
+
+Route::group(['middleware' => ['web']], function () {
     //
 });
 
-Route::middleware(['web', 'subscribed'])->group(function(){
+Route::middleware(['web','subscribed'])->group(function () {
     //
 });
+
+Route::put('post/{id}', function ($id = null) {
+  //  
+})->middleware('role:editor');
