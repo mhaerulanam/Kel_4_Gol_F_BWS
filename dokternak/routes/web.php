@@ -1,6 +1,8 @@
 <?php
 
+use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,20 +16,26 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return Inertia::render('Welcome', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+        'laravelVersion' => Application::VERSION,
+        'phpVersion' => PHP_VERSION,
+    ]);
 });
 
-// Route untuk Backend ----------------------------------------------------
-Route::group(['namespace' => 'Backend'], function()
-{
-    Route::resource('dashboard', 'DashboardController');
-});
-// ------------------------------------------------------------------------
-//Route untuk Frontend----------------------------------------------------
-Route::group(['namespace' => 'Frontend'], function()
-{
-    Route::resource('home', 'HomeController');
-});
-Auth::routes();
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return Inertia::render('Dashboard');
+})->name('dashboard');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', function() {
+    //
+}) -> middle('web');
+
+Route::group(['middleware' => ['web']],function() {
+    //
+});
+
+Route::middleware(['web', 'subscribed'])->group(function(){
+    //
+});
