@@ -11,13 +11,20 @@
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
+                        <!-- TAMPILAN NOTIF JIKA GAGAL LOGIN -->
+                        @if (session('error'))
+                        <div class="alert alert-danger">{{ session('error')}}</div>
+                        @endif
+
+                        <!-- MODIFIKASI BAGIAN EMAIL MENJADI FIELD USERNAME -->
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                            <label for="username" class="col-md-4 col-form-label text-md-right">Username/Email</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" 
+                                name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
 
-                                @error('email')
+                                @error('username')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
