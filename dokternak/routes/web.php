@@ -28,3 +28,6 @@ Route::group(['namespace' => 'Frontend'], function()
 {
     Route::resource('home', 'HomeController');
 });
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
