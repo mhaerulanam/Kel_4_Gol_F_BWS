@@ -19,6 +19,7 @@ Route::get('/', function () {
 Route::group(['namespace' => 'Backend'], function()
 {
     Route::resource('dashboard', 'DashboardController');
+    Route::resource('peternak', 'PeternakController');
 });
 // ------------------------------------------------------------------------
 //Route untuk Frontend----------------------------------------------------

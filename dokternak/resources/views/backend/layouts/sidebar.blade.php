@@ -40,7 +40,18 @@
               </ul>
             </li>
           </ul>
-          <p class="text-muted nav-heading mt-4 mb-1">
+           <p class="text-muted nav-heading mt-4 mb-1">
+            <span>Data</span>
+          </p>
+          <ul class="navbar-nav flex-fill w-100 mb-2">
+            <li class="nav-item dropdown">
+                <li class="nav-item">
+                  <a class="nav-link pl-3" href="{{ asset('backend/') }}"><span class="ml-1 item-text">Data Peternak</span>
+                  </a>
+                </li>
+            </li>
+          </ul>
+          {{-- <p class="text-muted nav-heading mt-4 mb-1">
             <span>Components</span>
           </p>
           <ul class="navbar-nav flex-fill w-100 mb-2">
@@ -292,6 +303,6 @@
             <a href="https://themeforest.net/item/tinydash-bootstrap-html-admin-dashboard-template/27511269" target="_blank" class="btn mb-2 btn-primary btn-lg btn-block">
               <i class="fe fe-shopping-cart fe-12 mx-2"></i><span class="small">Buy now</span>
             </a>
-          </div>
+          </div> --}}
         </nav>
       </aside>
