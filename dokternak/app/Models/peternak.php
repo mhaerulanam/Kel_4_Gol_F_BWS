@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class peternak extends Model
 {
-    protected $table = 'peternak';
+    protected $table = 'users';
     protected $primaryKey = 'id';
     protected $fillable = [
-        'nama', 'username', 'email', 'password', 'alamat',
+        'name', 'username', 'email', 'password', '','alamat',
     ];
 }

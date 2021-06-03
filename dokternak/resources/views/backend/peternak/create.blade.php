@@ -30,6 +30,19 @@
     <div class="container-fluid">
       <div class="row justify-content-center">
         <div class="col-12">
+          <header class="panel-heading">
+            {{ isset($admin_lecturer) ? 'Mengubah' : 'Menambahkan' }} Peternak
+        </header>
+          @if ($errors->any())
+            <div class="alert alert-danger">
+                <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+          @endif
           <h2 class="page-title">Form validation</h2>
           <p class="text-muted">Provide valuable, actionable feedback to your users with HTML5 form validation</p>
               <div class="card shadow">
@@ -37,11 +50,18 @@
                   <strong class="card-title">Advanced Validation</strong>
                 </div>
                 <div class="card-body">
-                  <form class="needs-validation" novalidate>
-                    <div class="form-row">
+                  <form class="needs-validation" id="peternak_form" method="POST"
+                            action="{{ isset($peternak) ? route('peternak.update',$peternak->id) : 
+                            route('peternak.store') }}">
+                                {!! csrf_field() !!}
+                                {!! isset($peternak) ? method_field('PUT') : '' !!}
+                      <input type="hidden" name="id" value="{{ isset($peternak) ? $peternak->id : '' }}"> <br/>
+                      <div class="form-row">
                       <div class="col-md-6 mb-3">
-                        <label for="validationCustom3">First name</label>
-                        <input type="text" class="form-control" id="validationCustom3" value="Mark" required>
+                        <label for="validationCustom3">Nama Lengkap</label>
+                        <input class="form-control" id="name" name="name" minlength="5" type="text" placeholder="Masukkan nama"
+                        value="{{ isset($peternak) ? $peternak->name : '' }}"  
+                            required>
                         <div class="valid-feedback"> Looks good! </div>
                       </div>
                     </div> <!-- /.form-row -->
@@ -52,7 +72,9 @@
                         <div class="input-group-prepend">
                           <span class="input-group-text" id="inputGroupPrepend">@</span>
                         </div>
-                        <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+                        <input type="text" class="form-control" id="validationCustomUsername" name="username" minlength="5" placeholder="Masukkan username" aria-describedby="inputGroupPrepend" 
+                        value="{{ isset($peternak) ? $peternak->username : '' }}"  
+                        required>
                         <div class="invalid-feedback"> Please choose a username. </div>
                       </div>
                     </div>
@@ -60,18 +82,35 @@
                     <div class="form-row">
                       <div class="col-md-8 mb-3">
                         <label for="exampleInputEmail2">Email address</label>
-                        <input type="email" class="form-control" id="exampleInputEmail2" aria-describedby="Masukkan email" required>
+                        <input type="email" class="form-control" id="exampleInputEmail2" name="email" minlength="5" placeholder="Masukkan email" aria-describedby="Masukkan email" 
+                        value="{{ isset($peternak) ? $peternak->email : '' }}"  
+                        required>
                         <div class="invalid-feedback"> Please use a valid email </div>
                         <small id="emailHelp1" class="form-text text-muted">We'll never share your email with anyone else.</small>
                       </div>
                     </div> <!-- /.form-row -->
+                    <div class="form-row">
+                    <div class="col-md-4 mb-3">
+                      <label for="validationCustomPassword">Password</label>
+                      <div class="input-group">
+                        <input type="password" class="form-control" id="validationCustomPassword" name="password" minlength="5" placeholder="Masukkan password" aria-describedby="inputGroupPrepend" 
+                        value="{{ isset($peternak) ? $peternak->password : '' }}"  
+                        required>
+                        <div class="invalid-feedback"> Please choose a password. </div>
+                      </div>
+                    </div>
+                    </div>
                     <div class="form-group mb-3">
                       <label for="address-wpalaceholder">Alamat</label>
-                      <input type="text" id="address-wpalaceholder" class="form-control" placeholder="Masukkan Alamat lengkap">
+                      <input type="text" id="address-wpalaceholder" class="form-control" name="alamat" minlength="5" placeholder="Masukkan Alamat lengkap"
+                      value="{{ isset($peternak) ? $peternak->alamat : '' }}"  
+                      required>
                       <div class="valid-feedback"> Looks good! </div>
                       <div class="invalid-feedback"> Badd address </div>
                     </div>
-                    <button class="btn btn-primary" type="submit">Submit form</button>
+                    <button class="btn btn-primary" type="submit">Save</button>
+                    <a href="{{ route('peternak.index') }}"><button class="btn btn-default"
+                        type="button">Cancel</button></a>
                   </form>
                 </div> <!-- /.card-body -->
               </div> <!-- /.card -->

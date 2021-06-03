@@ -30,22 +30,21 @@
   <div class="container-fluid"> 
     <div class="row justify-content-center">
       <div class="col-12">
-        <h2 class="page-title">Basic table</h2>
-        <p> Tables with built-in bootstrap styles </p> 
+        @if ($message = Session::get('success'))
+        <div class="alert alert-success">
+            <p>{{ $message }}</p>
+        </div>
+       @endif
+        {{-- <h2 class="page-title">Basic table</h2>
+        <p> Tables with built-in bootstrap styles </p>  --}}
             <div class="card shadow">
               <div class="card-body">
                 <div class="row align-items-center mb-2">
                   <div class="col">
-                    <h5 class="card-title">Simple Table</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    <h5 class="card-title">Data User Peternak</h5>
                     </div>
                   <div class="col-auto">
                     <div class="form">
-                      @if ($message = Session::get('success'))
-                          <div class="alert alert-success">
-                              <p>{{ $message }}</p>
-                          </div>
-                      @endif
                       <a href="{{ route('peternak.create') }}"><button class="btn btn-primary"
                           type="button"><i class="fa fa-plus"></i><span>Tambah</span></button></a>
                     </div>
@@ -54,23 +53,39 @@
                 <table class="table table-hover">
                   <thead>
                     <tr>
-                      <th>ID</th>
-                      <th>Name</th>
-                      <th>Company</th>
-                      <th>Address</th>
-                      <th>Date</th>
-                      <th>Status</th>
+                      <th>NO</th>
+                      <th>Nama</th>
+                      <th>Email</th>
+                      <th>Username</th>
+                      <th>Password</th>
+                      <th>Alamat</th>
+                      <th>Aksi</th>
                     </tr>
                   </thead>
                   <tbody>
+                    @php $no = 1; @endphp
+                    @foreach ($peternak as $item)
                     <tr>
-                      <td>3224</td>
-                      <td>Keith Baird</td>
-                      <td>Enim Limited</td>
-                      <td>901-6206 Cras Av.</td>
-                      <td>Apr 24, 2019</td>
-                      <td><span class="badge badge-pill badge-warning">Hold</span></td>
+                        <td>{{ $no++ }}</td>
+                        <td>{{ $item->name }}</td>
+                        <td>{{ $item->email }}</td>
+                        <td>{{ $item->username }}</td>
+                        <td>{{ $item->password }}</td>
+                        <td>{{ $item->alamat }}</td>
+                        <td>
+                        <div class="btn-group">
+                            <a href="{{ route('peternak.edit',$item->id)}}" class="btn btn-warning">Edit<i class="fa fa-edit"></i></a>
+                            <form action="{{ route('peternak.destroy',$item->id)}}" method="POST">
+                            @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger" 
+                                onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus
+                                <i class="fa fa-trash-o"></i></button>
+                            </form>
+                        </div>
+                        </td>
                     </tr>
+                    @endforeach
                   </tbody>
                 </table>
               </div>
