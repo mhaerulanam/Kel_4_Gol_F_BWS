@@ -26,6 +26,7 @@ Route::group(['namespace' => 'Backend'], function()
 Route::group(['namespace' => 'Frontend'], function()
 {
     Route::resource('home', 'HomeController');
+    Route::resource('artikel', 'ArtikelController');
 });
 Auth::routes();
 
