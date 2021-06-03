@@ -72,21 +72,21 @@
 
                         <div class="col-lg-9 col-md-9">
                                 <div class="menu-wrapper">
-                                <!-- Main-menu -->
-                                <div class="main-menu">
+                                   <!-- Main-menu -->
+                                   <div class="main-menu">
                                     <nav class="d-none d-lg-block">
                                         <ul id="navigation">
-                                            <li><a href="LandingPageDokter.php">HOME</a></li>
+                                            <li><a href="LandingPagePeternak.php">HOME</a></li>
                                             <li><a href="daftar_artikel.php">ARTIKEL </a></li>
-                                            <li><a href="#">DATA</a>
-                                            <ul class="submenu">
-                                                    <li><a href="datarekammedik.php">REKAM MEDIK</a></li>
-                                                    <li><a href="dataobat.php">OBAT</a></li>
-                                                    <li><a href="data_hewan.php">HEWAN</a></li>                                                 
+                                            <li><a href="riwayat_konsultasi.php">KONSULTASI</a></li>
+                                            <li><a href="daftar_dokter.php">DOKTER</a></li>
+                                            <li><a href="#">INFORMASI</a>
+                                                <ul class="submenu">
+                                                    <li><a href="daftarpuskeswan.php">PUSKESWAN</a></li>
+                                                    <li><a href="daftar_tutorial.php">TUTORIAL</a></li>
+                                                    <li><a href="aboutus.php">TENTANG KAMI</a></li>                                                 
                                                 </ul>
                                             </li>
-                                            <li><a href="respon_konsultasi.php">NOTIFIKASI</a></li>
-                                            <li><a href="daftar_tutorial.php">TUTORIAL</a></li>
                                         </ul>
                                     </nav>
                                 </div>
