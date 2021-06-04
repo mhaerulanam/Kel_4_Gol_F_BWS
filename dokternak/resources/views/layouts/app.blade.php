@@ -41,7 +41,7 @@
         </style>
 </head>
 <body>
-<header>
+{{-- <header>
     @guest
     @if (Route::has('login'))
         <li class="nav-item">
@@ -123,10 +123,15 @@
        </div>
         <!-- Header End -->
         @endguest
-    </header>
+    </header> --}}
+    @include('frontend/layouts.navbar');
+
     <main class="py-4">
         @yield('content')
     </main> 
+    <main class="py-4">
+        @yield('footer')
+    </main>
 </body>
 <!-- JS here -->
 	

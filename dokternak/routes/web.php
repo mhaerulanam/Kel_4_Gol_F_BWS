@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Middleware\CheckAge;
+use App\Http\Controllers\frontend\ArtikelController;
 
 Route::get('admin/profile', function ($id) {
     //
@@ -29,7 +30,12 @@ Route::group(['namespace' => 'Frontend'], function()
     Route::resource('artikel', 'ArtikelController');
     Route::resource('puskeswan', 'PuskeswanController');
 });
-Auth::routes();
+
+
+//route artikel
+// Route::get('/artikel','Frontend\ArtikelController@index');
+// Route::get('/artikel/cari','Frontend\ArtikelController@cari');
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

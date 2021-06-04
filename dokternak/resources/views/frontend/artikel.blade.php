@@ -26,8 +26,8 @@
 </head>
 
 <body>
-    
-    
+    @include('frontend/layouts.navbar');
+
     <!-- Banner Atas Start-->
    <div class="slider-area ">
       <div class="single-slider section-overly slider-height2 d-flex align-items-center" data-background="{{ asset('Frontend/assets/img/gallery/s2.jpg') }}">
@@ -43,6 +43,45 @@
       </div>
    </div>
 
+ <!-- Banner End -->
+<section class="blog_area section-padding">
+      <div class="container">
+          <div class="row">
+              <div class="col-lg-8 mb-5 mb-lg-0">
+                  <div class="blog_left_sidebar">
+                    <table>
+                        <tbody>
+                            {{-- Perulangan untuk menampilkan data sebanyak yang ada di database --}}
+                            @foreach ($artikel as $data_artikel)
+                            <tr>
+                            <article class="blog_item">
+                                    <div class="blog_item_img">
+                                        {{-- //Code untuk menampilkan gambar yang berbentuk blob --}}
+                                        <img class="card-img rounded-0" src="data:image/png;base64,{{ chunk_split(base64_encode($data_artikel->gambar)) }}" alt="gambar artikel">
+                                        <a href="#" class="blog_item_date">
+                                            <h3>{{ $data_artikel->nama_penulis }}</h3>
+                                        </a>
+                                    </div>
+                                    <div class="blog_details">
+                                        <a class="d-inline-block" href="single-blog.html">
+                                            <h2><a href="detailartikel.php?id_artikel=id">{{ $data_artikel->judul }}</a></h2>
+                                        </a>
+                                        {{-- Code untuk memotong text menggunakan Str limit --}}
+                                        <p>{{\Illuminate\Support\Str::limit($data_artikel->isi, 250)}}  <a href="detailartikel.php?id_artikel=id isi" class="more-btn">  <strong> Read more » </strong></a></p>
+                                        <ul class="blog-info-link">
+                                            <li><a>{{ $data_artikel->id_ktg }}</a></li>
+                                            <li><a>{{ $data_artikel->tanggal }}</a></li>
+                                        </ul>
+                                    </div>
+                            </article>
+                            </tr>
+                            @endforeach
+                            </tbody>
+                        </table> 
+                      
+                        {{-- //pagination use bootstrap --}}
+                      {{ $artikel->links()}}
+
    <!-- Banner End -->
 <section class="blog_area section-padding">
         <div class="container">
@@ -57,12 +96,12 @@
                             </div>
                                        
                         <aside class="single_sidebar_widget search_widget">
+                            <form action="/artikel/cari" action="GET">
                                 <div class="input-group mb-3">
-                                        <input type="text" class="form-control" placeholder='cari artikel' name="nt" id="cari artikel" value=""
-                                            onfocus="this.placeholder = ''"
-                                            onblur="this.placeholder = 'search_keyword'">
+                                        <input type="text" class="form-control" placeholder='cari artikel' name="cari" id="cari artikel" value="{{ old('cari') }}">
                                         <div class="input-group-append">
-                                            <button class="btns" type="submit" name="submit"><i class="ti-search"></i></button>
+                                            <input type="submit"  class="btns" value="CARI">
+                                            {{-- <button class="btns" type="submit" name="submit"><i class="ti-search"></i></button> --}}
                                         </div>
                                    </div>
                             </form>
@@ -107,51 +146,15 @@
                                     </a>
                                 </li>
                             </ul>
+                            <main class="py-4">
+                                @yield('footer')
+                            </main>
     </section>
-    <footer>
-            <div class="footer-area footer-bg footer-padding">
-                <div class="container">
-                    <div class="row d-flex justify-content-between">
-                    <div class="col-xl-3 col-lg-4 col-md-2 col-sm-7">
-                           <div class="single-footer-caption mb-50">
-                             <div class="single-footer-caption mb-30">
-                                 <div class="footer-tittle">
-                                     <h4>LOKASI</h4>
-                                     <div class="footer-pera">
-                                         <p>Jl. Raya Situbondo, Blindungan, Kec. Bondowoso, Kabupaten Bondowoso, Jawa Timur 68211</p>
-                                    </div>
-                                 </div>
-                             </div>
-                           </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-5 col-md-4 col-sm-5">
-                            <div class="single-footer-caption mb-50">
-                                <div class="footer-tittle">
-                                    <h4>TENTANG KAMI</h4>
-                                    <ul>
-                                    <p>Website Dokternak dikembangkan oleh mahasiswa Teknik Informatika, Politeknik Negeri Jember Kampus Bondowoso. Website ini bertujuan sebagai wadah komunikasi
-                                        Dokter Hewan, Peternak, dan Petlovers.</p>
-                                        <!-- #ganti nama file  -->
-                                        <li><a href="aboutus.php"> selengkapnya-></a></li> 
-                                    </ul>
-                                </div>
     
-                            </div>
-                        </div>
-                        
-                        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-5">
-                            <div class="single-footer-caption mb-50">
-                                <div class="footer-tittle">
-                                    <h4>KONTAK</h4>
-                                    <ul>
-                                        <li><a href="https://api.whatsapp.com/send?phone=+62 812-3254-4553">Telepon : +62 812-3254-4553</a></li>
-                                        <li><a href="#">Email : kel01golabws@gmail.com</a></li>
-                                    </ul>
-                                </div>
-    
-                            </div>
-                        </div>
-        </footer>
+    <section>
+        @include('frontend/layouts.footer');
+    </section>
+
         
     <!-- JS here -->
 	
