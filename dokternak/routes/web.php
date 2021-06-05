@@ -29,6 +29,7 @@ Route::group(['namespace' => 'Frontend'], function()
     Route::resource('home', 'HomeController');
     Route::resource('artikel', 'ArtikelController');
     Route::resource('puskeswan', 'PuskeswanController');
+    Route::resource('tentangkami', 'TentangKamiController');
 });
 
 
