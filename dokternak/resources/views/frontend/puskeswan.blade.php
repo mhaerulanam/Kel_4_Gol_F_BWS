@@ -135,6 +135,7 @@
     </style>
    </head>
 <body>
+      
         <navbar>
         @include('frontend/layouts.navbar');
         </navbar>
@@ -162,7 +163,7 @@
                 <aside class="single_sidebar_widget search_widget">
                             <form method="POST">
                                 <div class="input-group mb-3">
-                                        <input type="text" class="form-control" placeholder='cari puskeswan' name="nt" id="cari puskeswan" value=""
+                                        <input type="text" class="form-control" placeholder='cari puskeswan' name="cari" id="cari puskeswan" value=""
                                             onfocus="this.placeholder = ''"
                                             onblur="this.placeholder = 'search_keyword'">
                                         <div class="input-group-append">
@@ -177,7 +178,7 @@
 <section class="blog_area section-padding">
 <div class="container">
           <div class="row">
-              <div class="col-lg-8 mb-5 mb-lg-0">
+              <div class="col-lg-12 mb-4 mb-lg-0">
                   <div class="blog_left_sidebar">
                     <table>
                         <tbody>
@@ -186,7 +187,7 @@
                             @foreach ($puskeswan as $data_puskeswan)
                             <tr>
                 <div class="row d-flex justify-contnet-center">
-                                    <div class="col-lg-4 col-md-6">
+                                    <div class="col-lg-4 col-md-4">
                                         <div class="item-box-blog">
                                         <div class="item-box-blog-image">
                                         {{-- //Code untuk menampilkan gambar yang berbentuk blob --}}
