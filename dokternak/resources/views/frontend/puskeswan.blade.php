@@ -172,27 +172,23 @@
                                    </div>      
                             </form>
                         </aside>
+                  </div>
                 </div>
-                </div>
-                
-<section class="blog_area section-padding">
-<div class="container">
-          <div class="row">
-              <div class="col-lg-12 mb-4 mb-lg-0">
-                  <div class="blog_left_sidebar">
+                <div class="row">
                     <table>
                         <tbody>
-
                         {{-- Perulangan untuk menampilkan data sebanyak yang ada di database --}}
                             @foreach ($puskeswan as $data_puskeswan)
                             <tr>
-                <div class="row d-flex justify-contnet-center">
+              
                                     <div class="col-lg-4 col-md-4">
                                         <div class="item-box-blog">
                                         <div class="item-box-blog-image">
                                         {{-- //Code untuk menampilkan gambar yang berbentuk blob --}}
                                         <img class="card-img rounded-0" src="data:image/png;base64,{{ chunk_split(base64_encode($data_puskeswan->gambar)) }}" alt="gambar puskeswan">
                                         </div>
+                                        
+                                    
                                         <div class="item-box-blog-body">
                                             <!--Heading-->
                                             <div class="item-box-blog-heading">
@@ -207,11 +203,15 @@
                                     </div>
                                     <div class="services-cap">
                                         <a href="detailpuskeswan.php?id_puskeswan" class="genric-btn primary radius">Detail</a>
-                                    </div>
+                                        </div>
+                                        </div>
+                                </div>
+                            </div> 
                             </tr>
                         @endforeach
                     </tbody>
                     </table> 
+
                     {{-- //pagination use bootstrap --}}
                       {{ $puskeswan->links()}}
 
@@ -219,11 +219,9 @@
                                 @yield('footer')
                             </main>
 
-    </section>
-
-    <section>
-        @include('frontend/layouts.footer');
-    </section>
+<section>
+    @include('frontend/layouts.footer');
+</section>
                
         <!-- JS here -->
 	
