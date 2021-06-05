@@ -139,7 +139,6 @@
         @include('frontend/layouts.navbar');
         </navbar>
 
-
  <!-- Banner Atas Start-->
  <div class="slider-area ">
       <div class="single-slider section-overly slider-height2 d-flex align-items-center" data-background="{{ asset('Frontend/assets/img/gallery/s2.jpg')}}">
@@ -154,12 +153,10 @@
           </div>
       </div>
    </div>
-   <!-- Banner End -->
-    
-  <!-- Our Services Start -->
-  <div class="our-services section-pad-t30">
-            <div class="container">
-      
+   <!-- Banner End -->       
+<!-- pencarian -->
+<div class="our-services section-pad-t30">
+            <div class="container">  
             <div class="pagination-area pb-200 text-center">
                 <div class="blog_right_sidebar">          
                 <aside class="single_sidebar_widget search_widget">
@@ -177,146 +174,56 @@
                 </div>
                 </div>
                 
+<section class="blog_area section-padding">
+<div class="container">
+          <div class="row">
+              <div class="col-lg-8 mb-5 mb-lg-0">
+                  <div class="blog_left_sidebar">
+                    <table>
+                        <tbody>
 
-        
-                <!-- Section Tittle -->
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="section-tittle text-center">
-                        </div>
-                    </div>
-                </div>
+                        {{-- Perulangan untuk menampilkan data sebanyak yang ada di database --}}
+                            @foreach ($puskeswan as $data_puskeswan)
+                            <tr>
                 <div class="row d-flex justify-contnet-center">
-                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                        <div class="single-services text-center mb-30">
-                            <div class="services-ion">
-                                <span class="flaticon-tour"></span>
-                            </div>
-                            <div class="services-cap">
-                               <h5><a href="job_listing.html">Puskeswan Tamanan</a></h5>
-                               <div class="items-link f-right">
-                               <a href="job_details.html">Detail</a>
-                               </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                        <div class="single-services text-center mb-30">
-                            <div class="services-ion">
-                                <span class="flaticon-cms"></span>
-                            </div>
-                            <div class="services-cap">
-                                <h5><a href="job_listing.html">Puskeswan Tapen</a></h5>
-                                <div class="items-link f-right">
-                                    <a href="job_details.html">Detail</a>
+                                    <div class="col-lg-4 col-md-6">
+                                        <div class="item-box-blog">
+                                        <div class="item-box-blog-image">
+                                        {{-- //Code untuk menampilkan gambar yang berbentuk blob --}}
+                                        <img class="card-img rounded-0" src="data:image/png;base64,{{ chunk_split(base64_encode($data_puskeswan->gambar)) }}" alt="gambar puskeswan">
+                                        </div>
+                                        <div class="item-box-blog-body">
+                                            <!--Heading-->
+                                            <div class="item-box-blog-heading">
+                                            <a href="#" tabindex="0">
+                                            <h4><b>{{ $data_puskeswan->nama_puskeswan }}</b></h4>
+                                                <!-- <h4><b>{{ $data_puskeswan->nama_puskeswan }};</b></h4> -->
+                                            </a>
+                                            </div>
+                                    <!--Text-->
+                                    <div class="item-box-blog-text">
+                                    <p>{{ $data_puskeswan->alamat }}</p>
                                     </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                        <div class="single-services text-center mb-30">
-                            <div class="services-ion">
-                                <span class="flaticon-report"></span>
-                            </div>
-                            <div class="services-cap">
-                                <h5><a href="job_listing.html">Puskeswan Curahdami</a></h5>
-                                <div class="items-link f-right">
-                                    <a href="job_details.html">Detail</a>
+                                    <div class="services-cap">
+                                        <a href="detailpuskeswan.php?id_puskeswan" class="genric-btn primary radius">Detail</a>
                                     </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                        <div class="single-services text-center mb-30">
-                            <div class="services-ion">
-                                <span class="flaticon-app"></span>
-                            </div>
-                            <div class="services-cap">
-                               <h5><a href="job_listing.html">Puskeswan Cermee</a></h5>
-                               <div class="items-link f-right">
-                                <a href="job_details.html">Detail</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    {{-- <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                        <div class="single-services text-center mb-30">
-                            <div class="services-ion">
-                                <span class="flaticon-helmet"></span>
-                            </div>
-                            <div class="services-cap">
-                               <h5><a href="job_listing.html">Construction</a></h5>
-                                <span>(658)</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                        <div class="single-services text-center mb-30">
-                            <div class="services-ion">
-                                <span class="flaticon-high-tech"></span>
-                            </div>
-                            <div class="services-cap">
-                               <h5><a href="job_listing.html">Information Technology</a></h5>
-                                <span>(658)</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                        <div class="single-services text-center mb-30">
-                            <div class="services-ion">
-                                <span class="flaticon-real-estate"></span>
-                            </div>
-                            <div class="services-cap">
-                               <h5><a href="job_listing.html">Real Estate</a></h5>
-                                <span>(658)</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                        <div class="single-services text-center mb-30">
-                            <div class="services-ion">
-                                <span class="flaticon-content"></span>
-                            </div>
-                            <div class="services-cap">
-                               <h5><a href="job_listing.html">Content Writer</a></h5>
-                                <span>(658)</span>
-                            </div>
-                        </div>
-                    </div>
-                </div> --}}
-                <!-- More Btn -->
-                <!-- Section Button -->
-                <div class="row">
-                    <div class="col-lg-12">
-                        {{-- <div class="browse-btn2 text-center mt-50">
-                            <a href="job_listing.html" class="border-btn2">Browse All Sectors</a>
-                        </div> --}}
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Our Services End -->
-        <!-- Online CV Area Start -->
-         {{-- <div class="online-cv cv-bg section-overly pt-90 pb-120"  data-background="{{ asset('Frontend/assets/img/gallery/cv_bg.jpg') }}">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-xl-10">
-                        <div class="cv-caption text-center">
-                            <p class="pera1">FEATURED TOURS Packages</p>
-                            <p class="pera2"> Make a Difference with Your Online Resume!</p>
-                            <a href="#" class="border-btn2 border-btn4">Upload your cv</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
-        <!-- Online CV Area End-->
-        
-        <section>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                    </table> 
+                    {{-- //pagination use bootstrap --}}
+                      {{ $puskeswan->links()}}
+
+                      <main class="py-4">
+                                @yield('footer')
+                            </main>
+
+    </section>
+
+    <section>
         @include('frontend/layouts.footer');
     </section>
                
-
         <!-- JS here -->
 	
 		<!-- All JS Custom Plugins Link Here here -->
@@ -353,6 +260,6 @@
 		<!-- Jquery Plugins, main Jquery -->	
         <script src="./assets/js/plugins.js"></script>
         <script src="./assets/js/main.js"></script>
+
         </body>
-        
 </html>
