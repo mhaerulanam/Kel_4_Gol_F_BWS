@@ -36,12 +36,12 @@
                                             <li><a href="/home">HOME</a></li>
                                             <li><a href="/artikel">ARTIKEL </a></li>
                                             <li><a href="riwayat_konsultasi.php">KONSULTASI</a></li>
-                                            <li><a href="daftar_dokter.php">DOKTER</a></li>
+                                            <li><a href="dokter">DOKTER</a></li>
                                             <li><a href="#">INFORMASI</a>
                                                 <ul class="submenu">
-                                                    <li><a href="daftarpuskeswan.php">PUSKESWAN</a></li>
+                                                    <li><a href="puskeswan">PUSKESWAN</a></li>
                                                     <li><a href="daftar_tutorial.php">TUTORIAL</a></li>
-                                                    <li><a href="/tentangkami">TENTANG KAMI</a></li>                                                 
+                                                    <li><a href="tentangkami">TENTANG KAMI</a></li>                                                 
                                                 </ul>
                                             </li>
                                         </ul>
