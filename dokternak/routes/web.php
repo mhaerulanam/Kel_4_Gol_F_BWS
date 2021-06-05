@@ -30,6 +30,7 @@ Route::group(['namespace' => 'Frontend'], function()
     Route::resource('artikel', 'ArtikelController');
     Route::resource('puskeswan', 'PuskeswanController');
     Route::resource('tentangkami', 'TentangKamiController');
+    Route::resource('dokter', 'DaftarDokterController');
 });
 
 
