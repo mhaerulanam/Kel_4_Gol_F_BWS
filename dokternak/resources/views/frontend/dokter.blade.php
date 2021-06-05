@@ -129,7 +129,7 @@
 </head>
 
 <body>
-    
+    @include('frontend/layouts.navbar');
     
     <!-- Banner Atas Start-->
    
@@ -147,9 +147,9 @@
       </div>
    </div>
    <!-- Banner End -->
-<section class="blog_area section-padding">
-    <div class="container">
-                    
+
+   <section class="blog_area section-padding">
+    <div class="container">         
 
     <div class="pagination-area pb-200 text-center">
                 <div class="blog_right_sidebar">          
@@ -158,9 +158,18 @@
                             <div class="input-group mb-3">
                                 <div class="wrapper">
                                 <div class="tabs-2">
-                                    
-
-                                    
+                                        <div class="tab">
+                                            <input type="radio" name="jabatan" id="tab-param" class="tab-switch" value="J01" selected>
+                                            <label for="tab-param" class="tab-label1">Dokter</label>
+                                        </div>
+                                        <div class="tab">
+                                            <input type="radio" name="jabatan" id="tab-dok" class="tab-switch" value="J02" selected>
+                                            <label for="tab-dok" class="tab-label">Paramedis</label>
+                                        </div>
+                                        <div class="tab">
+                                            <input type="radio" name="jabatan" id="tab-ib" class="tab-switch" value="J03" selected>
+                                            <label for="tab-ib" class="tab-label">Petugas IB</label>
+                                        </div>
 
                                     <div class="input-group-append">
                                         <button type="submit" name="pilih" class="genric-btn primary">CEK</button> 
@@ -172,30 +181,30 @@
                                         <input list="nt" class="form-control" placeholder='Masukkan nama Dokter atau lokasi kecamatan Anda ...' name="nt" id="cari dokter" value=""
                                             onfocus="this.placeholder = ''"
                                             onblur="this.placeholder = 'Masukkan nama Dokter atau lokasi kecamatan Anda ... '">
-                                            <datalist id="nt">
-                                                <option value="Bondowoso" >Bondowoso</option>
-                                                <option value="Binakal" >Binakal</option>
-                                                <option value="Cermee" >Cermee</option>
-                                                <option value="Curahdami" >Curahdami</option>
-                                                <option value="Grujugan" >Grujugan</option>
-                                                <option value="Jambesari" >Jambesari</option>
-                                                <option value="Klabang" >Klabang</option>
-                                                <option value="Maesan" >Maesan</option>
-                                                <option value="Pakem" >Pakem</option>
-                                                <option value="Prajekan" >Prajekan</option>
-                                                <option value="Pujer" >Pujer</option>
-                                                <option value="Sempol" >Sempol</option>
-                                                <option value="Sukosari" >Sukosari</option>
-                                                <option value="Sumberwringin" >Sumberwringin</option>
-                                                <option value="Taman Krocok" >Taman Krocok</option>
-                                                <option value="Tamanan" >Tamanan</option>
-                                                <option value="Tapen" >Tapen</option>
-                                                <option value="Tegalampel" >Tegalampel</option>
-                                                <option value="Tenggarang" >Tenggarang</option>
-                                                <option value="Tlogosari" >Tlogosari</option>
-                                                <option value="Wonosari" >Wonosari</option>
-                                                <option value="Wringin" >Wringin</option>
-                                            </datalist>
+                                            {{-- <datalist id="nt">
+                                                <option value="Bondowoso" <?php if ($nt=="Bondowoso"){ echo "selected"; } ?>>Bondowoso</option>
+                                                <option value="Binakal" <?php if ($nt=="Binakal"){ echo "selected"; } ?>>Binakal</option>
+                                                <option value="Cermee" <?php if ($nt=="Cermee"){ echo "selected"; } ?>>Cermee</option>
+                                                <option value="Curahdami" <?php if ($nt=="Curahdami"){ echo "selected"; } ?>>Curahdami</option>
+                                                <option value="Grujugan" <?php if ($nt=="Grujugan"){ echo "selected"; } ?>>Grujugan</option>
+                                                <option value="Jambesari" <?php if ($nt=="Jambesari"){ echo "selected"; } ?>>Jambesari</option>
+                                                <option value="Klabang" <?php if ($nt=="Klabang"){ echo "selected"; } ?>>Klabang</option>
+                                                <option value="Maesan" <?php if ($nt=="Maesan"){ echo "selected"; } ?>>Maesan</option>
+                                                <option value="Pakem" <?php if ($nt=="Pakem"){ echo "selected"; } ?>>Pakem</option>
+                                                <option value="Prajekan" <?php if ($nt=="Prajekan"){ echo "selected"; } ?>>Prajekan</option>
+                                                <option value="Pujer" <?php if ($nt=="Pujer"){ echo "selected"; } ?>>Pujer</option>
+                                                <option value="Sempol" <?php if ($nt=="Sempol"){ echo "selected"; } ?>>Sempol</option>
+                                                <option value="Sukosari" <?php if ($nt=="Sukosari"){ echo "selected"; } ?>>Sukosari</option>
+                                                <option value="Sumberwringin" <?php if ($nt=="Sumberwringin"){ echo "selected"; } ?>>Sumberwringin</option>
+                                                <option value="Taman Krocok" <?php if ($nt=="Taman Krocok"){ echo "selected"; } ?>>Taman Krocok</option>
+                                                <option value="Tamanan" <?php if ($nt=="Tamanan"){ echo "selected"; } ?>>Tamanan</option>
+                                                <option value="Tapen" <?php if ($nt=="Tapen"){ echo "selected"; } ?>>Tapen</option>
+                                                <option value="Tegalampel" <?php if ($nt=="Tegalampel"){ echo "selected"; } ?>>Tegalampel</option>
+                                                <option value="Tenggarang" <?php if ($nt=="Tenggarang"){ echo "selected"; } ?>>Tenggarang</option>
+                                                <option value="Tlogosari" <?php if ($nt=="Tlogosari"){ echo "selected"; } ?>>Tlogosari</option>
+                                                <option value="Wonosari" <?php if ($nt=="Wonosari"){ echo "selected"; } ?>>Wonosari</option>
+                                                <option value="Wringin" <?php if ($nt=="Wringin"){ echo "selected"; } ?>>Wringin</option>
+                                            </datalist> --}}
                                         <div class="input-group-append">
                                             <button class="btns" type="submit" name="submit"><i class="ti-search"></i></button> 
                                         </div>
@@ -204,29 +213,63 @@
                             </form>
                         </aside>
                 </div>
-                
+                <?php
+                    if(isset($_POST['pilih'])){ ?>
+                        <h1>
+                            <b>
+                                <?php 
+                                $kat = $_POST['jabatan'];
+                                $ambilDataa=mysqli_query($koneksi, "SELECT * FROM jabatan WHERE id_jabatan = '$kat'");
+                                $dta = mysqli_fetch_array($ambilDataa);
+                                echo $dta['jabatan']; ?>
                             </b>
                         </h1>
-                   
+                    <?php
+                    }
+                ?>
                 </div>
 
-    <div class="row blog">
-<!-- <h1>
-  <div class="animated fadeInLeft">NOS EXPERTS</div><div class="animated fadeInRight">SCIENTIFIQUES</div>
-</h1> -->
-                <div class="col-md-12">
-                    <div id="blogCarousel" class="carousel slide" data-ride="carousel">
 
-                        <!-- <ol class="carousel-indicators">
-                            <li data-target="#blogCarousel" data-slide-to="0" class="active"></li>
-                            <li data-target="#blogCarousel" data-slide-to="1"></li>
-                        </ol> -->
-                        <!-- Carousel items -->
-                        <!-- <div class="carousel-inner">
-                            <div class="carousel-item active"> -->
-                                <div class="row">
-                                
-                                    
+                               {{-- Perulangan untuk menampilkan data sebanyak yang ada di database --}}
+                          @foreach ($dokter as $data_dokter)
+                          <tr>
+                          <article class="blog_item">
+                                            <div class="col-lg-3 col-md-6 col-sm-6">
+                                                <div class="our-team">
+                                                <div class="pic">
+                                                    <img class="card-img rounded-0" src="data:image/png;base64,{{ chunk_split(base64_encode($data_dokter->foto)) }}" alt="gambar dokter">
+                                                </div>
+                                                <div class="blog_details">
+                                                    {{-- Code untuk memotong text menggunakan Str limit --}}
+                                                    <div class="team-content">
+                                                        <h4 class="title">{{ $data_dokter->nama }}</h4>
+                                                        <p><span class="post">{{ $data_dokter->id_jabatan }} </span></p>
+                                                        <p><span class="post">{{ $data_dokter->tempat }}</span></p>
+                                                        <p><span class="post">{{ $data_dokter->telpon }}</span></p><br>
+                                                    {{-- <ul class="blog-info-link">
+                                                        <li><a>{{ $data_dokter->id_jabatan }}</a></li>
+                                                        <li><a>{{ $data_dokter->tempat }}</a></li>
+                                                        <li><a>{{ $data_dokter->telpon }}</a></li>
+                                                    </ul> --}}
+                                                    <div class="services-cap">
+                                                        <a href="detailpuskeswan.php?id_puskeswan=" class="genric-btn primary radius">Detail</a>
+                                                    </div>
+                                                    {{-- <ul class="social"> 
+                                                        <li>
+                                                        <a href="detaildokter.php?id_dokter"><b>Detail</b></a>
+                                                        </li>
+                                                    </ul> --}}
+                                                </div>
+                                          </article>
+                                          </tr>
+                                          @endforeach
+                                          </tbody>
+                                      </table> 
+                                                
+                                                </div>
+                                            </div>
+                                            
+                                </div>
                             <!--.row-->
                             </div>
                 <!--.carousel-inner-->
@@ -238,25 +281,15 @@
 </section>
 
 <!--Pagination Start  -->
-<div class="pagination-area pb-115 text-center">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-12">
-                        <div class="single-wrap d-flex justify-content-center">
-                            <nav aria-label="Page navigation example">
-                            <ul class="pagination justify-content-start">
 
-                                    
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        
-    <!-- JS here -->
+ {{-- //pagination use bootstrap --}}
+  {{ $dokter->links()}}
+   
+  <section>
+    @include('frontend/layouts.footer');
+</section>
+
+  <!-- JS here -->
 	
 		<!-- All JS Custom Plugins Link Here here -->
         <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
