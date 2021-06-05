@@ -135,70 +135,10 @@
     </style>
    </head>
 <body>
+        <navbar>
+        @include('frontend/layouts.navbar');
+        </navbar>
 
-<header>
-        <!-- Header Start -->
-       <div class="header-area header-transparrent">
-           <div class="headder-top header-sticky">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-lg-3 col-md-2">
-                            <!-- Logo -->
-                            <div class="logo">
-                                <a href="LandingPageDokter.php"><img src="{{ asset('Frontend/assets/img/logo/logo1.png') }}" alt=""></a>
-                            </div> 
-                            <div class="col-12">
-                                <div class="mobile_menu d-block d-lg-none"></div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-9 col-md-9">
-                                <div class="menu-wrapper">
-                                   <!-- Main-menu -->
-                                   <div class="main-menu">
-                                    <nav class="d-none d-lg-block">
-                                        <ul id="navigation">
-                                            <li><a href="LandingPagePeternak.php">HOME</a></li>
-                                            <li><a href="daftar_artikel.php">ARTIKEL </a></li>
-                                            <li><a href="riwayat_konsultasi.php">KONSULTASI</a></li>
-                                            <li><a href="daftar_dokter.php">DOKTER</a></li>
-                                            <li><a href="#">INFORMASI</a>
-                                                <ul class="submenu">
-                                                    <li><a href="daftarpuskeswan.php">PUSKESWAN</a></li>
-                                                    <li><a href="daftar_tutorial.php">TUTORIAL</a></li>
-                                                    <li><a href="aboutus.php">TENTANG KAMI</a></li>                                                 
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </nav>
-                                </div>
-                                <!-- Header-btn -->
-                                <div class="main-menu f-right">
-                                        <ul>
-                                            @if (Route::has('login'))
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                            </li>
-                                        @endif
-                                        
-                                        @if (Route::has('register'))
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                            </li>
-                                        @endif
-                                        </ul>
-                                    </div>        
-                            </div>
-                        </div>
-                        <!-- Mobile Menu -->
-                        <div class="col-lg-3 col-md-2">                 
-                        </div>
-                    </div>
-                </div>
-           </div>
-       </div>
-        <!-- Header End -->
-    </header>
 
  <!-- Banner Atas Start-->
  <div class="slider-area ">
@@ -371,83 +311,11 @@
             </div>
         </div> --}}
         <!-- Online CV Area End-->
-        <footer>
-        <!-- Footer Start-->
-        <div class="footer-area footer-bg footer-padding">
-            <div class="container">
-                <div class="row d-flex justify-content-between">
-                <div class="col-xl-3 col-lg-4 col-md-2 col-sm-7">
-                       <div class="single-footer-caption mb-50">
-                         <div class="single-footer-caption mb-30">
-                             <div class="footer-tittle">
-                                 <h4>LOKASI</h4>
-                                 <div class="footer-pera">
-                                     <p>Jl. Raya Situbondo, Blindungan, Kec. Bondowoso, Kabupaten Bondowoso, Jawa Timur 68211</p>
-                                </div>
-                             </div>
-                         </div>
-                       </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-5 col-md-4 col-sm-5">
-                        <div class="single-footer-caption mb-50">
-                            <div class="footer-tittle">
-                                <h4>TENTANG KAMI</h4>
-                                <ul>
-                                <p>Website Dokternak dikembangkan oleh mahasiswa Teknik Informatika, Politeknik Negeri Jember Kampus Bondowoso. Website ini bertujuan sebagai wadah komunikasi
-                                    Dokter Hewan, Peternak, dan Petlovers.</p>
-                                    <!-- #ganti nama file  -->
-                                    <li><a href="aboutus.php"> selengkapnya-></a></li> 
-                                </ul>
-                            </div>
-
-                        </div>
-                    </div>
-                    
-                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-5">
-                        <div class="single-footer-caption mb-50">
-                            <div class="footer-tittle">
-                                <h4>KONTAK</h4>
-                                <ul>
-                                    <li><a href="https://api.whatsapp.com/send?phone=+62 812-3254-4553">Telepon : +62 812-3254-4553</a></li>
-                                    <li><a href="#">Email : kel01golabws@gmail.com</a></li>
-                                </ul>
-                            </div>
-
-                        </div>
-                    </div>
-                    <!-- <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
-                        <div class="single-footer-caption mb-50">
-                            <div class="footer-tittle">
-                                <h4>TANGGAPAN</h4>
-                                <div class="footer-pera footer-pera2">
-                                 <p>Berikan tanggapanmu tentang website kami :</p>
-                             </div> -->
-                             <!-- Form -->
-                             <!-- <div class="footer-form" >
-                                 <div id="mc_embed_signup">
-                                     <form target="_blank" action="https://mail.google.com/mail/u/1/?tab=om#inbox?compose=new"
-                                     method="get" class="subscribe_form relative mail_part">
-                                         <input type="email" name="email" id="newsletter-form-email" placeholder="Email Address"
-                                         class="placeholder hide-on-focus" onfocus="this.placeholder = ''"
-                                         onblur="this.placeholder = ' Email Address '">
-                                         <div class="form-icon">
-                                             <button type="submit" name="submit" id="newsletter-submit"
-                                             class="email_icon newsletter-submit button-contactForm"><img src="assets/img/icon/form.png" alt=""></button>
-                                         </div>
-                                         <div class="mt-10 info"></div>
-                                     </form>
-                                 </div>
-                             </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
         
-    </footer>
+        <section>
+        @include('frontend/layouts.footer');
+    </section>
                
-                                
-                                    
-  
 
         <!-- JS here -->
 	
