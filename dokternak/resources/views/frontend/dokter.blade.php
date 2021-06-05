@@ -227,14 +227,15 @@
                     <?php
                     }
                 ?>
-                </div>
-
-
+                </div>   
+                            <div class="row">    
+                <table>
+                    <tbody>
                                {{-- Perulangan untuk menampilkan data sebanyak yang ada di database --}}
                           @foreach ($dokter as $data_dokter)
                           <tr>
                           <article class="blog_item">
-                                            <div class="col-lg-3 col-md-6 col-sm-6">
+                                            <div class="col-md-10">
                                                 <div class="our-team">
                                                 <div class="pic">
                                                     <img class="card-img rounded-0" src="data:image/png;base64,{{ chunk_split(base64_encode($data_dokter->foto)) }}" alt="gambar dokter">
@@ -243,8 +244,8 @@
                                                     {{-- Code untuk memotong text menggunakan Str limit --}}
                                                     <div class="team-content">
                                                         <h4 class="title">{{ $data_dokter->nama }}</h4>
-                                                        <p><span class="post">{{ $data_dokter->id_jabatan }} </span></p>
-                                                        <p><span class="post">{{ $data_dokter->tempat }}</span></p>
+                                                        <span class="post">{{ $data_dokter->id_jabatan }} </span>
+                                                        <span class="post">{{ $data_dokter->tempat }}</span>
                                                         <p><span class="post">{{ $data_dokter->telpon }}</span></p><br>
                                                     {{-- <ul class="blog-info-link">
                                                         <li><a>{{ $data_dokter->id_jabatan }}</a></li>
@@ -260,6 +261,7 @@
                                                         </li>
                                                     </ul> --}}
                                                 </div>
+                                                
                                           </article>
                                           </tr>
                                           @endforeach
