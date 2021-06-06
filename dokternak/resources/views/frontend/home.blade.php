@@ -268,8 +268,10 @@
                 </div>
             </div>
         </div>
-        @endsection
+        </div></section>
         <section>
             @include('frontend/layouts.footer');
         </section>
+        @endsection
+       
         
