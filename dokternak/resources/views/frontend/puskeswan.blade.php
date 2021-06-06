@@ -221,7 +221,7 @@
                             <nav aria-label="Page navigation example">
                             <ul class="pagination justify-content-start">     
                             {{-- //pagination use bootstrap --}}
-                      {{ $puskeswan->links()}}
+                            {{ $puskeswan->links()}}
                                 </ul>
                             </nav>
                         </div>

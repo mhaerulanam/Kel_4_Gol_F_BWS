@@ -77,15 +77,9 @@
                             @endforeach
                             </tbody>
                         </table> 
-                      
-                        
-
-                        <nav class="blog-pagination justify-content-center d-flex">
-                            {{-- //pagination use bootstrap --}}
-                            {{ $artikel->links()}}
-                        </nav>
                     </div>
                 </div>
+                
                 <div class="col-lg-4">
                     <div class="blog_right_sidebar">
                         <div class="btn_tulis">
@@ -153,6 +147,23 @@
             </div>
         </div>
     </section>
+     <!--Pagination Start  -->
+     <div class="pagination-area pb-115 text-center">
+        <div class="container">
+            <div class="row">
+                <!-- <div class="col-xl-10"> -->
+                    <div class="single-wrap d-flex justify-content-center">
+                        <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-start">     
+                        {{-- //pagination use bootstrap --}}
+                {{ $artikel->links()}}
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
    
     <section>
         @include('frontend/layouts.footer');

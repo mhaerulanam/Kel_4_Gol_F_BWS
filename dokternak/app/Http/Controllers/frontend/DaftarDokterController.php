@@ -9,7 +9,7 @@ class DaftarDokterController extends Controller
 {
     public function index()
     {
-        $dokter = DB::table('dokter')->paginate(3);
+        $dokter = DB::table('dokter')->paginate(4);
 
         return view('frontend.dokter',compact('dokter'))->with('dokter', $dokter);;
         // return view('frontend.artikel');

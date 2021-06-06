@@ -238,7 +238,7 @@
                                             <div class="col-md-10">
                                                 <div class="our-team">
                                                 <div class="pic">
-                                                    <img class="card-img rounded-0" src="data:image/png;base64,{{ chunk_split(base64_encode($data_dokter->foto)) }}" alt="gambar dokter" width="300px" height="300px">
+                                                    <img class="card-img rounded-0" src="data:image/png;base64,{{ chunk_split(base64_encode($data_dokter->foto)) }}" alt="gambar dokter" width="300px">
                                                 </div>
                                                 <div class="blog_details">
                                                     {{-- Code untuk memotong text menggunakan Str limit --}}

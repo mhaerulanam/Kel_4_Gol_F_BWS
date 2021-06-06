@@ -15,6 +15,6 @@ class StartSession
 
     public function terminate($request, $response)
     {
-        
+        //
     }
 }

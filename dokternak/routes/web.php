@@ -3,9 +3,8 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Middleware\CheckAge;
-use App\Http\Controllers\frontend\ArtikelController;
+use Illuminate\Support\Facades\Auth;
 
 Route::get('admin/profile', function ($id) {
     //
@@ -20,7 +19,8 @@ Route::get('/', function () {
 Route::group(['namespace' => 'Backend'], function()
 {
     Route::resource('dashboard', 'DashboardController');
-    Route::resource('peternak', 'PeternakController');
+    Route::resource('pendidikan', 'PendidikanController');
+    Route::resource('pengalaman_kerja', 'PengalamanKerjaController');
 });
 // ------------------------------------------------------------------------
 //Route untuk Frontend----------------------------------------------------
@@ -32,12 +32,7 @@ Route::group(['namespace' => 'Frontend'], function()
     Route::resource('tentangkami', 'TentangKamiController');
     Route::resource('dokter', 'DaftarDokterController');
 });
-
-
-//route artikel
-// Route::get('/artikel','Frontend\ArtikelController@index');
-// Route::get('/artikel/cari','Frontend\ArtikelController@cari');
-
+Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
