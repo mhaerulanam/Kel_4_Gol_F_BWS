@@ -129,9 +129,9 @@
     <main class="py-4">
         @yield('content')
     </main> 
-    <main class="py-4">
-        @yield('footer')
-    </main>
+    <section>
+        @include('frontend/layouts.footer');
+    </section>
 </body>
 <!-- JS here -->
 	
