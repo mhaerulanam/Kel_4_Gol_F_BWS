@@ -29,7 +29,7 @@
   </div> <!-- .container-fluid -->
   <div class="container-fluid"> 
     <div class="row justify-content-center">
-      <div class="col-12">
+      <div class="col-15">
         @if ($message = Session::get('success'))
         <div class="alert alert-success">
             <p>{{ $message }}</p>
@@ -58,7 +58,6 @@
                       <th>Email</th>
                       <th>Username</th>
                       <th>Password</th>
-                      <th>Alamat</th>
                       <th>Aksi</th>
                     </tr>
                   </thead>
@@ -71,7 +70,6 @@
                         <td>{{ $item->email }}</td>
                         <td>{{ $item->username }}</td>
                         <td>{{ $item->password }}</td>
-                        <td>{{ $item->alamat }}</td>
                         <td>
                         <div class="btn-group">
                             <a href="{{ route('peternak.edit',$item->id)}}" class="btn btn-warning">Edit<i class="fa fa-edit"></i></a>

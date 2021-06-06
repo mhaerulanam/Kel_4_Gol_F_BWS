@@ -100,14 +100,7 @@
                       </div>
                     </div>
                     </div>
-                    <div class="form-group mb-3">
-                      <label for="address-wpalaceholder">Alamat</label>
-                      <input type="text" id="address-wpalaceholder" class="form-control" name="alamat" minlength="5" placeholder="Masukkan Alamat lengkap"
-                      value="{{ isset($peternak) ? $peternak->alamat : '' }}"  
-                      required>
-                      <div class="valid-feedback"> Looks good! </div>
-                      <div class="invalid-feedback"> Badd address </div>
-                    </div>
+                   
                     <button class="btn btn-primary" type="submit">Save</button>
                     <a href="{{ route('peternak.index') }}"><button class="btn btn-default"
                         type="button">Cancel</button></a>
