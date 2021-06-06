@@ -30,7 +30,6 @@ class PeternakController extends Controller
             'username' => $request->username,
             'email' => $request->email,
             'password' => Hash::make($request['password']),
-            'alamat' => $request->alamat
         ]);
 
         return redirect()->route('peternak.index')
@@ -49,8 +48,7 @@ class PeternakController extends Controller
             'name' => $request->name,
             'username' => $request->username,
             'email' => $request->email,
-            'password' => $request->password,
-            'alamat' => $request->alamat
+            'password' => Hash::make($request['password']),
         ]);
 
         return redirect()->route('peternak.index')
