@@ -128,10 +128,7 @@
 
     <main class="py-4">
         @yield('content')
-    </main> 
-    <section>
-        @include('frontend/layouts.footer');
-    </section>
+    </main>
 </body>
 <!-- JS here -->
 	
