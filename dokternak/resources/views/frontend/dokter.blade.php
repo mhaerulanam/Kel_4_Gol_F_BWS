@@ -238,7 +238,7 @@
                                             <div class="col-md-10">
                                                 <div class="our-team">
                                                 <div class="pic">
-                                                    <img class="card-img rounded-0" src="data:image/png;base64,{{ chunk_split(base64_encode($data_dokter->foto)) }}" alt="gambar dokter">
+                                                    <img class="card-img rounded-0" src="data:image/png;base64,{{ chunk_split(base64_encode($data_dokter->foto)) }}" alt="gambar dokter" width="300px" height="300px">
                                                 </div>
                                                 <div class="blog_details">
                                                     {{-- Code untuk memotong text menggunakan Str limit --}}
@@ -283,9 +283,23 @@
 </section>
 
 <!--Pagination Start  -->
-
- {{-- //pagination use bootstrap --}}
-  {{ $dokter->links()}}
+<div class="pagination-area pb-115 text-center">
+            <div class="container">
+                <div class="row">
+                    <!-- <div class="col-xl-10"> -->
+                        <div class="single-wrap d-flex justify-content-center">
+                            <nav aria-label="Page navigation example">
+                            <ul class="pagination justify-content-start">     
+                            {{-- //pagination use bootstrap --}}
+                            {{ $dokter->links()}}
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+ 
    
   <section>
     @include('frontend/layouts.footer');

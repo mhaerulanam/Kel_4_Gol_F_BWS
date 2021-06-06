@@ -156,9 +156,9 @@
    </div>
    <!-- Banner End -->       
 <!-- pencarian -->
-<div class="our-services section-pad-t30">
+<!-- <div class="our-services section-pad-t30"> -->
             <div class="container">  
-            <div class="pagination-area pb-200 text-center">
+            <div class="pagination-area pb-300 text-center">
                 <div class="blog_right_sidebar">          
                 <aside class="single_sidebar_widget search_widget">
                             <form method="POST">
@@ -174,6 +174,7 @@
                         </aside>
                   </div>
                 </div>
+               
                 <div class="row">
                     <table>
                         <tbody>
@@ -185,7 +186,7 @@
                                         <div class="item-box-blog">
                                         <div class="item-box-blog-image">
                                         {{-- //Code untuk menampilkan gambar yang berbentuk blob --}}
-                                        <img class="card-img rounded-0" src="data:image/png;base64,{{ chunk_split(base64_encode($data_puskeswan->gambar)) }}" alt="gambar puskeswan">
+                                        <img class="card-img rounded-0" src="data:image/png;base64,{{ chunk_split(base64_encode($data_puskeswan->gambar)) }}" alt="gambar puskeswan" width="300px" height="300px">
                                         </div>
                                         
                                     
@@ -211,13 +212,24 @@
                         @endforeach
                     </tbody>
                     </table> 
-
-                    {{-- //pagination use bootstrap --}}
+  <!--Pagination Start  -->
+<div class="pagination-area pb-115 text-center">
+            <div class="container">
+                <div class="row">
+                    <!-- <div class="col-xl-10"> -->
+                        <div class="single-wrap d-flex justify-content-center">
+                            <nav aria-label="Page navigation example">
+                            <ul class="pagination justify-content-start">     
+                            {{-- //pagination use bootstrap --}}
                       {{ $puskeswan->links()}}
-
-                      <main class="py-4">
-                                @yield('footer')
-                            </main>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                   
 
 <section>
     @include('frontend/layouts.footer');
