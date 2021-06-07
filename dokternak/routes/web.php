@@ -32,6 +32,12 @@ Route::group(['namespace' => 'Frontend'], function()
     Route::resource('puskeswan', 'PuskeswanController');
     Route::resource('tentangkami', 'TentangKamiController');
     Route::resource('dokter', 'DaftarDokterController');
+    Route::resource('detailartikel', 'DetailArtikelController');
+    Route::resource('tutorial', 'TutorialController');
+
+
+
+
 });
 Auth::routes();
 
