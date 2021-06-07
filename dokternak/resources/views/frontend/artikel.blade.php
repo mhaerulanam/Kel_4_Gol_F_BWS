@@ -121,7 +121,7 @@
                                 </li> 
                                 <li>
                                     <a href="#" class="d-flex">
-                                        <p>Sapi</p>
+                                        <p>Ikan</p>
                                         <p>(2)</p>
                                     </a>
                                 </li>                           
