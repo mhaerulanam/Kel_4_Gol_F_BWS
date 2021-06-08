@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.petugas')
 
 @section('content')
 <div class="container">
