@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 
 class HomeController extends Controller
@@ -24,7 +25,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $artikel = DB::table('artikel')->orderBy('tanggal', 'desc')->paginate(2);
+        return view('frontend.home',compact('artikel'))->with('artikel', $artikel);
+        // return view('frontend.home');
     }
 
     public function adminHome()

@@ -24,6 +24,6 @@ class HomeController extends Controller
     public function index()
     {
         $artikel = DB::table('artikel')->orderBy('tanggal', 'desc')->paginate(2);
-        return view('frontend.home',compact('artikel'))->with('artikel', $artikel);;
+        return view('frontend.home',compact('artikel'))->with('artikel', $artikel);
     }
 }
