@@ -22,6 +22,7 @@ Route::group(['namespace' => 'Backend'], function()
     Route::resource('pendidikan', 'PendidikanController');
     Route::resource('pengalaman_kerja', 'PengalamanKerjaController');
     Route::resource('peternak', 'PeternakController');
+
 });
 // ------------------------------------------------------------------------
 //Route untuk Frontend----------------------------------------------------
@@ -34,6 +35,7 @@ Route::group(['namespace' => 'Frontend'], function()
     Route::resource('dokter', 'DaftarDokterController');
     Route::resource('detailartikel', 'DetailArtikelController');
     Route::resource('tutorial', 'TutorialController');
+    Route::resource('detailtutorial', 'DetailTutorialController');
 
 
 
