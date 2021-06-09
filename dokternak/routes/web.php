@@ -23,6 +23,7 @@ Route::group(['namespace' => 'Backend'], function()
     Route::resource('pengalaman_kerja', 'PengalamanKerjaController');
     Route::resource('peternak', 'PeternakController');
     Route::resource('admin', 'AdminController');
+    Route::resource('userdokter', 'DokterController');
 });
 // ------------------------------------------------------------------------
 //Route untuk Frontend----------------------------------------------------

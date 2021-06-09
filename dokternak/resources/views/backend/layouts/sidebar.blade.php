@@ -49,7 +49,7 @@
               <ul  class="collapse list-unstyled pl-4 w-100" id="ui-elements">
                 <li class="nav-item dropdown">
                     <li class="nav-item">
-                      <a class="nav-link pl-3" href="/peternak"><span class="ml-1 item-text">Data User Peternak</span>
+                      <a class="nav-link pl-3" href="/admin,"><span class="ml-1 item-text">Data User Admin</span>
                       </a>
                     </li>
                 </li>
@@ -57,7 +57,15 @@
               <ul  class="collapse list-unstyled pl-4 w-100" id="ui-elements">
                 <li class="nav-item dropdown">
                     <li class="nav-item">
-                      <a class="nav-link pl-3" href="/admin,"><span class="ml-1 item-text">Data User Admin</span>
+                      <a class="nav-link pl-3" href="/admin,"><span class="ml-1 item-text">Data User Dokter</span>
+                      </a>
+                    </li>
+                </li>
+              </ul>
+              <ul  class="collapse list-unstyled pl-4 w-100" id="ui-elements">
+                <li class="nav-item dropdown">
+                    <li class="nav-item">
+                      <a class="nav-link pl-3" href="/peternak"><span class="ml-1 item-text">Data User Peternak</span>
                       </a>
                     </li>
                 </li>
