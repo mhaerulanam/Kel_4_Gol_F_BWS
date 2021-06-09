@@ -70,7 +70,7 @@
                                             <li><a href="#">INFORMASI</a>
                                                 <ul class="submenu">
                                                     <li><a href="puskeswan">PUSKESWAN</a></li>
-                                                    <li><a href="daftar_tutorial.php">TUTORIAL</a></li>
+                                                    <li><a href="tutorial">TUTORIAL</a></li>
                                                     <li><a href="tentangkami">TENTANG KAMI</a></li>                                                 
                                                 </ul>
                                             </li>

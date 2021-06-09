@@ -54,8 +54,17 @@
                     </li>
                 </li>
               </ul>
+              <ul  class="collapse list-unstyled pl-4 w-100" id="ui-elements">
+                <li class="nav-item dropdown">
+                    <li class="nav-item">
+                      <a class="nav-link pl-3" href="/admin,"><span class="ml-1 item-text">Data User Admin</span>
+                      </a>
+                    </li>
+                </li>
+              </ul>
             </li>
           </ul>
+          
           {{-- <p class="text-muted nav-heading mt-4 mb-1">
             <span>Components</span>
           </p>
