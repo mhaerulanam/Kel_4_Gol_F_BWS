@@ -1,3 +1,5 @@
+@include('petugas/layouts.navbar');
+
 @extends('layouts.petugas')
 @section('content')
 
@@ -176,7 +178,6 @@
 
     
         </section>
-
 
     
 

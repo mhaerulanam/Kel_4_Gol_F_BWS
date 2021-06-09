@@ -30,12 +30,13 @@ class HomeController extends Controller
         // return view('frontend.home');
     }
 
-    public function adminHome()
+    public function dashboard()
     {
-        return view('admin-home');
+        return view('backend.dashboard');
     }
-    public function petugasHome()
+
+    public function lppetugas()
     {
-        return view('petugas-home');
+        return view('petugas.home');
     }
 }

@@ -21,7 +21,7 @@
                                  <nav class="d-none d-lg-block">
                                      <ul id="navigation">
                                          <li><a href="LandingPageDokter.php">HOME</a></li>
-                                         <li><a href="daftar_artikel.php">ARTIKEL </a></li>
+                                         <li><a href="/petugas/artikel">ARTIKEL </a></li>
                                          <li><a href="#">DATA</a>
                                          <ul class="submenu">
                                                  <li><a href="datarekammedik.php">REKAM MEDIK</a></li>

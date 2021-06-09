@@ -56,19 +56,19 @@
                       <th>NO</th>
                       <th>Nama</th>
                       <th>Email</th>
-                      <th>Username</th>
+                      <th>is_admin</th>
                       <th>Password</th>
                       <th>Aksi</th>
                     </tr>
                   </thead>
                   <tbody>
                     @php $no = 1; @endphp
-                    @foreach ($peternak as $item)
+                    @foreach ($data['peternak'] as $item)
                     <tr>
                         <td>{{ $no++ }}</td>
                         <td>{{ $item->name }}</td>
                         <td>{{ $item->email }}</td>
-                        <td>{{ $item->username }}</td>
+                        <td>{{ $item->is_admin }}</td>
                         <td>{{ $item->password }}</td>
                         <td>
                         <div class="btn-group">

@@ -84,21 +84,22 @@
                     <div class="blog_right_sidebar">
                         <div class="btn_tulis">
                             <div class="items-link f-center">
-                                <a href="tulis_artikel.php" class="genric-btn primary">++ TULIS ARTIKEL</a>
+                                <a href="tulisartikel" class="genric-btn primary">++ TULIS ARTIKEL</a>
                             </div>
                         </div>
                         <aside class="single_sidebar_widget search_widget">
-                            <form action="#">
+                            <form action="/artikel/cari" method="GET">
                                 <div class="form-group">
                                     <div class="input-group mb-3">
                                         <input type="text" class="form-control" placeholder='Search Keyword'
                                             onfocus="this.placeholder = ''"
-                                            onblur="this.placeholder = 'Search Keyword'">
+                                            onblur="this.placeholder = 'Search Keyword'" name="cari">
                                         <div class="input-group-append">
                                             <button class="btns" type="button"><i class="ti-search"></i></button>
                                         </div>
                                     </div>
                                 </div>
+                                <input type="submit" class="btn btn-primary mb-1" value="CARI"></div>
                                 <!-- <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
                                     type="submit">Search</button> -->
                             </form>

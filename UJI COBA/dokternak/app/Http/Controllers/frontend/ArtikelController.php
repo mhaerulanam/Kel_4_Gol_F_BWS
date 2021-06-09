@@ -4,14 +4,14 @@ namespace App\Http\Controllers\frontend;
 use App\Http\Controllers\controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\artikel;
 
 class ArtikelController extends Controller
 {
 
     public function index()
     {
-        $artikel = DB::table('artikel')->orderBy('tanggal', 'desc')->paginate(2);
-
+        $artikel = Artikel::orderBy('tanggal', 'desc')->paginate(2);
         return view('frontend.artikel',compact('artikel'))->with('artikel', $artikel);;
         // return view('frontend.artikel');
 
@@ -30,12 +30,6 @@ class ArtikelController extends Controller
         ->paginate(2);
 
         //mengirim data artikel ke view artikel
-        return view('frontend.artikel',compact('artikel'));
-    }
-
-    public function ReadMore($id)
-    {
-        $artikel = DB::table('users')->where('id',$id)->first();
         return view('frontend.artikel',compact('artikel'));
     }
 

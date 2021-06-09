@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Auth\Events\Attempting;
 
 class LoginController extends Controller
 {
@@ -51,10 +52,10 @@ class LoginController extends Controller
         if(auth()->attempt(array('email' => $input['email'], 'password' => $input['password'])))
         {
             if (auth()->user()->is_admin == 1) {
-                return redirect()->route('admin.home');
+                return redirect()->route('dashboard');
             }
             elseif (auth()->user()->is_admin == 2) {
-                return redirect()->route('petugas.home');
+                return redirect()->route('lppetugas');
             }else{
                 return redirect()->route('home');
             }

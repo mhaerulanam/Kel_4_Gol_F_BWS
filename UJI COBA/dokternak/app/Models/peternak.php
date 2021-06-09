@@ -10,6 +10,6 @@ class peternak extends Model
     protected $table = 'users';
     protected $primaryKey = 'id';
     protected $fillable = [
-        'name', 'username', 'email', 'password', '','alamat',
+        'name', 'email', 'is_admin','password',
     ];
 }
