@@ -35,13 +35,17 @@ Route::group(['namespace' => 'Frontend'], function()
     Route::resource('tentangkami', 'TentangKamiController');
     Route::resource('dokter', 'DaftarDokterController');
     Route::resource('detailartikel', 'DetailArtikelController');
-    Route::resource('tutorial', 'TutorialController');
-    Route::resource('detailtutorial', 'DetailTutorialController');
-
+   
 
 
 
 });
+
+//route tutorial
+Route::get('/tutorial', 'frontend\TutorialController@index');
+Route::get('/tutorial/{id}/detail', 'frontend\TutorialController@detail');
+
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
