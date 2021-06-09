@@ -12,25 +12,11 @@ class TutorialController extends Controller
         $tutorial = DB::table('tutorial')->get();
         // $peternak = DB::table('peternak')->get();
         // return view('backend.peternak.index',compact('peternak'));
-        return view('frontend.tutorial',compact('tutorial'))->with('tutorial', $tutorial);;
+        return view('frontend.tutorial',compact('tutorial'))->with('tutorial', $tutorial);
     }
 
-    public function cari(Request $request)
-    {
-        //Menangkap data pencarian
-        $cari = $request->cari;
-
-        //mengambil data dari tabel puskeswan sesuai pencarian data
-        $tutorial = DB::table('tutorial')
-        ->where('judul','like',"%".$cari."%");
-
-        //mengirim data tutorial ke view artikel
-        return view('frontend.tutorial',compact('tutorial'));
-    }
-
-    public function ReadMore($id)
-    {
-        $tutorial = DB::table('users')->where('id_tutorial',$id)->first();
-        return view('frontend.tutorial',compact('tutorial'));
+    public function detail($id) {
+        $tutorial = DB::table('tutorial')->where('id_tutorial',$id)->first();
+        return view('frontend.detailtutorial',compact('tutorial'));
     }
 }

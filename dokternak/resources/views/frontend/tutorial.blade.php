@@ -54,13 +54,13 @@
                             <div class="single-process text-center mb-30">
                                 <div class="process-ion">
                                 {{-- //Code untuk menampilkan gambar yang berbentuk blob --}}
-                                <img class="card-img rounded-0" src="data:image/png;base64,{{ chunk_split(base64_encode($data_tutorial->icon)) }}" width="80px">
+                                <img class="card-img rounded-0" src="data:image/png;base64,{{ chunk_split(base64_encode($data_tutorial->icon)) }}" width="50px">
                                 </div>
                                 <div class="process-cap">
                                     <h5>{{ $data_tutorial->judul_tutorial }}</h5>
                                 <div class="btn_detail">
                                     <div class="items-link f-center">
-                                    <a href="detailtutorial.php?id_tutorial=">Detail</a>
+                                    <a href="/tutorial/{{ $data_tutorial->id_tutorial }}/detail/">Detail</a>
                                     </div>
                                 </div>
                             </div>

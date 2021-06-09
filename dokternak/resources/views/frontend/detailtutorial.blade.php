@@ -50,17 +50,17 @@
                             <!-- Section Tittle -->
                             <div class="section-tittle section-tittle2">
                                 <span>TUTORIAL</span>
-                                <h2>judul tutorial</h2>
+                                <h2>{{ $tutorial->judul_tutorial }}</h2>
                             </div>
                             <div class="support-caption">
                                 <p class="pera-top">Kami berharap anda dapat memperoleh pengalaman terbaik di website kami. Berikut ini adalah tutorial mengenai </p>
-                                <p>isi </p>
+                                <p>{{ $tutorial->isi }}</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-xl-6 col-lg-6">
                         <div class="support-location-img">
-                            <img src="gambartutorial.php?id_tutorial=" alt="">
+                            <img src="data:image/png;base64,{{ chunk_split(base64_encode($tutorial->icon)) }}">
                         </div>
                     </div>
                 </div> 
