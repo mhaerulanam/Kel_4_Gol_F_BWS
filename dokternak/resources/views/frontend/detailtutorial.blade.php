@@ -25,6 +25,7 @@
 </head>
 
 <body>
+    @include('frontend/layouts.navbar');
    <!-- Hero Area Start-->
    <div class="slider-area ">
       <div class="single-slider section-overly slider-height2 d-flex align-items-center" data-background="assets/img/gallery/s2.jpg">
@@ -88,7 +89,7 @@
                             
                                 </div>
                                 <div class="services-cap">
-                                    <h5>judul</h5><br><br>
+                                    <h5>{{ $tutorial->judul_tutorial }}</h5><br><br>
                                     <div class="btn_detail">
                                 <div class="services-cap">
                                     <a href="detailtutorial.php?id_tutorial=" class="genric-btn primary radius">Detail</a>
@@ -103,6 +104,10 @@
             </div>
         </div>
         <!-- How  Apply Process End-->
+
+<section>
+    @include('frontend/layouts.footer');
+</section>
         
 <!-- JS here -->
 	
