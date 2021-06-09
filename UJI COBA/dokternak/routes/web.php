@@ -43,6 +43,13 @@ Route::group(['namespace' => 'Backend'], function()
     Route::resource('peternak', 'PeternakController');
 });
 // ------------------------------------------------------------------------
+
+// Route untuk Petugas ----------------------------------------------------
+Route::group(['namespace' => 'Petugas'], function()
+{
+    Route::resource('petugas/artikel', 'ArtikelController');
+});
+
 //Route untuk Frontend----------------------------------------------------
 Route::group(['namespace' => 'Frontend'], function()
 {
