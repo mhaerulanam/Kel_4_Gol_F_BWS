@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator as FacadesValidator;
 use App\Models\Artikel;
+use App\Models\ArtikelUser;
+
 
 class TulisArtikelController extends Controller
 {
@@ -32,16 +34,24 @@ class TulisArtikelController extends Controller
     public function store(Request $request)
     {
         $message = [
-            'numeric' => ':attributer harus diisi nomor.'
+            'required' => ':attribute wajib diisi!!!',
+            'min' => ':attribute harus diisi minimal 15 huruf!!!',
+            'max' => ':attribute URL harus diisi maksimal 100 huruf!!!',
+            'mimes' => ':attribute harus berupa gambar dengan format (JPEG, PNG, dan SVG)',
         ];
 
         $validator = FacadesValidator::make($request->all(),[
-            'judul' => 'required|string|max:100',
+            'judul' => 'required|string|min:15|max:100',
             'id_ktg' => 'required|string|max:15',
-            'sumber' => 'required|string|max:100',
+            'sumber' => 'required|string|min:15|max:200',
+            'gambar' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
         ], $message)->validate();
 
-        $role = 1;
+        $role = 0;
+
+        // rename image name or file name 
+        $getimageName = time().'.'.$request->gambar->getClientOriginalExtension();
+        $request->gambar->move(public_path('peternak/artikel/gambar'), $getimageName);
 
         $data_simpan = [
             'id_ktg' => $request->id_ktg,
@@ -49,14 +59,15 @@ class TulisArtikelController extends Controller
             'nama_penulis' => $request->nama_penulis,
             'judul' => $request->judul,
             'isi' => $request->isi,
-            'gambar' => $request->gambar,
+            'gambar' => $getimageName,
             'sumber' => $request->sumber,
         ];
 
-        Artikel::create($data_simpan);
+        ArtikelUser::create($data_simpan);
 
-        return redirect()->route('frontend.artikel')
-                        ->with('success','Data peternak baru telah berhasil disimpan');
+        return redirect()->route('tulisartikel.index')
+                        ->with('success','Data peternak baru telah berhasil disimpan, dimohon untuk menunggu konfirmasi dari Admin')
+                        ->with('image',$getimageName);
     }
 
     /**

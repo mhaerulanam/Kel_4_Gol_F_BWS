@@ -194,23 +194,8 @@
                         </table> 
                     <!-- Blog Area End -->
                     <!--Pagination Start  -->
-                    {{-- <div class="pagination-area pb-115 text-center">
-                        <div class="container">
-                            <div class="row">
-                                <!-- <div class="col-xl-10"> -->
-                                    <div class="single-wrap d-flex justify-content-center">
-                                        <nav aria-label="Page navigation example">
-                                        <ul class="pagination justify-content-start">      --}}
-                                        {{-- //pagination use bootstrap --}}
-                                {{-- {{ $artikel->links()}}
-                                            </ul>
-                                        </nav>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> --}}
-
+                    </div>
+        <section>
         <!-- Our Services Start -->
         <div class="our-services section-pad-t30">
             <div class="container">
@@ -224,67 +209,21 @@
                     </div>
                 </div>
                 <div class="row d-flex justify-contnet-center">
+                    @foreach ($data['tutorial'] as $data_tutorial)
                     <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
                         <div class="single-services text-center mb-30">
                             <div class="services-ion">
-                                <span class="flaticon-tour"></span>
+                                <span class=""><img src="data:image/png;base64,{{ chunk_split(base64_encode($data_tutorial->icon)) }}" alt=""></span>
                             </div>
                             <div class="services-cap">
-                               <h5><a href="job_listing.html">Cara Daftar Untuk Dokter</a></h5>
+                               <h5><a href="job_listing.html">{{ $data_tutorial->judul_tutorial }}</a></h5>
                                <div class="items-link f-right">
-                               <a href="job_details.html">Detail</a>
+                                <a href="/tutorial/{{ $data_tutorial->id_tutorial }}/detail/">Detail</a>
                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                        <div class="single-services text-center mb-30">
-                            <div class="services-ion">
-                                <span class="flaticon-cms"></span>
-                            </div>
-                            <div class="services-cap">
-                                <h5><a href="job_listing.html">Cara Daftar User Umum</a></h5>
-                                <div class="items-link f-right">
-                                    <a href="job_details.html">Detail</a>
-                                    </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                        <div class="single-services text-center mb-30">
-                            <div class="services-ion">
-                                <span class="flaticon-report"></span>
-                            </div>
-                            <div class="services-cap">
-                                <h5><a href="job_listing.html">Cara Daftar User Umum</a></h5>
-                                <div class="items-link f-right">
-                                    <a href="job_details.html">Detail</a>
-                                    </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                        <div class="single-services text-center mb-30">
-                            <div class="services-ion">
-                                <span class="flaticon-app"></span>
-                            </div>
-                            <div class="services-cap">
-                               <h5><a href="job_listing.html">Cara Login</a></h5>
-                               <div class="items-link f-right">
-                                <a href="job_details.html">Detail</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                <!-- More Btn -->
-                <!-- Section Button -->
-                <div class="row">
-                    <div class="col-lg-12">
-                        {{-- <div class="browse-btn2 text-center mt-50">
-                            <a href="job_listing.html" class="border-btn2">Browse All Sectors</a>
-                        </div> --}}
-                    </div>
-                </div>
+                    @endforeach
             </div>
         </div>
         </div></section>

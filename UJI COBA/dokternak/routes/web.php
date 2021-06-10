@@ -15,9 +15,9 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//route tamu
+Route::get('/', 'WelcomeController@index');
+
 
 Auth::routes();
 

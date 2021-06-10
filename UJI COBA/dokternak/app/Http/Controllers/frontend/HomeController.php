@@ -24,6 +24,7 @@ class HomeController extends Controller
         $data = [
             'dokter' => Dokter::orderBy('id_dokter', 'desc')->paginate(3),
             'artikel' => Artikel::orderBy('tanggal', 'desc')->paginate(2),
+            'tutorial' => Tutorial::orderBy('id_tutorial')->paginate(3),
         ];
         return view('frontend.home',compact('data'));
 
@@ -44,6 +45,8 @@ class HomeController extends Controller
             ->where('alamat', 'LIKE', '%' . $kategori . '%')
             ->where('nama','like',"%".$cari."%")
             ->paginate(3),
+            'artikel' => Artikel::orderBy('tanggal', 'desc')->paginate(2),
+            'tutorial' => Tutorial::orderBy('id_tutorial')->paginate(3),
         ];
 
         //mengirim data artikel ke view dokter
