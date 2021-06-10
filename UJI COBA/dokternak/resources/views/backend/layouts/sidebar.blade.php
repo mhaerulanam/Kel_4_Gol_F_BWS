@@ -6,13 +6,7 @@
           <!-- nav bar -->
           <div class="w-100 mb-4 d-flex">
             <a class="navbar-brand mx-auto mt-2 flex-fill text-center" href="./index.html">
-              <svg version="1.1" id="logo" class="navbar-brand-img brand-sm" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 120 120" xml:space="preserve">
-                <g>
-                  <polygon class="st0" points="78,105 15,105 24,87 87,87 	" />
-                  <polygon class="st0" points="96,69 33,69 42,51 105,51 	" />
-                  <polygon class="st0" points="78,33 15,33 24,15 87,15 	" />
-                </g>
-              </svg>
+              <img src="{{ asset('Frontend/assets/img/logo/logo1.png') }}" alt="">
             </a>
           </div>
           <ul class="navbar-nav flex-fill w-100 mb-2">
@@ -49,11 +43,19 @@
               <ul  class="collapse list-unstyled pl-4 w-100" id="ui-elements">
                 <li class="nav-item dropdown">
                     <li class="nav-item">
-                      <a class="nav-link pl-3" href="/peternak"><span class="ml-1 item-text">Data User Peternak</span>
+                      <a class="nav-link pl-3" href="/dashboard/peternak"><span class="ml-1 item-text">Data User Peternak</span>
                       </a>
                     </li>
                 </li>
               </ul>
+              {{-- <ul  class="collapse list-unstyled pl-4 w-100" id="ui-elements">
+                <li class="nav-item dropdown">
+                    <li class="nav-item">
+                      <a class="nav-link pl-3" href="/admin"><span class="ml-1 item-text">Data User Admin</span>
+                      </a>
+                    </li>
+                </li>
+              </ul> --}}
             </li>
           </ul>
           {{-- <p class="text-muted nav-heading mt-4 mb-1">

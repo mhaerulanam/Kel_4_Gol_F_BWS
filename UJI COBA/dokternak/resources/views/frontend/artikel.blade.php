@@ -57,16 +57,16 @@
                                     <div class="blog_item_img">
                                         {{-- //Code untuk menampilkan gambar yang berbentuk blob --}}
                                         <img class="card-img rounded-0" src="data:image/png;base64,{{ chunk_split(base64_encode($data_artikel->gambar)) }}" alt="gambar artikel">
-                                        <a href="#" class="blog_item_date">
+                                        <a href="/artikel/{{ $data_artikel->id_artikel }}/detail/" class="blog_item_date">
                                             <h3>{{ $data_artikel->nama_penulis }}</h3>
                                         </a>
                                     </div>
                                     <div class="blog_details">
                                         <a class="d-inline-block" href="single-blog.html">
-                                            <h2><a href="detailartikel.php?id_artikel=id">{{ $data_artikel->judul }}</a></h2>
+                                            <h2><a href="/artikel/{{ $data_artikel->id_artikel }}/detail/">{{ $data_artikel->judul }}</a></h2>
                                         </a>
                                         {{-- Code untuk memotong text menggunakan Str limit --}}
-                                        <p>{{\Illuminate\Support\Str::limit($data_artikel->isi, 250)}}  <a href="detailartikel.php?id_artikel=id isi" class="more-btn">  <strong> Read more » </strong></a></p>
+                                        <p>{{\Illuminate\Support\Str::limit($data_artikel->isi, 250)}}  <a href="/artikel/{{ $data_artikel->id_artikel }}/detail/" class="more-btn">  <strong> Read more » </strong></a></p>
                                         <ul class="blog-info-link">
                                             <li><a>{{ $data_artikel->id_ktg }}</a></li>
                                             <li><a>{{ $data_artikel->tanggal }}</a></li>
@@ -95,11 +95,10 @@
                                             onfocus="this.placeholder = ''"
                                             onblur="this.placeholder = 'Search Keyword'" name="cari">
                                         <div class="input-group-append">
-                                            <button class="btns" type="button"><i class="ti-search"></i></button>
+                                            <input type="submit" class="btn btn-primary mb-1" value="CARI"></div>
                                         </div>
                                     </div>
                                 </div>
-                                <input type="submit" class="btn btn-primary mb-1" value="CARI"></div>
                                 <!-- <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
                                     type="submit">Search</button> -->
                             </form>
@@ -109,38 +108,33 @@
                             <h4 class="widget_title">Category</h4>
                             <ul class="list cat-list">
                                 <li>
-                                    <a href="#" class="d-flex">
+                                    <a href="/artikel/cari?cari=kucing" class="d-flex">
                                         <p>Kucing</p>
-                                        <p>(3)</p>
+                                        <p>(2)</p>
                                     </a>
                                 </li>   
                                 <li>
-                                    <a href="#" class="d-flex">
+                                    <a href="/artikel/cari?cari=kambing" class="d-flex">
                                         <p>Kambing</p>
                                         <p>(2)</p>
                                     </a>
-                                </li> 
-                                <li>
-                                    <a href="#" class="d-flex">
-                                        <p>Ikan</p>
-                                        <p>(2)</p>
-                                    </a>
-                                </li>                           
+                                </li>                          
                             </ul>
                         </aside>
-
+              
+                        <!-- Artikel Lainnya -->
                         <aside class="single_sidebar_widget popular_post_widget">
-                            <h3 class="widget_title">Recent Post</h3>
-                            @foreach ($artikel as $data_artikel)                            
+                            <h3 class="widget_title">Artikel Lainnya</h3>
+                            @foreach ($artikel as $data_artikel)  
                             <div class="media post_item">
-                                <img src="data:image/png;base64,{{ chunk_split(base64_encode($data_artikel->gambar)) }}" alt="post" width="100px">
+                                <img src="data:image/png;base64,{{ chunk_split(base64_encode($data_artikel->gambar)) }}" width="120px" />
                                 <div class="media-body">
-                                    <a href="single-blog.html">
-                                        <h3>{{ $data_artikel->judul }}</h3>
-                                    </a>
-                                    <p>{{ $data_artikel->tanggal }}</p>
+                                        <a href="detailartikel.php?id_artikel=">
+                                            <h6>{{ $data_artikel->judul }}</h6>
+                                        </a>
+                                        <p>{{ $data_artikel->tanggal }}</p>
                                 </div>
-                            </div>
+                            </div> 
                             @endforeach
                         </aside>
                     </div>
@@ -157,7 +151,7 @@
                         <nav aria-label="Page navigation example">
                         <ul class="pagination justify-content-start">     
                         {{-- //pagination use bootstrap --}}
-                {{ $artikel->links()}}
+                            {{ $artikel->links()}}
                             </ul>
                         </nav>
                     </div>

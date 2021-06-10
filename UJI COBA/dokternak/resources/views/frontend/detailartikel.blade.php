@@ -49,21 +49,21 @@
             <div class="col-lg-8 posts-list">
                   <div class="single-post">
                      <div class="feature-img">
-                        <img class="img-fluid" src="gambar.php?id_artikel=" alt="">
+                        <img class="img-fluid" src="data:image/png;base64,{{ chunk_split(base64_encode($artikel->gambar)) }}" alt="">
                      </div>
                      <div class="blog_details">
-                           <h2>judul></h2>
+                           <h2>{{ $artikel->judul }}</h2>
                            <ul class="blog-info-link mt-3 mb-4">
-                              <li><a href="#"><i class="fa fa-user"></i> nama</a></li>
-                              <li><a href="#"><i></i>Kategori : </a></li>
-                              <li><a href="#"><i class="fa fa-comments"></i>tanggal</a></li>
+                              <li><a href="#"><i class="fa fa-user"></i> {{ $artikel->nama_penulis}}</a></li>
+                              <li><a href="#"><i></i>{{ $artikel->id_ktg}}</a></li>
+                              <li><a href="#"><i class="fa fa-comments"></i>{{ $artikel->tanggal}}</a></li>
                            </ul>
                            <p class="excert">
-                              isi
+                              {{ $artikel->isi}}
                            </p>
                            <div class="quote-wrapper">
                               <div class="quotes">
-                              <p>sumber</p>
+                              <p>{{ $artikel->sumber}}</p>
                            </div>
                      </div>
                   </div>
@@ -94,36 +94,47 @@
                <!-- Tulis Artikel -->
                     <div class="btn_tulis">
                             <div class="items-link f-center">
-                                <a href="daftar_artikel.php" class="genric-btn primary">DAFTAR ARTIKEL</a>
+                                <a href="/artikel" class="genric-btn primary">DAFTAR ARTIKEL</a>
                                 </div>
                      </div>
-
-                        <aside class="single_sidebar_widget post_category_widget">
-                            <h4 class="widget_title">KATEGORI</h4>
-                            <ul class="list cat-list">
-                                <li>
-                                    <a href="daftar_artikel.php?tampil=" class="d-flex">
-                                        <p> </p>
-                                        <p>()</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </aside>
-
-
+                            <aside class="single_sidebar_widget post_category_widget">
+                                <h4 class="widget_title">Category</h4>
+                                <ul class="list cat-list">
+                                    <li>
+                                        <a href="#" class="d-flex">
+                                            <p>Kucing</p>
+                                            <p>(3)</p>
+                                        </a>
+                                    </li>   
+                                    <li>
+                                        <a href="#" class="d-flex">
+                                            <p>Kambing</p>
+                                            <p>(2)</p>
+                                        </a>
+                                    </li> 
+                                    <li>
+                                        <a href="#" class="d-flex">
+                                            <p>Ikan</p>
+                                            <p>(2)</p>
+                                        </a>
+                                    </li>                           
+                                </ul>
+                            </aside>
+                  
                   <!-- Artikel Lainnya -->
                   <aside class="single_sidebar_widget popular_post_widget">
                      <h3 class="widget_title">Artikel Lainnya</h3>
-
-                    <div class="media post_item">
-                        <img src="gambar.php?id_artikel=" width="120px" />
-                        <div class="media-body">
-                              <a href="detailartikel.php?id_artikel=">
-                                 <h3>judul</h3>
-                              </a>
-                              <p>tanggal</p>
-                        </div>
-                    </div> 
+                     @foreach ($artikel2 as $data_artikel)  
+                     <div class="media post_item">
+                           <img src="data:image/png;base64,{{ chunk_split(base64_encode($data_artikel->gambar)) }}" width="120px" />
+                           <div class="media-body">
+                                 <a href="detailartikel.php?id_artikel=">
+                                    <h6>{{ $data_artikel->judul }}</h6>
+                                 </a>
+                                 <p>{{ $data_artikel->tanggal }}</p>
+                           </div>
+                     </div> 
+                    @endforeach
                   </aside>
                   
                </div>
@@ -133,31 +144,31 @@
    </section>
    <!--================ Blog Area end =================-->
    
-<!-- JS here -->
+ <!-- JS here -->
 	
 		  <!-- All JS Custom Plugins Link Here here -->
         <script src="{{ asset('Petugas/assets/js/vendor/modernizr-3.5.0.min.js') }}"></script>
-		<!-- Jquery, Popper, Bootstrap -->
-		<script src="{{ asset('Petugas/assets/js/vendor/jquery-1.12.4.min.js') }}"></script>
+        <!-- Jquery, Popper, Bootstrap -->
+        <script src="{{ asset('Petugas/assets/js/vendor/jquery-1.12.4.min.js') }}"></script>
         <script src="{{ asset('Petugas/assets/js/popper.min.js') }}"></script>
         <script src="{{ asset('Petugas/assets/js/bootstrap.min.js') }}"></script>
-	    <!-- Jquery Mobile Menu -->
+        <!-- Jquery Mobile Menu -->
         <script src="{{ asset('Petugas/assets/js/jquery.slicknav.min.js') }}"></script>
 
-		<!-- Jquery Slick , Owl-Carousel Plugins -->
+        <!-- Jquery Slick , Owl-Carousel Plugins -->
         <script src="{{ asset('Petugas/assets/js/owl.carousel.min.js') }}"></script>
         <script src="{{ asset('Petugas/assets/js/slick.min.js') }}"></script>
         <script src="{{ asset('Petugas/assets/js/price_rangs.js') }}"></script>
         
-		<!-- One Page, Animated-HeadLin -->
+        <!-- One Page, Animated-HeadLin -->
         <script src="{{ asset('Petugas/assets/js/wow.min.js') }}"></script>
-		<script src="{{ asset('Petugas/assets/js/animated.headline.js') }}"></script>
+        <script src="{{ asset('Petugas/assets/js/animated.headline.js') }}"></script>
         <script src="{{ asset('Petugas/assets/js/jquery.magnific-popup.js') }}"></script>
 
-		<!-- Scrollup, nice-select, sticky -->
+        <!-- Scrollup, nice-select, sticky -->
         <script src="{{ asset('Petugas/assets/js/jquery.scrollUp.min.js') }}"></script>
         <script src="{{ asset('Petugas/assets/js/jquery.nice-select.min.js') }}"></script>
-		<script src="{{ asset('Petugas/assets/js/jquery.sticky.js') }}"></script>
+        <script src="{{ asset('Petugas/assets/js/jquery.sticky.js') }}"></script>
         
         <!-- contact js -->
         <script src="{{ asset('Petugas/assets/js/contact.js') }}"></script>
@@ -166,9 +177,10 @@
         <script src="{{ asset('Petugas/assets/js/mail-script.js') }}"></script>
         <script src="{{ asset('Petugas/assets/js/jquery.ajaxchimp.min.js') }}"></script>
         
-		<!-- Jquery Plugins, main Jquery -->	
+        <!-- Jquery Plugins, main Jquery -->	
         <script src="{{ asset('Petugas/assets/js/plugins.js') }}"></script>
         <script src="{{ asset('Petugas/assets/js/main.js') }}"></script>
+      
         
       
 </body>

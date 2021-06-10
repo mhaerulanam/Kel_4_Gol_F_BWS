@@ -33,4 +33,10 @@ class ArtikelController extends Controller
         return view('frontend.artikel',compact('artikel'));
     }
 
+    public function detail($id) {
+        $artikel2 = Artikel::orderBy('tanggal', 'desc')->paginate(2);
+        $artikel = DB::table('artikel')->where('id_artikel',$id)->first();
+        return view('frontend.detailartikel',compact('artikel','artikel2'));
+    }
+
 }

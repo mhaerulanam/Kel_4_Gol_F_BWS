@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -24,17 +23,16 @@ Auth::routes();
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Auth::routes();
-Route::get('dashboard', [HomeController::class, 'dashboard'])->name('dashboard')->middleware('is_admin');
-Route::get('lppetugas', [HomeController::class, 'lppetugas'])->name('lppetugas')->middleware('is_admin');
+Route::get('dashboard', [App\Http\Controllers\HomeController::class, 'dashboard'])->name('dashboard')->middleware('is_admin');
+Route::get('lppetugas', [App\Http\Controllers\HomeController::class, 'lppetugas'])->name('lppetugas')->middleware('is_admin');
 // Route::get('home', [HomeController::class, 'index'])->name('home');
 Auth::routes();
 
 // Route untuk Backend ----------------------------------------------------
-Route::group(['namespace' => 'Backend'], function()
+Route::resource('admin', 'backend\AdminController');
+Route::group(['namespace' => 'backend'], function()
 {
-    Route::resource('pendidikan', 'PendidikanController');
-    Route::resource('pengalaman_kerja', 'PengalamanKerjaController');
-    Route::resource('peternak', 'PeternakController');
+    Route::resource('/dashboard/peternak', 'PeternakController');
 });
 // ------------------------------------------------------------------------
 
@@ -53,10 +51,10 @@ Route::group(['namespace' => 'Frontend'], function()
     Route::resource('tentangkami', 'TentangKamiController');
     Route::resource('dokter', 'DaftarDokterController');
     Route::resource('detailartikel', 'DetailArtikelController');
-    Route::resource('tutorial', 'TutorialController');
     Route::resource('tulisartikel', 'TulisArtikelController');
 });
 Auth::routes();
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -68,5 +66,12 @@ Route::get('admin/{id}', function ($id = null) {
   //  
 })->middleware('auth');
 
+//Route Artikel
 Route::get('/artikel', 'Frontend\ArtikelController@index');
 Route::get('/artikel/cari', 'Frontend\ArtikelController@cari');
+Route::get('/artikel/{id}/detail', 'frontend\ArtikelController@detail');
+
+//Route Tutorial
+//route tutorial
+Route::get('/tutorial', 'frontend\TutorialController@index');
+Route::get('/tutorial/{id}/detail', 'frontend\TutorialController@detail');

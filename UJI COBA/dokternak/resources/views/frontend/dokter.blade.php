@@ -134,7 +134,7 @@
     <!-- Banner Atas Start-->
    
    <div class="slider-area ">
-      <div class="single-slider section-overly slider-height2 d-flex align-items-center" data-background="{{ asset('Fronentd/assets/img/gallery/s2.jpg')}}">
+      <div class="single-slider section-overly slider-height2 d-flex align-items-center" data-background="{{ asset('Frontend/assets/img/gallery/s2.jpg') }}">
           <div class="container">
               <div class="row">
                   <div class="col-xl-12">
@@ -253,7 +253,7 @@
                                                         <li><a>{{ $data_dokter->telpon }}</a></li>
                                                     </ul> --}}
                                                     <div class="services-cap">
-                                                        <a href="detailpuskeswan.php?id_puskeswan=" class="genric-btn primary radius">Detail</a>
+                                                        <a href="#" class="genric-btn primary radius">Detail</a>
                                                     </div>
                                                     {{-- <ul class="social"> 
                                                         <li>

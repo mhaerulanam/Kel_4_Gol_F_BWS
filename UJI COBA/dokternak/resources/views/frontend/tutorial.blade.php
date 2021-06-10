@@ -26,70 +26,61 @@
 
    <body>
   <!-- Our Services Start -->
-  <div class="apply-process-area apply-bg pt-150 pb-150" data-background="assets/img/gallery/how-applybg.png">
-            <div class="container">
-                <!-- Section Tittle -->
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="section-tittle text-center">
-                            <span>Panduan Penggunaan Aplikasi</span>
-                            <h2>TUTORIAL </h2>
-                        </div>
-                    </div>
-                </div>
-                
+  @include('frontend/layouts.navbar');
 
-                    <div class="row d-flex justify-contnet-center">
-                    <div class="col-lg-4 col-md-6">
-                        <div class="single-process text-center mb-30">
-                            <div class="process-ion">
-                            <img src="gambartutorial.php?id_tutorial="width="120px">
-                           
-                            </div>
-                            <div class="process-cap">
-                                <h5></h5>
-                                <div class="btn_detail">
+  <!-- Banner Atas Start-->
+  <div class="slider-area ">
+      <div class="single-slider section-overly slider-height2 d-flex align-items-center" data-background="{{ asset('Frontend/assets/img/gallery/s2.jpg')}}">
+          <div class="container">
+              <div class="row">
+                  <div class="col-xl-12">
+                      <div class="hero-cap text-center">
+                          <h2>DAFTAR TUTORIAL</h2>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="our-services section-pad-t30">
+    <div class="container">
+        <div class="row d-flex justify-contnet-center">
+            <table>
+                <tbody>
+                {{-- Perulangan untuk menampilkan data sebanyak yang ada di database --}}
+                    @foreach ($tutorial as $data_tutorial)
+                    <tr>
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
+                    <div class="single-process text-center mb-30">
+                        <div class="process-ion">
+                        {{-- //Code untuk menampilkan gambar yang berbentuk blob --}}
+                        <img class="card-img rounded-0" src="data:image/png;base64,{{ chunk_split(base64_encode($data_tutorial->icon)) }}" width="10px">
+                        </div>
+                        <div class="process-cap">
+                            <h5>{{ $data_tutorial->judul_tutorial }}</h5>
+                        <div class="btn_detail">
                             <div class="items-link f-center">
-                                <a href="detailtutorial.php?id_tutorial=">Detail</a>
-                                </div>
+                            <a href="/tutorial/{{ $data_tutorial->id_tutorial }}/detail/">Detail</a>
                             </div>
-                            </div>
-                        </div> 
-                    </div> 
-
-                    </div>
-                    </div>
-                    </div>
-                   
-   <!--Pagination Start  -->
-   <div class="pagination-area pb-115 text-center">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-12">
-                        <div class="single-wrap d-flex justify-content-center">
-                            <nav aria-label="Page navigation example">
-                            <ul class="pagination justify-content-start">
-
-                                    <!-- Memberi tombol prev -->
-                                    
-
-                                    <!-- Navigasi Pages -->
-                                    
-                                   
-                                    <!-- Memberi tombol next -->
-                                        <li class="page-item">
-                                        <a class="page-link" href="?halaman=">Selanjutnya &gt;</span></a>
-                                        </li>
-
-
-                                </ul>
-                            </nav>
                         </div>
                     </div>
+                </div> 
                 </div>
-            </div>
+            </tr>
+                @endforeach
+                </tbody>
+            </table> 
         </div>
-        <!--Pagination End  -->
+    </div>
+  </div>
+
+
+</body>
+
+
+<section>
+@include('frontend/layouts.footer');
+</section>
         <!-- JS here -->
 	
 		  <!-- All JS Custom Plugins Link Here here -->

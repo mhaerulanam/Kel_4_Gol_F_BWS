@@ -142,7 +142,7 @@
 
  <!-- Banner Atas Start-->
  <div class="slider-area ">
-      <div class="single-slider section-overly slider-height2 d-flex align-items-center" data-background="{{ asset('Frontend/assets/img/gallery/s2.jpg')}}">
+      <div class="single-slider section-overly slider-height2 d-flex align-items-center" data-background="{{ asset('Frontend/assets/img/gallery/s2.jpg') }}">
           <div class="container">
               <div class="row">
                   <div class="col-xl-12">
@@ -203,7 +203,7 @@
                                     <p>{{ $data_puskeswan->alamat }}</p>
                                     </div>
                                     <div class="services-cap">
-                                        <a href="detailpuskeswan.php?id_puskeswan" class="genric-btn primary radius">Detail</a>
+                                        <a href="#" class="genric-btn primary radius">Detail</a>
                                         </div>
                                         </div>
                                 </div>
@@ -212,28 +212,31 @@
                         @endforeach
                     </tbody>
                     </table> 
-  <!--Pagination Start  -->
-<div class="pagination-area pb-115 text-center">
-            <div class="container">
-                <div class="row">
-                    <!-- <div class="col-xl-10"> -->
-                        <div class="single-wrap d-flex justify-content-center">
-                            <nav aria-label="Page navigation example">
-                            <ul class="pagination justify-content-start">     
-                            {{-- //pagination use bootstrap --}}
-                            {{ $puskeswan->links()}}
-                                </ul>
-                            </nav>
+              <!--Pagination Start  -->
+            <div class="pagination-area pb-115 text-center">
+                <div class="container">
+                    <div class="row">
+                        <!-- <div class="col-xl-10"> -->
+                            <div class="single-wrap d-flex justify-content-center">
+                                <nav aria-label="Page navigation example">
+                                <ul class="pagination justify-content-start">     
+                                {{-- //pagination use bootstrap --}}
+                                {{ $puskeswan->links()}}
+                                    </ul>
+                                </nav>
+                            </div>
                         </div>
                     </div>
-                </div>
             </div>
         </div>
+            </div>
+
                    
 
 <section>
     @include('frontend/layouts.footer');
 </section>
+
                
         <!-- JS here -->
 	
