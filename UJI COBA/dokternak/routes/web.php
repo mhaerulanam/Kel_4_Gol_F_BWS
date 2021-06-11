@@ -52,7 +52,6 @@ Route::group(['namespace' => 'Frontend'], function()
     Route::resource('dokter', 'DaftarDokterController');
     Route::resource('detailartikel', 'DetailArtikelController');
     Route::resource('tulisartikel', 'TulisArtikelController');
-    Route::resource('detaildokter', 'DetailDokterController');
     Route::resource('detailpuskeswan', 'DetailPuskeswanController');
 });
 Auth::routes();
@@ -78,6 +77,6 @@ Route::get('/artikel/{id}/detail', 'frontend\ArtikelController@detail');
 Route::get('/tutorial', 'frontend\TutorialController@index');
 Route::get('/tutorial/{id}/detail', 'frontend\TutorialController@detail');
 
-//Route dokter
-Route::get('/detaildokter', 'frontend\DetailDokter@index');
-Route::get('/detaildokter/{id}/detaildokter', 'frontend\DetailDokterController@detail');
+//route dokter
+Route::get('/dokter', 'frontend\DaftarDokterController@index');
+Route::get('/dokter/{id}/detail', 'frontend\DaftarDokterController@detail');

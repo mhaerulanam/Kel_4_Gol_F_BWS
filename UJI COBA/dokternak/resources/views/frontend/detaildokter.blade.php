@@ -14,9 +14,9 @@
     <title>Dokternak.id - Detail Dokter</title>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
-    <link href="{{ asset('Petugas/assets/css/aos.css')}}" rel="stylesheet">
-    <link href="{{ asset('Petugas/assets/css/bootstrap.min.cs')}}s" rel="stylesheet">
-    <link href="{{ asset('Petugas/assets/styles/main.css')}}" rel="stylesheet">
+    <link href="{{ asset('Petugas/css/aos.css')}}" rel="stylesheet">
+    <link href="{{ asset('Petugas/css/bootstrap.min.cs')}}s" rel="stylesheet">
+    <link href="{{ asset('Petugas/styles/main.css')}}" rel="stylesheet">
     
       
    <!-- CSS here -->
@@ -131,12 +131,12 @@
 
 
     <!-- Java Script -->
-    <script src="{{ asset('Petugas/assets/js/core/jquery.3.2.1.min.js')}}"></script>
-    <script src="{{ asset('Petugas/assets/js/core/popper.min.js')}}"></script>
-    <script src="{{ asset('Petugas/assets/js/core/bootstrap.min.js')}}"></script>
-    <script src="{{ asset('Petugas/assets/js/now-ui-kit.js?v=1.1.0')}}"></script>
-    <script src="{{ asset('Petugas/assets/js/aos.js')}}"></script>
-    <script src="{{ asset('Petugas/assets/scripts/main.js')}}"></script>
+    <script src="{{ asset('Petugas/js/core/jquery.3.2.1.min.js')}}"></script>
+    <script src="{{ asset('Petugas/js/core/popper.min.js')}}"></script>
+    <script src="{{ asset('Petugas/js/core/bootstrap.min.js')}}"></script>
+    <script src="{{ asset('Petugas/js/now-ui-kit.js?v=1.1.0')}}"></script>
+    <script src="{{ asset('Petugas/js/aos.js')}}"></script>
+    <script src="{{ asset('Petugas/scripts/main.js')}}"></script>
 
     <section>
     @include('frontend/layouts.footer');
