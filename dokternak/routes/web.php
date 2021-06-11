@@ -45,6 +45,9 @@ Route::group(['namespace' => 'Frontend'], function()
 Route::get('/tutorial', 'frontend\TutorialController@index');
 Route::get('/tutorial/{id}/detail', 'frontend\TutorialController@detail');
 
+//route dokter
+Route::get('/dokter', 'frontend\DaftarDokterController@index');
+Route::get('/dokter/{id}/detail', 'frontend\DaftarDokterController@detail');
 
 Auth::routes();
 
