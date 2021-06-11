@@ -14,24 +14,24 @@
     <title>Dokternak.id - Detail Dokter</title>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
-    <link href="{{ asset('Frontend/assets/css_dokter/css/aos.css')}}" rel="stylesheet">
-    <link href="{{ asset('Frontend/assets/css_dokter/css/bootstrap.min.cs')}}s" rel="stylesheet">
-    <link href="{{ asset('Frontend/assets/css_dokter/styles/main.css')}}" rel="stylesheet">
+    <link href="{{ asset('Petugas/assets/css/aos.css')}}" rel="stylesheet">
+    <link href="{{ asset('Petugas/assets/css/bootstrap.min.cs')}}s" rel="stylesheet">
+    <link href="{{ asset('Petugas/assets/styles/main.css')}}" rel="stylesheet">
     
       
    <!-- CSS here -->
-   <link rel="stylesheet" href="{{ asset('Frontend/assets/css/bootstrap.min.css')}}">
-            <link rel="stylesheet" href="{{ asset('Frontend/assets/css/owl.carousel.min.css')}}">
-            <link rel="stylesheet" href="{{ asset('Frontend/assets/css/flaticon.css')}}">
-            <link rel="stylesheet" href="{{ asset('Frontend/assets/css/price_rangs.css')}}">
-            <link rel="stylesheet" href="{{ asset('Frontend/assets/css/slicknav.css')}}">
-            <link rel="stylesheet" href="{{ asset('Frontend/assets/css/animate.min.css')}}">
-            <link rel="stylesheet" href="{{ asset('Frontend/assets/css/magnific-popup.css')}}">
-            <link rel="stylesheet" href="{{ asset('Frontend/assets/css/fontawesome-all.min.css')}}">
-            <link rel="stylesheet" href="{{ asset('Frontend/assets/css/themify-icons.css')}}">
-            <link rel="stylesheet" href="{{ asset('Frontend/assets/css/slick.css')}}">
-            <link rel="stylesheet" href="{{ asset('Frontend/assets/css/nice-select.css')}}">
-            <link rel="stylesheet" href="{{ asset('Frontend/assets/css/style.css')}}">
+   <link rel="stylesheet" href="{{ asset('Petugas/assets/css/bootstrap.min.css')}}">
+            <link rel="stylesheet" href="{{ asset('Petugas/assets/css/owl.carousel.min.css')}}">
+            <link rel="stylesheet" href="{{ asset('Petugas/assets/css/flaticon.css')}}">
+            <link rel="stylesheet" href="{{ asset('Petugas/assets/css/price_rangs.css')}}">
+            <link rel="stylesheet" href="{{ asset('Petugas/assets/css/slicknav.css')}}">
+            <link rel="stylesheet" href="{{ asset('Petugas/assets/css/animate.min.css')}}">
+            <link rel="stylesheet" href="{{ asset('Petugas/assets/css/magnific-popup.css')}}">
+            <link rel="stylesheet" href="{{ asset('Petugas/assets/css/fontawesome-all.min.css')}}">
+            <link rel="stylesheet" href="{{ asset('Petugas/assets/css/themify-icons.css')}}">
+            <link rel="stylesheet" href="{{ asset('Petugas/assets/css/slick.css')}}">
+            <link rel="stylesheet" href="{{ asset('Petugas/assets/css/nice-select.css')}}">
+            <link rel="stylesheet" href="{{ asset('Petugas/assets/css/style.css')}}">
 
     <style type="text/css">
     .label-telpon {
@@ -131,12 +131,12 @@
 
 
     <!-- Java Script -->
-    <script src="{{ asset('Frontend/css_dokter/js/core/jquery.3.2.1.min.js')}}"></script>
-    <script src="{{ asset('Frontend/css_dokter/js/core/popper.min.js')}}"></script>
-    <script src="{{ asset('Frontend/css_dokter/js/core/bootstrap.min.js')}}"></script>
-    <script src="{{ asset('Frontend/css_dokter/js/now-ui-kit.js?v=1.1.0')}}"></script>
-    <script src="{{ asset('Frontend/css_dokter/js/aos.js')}}"></script>
-    <script src="{{ asset('Frontend/css_dokter/scripts/main.js')}}"></script>
+    <script src="{{ asset('Petugas/assets/js/core/jquery.3.2.1.min.js')}}"></script>
+    <script src="{{ asset('Petugas/assets/js/core/popper.min.js')}}"></script>
+    <script src="{{ asset('Petugas/assets/js/core/bootstrap.min.js')}}"></script>
+    <script src="{{ asset('Petugas/assets/js/now-ui-kit.js?v=1.1.0')}}"></script>
+    <script src="{{ asset('Petugas/assets/js/aos.js')}}"></script>
+    <script src="{{ asset('Petugas/assets/scripts/main.js')}}"></script>
 
     <section>
     @include('frontend/layouts.footer');
