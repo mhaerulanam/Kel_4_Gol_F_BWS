@@ -7,22 +7,22 @@
     <title> Daftar Puskeswan </title>
     <meta name="description" content="">
    <meta name="viewport" content="width=device-width, initial-scale=1">
-   <link rel="shortcut icon" type="image/x-icon" href="{{ asset('Petugas/assets/img/favicon.png')}}">
+   <link rel="shortcut icon" type="image/x-icon" href="{{ asset('Frontend/assets/img/favicon.png')}}">
   
    
      <!-- CSS here -->
-     <link rel="stylesheet" href="{{ asset('Petugas/assets/css/bootstrap.min.css')}}">
-      <link rel="stylesheet" href="{{ asset('Petugas/assets/css/owl.carousel.min.css')}}">
-      <link rel="stylesheet" href="{{ asset('Petugas/assets/css/slicknav.css')}}">
-      <link rel="stylesheet" href="{{ asset('Petugas/assets/css/price_rangs.css')}}">
-      <link rel="stylesheet" href="{{ asset('Petugas/assets/css/animate.min.css')}}">
-      <link rel="stylesheet" href="{{ asset('Petugas/assets/css/magnific-popup.css')}}">
-      <link rel="stylesheet" href="{{ asset('Petugas/assets/css/fontawesome-all.min.css')}}">
-      <link rel="stylesheet" href="{{ asset('Petugas/assets/css/themify-icons.css')}}">
-      <link rel="stylesheet" href="{{ asset('Petugas/assets/css/slick.css')}}">
-      <link rel="stylesheet" href="{{ asset('Petugas/assets/css/nice-select.css')}}">
-      <link rel="stylesheet" href="{{ asset('Petugas/assets/css/style.css')}}">
-      <link rel="stylesheet" href="{{ asset('Petugas/assets/css/responsive.css')}}">
+     <link rel="stylesheet" href="{{ asset('Frontend/assets/css/bootstrap.min.css')}}">
+      <link rel="stylesheet" href="{{ asset('Frontend/assets/css/owl.carousel.min.css')}}">
+      <link rel="stylesheet" href="{{ asset('Frontend/assets/css/slicknav.css')}}">
+      <link rel="stylesheet" href="{{ asset('Frontend/assets/css/price_rangs.css')}}">
+      <link rel="stylesheet" href="{{ asset('Frontend/assets/css/animate.min.css')}}">
+      <link rel="stylesheet" href="{{ asset('Frontend/assets/css/magnific-popup.css')}}">
+      <link rel="stylesheet" href="{{ asset('Frontend/assets/css/fontawesome-all.min.css')}}">
+      <link rel="stylesheet" href="{{ asset('Frontend/assets/css/themify-icons.css')}}">
+      <link rel="stylesheet" href="{{ asset('Frontend/assets/css/slick.css')}}">
+      <link rel="stylesheet" href="{{ asset('Frontend/assets/css/nice-select.css')}}">
+      <link rel="stylesheet" href="{{ asset('Frontend/assets/css/style.css')}}">
+      <link rel="stylesheet" href="{{ asset('Frontend/assets/css/responsive.css')}}">
     <style>
 .col-md-4{
       padding-bottom:20px;
@@ -238,39 +238,39 @@
         <!-- JS here -->
 	
 		<!-- All JS Custom Plugins Link Here here -->
-        <script src="Petugas/assets/js/vendor/modernizr-3.5.0.min.js"></script>
+        <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
 		<!-- Jquery, Popper, Bootstrap -->
-		<script src="Petugas/assets/js/vendor/jquery-1.12.4.min.js"></script>
-        <script src="Petugas/assets/js/popper.min.js"></script>
-        <script src="Petugas/assets/js/bootstrap.min.js"></script>
+		<script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
+        <script src="./assets/js/popper.min.js"></script>
+        <script src="./assets/js/bootstrap.min.js"></script>
 	    <!-- Jquery Mobile Menu -->
-        <script src="Petugas/assets/js/jquery.slicknav.min.js"></script>
+        <script src="./assets/js/jquery.slicknav.min.js"></script>
 
 		<!-- Jquery Slick , Owl-Carousel Plugins -->
-        <script src="Petugas/assets/js/owl.carousel.min.js"></script>
-        <script src="Petugas/assets/js/slick.min.js"></script>
-        <script src="Petugas/assets/js/price_rangs.js"></script>
+        <script src="./assets/js/owl.carousel.min.js"></script>
+        <script src="./assets/js/slick.min.js"></script>
+        <script src="./assets/js/price_rangs.js"></script>
         
 		<!-- One Page, Animated-HeadLin -->
-        <script src="Petugas/assets/js/wow.min.js"></script>
-		<script src="Petugas/assets/js/animated.headline.js"></script>
-        <script src="Petugas/assets/js/jquery.magnific-popup.js"></script>
+        <script src="./assets/js/wow.min.js"></script>
+		<script src="./assets/js/animated.headline.js"></script>
+        <script src="./assets/js/jquery.magnific-popup.js"></script>
 
 		<!-- Scrollup, nice-select, sticky -->
-        <script src="Petugas/assets/js/jquery.scrollUp.min.js"></script>
-        <script src="Petugas/assets/js/jquery.nice-select.min.js"></script>
-		<script src="Petugas/assets/js/jquery.sticky.js"></script>
+        <script src="./assets/js/jquery.scrollUp.min.js"></script>
+        <script src="./assets/js/jquery.nice-select.min.js"></script>
+		<script src="./assets/js/jquery.sticky.js"></script>
         
         <!-- contact js -->
-        <script src="Petugas/assets/js/contact.js"></script>
-        <script src="Petugas/assets/js/jquery.form.js"></script>
-        <script src="Petugas/assets/js/jquery.validate.min.js"></script>
-        <script src="Petugas/assets/js/mail-script.js"></script>
-        <script src="Petugas/assets/js/jquery.ajaxchimp.min.js"></script>
+        <script src="./assets/js/contact.js"></script>
+        <script src="./assets/js/jquery.form.js"></script>
+        <script src="./assets/js/jquery.validate.min.js"></script>
+        <script src="./assets/js/mail-script.js"></script>
+        <script src="./assets/js/jquery.ajaxchimp.min.js"></script>
         
 		<!-- Jquery Plugins, main Jquery -->	
-        <script src="Petugas/assets/js/plugins.js"></script>
-        <script src="Petugas/assets/js/main.js"></script>
+        <script src="./assets/js/plugins.js"></script>
+        <script src="./assets/js/main.js"></script>
 
         </body>
 </html>

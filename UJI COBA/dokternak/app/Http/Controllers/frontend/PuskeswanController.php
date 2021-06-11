@@ -9,7 +9,7 @@ class PuskeswanController extends Controller
 {
     public function index()
     {
-        $puskeswan = DB::table('puskeswan_tabel')->paginate(3);
+        $puskeswan = DB::table('puskeswan')->paginate(3);
         // $peternak = DB::table('peternak')->get();
         // return view('backend.peternak.index',compact('peternak'));
         return view('frontend.puskeswan',compact('puskeswan'))->with('puskeswan', $puskeswan);;
@@ -21,7 +21,7 @@ class PuskeswanController extends Controller
         $cari = $request->cari;
 
         //mengambil data dari tabel artikel sesuai pencarian data
-        $puskeswan = DB::table('puskeswan_tabel')
+        $puskeswan = DB::table('puskeswan')
         ->where('judul','like',"%".$cari."%")
         ->paginate(3);
 
