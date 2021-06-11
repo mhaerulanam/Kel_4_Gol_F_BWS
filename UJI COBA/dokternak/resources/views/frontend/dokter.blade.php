@@ -253,11 +253,12 @@
                                                         <li><a>{{ $data_dokter->telpon }}</a></li>
                                                     </ul> --}}
                                                     <div class="services-cap">
-                                                        <a href="#" class="genric-btn primary radius">Detail</a>
+                                                        <a href="/detaildokter/{{ $data_dokter->id_dokter }}/detaildokter/" class="genric-btn primary radius">Detail</a>
+                                                        <!-- <a href="/detaildokter/{{ $data_dokter->id_dokter }}/detaildokter/"><b>Detail</b></a> -->
                                                     </div>
                                                     {{-- <ul class="social"> 
                                                         <li>
-                                                        <a href="detaildokter.php?id_dokter"><b>Detail</b></a>
+                                                        
                                                         </li>
                                                     </ul> --}}
                                                 </div>
