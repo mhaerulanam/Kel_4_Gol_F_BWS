@@ -26,6 +26,7 @@
 
 <body>
 
+   @include('petugas/layouts.navbar');
    <!-- Hero Area Start-->
    <div class="slider-area ">
       <div class="single-slider section-overly slider-height2 d-flex align-items-center" data-background="{{ asset('Frontend/assets/img/gallery/s2.jpg')}}">
@@ -94,7 +95,7 @@
                <!-- Tulis Artikel -->
                     <div class="btn_tulis">
                             <div class="items-link f-center">
-                                <a href="/artikel" class="genric-btn primary">DAFTAR ARTIKEL</a>
+                                <a href="/artikel" class="genric-btn primary">TULIS ARTIKEL</a>
                                 </div>
                      </div>
                             <aside class="single_sidebar_widget post_category_widget">
@@ -143,7 +144,7 @@
       </div>
    </section>
    <!--================ Blog Area end =================-->
-   
+   @include('petugas/layouts.footer');
  <!-- JS here -->
 	
 		  <!-- All JS Custom Plugins Link Here here -->
