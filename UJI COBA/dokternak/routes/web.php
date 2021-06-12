@@ -40,8 +40,29 @@ Route::group(['namespace' => 'backend'], function()
 Route::group(['namespace' => 'Petugas'], function()
 {
     Route::resource('petugas/artikel', 'ArtikelController');
+    Route::resource('petugas/home', 'HomeController');
+    Route::resource('petugas/detailartikel', 'DetailArtikelController');
     Route::resource('petugas/tutorial', 'TutorialController');
+   
 });
+
+Auth::routes();
+
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// route landing page prtugas
+Route::get('/home', [App\Http\Controllers\frontend\HomeController::class, 'index'])->name('home');
+Route::POST('/home/cari', [App\Http\Controllers\frontend\HomeController::class, 'cari'])->name('home.cari');
+
+Route::get('admin/{id}', function ($id = null) {
+  //  
+})->middleware('auth');
+
+ //Route Artikel
+ Route::get('petugas/artikel', 'petugas\ArtikelController@index');
+ Route::get('petugas/artikel/cari', 'petugas\ArtikelController@cari');
+ Route::get('petugas/artikel/{id}/detail', 'petugas\ArtikelController@detail');
 
 //Route untuk Frontend----------------------------------------------------
 Route::group(['namespace' => 'Frontend'], function()
@@ -80,4 +101,4 @@ Route::get('/tutorial/{id}/detail', 'frontend\TutorialController@detail');
 
 //route dokter
 Route::get('/dokter', 'frontend\DaftarDokterController@index');
-Route::get('/dokter/{id}/detail', 'frontend\DaftarDokterController@detail');
+Route::get('/dokter/{id}/detail', 'frontend\DaftarDokterController@detail');d\DaftarDokterController@detail');
