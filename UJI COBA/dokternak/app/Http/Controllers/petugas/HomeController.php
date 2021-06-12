@@ -1,12 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\petugas;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Http\Request;
+use App\Models\artikel;
 
-class PetugasController extends Controller
+
+class HomeController extends Controller
 {
     public function __construct()
     {
@@ -15,6 +18,12 @@ class PetugasController extends Controller
     
     public function index()
     {
-        return view('petugas.home');
+
+        $artikel = [
+            'artikel' => Artikel::orderBy('tanggal', 'desc')->paginate(2),
+        ];
+        return view('petugas.home',compact('artikel'));
+
     }
+
 }
