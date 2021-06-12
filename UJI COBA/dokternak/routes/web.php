@@ -44,6 +44,7 @@ Route::group(['namespace' => 'Petugas'], function()
     Route::resource('petugas/detailartikel', 'DetailArtikelController');
     Route::resource('petugas/tutorial', 'TutorialController');
     Route::resource('petugas/tulisartikel', 'TulisArtikelController');
+    Route::resource('petugas/rekam-medik', 'RekammedikController');
    
 });
 
