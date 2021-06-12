@@ -66,7 +66,7 @@
                                             <h2><a href="detailartikel.php?id_artikel=id">{{ $data_artikel->judul }}</a></h2>
                                         </a>
                                         {{-- Code untuk memotong text menggunakan Str limit --}}
-                                        <p>{{\Illuminate\Support\Str::limit($data_artikel->isi, 250)}}  <a href="detailartikel.php?id_artikel=id isi" class="more-btn">  <strong> Read more » </strong></a></p>
+                                        <p>{{\Illuminate\Support\Str::limit($data_artikel->isi, 250)}}  <a href="/petugas/artikel/{{ $data_artikel->id_artikel }}/detail/" class="more-btn">  <strong> Read more » </strong></a></p>
                                         <ul class="blog-info-link">
                                             <li><a>{{ $data_artikel->id_ktg }}</a></li>
                                             <li><a>{{ $data_artikel->tanggal }}</a></li>
@@ -88,14 +88,14 @@
                             </div>
                         </div>
                         <aside class="single_sidebar_widget search_widget">
-                            <form action="#">
+                            <form action="/petugas/artikel/cari" method="GET">
                                 <div class="form-group">
                                     <div class="input-group mb-3">
                                         <input type="text" class="form-control" placeholder='Search Keyword'
                                             onfocus="this.placeholder = ''"
-                                            onblur="this.placeholder = 'Search Keyword'">
+                                            onblur="this.placeholder = 'Search Keyword'" name="cari">
                                         <div class="input-group-append">
-                                            <button class="btns" type="button"><i class="ti-search"></i></button>
+                                            <input type="submit" class="btn btn-primary mb-1" value="CARI"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -108,23 +108,17 @@
                             <h4 class="widget_title">Category</h4>
                             <ul class="list cat-list">
                                 <li>
-                                    <a href="#" class="d-flex">
+                                    <a href="/petugas/artikel/cari?cari=kucing" class="d-flex">
                                         <p>Kucing</p>
-                                        <p>(3)</p>
+                                        <p>(2)</p>
                                     </a>
                                 </li>   
                                 <li>
-                                    <a href="#" class="d-flex">
+                                    <a href="/petugas/artikel/cari?cari=kambing" class="d-flex">
                                         <p>Kambing</p>
                                         <p>(2)</p>
                                     </a>
-                                </li> 
-                                <li>
-                                    <a href="#" class="d-flex">
-                                        <p>Ikan</p>
-                                        <p>(2)</p>
-                                    </a>
-                                </li>                           
+                                </li>                          
                             </ul>
                         </aside>
 

@@ -4,14 +4,14 @@ namespace App\Http\Controllers\petugas;
 use App\Http\Controllers\controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\artikel;
 
 class ArtikelController extends Controller
 {
 
     public function index()
     {
-        $artikel = DB::table('artikel')->orderBy('tanggal', 'desc')->paginate(2);
-
+        $artikel = Artikel::orderBy('tanggal', 'desc')->paginate(2);
         return view('petugas.artikel',compact('artikel'))->with('artikel', $artikel);;
         // return view('frontend.artikel');
 
@@ -33,10 +33,10 @@ class ArtikelController extends Controller
         return view('petugas.artikel',compact('artikel'));
     }
 
-    public function ReadMore($id)
-    {
-        $artikel = DB::table('users')->where('id',$id)->first();
-        return view('petugas.artikel',compact('artikel'));
+    public function detail($id) {
+        $artikel2 = Artikel::orderBy('tanggal', 'desc')->paginate(2);
+        $artikel = DB::table('artikel')->where('id_artikel',$id)->first();
+        return view('petugas.detailartikel',compact('artikel','artikel2'));
     }
 
 }
