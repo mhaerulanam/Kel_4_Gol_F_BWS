@@ -95,7 +95,7 @@
                <!-- Tulis Artikel -->
                     <div class="btn_tulis">
                             <div class="items-link f-center">
-                                <a href="/petugas/tulisartikel" class="genric-btn primary">++TULIS ARTIKEL</a>
+                                <a href="/artikel" class="genric-btn primary">TULIS ARTIKEL</a>
                                 </div>
                      </div>
                             <aside class="single_sidebar_widget post_category_widget">

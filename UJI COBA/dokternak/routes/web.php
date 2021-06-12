@@ -65,12 +65,6 @@ Route::get('admin/{id}', function ($id = null) {
  Route::get('petugas/artikel/cari', 'petugas\ArtikelController@cari');
  Route::get('petugas/artikel/{id}/detail', 'petugas\ArtikelController@detail');
 
- //Route Tutorial
- Route::get('petugas/tutorial', 'petugas\TutorialController@index');
- Route::get('petugas/tutorial/{id}/detail', 'petugas\TutorialController@detail');
-
- 
-
 //Route untuk Frontend----------------------------------------------------
 Route::group(['namespace' => 'Frontend'], function()
 {
@@ -105,8 +99,6 @@ Route::get('/artikel/{id}/detail', 'frontend\ArtikelController@detail');
 //route tutorial
 Route::get('/tutorial', 'frontend\TutorialController@index');
 Route::get('/tutorial/{id}/detail', 'frontend\TutorialController@detail');
-
-
 
 //route dokter
 Route::get('/dokter', 'frontend\DaftarDokterController@index');

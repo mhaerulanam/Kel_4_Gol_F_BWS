@@ -60,7 +60,7 @@
                             <h5>{{ $data_tutorial->judul_tutorial }}</h5>
                         <div class="btn_detail">
                             <div class="items-link f-center">
-                            <a href="/petugas/tutorial/{{ $data_tutorial->id_tutorial }}/detail/">Detail</a>
+                            <a href="/tutorial/{{ $data_tutorial->id_tutorial }}/detail/">Detail</a>
                             </div>
                         </div>
                     </div>
