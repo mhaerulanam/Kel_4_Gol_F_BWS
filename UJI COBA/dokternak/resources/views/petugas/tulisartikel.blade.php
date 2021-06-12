@@ -122,7 +122,10 @@ if (!isset($_SESSION["username"])) {
    </div>
    </div>
 </div>
-        @include('frontend/layouts.footer');
+<section>
+    @include('petugas/layouts.footer');
+</section>
+
              
 
         <!-- All JS Custom Plugins Link Here here -->
