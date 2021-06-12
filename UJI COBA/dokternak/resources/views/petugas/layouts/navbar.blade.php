@@ -30,7 +30,7 @@
                                              </ul>
                                          </li>
                                          <li><a href="respon_konsultasi.php">NOTIFIKASI</a></li>
-                                         <li><a href="daftar_tutorial.php">TUTORIAL</a></li>
+                                         <li><a href="/petugas/tutorial">TUTORIAL</a></li>
                                      </ul>
                                  </nav>
                              </div>

@@ -40,6 +40,7 @@ Route::group(['namespace' => 'backend'], function()
 Route::group(['namespace' => 'Petugas'], function()
 {
     Route::resource('petugas/artikel', 'ArtikelController');
+    Route::resource('petugas/tutorial', 'TutorialController');
 });
 
 //Route untuk Frontend----------------------------------------------------
