@@ -29,10 +29,10 @@ class PuskeswanController extends Controller
         return view('frontend.puskeswan',compact('puskeswan'));
     }
 
-    public function ReadMore($id)
+    public function detail($id)
     {
-        $puskeswan = DB::table('users')->where('id_puskeswan',$id)->first();
-        return view('frontend.puskeswan',compact('puskeswan'));
+        $puskeswan = DB::table('puskeswan')->where('id_puskeswan',$id)->first();
+        return view('frontend.detailpuskeswan',compact('puskeswan'));
     }
 
 }

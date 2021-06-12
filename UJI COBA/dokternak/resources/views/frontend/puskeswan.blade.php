@@ -203,7 +203,7 @@
                                     <p>{{ $data_puskeswan->alamat }}</p>
                                     </div>
                                     <div class="services-cap">
-                                        <a href="detailpuskeswan.php?id_puskeswan" class="genric-btn primary radius">Detail</a>
+                                        <a href="/puskeswan/{{ $data_puskeswan->id_puskeswan }}/detail/" class="genric-btn primary radius">Detail</a>
                                         </div>
                                         </div>
                                 </div>

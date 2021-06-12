@@ -103,3 +103,7 @@ Route::get('/tutorial/{id}/detail', 'frontend\TutorialController@detail');
 //route dokter
 Route::get('/dokter', 'frontend\DaftarDokterController@index');
 Route::get('/dokter/{id}/detail', 'frontend\DaftarDokterController@detail');
+
+//Route Puskeswan
+Route::get('/puskeswan', 'frontend\PuskeswanController@index');
+Route::get('/puskeswan/{id}/detail', 'frontend\PuskeswanController@detail');
