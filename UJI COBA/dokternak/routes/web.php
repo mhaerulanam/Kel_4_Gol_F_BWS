@@ -101,4 +101,4 @@ Route::get('/tutorial/{id}/detail', 'frontend\TutorialController@detail');
 
 //route dokter
 Route::get('/dokter', 'frontend\DaftarDokterController@index');
-Route::get('/dokter/{id}/detail', 'frontend\DaftarDokterController@detail');d\DaftarDokterController@detail');
+Route::get('/dokter/{id}/detail', 'frontend\DaftarDokterController@detail');
