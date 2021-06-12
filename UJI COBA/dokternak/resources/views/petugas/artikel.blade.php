@@ -84,7 +84,7 @@
                     <div class="blog_right_sidebar">
                         <div class="btn_tulis">
                             <div class="items-link f-center">
-                                <a href="tulis_artikel.php" class="genric-btn primary">++ TULIS ARTIKEL</a>
+                                <a href="tulisartikel" class="genric-btn primary">++ TULIS ARTIKEL</a>
                             </div>
                         </div>
                         <aside class="single_sidebar_widget search_widget">
