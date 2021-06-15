@@ -33,6 +33,7 @@ Route::resource('admin', 'backend\AdminController');
 Route::group(['namespace' => 'backend'], function()
 {
     Route::resource('/dashboard/peternak', 'PeternakController');
+    Route::resource('/dashboard/admin', 'AdminController');
 });
 // ------------------------------------------------------------------------
 
