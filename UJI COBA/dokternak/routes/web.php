@@ -36,6 +36,7 @@ Route::group(['namespace' => 'backend'], function()
     Route::resource('/dashboard/admin', 'AdminController');
     Route::resource('/dashboard/dokter', 'DataDokterController');
     Route::resource('/dashboard/tutorial', 'TutorialController');
+    Route::resource('/dashboard/data_artikel', 'DataArtikelController');
 });
 // ------------------------------------------------------------------------
 
