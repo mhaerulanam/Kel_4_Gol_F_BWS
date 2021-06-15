@@ -68,7 +68,7 @@
                     <div class="form-row">
                       <div class="col-md-6 mb-3">
                         <label for="validationCustom3">Tanggal</label>
-                        <input class="form-control" id="tanggal" name="tangggal" minlength="5" type="text" placeholder="Masukkan tanggal"
+                        <input class="form-control" id="tanggal" name="tangggal" minlength="5" type="date" placeholder="Masukkan tanggal"
                         value="{{ isset($artikel) ? $artikel->tanggal : '' }}"  
                             required>
                         <div class="valid-feedback"> Looks good! </div>
