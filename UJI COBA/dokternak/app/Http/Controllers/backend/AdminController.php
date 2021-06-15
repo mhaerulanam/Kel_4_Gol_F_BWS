@@ -57,7 +57,7 @@ class AdminController extends Controller
             'password' => Hash::make($request['password']),
         ];
 
-        peternak::create($data_simpan);
+        admin::create($data_simpan);
 
         return redirect()->route('admin.index')
                         ->with('success','Data peternak baru telah berhasil disimpan');
@@ -101,7 +101,7 @@ class AdminController extends Controller
 
     public function destroy($id)
     {
-        $admin = Peternak::where('id',$id)->delete();
+        $admin = Admin::where('id',$id)->delete();
         return redirect()->route('admin.index')
                         ->with('success','Data admin telah berhasil dihapus');
     }

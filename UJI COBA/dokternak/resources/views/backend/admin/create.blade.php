@@ -60,7 +60,7 @@
                       <div class="col-md-6 mb-3">
                         <label for="validationCustom3">Nama Lengkap</label>
                         <input class="form-control" id="name" name="name" minlength="5" type="text" placeholder="Masukkan nama"
-                        value="{{ isset($admin) ? $peternak->name : '' }}"  
+                        value="{{ isset($admin) ? $admin->name : '' }}"  
                             required>
                         <div class="valid-feedback"> Looks good! </div>
                       </div>
