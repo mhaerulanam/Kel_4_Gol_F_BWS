@@ -349,12 +349,12 @@ $(document).ready(function(){
                         <td>{{ $item->pelayanan }}</td>
                         <td>
                         <div class="btn-group">
-                            <a href="#" class="btn btn-warning" data-toggle="modal" data-target="#EditDataRMDForm"><i class="fa fa-edit"></i></a>
-                            <form action="#" method="POST">
+                            <a href="{{ route('editdata',$item->id_rmd)}}" method="GET" class="btn btn-warning" data-toggle="modal" data-target="#EditDataRMDForm"><i class="fa fa-edit"></i></a>
+                            <form action="{{ route('hapusdata',$item->id_rmd)}}" method="POST">
                             @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger" 
-                                onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
+                                onclick="return confirm('Apakah Anda yakin ingin menghapus data dengan id {{ $item->id_rmd}} ini?')">
                                 <i class="fa fa-trash-o"></i></button>
                             </form>
                         </div>
@@ -389,43 +389,44 @@ $(document).ready(function(){
                     <h3>Tambah Data Rekam Medik</h3>
                 </div>
                 <div class="modal-body">
-                    <form role="form" method="POST" action="">
+                    <form role="form" method="POST" id="rekam_medik_form" action="{{route('simpandata')}}">
+                        @csrf
                         <input type="hidden" name="id_rmd" value="">
                             <div class="form-group">
                                 <label class="control-label">Tanggal</label>
-                                <input type="date" class="form-control input-lg" name="tanggal" value="">
+                                <input type="date" class="form-control input-lg" name="tanggal" required>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">Id Kategori</label>
-                                <input type="text" class="form-control input-lg" name="id_kategori">
+                                <input type="text" class="form-control input-lg" name="id_kategori" placeholder="Masukkan id kategori" required>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">Id Ktg</label>
-                                <input type="text" class="form-control input-lg" name="id_ktg">
+                                <input type="text" class="form-control input-lg" name="id_ktg" placeholder="Masukkan id ktg" required>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">Nama Hewan</label>
-                                <input type="text" class="form-control input-lg" name="nama_hewan">
+                                <input type="text" class="form-control input-lg" name="nama_hewan" placeholder="Masukkan nama hewan" required>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">Nama Peternak</label>
-                                <input type="text" class="form-control input-lg" name="nama_peternak">
+                                <input type="text" class="form-control input-lg" name="nama_peternak" placeholder="Masukkan nama peternak" required>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">Alamat</label>
-                                <textarea type="text" class="form-control input-lg" name="alamat"></textarea>
+                                <textarea type="text" class="form-control input-lg" name="alamat" placeholder="Masukkan alamat peternak" required></textarea>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">Keluhan</label>
-                                <textarea type="text" class="form-control input-lg" name="alamat"></textarea>
+                                <textarea type="text" class="form-control input-lg" name="keluhan" placeholder="Tuliskan keluhan dari peternak" required></textarea>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">Diagnosa</label>
-                                <input type="text" class="form-control input-lg" name="alamat">
+                                <input type="text" class="form-control input-lg" name="diagnosa" placeholder="Masukkan diagnosa" required>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">Pelayanan</label>
-                                <input type="text" class="form-control input-lg" name="alamat">
+                                <input type="text" class="form-control input-lg" name="pelayanan" placeholder="Masukkan pelayanan" required>
                             </div>
                             <div class="form-group">
                                 <div>
@@ -448,42 +449,44 @@ $(document).ready(function(){
                 </div>
                 <div class="modal-body">
                     <form role="form" method="POST" action="">
+                        @csrf
                         <input type="hidden" name="id_rmd" value="">
                             <div class="form-group">
                                 <label class="control-label">Tanggal</label>
-                                <input type="date" class="form-control input-lg" name="tanggal" value="">
+                                <input type="date" class="form-control input-lg" name="tanggal" value="" required>
                             </div>
+                            
                             <div class="form-group">
                                 <label class="control-label">Id Kategori</label>
-                                <input type="text" class="form-control input-lg" name="id_kategori">
+                                <input type="text" class="form-control input-lg" name="id_kategori" value="" required>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">Id Ktg</label>
-                                <input type="text" class="form-control input-lg" name="id_ktg">
+                                <input type="text" class="form-control input-lg" name="id_ktg" value="" required>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">Nama Hewan</label>
-                                <input type="text" class="form-control input-lg" name="nama_hewan">
+                                <input type="text" class="form-control input-lg" name="nama_hewan" value="" required>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">Nama Peternak</label>
-                                <input type="text" class="form-control input-lg" name="nama_peternak">
+                                <input type="text" class="form-control input-lg" name="nama_peternak" value="" required>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">Alamat</label>
-                                <textarea type="text" class="form-control input-lg" name="alamat"></textarea>
+                                <textarea type="text" class="form-control input-lg" name="alamat" value="" required></textarea>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">Keluhan</label>
-                                <textarea type="text" class="form-control input-lg" name="alamat"></textarea>
+                                <textarea type="text" class="form-control input-lg" name="keluhan" value="" required></textarea>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">Diagnosa</label>
-                                <input type="text" class="form-control input-lg" name="alamat">
+                                <input type="text" class="form-control input-lg" name="diagnosa" value="" required>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">Pelayanan</label>
-                                <input type="text" class="form-control input-lg" name="alamat">
+                                <input type="text" class="form-control input-lg" name="pelayanan" value="" required>
                             </div>
                             <div class="form-group">
                                 <div>
@@ -491,12 +494,11 @@ $(document).ready(function(){
                                 </div>
                             </div>
                     </form>
-                
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
-</div> 
+</div>
 
 <section>
     @include('petugas/layouts.footer');

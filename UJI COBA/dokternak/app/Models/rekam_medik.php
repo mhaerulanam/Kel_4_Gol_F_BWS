@@ -10,6 +10,6 @@ class rekam_medik extends Model
     protected $table = 'rekam_medik';
     protected $primaryKey = 'id_rmd';
     protected $fillable = [
-        'tanggal', 'id_kategori', 'id_ktg', 'nama_hewan', 'nama_peternak','alamat','keluhan','diagnosa','pelayanan',
+        'id_rmd', 'tanggal', 'id_kategori', 'id_ktg', 'nama_hewan', 'nama_peternak','alamat','keluhan','diagnosa','pelayanan',
     ];
 }
