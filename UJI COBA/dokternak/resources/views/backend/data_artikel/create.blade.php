@@ -59,7 +59,7 @@
                         
                         <div class="col-md-6 mb-3">
                           <label for="validationCustom3">Kategori</label>
-                          <input list="id_ktg" class="form-control {{ $errors->has('id_ktg') ? 'is-invalid' : ''}}" placeholder='Masukkan Jenis Hewan' value="{{ old('id_ktg')}}" name="id_ktg" >
+                          <input list="id_ktg" class="form-control {{ $errors->has('id_ktg') ? 'is-invalid' : ''}}" placeholder='Masukkan Jenis Hewan' value="{{ isset($artikel) ? $artikel->id_ktg : '' }}" name="id_ktg" >
                             @if ( $errors->has('id_ktg'))
                                 <span class="text-danger small">
                                     <p>{{ $errors->first('id_ktg') }}</p>
@@ -103,7 +103,7 @@
                       <div class="form-row">
                         <div class="col-md-6 mb-3">
                           <label for="validationCustom3">Gambar</label>
-                          <input type="file" name="gambar" id="gambar" class="form-control {{ $errors->has('gambar') ? 'is-invalid' : ''}}">
+                          <input type="file" name="gambar" id="gambar" class="form-control {{ $errors->has('gambar') ? 'is-invalid' : ''}}" >
                         @if ( $errors->has('gambar'))
                         <span class="text-danger small">
                             <p>{{ $errors->first('gambar') }}</p>

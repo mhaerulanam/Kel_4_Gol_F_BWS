@@ -88,7 +88,7 @@
                   </div>
                    
                     <button class="btn btn-primary" type="submit">Save</button>
-                    <a href="{{ route('data_puskeswan.index') }}"><button class="btn btn-default"
+                    <a href="{{ route('data_tutorial.index') }}"><button class="btn btn-default"
                         type="button">Cancel</button></a>
                   </form>
                 </div> <!-- /.card-body -->
