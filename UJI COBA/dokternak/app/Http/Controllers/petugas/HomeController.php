@@ -19,10 +19,10 @@ class HomeController extends Controller
     public function index()
     {
 
-        $artikel = [
+        $data = [
             'artikel' => Artikel::orderBy('tanggal', 'desc')->paginate(2),
         ];
-        return view('petugas.home',compact('artikel'));
+        return view('petugas.home',compact('data'));
 
     }
 
