@@ -24,9 +24,10 @@ class HomeController extends Controller
         $data = [
             'dokter' => Dokter::orderBy('id_dokter', 'desc')->paginate(3),
             'artikel' => Artikel::orderBy('tanggal', 'desc')->paginate(2),
-            'tutorial' => Tutorial::orderBy('id_tutorial')->paginate(3),
+            
         ];
-        return view('frontend.home',compact('data'));
+        $tutorial = Tutorial::orderBy('judul_tutorial')->paginate(4);
+        return view('frontend.home',compact('data','tutorial'));
 
     }
 
@@ -51,5 +52,10 @@ class HomeController extends Controller
 
         //mengirim data artikel ke view dokter
         return view('frontend.home',compact('data','kode'));
+    }
+
+    public function detail($id) {
+        $tutorial = DB::table('tutorial')->where('id_tutorial',$id)->first();
+        return view('frontend.detailtutorial',compact('tutorial'));
     }
 }

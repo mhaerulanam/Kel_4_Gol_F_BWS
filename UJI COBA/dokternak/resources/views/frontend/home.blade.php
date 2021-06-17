@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="{{ asset('Frontend/assets/css/slick.css')}}">
     <link rel="stylesheet" href="{{ asset('Frontend/assets/css/nice-select.css')}}">
     <link rel="stylesheet" href="{{ asset('Frontend/assets/css/style.css')}}">
-
+    <link rel="stylesheet" href="{{ asset('Frontend/assets/css/style2.css') }}">
 {{-- @extends('frontend/layouts.template') --}}
 @extends('layouts.app')
 @section('content')
@@ -26,7 +26,7 @@
                     <div class="row">
                         <div class="col-xl-6 col-lg-9 col-md-10">
                             <div class="hero__caption">
-                                <h3><span id="title-ajakan">Temukan Dokter Hewan <br> di Lingkungan Terdekatmu <br>  <br> </span></h3>
+                                <h2><span id="title-ajakan">Temukan Dokter Hewan <br> di Lingkungan Terdekatmu <br>  <br> </span></h2>
                             </div>
                         </div>
                     </div>
@@ -181,7 +181,7 @@
                                                         <div class="blog-cap">
                                                             <p>{{ $data_artikel->nama_penulis}}</p>
                                                             <h3>{{ $data_artikel->judul }}<a href="detailartikel.php?id_artikel={{ $data_artikel->judul }}"></a></h3>
-                                                            <a href="#" class="more-btn">Read more »</a>
+                                                            <a href="/artikel/{{ $data_artikel->id_artikel }}/detail/" class="more-btn">Read more »</a>
                                                         </div>
                                                     </div>
                                                 </div> 
@@ -209,7 +209,7 @@
                     </div>
                 </div>
                 <div class="row d-flex justify-contnet-center">
-                    @foreach ($data['tutorial'] as $data_tutorial)
+                    @foreach ($tutorial as $data_tutorial)
                     <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
                         <div class="single-services text-center mb-30">
                             <div class="services-ion">
@@ -218,7 +218,7 @@
                             <div class="services-cap">
                                <h5><a href="job_listing.html">{{ $data_tutorial->judul_tutorial }}</a></h5>
                                <div class="items-link f-right">
-                                <a href="/tutorial/{{ $data_tutorial->id_tutorial }}/detail/">Detail</a>
+                                <a href="/home/tutorial/{{ $data_tutorial->id_tutorial }}/detail/">Detail</a>
                                </div>
                             </div>
                         </div>
@@ -226,7 +226,10 @@
                     @endforeach
             </div>
         </div>
-        </div></section>
+        </div>
+        </section>
+                    </div>
+                </section>
         <section>
             @include('frontend/layouts.footer');
         </section>
