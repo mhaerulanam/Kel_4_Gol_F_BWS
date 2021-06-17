@@ -95,7 +95,7 @@
               <ul  class="collapse list-unstyled pl-4 w-100" id="ui-elements">
                 <li class="nav-item dropdown">
                     <li class="nav-item">
-                      <a class="nav-link pl-3" href="/dashboard/tutorial"><span class="ml-1 item-text">Tutorial</span>
+                      <a class="nav-link pl-3" href="/dashboard/data_tutorial"><span class="ml-1 item-text">Tutorial</span>
                       </a>
                     </li>
                 </li>

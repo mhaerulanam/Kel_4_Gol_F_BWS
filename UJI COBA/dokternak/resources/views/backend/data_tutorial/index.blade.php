@@ -45,7 +45,7 @@
                     </div>
                   <div class="col-auto">
                     <div class="form">
-                      <a href="{{ route('tutorial.create') }}"><button class="btn btn-primary"
+                      <a href="{{ route('data_tutorial.create') }}"><button class="btn btn-primary"
                           type="button"><i class="fa fa-plus"></i><span>Tambah</span></button></a>
                     </div>
                   </div>
@@ -54,6 +54,7 @@
                   <thead>
                     <tr>
                       <th>NO</th>
+                      <th>ID Tutorial</th>
                       <th>Judul Tutorial</th>
                       <th>Isi</th>
                       <th>Icon</th>
@@ -63,17 +64,17 @@
                   </thead>
                   <tbody>
                     @php $no = 1; @endphp
-                    @foreach ($data['tutorial'] as $item)
+                    @foreach ($tutorial as $item)
                     <tr>
                         <td>{{ $no++ }}</td>
+                        <td>{{ $item->id_tutorial }}</td>
                         <td>{{ $item->judul_tutorial }}</td>
                         <td>{{ $item->isi }}</td>
                         <td><img src="data:image/png;base64,{{ chunk_split(base64_encode($item->icon)) }}"></td>
-                        <!-- <td>{{ $item->password }}</td> -->
                         <td>
                         <div class="btn-group">
-                            <a href="{{ route('tutorial.edit',$item->id_tutorial)}}" class="btn btn-warning">Edit<i class="fa fa-edit"></i></a>
-                            <form action="{{ route('tutorial.destroy',$item->id_tutorial)}}" method="POST">
+                            <a href="{{ route('data_tutorial.edit',$item->id_tutorial)}}" class="btn btn-warning">Edit<i class="fa fa-edit"></i></a>
+                            <form action="{{ route('data_tutorial.destroy',$item->id_tutorial)}}" method="POST">
                             @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger" 
