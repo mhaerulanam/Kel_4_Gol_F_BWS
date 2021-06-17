@@ -31,7 +31,7 @@
       <div class="row justify-content-center">
         <div class="col-12">
           <header class="panel-heading">
-            {{ isset($admin_lecturer) ? 'Mengubah' : 'Menambahkan' }} Data Artikel
+            {{ isset($admin_lecturer) ? 'Mengubah' : 'Menambahkan' }} Admin
         </header>
           @if ($errors->any())
             <div class="alert alert-danger">
@@ -49,79 +49,82 @@
                 <div class="card-header">
                   <strong class="card-title">Advanced Validation</strong>
                 </div>
-                <div class="card-body">
-                  <form class="needs-validation" id="artikel_form" method="POST"
-                            action="{{ isset($artikel) ? route('data_artikel.update',$artikel->id_artikel) : 
-                            route('data_artikel.store') }}">
-                                {!! csrf_field() !!}
-                                {!! isset($artikel) ? method_field('PUT') : '' !!}
-                      <input type="hidden" name="id_artikel" value="{{ isset($artikel) ? $artikel->id_artikel : '' }}"> <br/>
+                <div class="card-body"> 
+                    <form class="needs-validation" id="artikel_form" method="POST" enctype="multipart/form-data"
+                              action="{{ isset($artikel) ? route('data_artikel.update',$artikel->id_artikel) : 
+                              route('data_artikel.store') }}">
+                                  {!! csrf_field() !!}
+                                  {!! isset($artikel) ? method_field('PUT') : '' !!}
+                        <input type="hidden" name="id_artikel" value="{{ isset($artikel) ? $artikel->id_artikel : '' }}"> <br/>
+                        
+                        <div class="col-md-6 mb-3">
+                          <label for="validationCustom3">Kategori</label>
+                          <input list="id_ktg" class="form-control {{ $errors->has('id_ktg') ? 'is-invalid' : ''}}" placeholder='Masukkan Jenis Hewan' value="{{ old('id_ktg')}}" name="id_ktg" >
+                            @if ( $errors->has('id_ktg'))
+                                <span class="text-danger small">
+                                    <p>{{ $errors->first('id_ktg') }}</p>
+                                </span>
+                            @endif
+                            <datalist id="id_ktg" name="id_ktg">
+                            <div class="form-select" id="default-select">
+                                <select name="s_kategori" class="form-control" id="exampleFormControlSelect1">              
+                                    <option value="" ></option>
+                                    </select><br>
+                            </div>
+                      </div>
+                      <input type="hidden" name="tanggal" value="{{ date('Y-m-d') }}">
                       <div class="form-row">
-                      <div class="col-md-6 mb-3">
-                        <label for="validationCustom3">Kategori</label>
-                        <input class="form-control" id="id_ktg" name="kategori" minlength="5" type="text" placeholder="Masukkan kategori"
-                        value="{{ isset($artikel) ? $artikel->name : '' }}"  
-                            required>
-                        <div class="valid-feedback"> Looks good! </div>
+                        <div class="col-md-6 mb-3">
+                          <label for="validationCustom3">Nama Penulis</label>
+                          <input class="form-control" id="nama_penulis" name="nama_penulis" minlength="5" type="text" placeholder="Masukkan nama penulis"
+                          value="{{ isset($artikel) ? $artikel->nama_penulis : '' }}"  
+                              required>
+                          <div class="valid-feedback"> Looks good! </div>
+                        </div>
                       </div>
-                    </div> <!-- /.form-row -->
+                      <div class="form-row">
+                        <div class="col-md-6 mb-3">
+                          <label for="validationCustom3">Judul</label>
+                          <input class="form-control" id="judul" name="judul" minlength="5" type="text" placeholder="Masukkan judul"
+                          value="{{ isset($artikel) ? $artikel->judul : '' }}"  
+                              required>
+                          <div class="valid-feedback"> Looks good! </div>
+                        </div>
+                      </div>
+                      <div class="form-row">
+                        <div class="col-md-6 mb-3">
+                          <label for="validationCustom3">Isi</label>
+                          <input class="form-control" id="isi" name="isi" minlength="5" type="text" placeholder="tulis isi artikel"
+                          value="{{ isset($artikel) ? $artikel->isi : '' }}"  
+                              required>
+                          <div class="valid-feedback"> Looks good! </div>
+                        </div>
+                      </div>
+                      <div class="form-row">
+                        <div class="col-md-6 mb-3">
+                          <label for="validationCustom3">Gambar</label>
+                          <input type="file" name="gambar" id="gambar" class="form-control {{ $errors->has('gambar') ? 'is-invalid' : ''}}">
+                        @if ( $errors->has('gambar'))
+                        <span class="text-danger small">
+                            <p>{{ $errors->first('gambar') }}</p>
+                        </span>
+                    @endif
+                        </div>
+                      </div>
                     <div class="form-row">
                       <div class="col-md-6 mb-3">
-                        <label for="validationCustom3">Tanggal</label>
-                        <input class="form-control" id="tanggal" name="tangggal" minlength="5" type="date" placeholder="Masukkan tanggal"
-                        value="{{ isset($artikel) ? $artikel->tanggal : '' }}"  
+                        <label for="validationCustom3">Sumber</label>
+                        <input class="form-control" id="sumber" name="sumber" minlength="5" type="text" placeholder="Masukkan sumber"
+                        value="{{ isset($artikel) ? $artikel->sumber : '' }}"  
                             required>
                         <div class="valid-feedback"> Looks good! </div>
                       </div>
                     </div>
-                    <div class="form-row">
-                      <div class="col-md-6 mb-3">
-                        <label for="validationCustom3">Nama Penulis</label>
-                        <input class="form-control" id="nama_penulis" name="nama_penulis" minlength="5" type="text" placeholder="Masukkan nama penulis"
-                        value="{{ isset($artikel) ? $artikel->nama_penulis : '' }}"  
-                            required>
-                        <div class="valid-feedback"> Looks good! </div>
-                      </div>
-                    </div>
-                    <div class="form-row">
-                      <div class="col-md-6 mb-3">
-                        <label for="validationCustom3">Judul</label>
-                        <input class="form-control" id="judul" name="judul" minlength="5" type="text" placeholder="Masukkan judul"
-                        value="{{ isset($artikel) ? $artikel->judul : '' }}"  
-                            required>
-                        <div class="valid-feedback"> Looks good! </div>
-                      </div>
-                    </div>
-                    <div class="form-row">
-                      <div class="col-md-6 mb-3">
-                        <label for="validationCustom3">Isi</label>
-                        <input class="form-control" id="isi" name="isi" minlength="5" type="text" placeholder="tulis isi artikel"
-                        value="{{ isset($artikel) ? $artikel->isi : '' }}"  
-                            required>
-                        <div class="valid-feedback"> Looks good! </div>
-                      </div>
-                    </div>
-                    <div class="form-row">
-                      <div class="col-md-6 mb-3">
-                        <label for="validationCustom3">Gambar</label>
-                        <input class="form-control" id="gambar" name="gambar" minlength="5" type="text" placeholder="Masukkan gambar"
-                        value="{{ isset($artikel) ? $artikel->gambar : '' }}"  
-                            required>
-                        <div class="valid-feedback"> Looks good! </div>
-                      </div>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                      <label for="validationCustom3">Sumber</label>
-                      <input class="form-control" id="sumber" name="sumber" minlength="5" type="text" placeholder="Masukkan sumber"
-                      value="{{ isset($artikel) ? $artikel->sumber : '' }}"  
-                          required>
-                      <div class="valid-feedback"> Looks good! </div>
-                    </div>
-                  </div>
-                   
-                    <button class="btn btn-primary" type="submit">Save</button>
-                    <a href="{{ route('data_artikel.index') }}"><button class="btn btn-default"
-                        type="button">Cancel</button></a>
+                     
+                      <button class="btn btn-primary" type="submit">Save</button>
+                      <a href="{{ route('data_artikel.index') }}"><button class="btn btn-default"
+                          type="button">Cancel</button></a>
+                      
                   </form>
                 </div> <!-- /.card-body -->
               </div> <!-- /.card -->
