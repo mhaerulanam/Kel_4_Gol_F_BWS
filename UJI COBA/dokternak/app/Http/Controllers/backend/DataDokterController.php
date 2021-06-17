@@ -16,21 +16,45 @@ class DataDokterController extends Controller
 {
     public function index()
     {
-        $dokter = DB::table('dokter')->get();
-        return view('backend.dokter.index',compact('dokter'));
-        // return view('backend.peternak.index');
+        $dtdokter = DB::table('dokter')->get();
+        return view('backend.dokter.index', compact('dtdokter'));
     }
 
 
     public function create()
     {
-        $dokter = null;
-        return view('backend.dokter.create',compact('dokter'));
+        $dtdokter = null;
+        return view('backend.dokter.create',compact('dtdokter'));
     }
 
     public function store(Request $request)
     {
-        DB::table('dokter')->insert([
+        // DB::table('dokter')->insert([
+        //     'nama' => $request->nama,
+        //     'email' => $request->email,
+        //     'jenis_kelamin' => $request->jenis_kelamin,
+        //     'alamat' => $request->alamat,
+        //     'tempat' => $request->tempat,
+        //     'telpon' => $request->telpon,
+        //     'foto' => $request->foto,
+        //     'id_jabatan' => $request->id_jabatan,
+        //     'jadwal_kerja' => $request->jadwal_kerja,
+        //     'username' => $request->username,
+        //     'password' => Hash::make($request['password']),
+
+        $message = [
+            'numeric' => ':attributer harus diisi nomor.'
+        ];
+
+        $validator = FacadesValidator::make($request->all(),[
+            // 'nama' => 'required|string|max:100',
+            // 'tingkatan' => 'required|numeric',
+        ], $message)->validate();
+
+        $role = 1;
+
+        $data_simpan = [
+            
             'nama' => $request->nama,
             'email' => $request->email,
             'jenis_kelamin' => $request->jenis_kelamin,
@@ -38,26 +62,37 @@ class DataDokterController extends Controller
             'tempat' => $request->tempat,
             'telpon' => $request->telpon,
             'foto' => $request->foto,
-            'sertifikasi' => $request->sertifikasi,
             'id_jabatan' => $request->id_jabatan,
             'jadwal_kerja' => $request->jadwal_kerja,
             'username' => $request->username,
             'password' => Hash::make($request['password']),
-        ]);
+        ];
+
+        dokter::create($data_simpan);
 
         return redirect()->route('dokter.index')
                         ->with('success','Data dokter baru telah berhasil disimpan');
+
     }
 
     public function edit($id)
     {
-        $dokter = DB::table('dokter')->where('id_dokter',$id)->first();
-        return view('backend.dokter.create',compact('dokter'));
+        $dtdokter = Dokter::where('id_dokter',$id)->first();
+        return view('backend.dokter.create',compact('dtdokter'));
     }
 
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
-        DB::table('dokter')->where('id_dokter',$request->id)->update([
+        $message = [
+            'numeric' => ':attributer harus diisi nomor.'
+        ];
+
+        $validator = FacadesValidator::make($request->all(),[
+            // 'nama' => 'required|string|max:100',
+            // 'tingkatan' => 'required|numeric',
+        ], $message)->validate();
+
+        $data_simpan = [
             'nama' => $request->nama,
             'email' => $request->email,
             'jenis_kelamin' => $request->jenis_kelamin,
@@ -65,20 +100,23 @@ class DataDokterController extends Controller
             'tempat' => $request->tempat,
             'telpon' => $request->telpon,
             'foto' => $request->foto,
-            'sertifikasi' => $request->sertifikasi,
+            'id_jabatan' => $request->id_jabatan,
             'jadwal_kerja' => $request->jadwal_kerja,
             'username' => $request->username,
             'password' => Hash::make($request['password']),
-        ]);
+        ];
+
+        Dokter::where('id_dokter', $id)->update($data_simpan);
 
         return redirect()->route('dokter.index')
                         ->with('success','Data dokter telah berhasil diperbarui');
+
     }
 
     public function destroy($id)
     {
-        $dokter = DB::table('dokter')->where('id_dokter',$id)->delete();
+        $dtdokter = Dokter::where('id_dokter',$id)->delete();
         return redirect()->route('dokter.index')
-                        ->with('success','Data dokter telah berhasil dihapus');
+                        ->with('success','Data artikel telah berhasil dihapus');
     }
 }

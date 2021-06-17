@@ -34,8 +34,8 @@ Route::group(['namespace' => 'backend'], function()
 {
     Route::resource('/dashboard/peternak', 'PeternakController');
     Route::resource('/dashboard/admin', 'AdminController');
-    Route::resource('/dashboard/dokter', 'DataDokterController');
-    Route::resource('/dashboard/tutorial', 'TutorialController');
+    Route::resource('/dashboard/dtdokter', 'DataDokterController');
+    Route::resource('/dashboard/data_tutorial', 'DataTutorialController');
     Route::resource('/dashboard/data_artikel', 'DataArtikelController');
     Route::resource('/dashboard/data_puskeswan', 'DataPuskeswanController');
 });
