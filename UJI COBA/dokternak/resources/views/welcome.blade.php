@@ -30,6 +30,7 @@
     <link rel="stylesheet" href="{{ asset('Frontend/assets/css/slick.css')}}">
     <link rel="stylesheet" href="{{ asset('Frontend/assets/css/nice-select.css')}}">
     <link rel="stylesheet" href="{{ asset('Frontend/assets/css/style.css')}}">
+    <link rel="stylesheet" href="{{ asset('Frontend/assets/css/style2.css') }}">
         <style>
             .avatar{
                 width: 35px;

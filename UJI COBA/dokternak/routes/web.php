@@ -97,6 +97,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 // route landing page frontend
 Route::get('/home', [App\Http\Controllers\frontend\HomeController::class, 'index'])->name('home');
 Route::POST('/home/cari', [App\Http\Controllers\frontend\HomeController::class, 'cari'])->name('home.cari');
+Route::get('/home/tutorial/{id}/detail', [App\Http\Controllers\frontend\HomeController::class, 'detail'])->name('home.detail');
 
 Route::get('admin/{id}', function ($id = null) {
   //  
