@@ -119,3 +119,6 @@ Route::get('/dokter/{id}/detail', 'frontend\DaftarDokterController@detail');
 //Route Puskeswan
 Route::get('/puskeswan', 'frontend\PuskeswanController@index');
 Route::get('/puskeswan/{id}/detail', 'frontend\PuskeswanController@detail');
+
+//Route Konsultasi
+Route::get('/konsultasi', 'frontend\KonsultasiController@index');
