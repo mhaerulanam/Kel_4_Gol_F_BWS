@@ -78,7 +78,7 @@
                       <div class="col-md-6 mb-3">
                         <label for="validationCustom3">Jam Kerja</label>
                         <input class="form-control" id="jam_kerja" name="jam_kerja" minlength="5" type="text" placeholder="Masukkan jam kerja"
-                        value="{{ isset($puskeswan) ? $puskeswan->nama_penulis : '' }}"  
+                        value="{{ isset($puskeswan) ? $puskeswan->jam_kerja : '' }}"  
                             required>
                         <div class="valid-feedback"> Looks good! </div>
                       </div>
@@ -86,20 +86,23 @@
                     <div class="form-row">
                       <div class="col-md-6 mb-3">
                         <label for="validationCustom3">Gambar</label>
-                        <input class="form-control" id="gambar" name="gambar" minlength="5" type="text" placeholder="Masukkan gambar"
-                        value="{{ isset($puskeswan) ? $puskeswan->gambar : '' }}"  
+                        <input type="file" name="gambar" id="gambar" class="form-control {{ $errors->has('gambar') ? 'is-invalid' : ''}}">
+                            @if ( $errors->has('gambar'))
+                            <span class="text-danger small">
+                                <p>{{ $errors->first('gambar') }}</p>
+                            </span>
+                        @endif
+                    </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="col-md-6 mb-3">
+                        <label for="validationCustom3">Maps</label>
+                        <input class="form-control" id="maps" name="maps" minlength="5" type="text" placeholder="Masukkan maps"
+                        value="{{ isset($puskeswan) ? $puskeswan->maps : '' }}"  
                             required>
                         <div class="valid-feedback"> Looks good! </div>
                       </div>
                     </div>
-                    <div class="col-md-6 mb-3">
-                      <label for="validationCustom3">Maps</label>
-                      <input class="form-control" id="maps" name="sumber" minlength="5" type="text" placeholder="Masukkan maps"
-                      value="{{ isset($puskeswan) ? $puskeswan->maps : '' }}"  
-                          required>
-                      <div class="valid-feedback"> Looks good! </div>
-                    </div>
-                  </div>
                    
                     <button class="btn btn-primary" type="submit">Save</button>
                     <a href="{{ route('data_puskeswan.index') }}"><button class="btn btn-default"
