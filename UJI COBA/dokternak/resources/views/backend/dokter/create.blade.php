@@ -51,97 +51,105 @@
                 </div>
                 <div class="card-body">
                   <form class="needs-validation" id="dokter_form" method="POST"
-                            action="{{ isset($dokter) ? route('dokter.update',$dokter->id) : 
-                            route('dokter.store') }}">
+                            action="{{ isset($dtdokter) ? route('dtdokter.update',$dtdokter->id_dokter) : 
+                            route('dtdokter.store') }}">
                                 {!! csrf_field() !!}
-                                {!! isset($peternak) ? method_field('PUT') : '' !!}
-                      <input type="hidden" name="id" value="{{ isset($dokter) ? $dokter->id : '' }}"> <br/>
+                                {!! isset($dtdokter) ? method_field('PUT') : '' !!}
+                      <input type="hidden" name="id_dokter" value="{{ isset($dtdokter) ? $dtdokter->id_dokter : '' }}"> <br/>
                       <div class="form-row">
-                      <div class="col-md-6 mb-3">
+                      <div class="col-md-4 mb-2">
                         <label for="validationCustom3">Nama Lengkap</label>
-                        <input class="form-control" id="name" name="name" minlength="5" type="text" placeholder="Masukkan nama"
-                        value="{{ isset($dokter) ? $dokter->nama : '' }}"  
+                        <input class="form-control" id="nama" name="nama" minlength="5" type="text" placeholder="Masukkan nama"
+                        value="{{ isset($dtdokter) ? $dtdokter->nama : '' }}"  
                             required>
                         <div class="valid-feedback"> Looks good! </div>
                       </div>
                     </div> <!-- /.form-row -->
                     <div class="form-row">
-                      <div class="col-md-8 mb-3">
+                      <div class="col-md-4 mb-2">
                         <label for="exampleInputEmail2">Email address</label>
                         <input type="email" class="form-control" id="exampleInputEmail2" name="email" minlength="5" placeholder="Masukkan email" aria-describedby="Masukkan email" 
-                        value="{{ isset($dokter) ? $dokter->email : '' }}"  
+                        value="{{ isset($dtdokter) ? $dtdokter->email : '' }}"  
                         required>
                         <div class="invalid-feedback"> Please use a valid email </div>
                         <small id="emailHelp1" class="form-text text-muted">We'll never share your email with anyone else.</small>
                       </div>
                     </div>
                     <div class="form-row">
-                      <div class="col-md-8 mb-3">
+                      <div class="col-md-4 mb-2">
                         <label for="exampleInputJenisKelamin">Jenis Kelamin</label>
                         <input type="jenis_kelamin" class="form-control" id="exampleInputJenisKelamin" name="jenis_kelamin" minlength="5" placeholder="Masukkan Jenis Kelamin" aria-describedby="Masukkan jenis_kelamin" 
-                        value="{{ isset($dokter) ? $dokter->jenis_kelamin : '' }}"  
+                        value="{{ isset($dtdokter) ? $dtdokter->jenis_kelamin : '' }}"  
                         required>
                         <div class="invalid-feedback"> Please use a valid jenis kelamin </div>
                       </div>
                     </div>
                     <div class="form-row">
-                      <div class="col-md-8 mb-3">
+                      <div class="col-md-6 mb-2">
                         <label for="exampleInputAlamat">Alamat</label>
                         <input type="alamat" class="form-control" id="exampleInputAlamat" name="alamat" minlength="5" placeholder="Masukkan Alamat" aria-describedby="Masukkan alamat" 
-                        value="{{ isset($dokter) ? $dokter->alamat : '' }}"  
+                        value="{{ isset($dtdokter) ? $dtdokter->alamat : '' }}"  
                         required>
                         <div class="invalid-feedback"> Please use a valid alamat </div>
                       </div>
                     </div>
                     <div class="form-row">
-                      <div class="col-md-8 mb-3">
+                      <div class="col-md-4 mb-2">
                         <label for="exampleInputTempat">Tempat</label>
                         <input type="tempat" class="form-control" id="exampleInputTempat" name="tempat" minlength="5" placeholder="Masukkan Tempat" aria-describedby="Masukkan tempat" 
-                        value="{{ isset($dokter) ? $dokter->alamat : '' }}"  
+                        value="{{ isset($dtdokter) ? $dtdokter->tempat : '' }}"  
                         required>
                         <div class="invalid-feedback"> Please use a valid tempat </div>
                       </div>
                     </div>
                     <div class="form-row">
-                      <div class="col-md-8 mb-3">
+                      <div class="col-md-4 mb-2">
                         <label for="exampleInputJenisTelpon">Telpon</label>
                         <input type="telpon" class="form-control" id="exampleInputTelpon" name="telpon" minlength="5" placeholder="Masukkan Telpon" aria-describedby="Masukkan telpon" 
-                        value="{{ isset($dokter) ? $dokter->telpon : '' }}"  
+                        value="{{ isset($dtdokter) ? $dtdokter->telpon : '' }}"  
                         required>
                         <div class="invalid-feedback"> Please use a valid telpon </div>
                       </div>
                     </div>
-                    <div class="form-group">
-						          <b>File Gambar</b><br/>
-						          <input type="foto" name="foto" value="{{ isset($dokter) ? $dokter->foto : '' }}"  > 
-					          </div>
                     <div class="form-row">
-                      <div class="col-md-8 mb-3">
-                        <label for="exampleInputSertifikasi">Sertifikasi</label>
-                        <input type="sertifikasi" class="form-control" id="exampleInputSertifikasi" name="sertifikasi" minlength="5" placeholder="Masukkan Sertifikasi" aria-describedby="Masukkan sertifikasi" 
-                        value="{{ isset($dokter) ? $dokter->sertifikasi : '' }}"  
+                      <div class="col-md-4 mb-2">
+                        <label for="validationCustom3">Foto</label>
+                        <input type="file" name="foto" id="foto" class="form-control {{ $errors->has('foto') ? 'is-invalid' : ''}}" value="{{ isset($dtdokter) ? $dtdokter->foto : '' }}" required>
+                            @if ( $errors->has('foto'))
+                            <span class="text-danger small">
+                                <p>{{ $errors->first('foto') }}</p>
+                            </span>
+                        @endif
+                    </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="col-md-4 mb-2">
+                        <label for="exampleInputJabatan">Jabatan</label>
+                        <input type="id_jabatan" class="form-control" id="exampleInputJabatan" name="id_jabatan" minlength="5" placeholder="Masukkan Jabatan" aria-describedby="Masukkan Jabatan" 
+                        value="{{ isset($dtdokter) ? $dtdokter->id_jabatan : '' }}"  
                         required>
-                        <div class="invalid-feedback"> Please use a valid sertifikasi </div>
+                        <div class="invalid-feedback"> Please use a valid jabatan </div>
                       </div>
                     </div>
+                    <div class="col-md-6 mb-3">
                     <div class="form-row">
                       <div class="col-md-8 mb-3">
                         <label for="exampleInputJadwalKerja">Jadwal Kerja</label>
                         <input type="jadwal_kerja" class="form-control" id="exampleInputJadwalKerja" name="jadwal_kerja" minlength="5" placeholder="Masukkan Jadwal Kerja" aria-describedby="Masukkan jadwal kerja" 
-                        value="{{ isset($dokter) ? $dokter->jadwal_kerja : '' }}"  
+                        value="{{ isset($dtdokter) ? $dtdokter->jadwal_kerja : '' }}"  
                         required>
                         <div class="invalid-feedback"> Please use a valid jadwal kerja </div>
                       </div>
                     </div>
                     <div class="form-row">
-                    <div class="col-md-4 mb-3">
+                    <div class="col-md-4 mb-2">
                       <label for="validationCustomUsername">Username</label>
                       <div class="input-group">
                         <div class="input-group-prepend">
                           <span class="input-group-text" id="inputGroupPrepend">@</span>
                         </div>
                         <input type="text" class="form-control" id="validationCustomUsername" name="username" minlength="5" placeholder="Masukkan username" aria-describedby="inputGroupPrepend" 
-                        value="{{ isset($dokter) ? $dokter->username : '' }}"  
+                        value="{{ isset($dtdokter) ? $dtdokter->username : '' }}"  
                         required>
                         <div class="invalid-feedback"> Please choose a username. </div>
                       </div>
@@ -149,11 +157,11 @@
                     </div>
                      <!-- /.form-row -->
                     <div class="form-row">
-                    <div class="col-md-4 mb-3">
+                    <div class="col-md-4 mb-2">
                       <label for="validationCustomPassword">Password</label>
                       <div class="input-group">
                         <input type="password" class="form-control" id="validationCustomPassword" name="password" minlength="5" placeholder="Masukkan password" aria-describedby="inputGroupPrepend" 
-                        value="{{ isset($dokter) ? $dokter->password : '' }}"  
+                        value="{{ isset($dtdokter) ? $dtdokter->password : '' }}"  
                         required>
                         <div class="invalid-feedback"> Please choose a password. </div>
                       </div>
@@ -161,7 +169,7 @@
                     </div>
                    
                     <button class="btn btn-primary" type="submit">Save</button>
-                    <a href="{{ route('dokter.index') }}"><button class="btn btn-default"
+                    <a href="{{ route('dtdokter.index') }}"><button class="btn btn-default"
                         type="button">Cancel</button></a>
                   </form>
                 </div> <!-- /.card-body -->

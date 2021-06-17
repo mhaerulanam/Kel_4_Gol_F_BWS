@@ -12,22 +12,20 @@ use Illuminate\Auth\Events\Validated;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Validator as FacadesValidator;
 
-class TutorialController extends Controller
+class DataTutorialController extends Controller
 {
     public function index()
     {
-        $data = [
-            'tutorial' => Tutorial::orderBy('id_tutorial','desc')->get(),
-        ];
-        return view('backend.tutorial.index',compact('data'));
-        // return view('backend.tutorial.index');
+        $tutorial = DB::table('tutorial')->get();
+        return view('backend.data_tutorial.index', compact('tutorial'));
+        // return view('backend.peternak.index');
     }
 
 
     public function create()
     {
         $tutorial = null;
-        return view('backend.tutorial.create',compact('tutorial'));
+        return view('backend.data_tutorial.create',compact('tutorial'));
     }
 
     public function store(Request $request)
@@ -51,22 +49,21 @@ class TutorialController extends Controller
         $role = 1;
 
         $data_simpan = [
-            'name' => $request->name,
-            'email' => $request->email,
-            'is_admin' => $role,
-            'password' => Hash::make($request['password']),
+            'judul_tutorial' => $request->judul_tutorial,
+            'isi' =>$request->isi,
+            'icon' =>$request->icon,
         ];
 
         tutorial::create($data_simpan);
 
-        return redirect()->route('tutorial.index')
+        return redirect()->route('data_tutorial.index')
                         ->with('success','Data tutorial baru telah berhasil disimpan');
     }
 
     public function edit($id)
     {
         $tutorial = Tutorial::where('id_tutorial',$id)->first();
-        return view('backend.tutorial.create',compact('tutorial'));
+        return view('backend.data_tutorial.create',compact('tutorial'));
     }
 
     public function update(Request $request, $id)
@@ -88,21 +85,21 @@ class TutorialController extends Controller
         ], $message)->validate();
 
         $data_simpan = [
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request['password']),
+            'judul_tutorial' => $request->judul_tutorial,
+            'isi' =>$request->isi,
+            'icon' =>$request->icon,
         ];
 
         Tutorial::where('id_tutorial', $id)->update($data_simpan);
 
-        return redirect()->route('tutorial.index')
+        return redirect()->route('data_tutorial.index')
                         ->with('success','Data tutorial telah berhasil diperbarui');
     }
 
     public function destroy($id)
     {
         $tutorial = Tutorial::where('id_tutorial',$id)->delete();
-        return redirect()->route('tutorial.index')
+        return redirect()->route('data_tutorial.index')
                         ->with('success','Data tutorial telah berhasil dihapus');
     }
 }

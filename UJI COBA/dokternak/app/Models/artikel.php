@@ -10,6 +10,6 @@ class Artikel extends Model
     protected $table = 'artikel';
     protected $primaryKey = 'id';
     protected $fillable = [
-        'id_artikel', 'id_ktg', 'tanggal', 'nama_penulis','judul', 'isi', 'gambar', 'sumber',
+        'id_artikel', 'id_ktg', 'tanggal', 'nama_penulis','judul', 'isi', 'gambar', 'sumber','status',
     ];
 }

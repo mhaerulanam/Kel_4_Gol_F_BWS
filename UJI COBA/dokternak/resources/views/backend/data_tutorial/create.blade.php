@@ -31,7 +31,7 @@
       <div class="row justify-content-center">
         <div class="col-12">
           <header class="panel-heading">
-            {{ isset($admin_lecturer) ? 'Mengubah' : 'Menambahkan' }} Data Artikel
+            {{ isset($admin_lecturer) ? 'Mengubah' : 'Menambahkan' }} Data Tutorial
         </header>
           @if ($errors->any())
             <div class="alert alert-danger">
@@ -49,60 +49,43 @@
                 <div class="card-header">
                   <strong class="card-title">Advanced Validation</strong>
                 </div>
-                <div class="card-body">
-                  <form class="needs-validation" id="puskeswan_form" method="POST"
-                            action="{{ isset($puskeswan) ? route('data_puskeswan.update',$puskeswan->id_puskeswan) : 
-                            route('data_puskeswan.store') }}">
+                <div class="card-body"> 
+                  <form class="needs-validation" id="tutorial_form" method="POST" enctype="multipart/form-data"
+                            action="{{ isset($tutorial) ? route('data_tutorial.update',$tutorial->id_tutorial) : 
+                            route('data_tutorial.store') }}">
                                 {!! csrf_field() !!}
-                                {!! isset($puskeswan) ? method_field('PUT') : '' !!}
-                      <input type="hidden" name="id_puskeswan" value="{{ isset($puskeswan) ? $puskeswan->id_puskeswan : '' }}"> <br/>
+                                {!! isset($tutorial) ? method_field('PUT') : '' !!}
+                      <input type="hidden" name="id_tutorial" value="{{ isset($tutorial) ? $tutorial->id_tutorial : '' }}"> <br/>
+                      
                       <div class="form-row">
-                      <div class="col-md-6 mb-3">
-                        <label for="validationCustom3">Nama Puskeswan</label>
-                        <input class="form-control" id="nama_puskeswan" name="nama_puskeswan" minlength="5" type="text" placeholder="Masukkan kategori"
-                        value="{{ isset($puskeswan) ? $puskeswan->nama_puskeswan : '' }}"  
-                            required>
-                        <div class="valid-feedback"> Looks good! </div>
-                      </div>
-                    </div> <!-- /.form-row -->
+                        <div class="col-md-6 mb-3">
+                          <label for="validationCustom3">Judul</label>
+                          <input class="form-control" id="judul_tutorial" name="judul_tutorial" minlength="5" type="text" placeholder="Masukkan judul tutorial"
+                          value="{{ isset($tutorial) ? $tutorial->judul_tutorial : '' }}"  
+                              required>
+                          <div class="valid-feedback"> Looks good! </div>
+                        </div>
+                      </div> <!-- /.form-row -->
                     <div class="form-row">
                       <div class="col-md-6 mb-3">
-                        <label for="validationCustom3">Alamat</label>
-                        <input class="form-control" id="alamat" name="alamat" minlength="5" type="text" placeholder="Masukkan alamat"
-                        value="{{ isset($puskeswan) ? $puskeswan->alamat : '' }}"  
-                            required>
-                        <div class="valid-feedback"> Looks good! </div>
-                      </div>
-                    </div>
-                    <div class="form-row">
-                      <div class="col-md-6 mb-3">
-                        <label for="validationCustom3">Jam Kerja</label>
-                        <input class="form-control" id="jam_kerja" name="jam_kerja" minlength="5" type="text" placeholder="Masukkan jam kerja"
-                        value="{{ isset($puskeswan) ? $puskeswan->jam_kerja : '' }}"  
+                        <label for="validationCustom3">Isi</label>
+                        <input class="form-control" id="isi" name="isi" minlength="5" type="text" placeholder="tulis isi tutorial"
+                        value="{{ isset($tutorial) ? $tutorial->isi : '' }}"  
                             required>
                         <div class="valid-feedback"> Looks good! </div>
                       </div>
                     </div>
                     <div class="form-row">
                       <div class="col-md-6 mb-3">
-                        <label for="validationCustom3">Gambar</label>
-                        <input type="file" name="gambar" id="gambar" class="form-control {{ $errors->has('gambar') ? 'is-invalid' : ''}}">
-                            @if ( $errors->has('gambar'))
+                        <label for="validationCustom3">Icon</label>
+                        <input type="file" name="icon" id="icon" class="form-control {{ $errors->has('icon') ? 'is-invalid' : ''}}">
+                            @if ( $errors->has('icon'))
                             <span class="text-danger small">
-                                <p>{{ $errors->first('gambar') }}</p>
+                                <p>{{ $errors->first('icon') }}</p>
                             </span>
                         @endif
                     </div>
-                    </div>
-                    <div class="form-row">
-                      <div class="col-md-6 mb-3">
-                        <label for="validationCustom3">Maps</label>
-                        <input class="form-control" id="maps" name="maps" minlength="5" type="text" placeholder="Masukkan maps"
-                        value="{{ isset($puskeswan) ? $puskeswan->maps : '' }}"  
-                            required>
-                        <div class="valid-feedback"> Looks good! </div>
-                      </div>
-                    </div>
+                  </div>
                    
                     <button class="btn btn-primary" type="submit">Save</button>
                     <a href="{{ route('data_puskeswan.index') }}"><button class="btn btn-default"

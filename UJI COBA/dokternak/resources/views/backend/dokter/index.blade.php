@@ -45,7 +45,7 @@
                     </div>
                   <div class="col-auto">
                     <div class="form">
-                      <a href="{{ route('dokter.create') }}"><button class="btn btn-primary"
+                      <a href="{{ route('dtdokter.create') }}"><button class="btn btn-primary"
                           type="button"><i class="fa fa-plus"></i><span>Tambah</span></button></a>
                     </div>
                   </div>
@@ -54,6 +54,7 @@
                   <thead>
                     <tr>
                       <th>NO</th>
+                      <th>ID Dokter</th>
                       <th>Nama</th>
                       <th>Email</th>
                       <th>Jenis Kelamin</th>
@@ -61,7 +62,6 @@
                       <th>Tempat</th>
                       <th>Telpon</th>
                       <th>Foto</th>
-                      <th>Sertifikasi</th>
                       <th>Id Jabatan</th>
                       <th>Jadwal Kerja</th>
                       <th>Username</th>
@@ -71,25 +71,25 @@
                   </thead>
                   <tbody>
                     @php $no = 1; @endphp
-                    @foreach ($dokter as $item)
+                    @foreach ($dtdokter as $item)
                     <tr>
                         <td>{{ $no++ }}</td>
+                        <td>{{ $item->id_dokter }}</td>
                         <td>{{ $item->nama }}</td>
                         <td>{{ $item->email }}</td>
                         <td>{{ $item->jenis_kelamin }}</td>
                         <td>{{ $item->alamat }}</td>
                         <td>{{ $item->tempat }}</td>
                         <td>{{ $item->telpon }}</td>
-                        <td>{{ $item->foto }}</td>
-                        <td>{{ $item->sertifikasi }}</td>
+                        <td><img src="data:image/png;base64,{{ chunk_split(base64_encode($item->foto)) }}"></td>
                         <td>{{ $item->id_jabatan }}</td>
                         <td>{{ $item->jadwal_kerja }}</td>
                         <td>{{ $item->username }}</td>
                         <td>{{ $item->password }}</td>
                         <td>
                         <div class="btn-group">
-                            <a href="{{ route('dokter.edit',$item->id_dokter)}}" class="btn btn-warning">Edit<i class="fa fa-edit"></i></a>
-                            <form action="{{ route('dokter.destroy',$item->id_dokter)}}" method="POST">
+                            <a href="{{ route('dtdokter.edit',$item->id_dokter)}}" class="btn btn-warning">Edit<i class="fa fa-edit"></i></a>
+                            <form action="{{ route('dtdokter.destroy',$item->id_dokter)}}" method="POST">
                             @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger" 

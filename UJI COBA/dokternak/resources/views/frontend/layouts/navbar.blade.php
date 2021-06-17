@@ -35,7 +35,7 @@
                                         <ul id="navigation">
                                             <li><a href="/home">HOME</a></li>
                                             <li><a href="/artikel">ARTIKEL </a></li>
-                                            <li><a href="#">KONSULTASI</a></li>
+                                            <li><a href="/konsultasi">KONSULTASI</a></li>
                                             <li><a href="/dokter">DOKTER</a></li>
                                             <li><a href="#">INFORMASI</a>
                                                 <ul class="submenu">

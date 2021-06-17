@@ -32,40 +32,42 @@ class DataArtikelController extends Controller
 
     public function store(Request $request)
     {
-        // DB::table('users')->insert([
-        //     'name' => $request->name,
-        //     'username' => $request->username,
-        //     'email' => $request->email,
-        //     'password' => Hash::make($request['password']),
-        // ]);
-
         $message = [
-            'numeric' => ':attributer harus diisi nomor.'
+            'required' => ':attribute wajib diisi!!!',
+            'min' => ':attribute harus diisi minimal 15 huruf!!!',
+            'max' => ':attribute URL harus diisi maksimal 100 huruf!!!',
+            'mimes' => ':attribute harus berupa gambar dengan format (JPEG, PNG, dan SVG)',
         ];
 
         $validator = FacadesValidator::make($request->all(),[
-            // 'nama' => 'required|string|max:100',
-            // 'tingkatan' => 'required|numeric',
+            'judul' => 'required|string|min:15|max:100',
+            'id_ktg' => 'required|string|max:15',
+            'sumber' => 'required|string|min:15|max:200',
+            'gambar' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
         ], $message)->validate();
 
-        $role = 1;
+        $status= "tampil";
+
+        $getimageName = time().'.'.$request->gambar->getClientOriginalExtension();
+        $request->gambar->move(public_path('data/data_artikel'), $getimageName);
 
         $data_simpan = [
             'id_ktg' => $request->id_ktg,
             'tanggal' => $request->tanggal,
-            'nama_penulis' =>$request->nama_penulis,
-            'judul' =>$request->judul,
-            'isi' =>$request->isi,
-            'gambar' =>$request->gambar,
-            'sumber' =>$request->sumber,
+            'nama_penulis' => $request->nama_penulis,
+            'judul' => $request->judul,
+            'isi' => $request->isi,
+            'gambar' => $getimageName,
+            'sumber' => $request->sumber,
+            'status' => $status,
         ];
 
-        artikel::create($data_simpan);
+        Artikel::create($data_simpan);
 
         return redirect()->route('data_artikel.index')
-                        ->with('success','Data artikel baru telah berhasil disimpan');
+                        ->with('success','Data artikel baru telah berhasil disimpan, dimohon untuk menunggu konfirmasi dari Admin')
+                        ->with('image',$getimageName);
     }
-
     public function edit($id)
     {
         $artikel = Artikel::where('id_artikel',$id)->first();
