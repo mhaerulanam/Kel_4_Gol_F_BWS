@@ -24,10 +24,10 @@ class HomeController extends Controller
         $data = [
             'dokter' => Dokter::orderBy('id_dokter', 'desc')->paginate(3),
             'artikel' => Artikel::orderBy('tanggal', 'desc')->paginate(2),
+            'tutorial' => Tutorial::orderBy('judul_tutorial', 'desc')->paginate(4),
             
         ];
-        $tutorial = Tutorial::orderBy('judul_tutorial')->paginate(4);
-        return view('frontend.home',compact('data','tutorial'));
+        return view('frontend.home',compact('data'));
 
     }
 

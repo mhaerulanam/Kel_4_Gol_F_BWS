@@ -209,7 +209,7 @@
                     </div>
                 </div>
                 <div class="row d-flex justify-contnet-center">
-                    @foreach ($tutorial as $data_tutorial)
+                    @foreach ($data['tutorial'] as $data_tutorial)
                     <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
                         <div class="single-services text-center mb-30">
                             <div class="services-ion">
