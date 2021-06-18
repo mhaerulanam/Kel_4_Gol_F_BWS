@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDetailRekammedikTable extends Migration
+class CreateDokterRekammedikTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +14,8 @@ class CreateDetailRekammedikTable extends Migration
     public function up()
     {
         Schema::dropIfExists('data_obat');
-        Schema::create('detail_rekammedik', function (Blueprint $table) {
-            $table->increments('id_detail',11);
+        Schema::create('dokter_rekammedik', function (Blueprint $table) {
+            $table->increments('id_dokmed',11);
             $table->string('id_dokter', 11);
             $table->integer('id_rmd')->length(11)->unsigned();
             $table->timestamps();

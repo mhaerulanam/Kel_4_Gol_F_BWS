@@ -13,7 +13,7 @@ class CreateKategoriArtikelTabel extends Migration
      */
     public function up()
     {
-        Schema::create('kategori_artikel_tabel', function (Blueprint $table) {
+        Schema::create('kategori_artikel', function (Blueprint $table) {
             $table->string('id_ktg',10);
             $table->string('kategori_artikel',30);
             $table->timestamps();

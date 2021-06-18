@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDetailDataObatTable extends Migration
+class CreateDokterObatTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateDetailDataObatTable extends Migration
      */
     public function up()
     {
-        Schema::dropIfExists('detail_data_obat');
-        Schema::create('detail_data_obat', function (Blueprint $table) {
-            $table->string('id_detailob',11)->primary();
+        Schema::dropIfExists('dokter_obat');
+        Schema::create('dokter_obat', function (Blueprint $table) {
+            $table->string('id_do',11)->primary();
             $table->string('id_dokter',11);
             $table->string('id_obat',11);
             $table->timestamps();

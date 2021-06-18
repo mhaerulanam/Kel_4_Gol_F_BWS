@@ -13,7 +13,7 @@ class CreatePuskeswanTabel extends Migration
      */
     public function up()
     {
-        Schema::create('puskeswan_tabel', function (Blueprint $table) {
+        Schema::create('puskeswan', function (Blueprint $table) {
             $table->string('id_puskeswan',11);
             $table->string('nama_puskeswan',100);
             $table->string('alamat',255);
