@@ -78,6 +78,7 @@
                     <div class="form-row">
                       <div class="col-md-6 mb-3">
                         <label for="validationCustom3">Icon</label>
+                        <td><img src="/data/data_tutorial/{{ isset($tutorial) ? $tutorial->icon : '' }}"></td>
                         <input type="file" name="icon" id="icon" class="form-control {{ $errors->has('icon') ? 'is-invalid' : ''}}">
                             @if ( $errors->has('icon'))
                             <span class="text-danger small">
