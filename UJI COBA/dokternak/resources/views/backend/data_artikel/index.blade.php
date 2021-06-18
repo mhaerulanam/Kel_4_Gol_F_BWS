@@ -76,7 +76,7 @@
                         <td>{{ $item->nama_penulis }}</td>
                         <td>{{ $item->judul }}</td>
                         <td>{{ $item->isi }}</td>
-                        <td><img src="data:image/png;base64,{{ chunk_split(base64_encode($item->gambar)) }}"></td>
+                        <td><img src="/data/data_artikel/{{ $item->gambar }}" width="200"></td>
                         <td>{{ $item->sumber }}</td>
                         <td>
                         <div class="btn-group">

@@ -92,10 +92,19 @@ class DataArtikelController extends Controller
             // 'tingkatan' => 'required|numeric',
         ], $message)->validate();
 
+        $status= "tampil";
+
+        $getimageName = time().'.'.$request->gambar->getClientOriginalExtension();
+        $request->gambar->move(public_path('data/data_artikel'), $getimageName);
         $data_simpan = [
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request['password']),
+            'id_ktg' => $request->id_ktg,
+            'tanggal' => $request->tanggal,
+            'nama_penulis' => $request->nama_penulis,
+            'judul' => $request->judul,
+            'isi' => $request->isi,
+            'gambar' => $getimageName,
+            'sumber' => $request->sumber,
+            'status' => $status,
         ];
 
         Artikel::where('id_artikel', $id)->update($data_simpan);
