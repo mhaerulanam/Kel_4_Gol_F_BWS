@@ -49,7 +49,7 @@
             <div class="col-lg-8 posts-list">
                   <div class="single-post">
                      <div class="feature-img">
-                        <img class="img-fluid" src="data:image/png;base64,{{ chunk_split(base64_encode($artikel->gambar)) }}" alt="">
+                        <img src="/data/data_artikel/{{ $artikel->gambar }}" width="650">
                      </div>
                      <div class="blog_details">
                            <h2>{{ $artikel->judul }}</h2>
