@@ -13,7 +13,7 @@ class CreateKonsultasiTabel extends Migration
      */
     public function up()
     {
-        Schema::create('konsultasi_tabel', function (Blueprint $table) {
+        Schema::create('konsultasi', function (Blueprint $table) {
             $table->string('id_konsultasi',11);
             $table->integer('id_peternak',11);
             $table->string('id_dokter',11);

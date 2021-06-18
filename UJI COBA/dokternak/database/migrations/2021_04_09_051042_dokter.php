@@ -21,8 +21,8 @@ class Dokter extends Migration
             $table->text('alamat');
             $table->string('tempat',50);
             $table->integer('telpon');
-            $table->binary('foto');
-            $table->binary('sertifikasi');
+            $table->string('foto');
+            $table->string('sertifikasi');
             $table->string('id_jabatan',11);
             $table->text('jadwal_kerja');
             $table->string('username',50);

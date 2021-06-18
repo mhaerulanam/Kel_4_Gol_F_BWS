@@ -13,7 +13,7 @@ class CreateKategoriHewanTabel extends Migration
      */
     public function up()
     {
-        Schema::create('kategori_hewan_tabel', function (Blueprint $table) {
+        Schema::create('kategori_hewan', function (Blueprint $table) {
             $table->string('id_kategori',11);
             $table->string('kategori_hewan',30);
             $table->timestamps();

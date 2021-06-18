@@ -17,7 +17,7 @@ class Dokumentasi extends Migration
             $table->increments('id_dokumentasi');
             $table->string('judul',30);
             $table->string('keterangan',50);
-            $table->binary('dokumentasi');
+            $table->string('dokumentasi');
             $table->timestamp('failed_at')->useCurrent();
         });
     }
