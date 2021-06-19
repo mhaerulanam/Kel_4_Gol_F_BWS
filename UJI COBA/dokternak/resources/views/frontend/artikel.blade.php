@@ -66,7 +66,7 @@
                                             <h2><a href="/artikel/{{ $data_artikel->id_artikel }}/detail/">{{ $data_artikel->judul }}</a></h2>
                                         </a>
                                         {{-- Code untuk memotong text menggunakan Str limit --}}
-                                        <p>{{\Illuminate\Support\Str::limit($data_artikel->isi, 250)}}  <a href="/artikel/{{ $data_artikel->id_artikel }}/detail/" class="more-btn">  <strong> Read more » </strong></a></p>
+                                        <p>{!! Str::limit($data_artikel->isi, 250)  !!}  <a href="/artikel/{{ $data_artikel->id_artikel }}/detail/" class="more-btn">  <strong> Read more » </strong></a></p>
                                         <ul class="blog-info-link">
                                             <li><a>{{ $data_artikel->id_ktg }}</a></li>
                                             <li><a>{{ $data_artikel->tanggal }}</a></li>
@@ -107,18 +107,14 @@
                         <aside class="single_sidebar_widget post_category_widget">
                             <h4 class="widget_title">Category</h4>
                             <ul class="list cat-list">
-                                <li>
-                                    <a href="/artikel/cari?cari=kucing" class="d-flex">
-                                        <p>Kucing</p>
-                                        <p>(2)</p>
-                                    </a>
-                                </li>   
-                                <li>
-                                    <a href="/artikel/cari?cari=kambing" class="d-flex">
-                                        <p>Kambing</p>
-                                        <p>(2)</p>
-                                    </a>
-                                </li>                          
+                                @foreach ($animals as $item)
+                                    <li>
+                                        <p>
+                                            {{ $item->kategori_artikel }}
+                                        </p>
+                                    </li>
+                                @endforeach   
+                                {{$count}}
                             </ul>
                         </aside>
               

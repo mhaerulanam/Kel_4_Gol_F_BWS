@@ -39,4 +39,8 @@ class ArtikelController extends Controller
         return view('petugas.detailartikel',compact('artikel','artikel2'));
     }
 
+    public fucntion kategorri($kat){
+        $kat = DB::table('artikel')
+    }
+
 }
