@@ -75,8 +75,8 @@
                         <td>{{ $item->tanggal }}</td>
                         <td>{{ $item->nama_penulis }}</td>
                         <td>{{ $item->judul }}</td>
-                        <td>{{ $item->isi }}</td>
-                        <td><img src="data:image/png;base64,{{ chunk_split(base64_encode($item->gambar)) }}"></td>
+                        <td>{{\Illuminate\Support\Str::limit($item->isi , 250)}} <a href="/artikel/{{ $item->id_artikel }}/detail/" class="more-btn">  <strong> Read more » </strong></a></td>
+                        <td><img src="/data/data_artikel/{{ $item->gambar }}" width="200"></td>
                         <td>{{ $item->sumber }}</td>
                         <td>
                         <div class="btn-group">

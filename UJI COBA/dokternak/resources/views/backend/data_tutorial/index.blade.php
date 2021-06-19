@@ -70,7 +70,8 @@
                         <td>{{ $item->id_tutorial }}</td>
                         <td>{{ $item->judul_tutorial }}</td>
                         <td>{{ $item->isi }}</td>
-                        <td><img src="data:image/png;base64,{{ chunk_split(base64_encode($item->icon)) }}"></td>
+                        {{-- <td><img src="data:image/png;base64,{{ chunk_split(base64_encode($item->icon)) }}"></td> --}}
+                        <td><img src="/data/data_tutorial/{{ $item->icon }}" width="200"></td>
                         <td>
                         <div class="btn-group">
                             <a href="{{ route('data_tutorial.edit',$item->id_tutorial)}}" class="btn btn-warning">Edit<i class="fa fa-edit"></i></a>
