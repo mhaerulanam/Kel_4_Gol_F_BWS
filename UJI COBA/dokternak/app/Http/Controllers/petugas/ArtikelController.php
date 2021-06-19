@@ -4,7 +4,7 @@ namespace App\Http\Controllers\petugas;
 use App\Http\Controllers\controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Models\artikel;
+use App\Models\{artikel, Cat};
 
 class ArtikelController extends Controller
 {
@@ -12,7 +12,13 @@ class ArtikelController extends Controller
     public function index()
     {
         $artikel = Artikel::orderBy('tanggal', 'desc')->paginate(2);
-        return view('petugas.artikel',compact('artikel'))->with('artikel', $artikel);;
+        $getAnimals = Cat::all();
+
+        return view('frontend.artikel',[
+            'artikel' => $artikel,
+            'animals' => $getAnimals,
+            'count'     => DB::table('Artikel')->distinct('id_ktg')->count('id_ktg')
+        ]);
         // return view('frontend.artikel');
 
         // mengirim data pegawai ke view index
@@ -37,10 +43,6 @@ class ArtikelController extends Controller
         $artikel2 = Artikel::orderBy('tanggal', 'desc')->paginate(2);
         $artikel = DB::table('artikel')->where('id_artikel',$id)->first();
         return view('petugas.detailartikel',compact('artikel','artikel2'));
-    }
-
-    public fucntion kategorri($kat){
-        $kat = DB::table('artikel')
     }
 
 }

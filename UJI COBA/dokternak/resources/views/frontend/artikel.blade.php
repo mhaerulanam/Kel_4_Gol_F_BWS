@@ -108,13 +108,12 @@
                             <h4 class="widget_title">Category</h4>
                             <ul class="list cat-list">
                                 @foreach ($animals as $item)
-                                    <li>
-                                        <p>
+                                    <li class="p-2">
+                                        <a href="{{ url('/artikel/cari?=cari='.$item->kategori_artikel) }}" style="color:black;">
                                             {{ $item->kategori_artikel }}
-                                        </p>
+                                        </a>
                                     </li>
                                 @endforeach   
-                                {{$count}}
                             </ul>
                         </aside>
               
