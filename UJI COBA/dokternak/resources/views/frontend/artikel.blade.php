@@ -66,7 +66,7 @@
                                             <h2><a href="/artikel/{{ $data_artikel->id_artikel }}/detail/">{{ $data_artikel->judul }}</a></h2>
                                         </a>
                                         {{-- Code untuk memotong text menggunakan Str limit --}}
-                                        <p>{!! Str::limit($data_artikel->isi, 250)  !!}  <a href="/artikel/{{ $data_artikel->id_artikel }}/detail/" class="more-btn">  <strong> Read more » </strong></a></p>
+                                        <p>{{\Illuminate\Support\Str::limit($data_artikel->isi, 250)}}  <a href="/artikel/{{ $data_artikel->isi }}/detail/" class="more-btn">  <strong> Read more » </strong></a></p>
                                         <ul class="blog-info-link">
                                             <li><a>{{ $data_artikel->id_ktg }}</a></li>
                                             <li><a>{{ $data_artikel->tanggal }}</a></li>
@@ -107,13 +107,18 @@
                         <aside class="single_sidebar_widget post_category_widget">
                             <h4 class="widget_title">Category</h4>
                             <ul class="list cat-list">
-                                @foreach ($animals as $item)
-                                    <li class="p-2">
-                                        <a href="{{ url('/artikel/cari?=cari='.$item->kategori_artikel) }}" style="color:black;">
-                                            {{ $item->kategori_artikel }}
-                                        </a>
-                                    </li>
-                                @endforeach   
+                                <li>
+                                    <a href="/artikel/cari?cari=kucing" class="d-flex">
+                                        <p>Kucing</p>
+                                        <p>(2)</p>
+                                    </a>
+                                </li>   
+                                <li>
+                                    <a href="/artikel/cari?cari=kambing" class="d-flex">
+                                        <p>Kambing</p>
+                                        <p>(2)</p>
+                                    </a>
+                                </li>                          
                             </ul>
                         </aside>
               
