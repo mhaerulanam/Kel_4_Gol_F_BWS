@@ -50,7 +50,7 @@
                   <strong class="card-title">Advanced Validation</strong>
                 </div>
                 <div class="card-body">
-                  <form class="needs-validation" id="puskeswan_form" method="POST"
+                  <form class="needs-validation" id="puskeswan_form" method="POST" enctype="multipart/form-data"
                             action="{{ isset($puskeswan) ? route('data_puskeswan.update',$puskeswan->id_puskeswan) : 
                             route('data_puskeswan.store') }}">
                                 {!! csrf_field() !!}
@@ -59,7 +59,7 @@
                       <div class="form-row">
                       <div class="col-md-6 mb-3">
                         <label for="validationCustom3">Nama Puskeswan</label>
-                        <input class="form-control" id="nama_puskeswan" name="nama_puskeswan" minlength="5" type="text" placeholder="Masukkan kategori"
+                        <input class="form-control" id="nama_puskeswan" name="nama_puskeswan" minlength="5" type="text" placeholder="Masukkan nama puskeswan"
                         value="{{ isset($puskeswan) ? $puskeswan->nama_puskeswan : '' }}"  
                             required>
                         <div class="valid-feedback"> Looks good! </div>
@@ -86,13 +86,14 @@
                     <div class="form-row">
                       <div class="col-md-6 mb-3">
                         <label for="validationCustom3">Gambar</label>
-                        <input type="file" name="gambar" id="gambar" class="form-control {{ $errors->has('gambar') ? 'is-invalid' : ''}}">
-                            @if ( $errors->has('gambar'))
-                            <span class="text-danger small">
-                                <p>{{ $errors->first('gambar') }}</p>
-                            </span>
-                        @endif
-                    </div>
+                        <td><img src="/data/data_puskeswan/{{ isset($puskeswan) ? $puskeswan->gambar : '' }}"></td>
+                        <input type="file" name="gambar" id="gambar" class="form-control {{ $errors->has('gambar') ? 'is-invalid' : ''}}" >
+                      @if ( $errors->has('gambar'))
+                      <span class="text-danger small">
+                          <p>{{ $errors->first('gambar') }}</p>
+                      </span>
+                  @endif
+                      </div>
                     </div>
                     <div class="form-row">
                       <div class="col-md-6 mb-3">

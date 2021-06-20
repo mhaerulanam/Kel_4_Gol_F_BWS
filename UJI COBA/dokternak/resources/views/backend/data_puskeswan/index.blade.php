@@ -72,7 +72,7 @@
                         <td>{{ $item->nama_puskeswan }}</td>
                         <td>{{ $item->alamat }}</td>
                         <td>{{ $item->jam_kerja }}</td>
-                        <td><img src="data:image/png;base64,{{ chunk_split(base64_encode($item->gambar)) }}"></td>
+                        <td><img src="/data/data_puskeswan/{{ $item->gambar }}" width="200"></td>
                         <td>{{ $item->maps }}</td>
                         <td>
                         <div class="btn-group">

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\puskeswan;
+use DateTime;
 use Dotenv\Validator;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Support\Facades\Crypt;
@@ -40,30 +41,39 @@ class DataPuskeswanController extends Controller
         // ]);
 
         $message = [
-            'numeric' => ':attributer harus diisi nomor.'
+            'required' => ':attribute wajib diisi!!!',
+            'min' => ':attribute harus diisi minimal 15 huruf!!!',
+            'max' => ':attribute URL harus diisi maksimal 100 huruf!!!',
+            'mimes' => ':attribute harus berupa gambar dengan format (JPEG, PNG, dan SVG)',
+            
         ];
 
         $validator = FacadesValidator::make($request->all(),[
+            'gambar' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
             // 'nama' => 'required|string|max:100',
             // 'tingkatan' => 'required|numeric',
         ], $message)->validate();
+         
+        $dt = new DateTime();
+        $id=$dt->format('YmdH');
 
-        $role = 1;
+        $getimageName = time().'.'.$request->gambar->getClientOriginalExtension();
+        $request->gambar->move(public_path('data/data_puskeswan'), $getimageName);
 
         $data_simpan = [
-            'id_ktg' => $request->id_ktg,
-            'tanggal' => $request->tanggal,
-            'nama_penulis' =>$request->nama_penulis,
-            'judul' =>$request->judul,
-            'isi' =>$request->isi,
-            'gambar' =>$request->gambar,
-            'sumber' =>$request->sumber,
+            'id_puskeswan' => $id,
+            'nama_puskeswan' => $request->nama_puskeswan,
+            'alamat' =>$request->alamat,
+            'jam_kerja' =>$request->jam_kerja,
+            'gambar' => $getimageName,
+            'maps' =>$request->maps,
         ];
 
         puskeswan::create($data_simpan);
 
         return redirect()->route('data_puskeswan.index')
-                        ->with('success','Data puskeswan baru telah berhasil disimpan');
+                        ->with('success','Data puskeswan baru telah berhasil disimpan, dimohon untuk menunggu konfirmasi dari Admin')
+                        ->with('image',$getimageName);
     }
 
     public function edit($id)
@@ -86,14 +96,22 @@ class DataPuskeswanController extends Controller
         ];
 
         $validator = FacadesValidator::make($request->all(),[
+            'gambar' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
             // 'nama' => 'required|string|max:100',
             // 'tingkatan' => 'required|numeric',
         ], $message)->validate();
 
+
+        $getimageName = time().'.'.$request->gambar->getClientOriginalExtension();
+        $request->gambar->move(public_path('data/data_puskeswan'), $getimageName);
+
         $data_simpan = [
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request['password']),
+            'id_puskeswan' => $request->id_puskeswan,
+            'nama_puskeswan' => $request->nama_puskeswan,
+            'alamat' =>$request->alamat,
+            'jam_kerja' =>$request->jam_kerja,
+            'gambar' => $getimageName,
+            'maps' =>$request->maps,
         ];
 
         Puskeswan::where('id_puskeswan', $id)->update($data_simpan);
