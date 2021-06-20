@@ -53,9 +53,8 @@ Route::group(['namespace' => 'Petugas'], function()
    // CRUD Rekam Medik -------------------------------------------------------
    Route::POST('petugas/rekam-medik/','RekammedikController@index')->name('index');
    Route::POST('petugas/rekam-medik/simpandata','RekammedikController@store')->name('simpandata');
-   Route::GET('petugas/rekam-medik/{id}/editdata','RekammedikController@edit')->name('editdata');
-   Route::POST('petugas/rekam-medik/{id}/updatedata','RekammedikController@update')->name('updatedata');
-   Route::POST('petugas/rekam-medik/{id}/hapusdata','RekammedikController@destroy')->name('hapusdata');
+   Route::match(['get','post'], 'petugas/rekam-medik/edit/{id}','RekammedikController@edit');
+   Route::GET('petugas/rekam-medik/delete/{id}','RekammedikController@delete');
    // -------------------------------------------------------------------------
 });
 

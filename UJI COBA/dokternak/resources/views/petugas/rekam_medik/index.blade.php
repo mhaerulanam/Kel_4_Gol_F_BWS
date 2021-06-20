@@ -22,9 +22,10 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+    {{-- Tambahan untuk button hapus --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.css">
+    
 <style>
 body {
 	/* color: #566787;
@@ -254,6 +255,14 @@ $(document).ready(function(){
 @include('petugas.layouts.navbar');
 
 <div class="container-xl">
+    @if (session('success'))
+        <div class="alert alert-success" role="alert">
+            {{ session('success') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
     <div class="table-responsive">
         <div class="table-wrapper">
             <div class="table-title">
@@ -333,12 +342,11 @@ $(document).ready(function(){
                     </tr>
                 </thead>
                 <tbody>
-                    @php $no = 1; @endphp
                     @foreach ($rekam_medik as $item)
                     <tr>
-                        <td>{{ $no++ }}</td>
+                        <td>{{ $loop->iteration }}</td>
                         <td>{{ $item->id_rmd}}</td>
-                        <td>{{ $item->tanggal}}</td>
+                        <td>{{ date('d-M-y', strtotime($item->tanggal)) }}</td>
                         <td>{{ $item->id_kategori }}</td>
                         <td>{{ $item->id_ktg }}</td>
                         <td>{{ $item->nama_hewan }}</td>
@@ -349,14 +357,8 @@ $(document).ready(function(){
                         <td>{{ $item->pelayanan }}</td>
                         <td>
                         <div class="btn-group">
-                            <a href="{{ route('editdata',$item->id_rmd)}}" method="GET" class="btn btn-warning" data-toggle="modal" data-target="#EditDataRMDForm"><i class="fa fa-edit"></i></a>
-                            <form action="{{ route('hapusdata',$item->id_rmd)}}" method="POST">
-                            @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger" 
-                                onclick="return confirm('Apakah Anda yakin ingin menghapus data dengan id {{ $item->id_rmd}} ini?')">
-                                <i class="fa fa-trash-o"></i></button>
-                            </form>
+                            <a href="" method="GET" class="btn btn-warning" data-toggle="modal" data-target="#EditDataRMDForm-{{ $item->id_rmd }}"><i class="fa fa-edit"></i></a>
+                            <a href="" method="GET" class="btn btn-danger" data-toggle="modal" data-target="#HapusDataRMD-{{ $item->id_rmd }}"><i class="fa fa-trash-o"></i></a>
                         </div>
                         </td>
                     </tr>
@@ -386,122 +388,178 @@ $(document).ready(function(){
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3>Tambah Data Rekam Medik</h3>
+                    <h4 class="modal-title">Tambah Data Rekam Medik</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
                 <div class="modal-body">
                     <form role="form" method="POST" id="rekam_medik_form" action="{{route('simpandata')}}">
                         @csrf
                         <input type="hidden" name="id_rmd" value="">
-                            <div class="form-group">
-                                <label class="control-label">Tanggal</label>
-                                <input type="date" class="form-control input-lg" name="tanggal" required>
-                            </div>
-                            <div class="form-group">
+                        <div class="form-group">
+                            <label class="control-label">Tanggal</label>
+                            <input type="date" class="form-control" name="tanggal" required>
+                        </div><br>
+                        <div class="row">
+                            <div class="col">
                                 <label class="control-label">Id Kategori</label>
-                                <input type="text" class="form-control input-lg" name="id_kategori" placeholder="Masukkan id kategori" required>
+                                <input type="text" class="form-control input-lg" name="id_kategori" required>
                             </div>
-                            <div class="form-group">
-                                <label class="control-label">Id Ktg</label>
-                                <input type="text" class="form-control input-lg" name="id_ktg" placeholder="Masukkan id ktg" required>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">Nama Hewan</label>
-                                <input type="text" class="form-control input-lg" name="nama_hewan" placeholder="Masukkan nama hewan" required>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">Nama Peternak</label>
-                                <input type="text" class="form-control input-lg" name="nama_peternak" placeholder="Masukkan nama peternak" required>
-                            </div>
-                            <div class="form-group">
+                            <div class="col">
                                 <label class="control-label">Alamat</label>
-                                <textarea type="text" class="form-control input-lg" name="alamat" placeholder="Masukkan alamat peternak" required></textarea>
+                                <textarea type="text" class="form-control input-lg" name="alamat" required></textarea>
                             </div>
-                            <div class="form-group">
+                        </div><br>
+                        <div class="row">
+                            <div class="col">
+                                <label class="control-label">Id Ktg</label>
+                                <input type="text" class="form-control input-lg" name="id_ktg" required>
+                            </div>
+                            <div class="col">
                                 <label class="control-label">Keluhan</label>
-                                <textarea type="text" class="form-control input-lg" name="keluhan" placeholder="Tuliskan keluhan dari peternak" required></textarea>
+                                <textarea type="text" class="form-control input-lg" name="keluhan" required></textarea>
                             </div>
-                            <div class="form-group">
+                        </div><br>
+                        <div class="row">
+                            <div class="col">
+                                <label class="control-label">Nama Hewan</label>
+                                <input type="text" class="form-control input-lg" name="nama_hewan" required>
+                            </div>
+                            <div class="col">
                                 <label class="control-label">Diagnosa</label>
-                                <input type="text" class="form-control input-lg" name="diagnosa" placeholder="Masukkan diagnosa" required>
+                                <input type="text" class="form-control input-lg" name="diagnosa" required>
                             </div>
-                            <div class="form-group">
+                        </div><br>
+                        <div class="row">
+                            <div class="col">
+                                <label class="control-label">Nama Peternak</label>
+                                <input type="text" class="form-control input-lg" name="nama_peternak" required>
+                            </div>
+                            <div class="col">
                                 <label class="control-label">Pelayanan</label>
-                                <input type="text" class="form-control input-lg" name="pelayanan" placeholder="Masukkan pelayanan" required>
+                                <input type="text" class="form-control input-lg" name="pelayanan" required>
                             </div>
-                            <div class="form-group">
-                                <div>
-                                    <button type="submit" class="btn btn-primary">Simpan</button>
-                                </div>
-                            </div>
+                        </div><br>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                            <button type="submit" class="btn btn-primary">Simpan</button>
+                        </div>
                     </form>
-                
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 
     {{-- MODAL EDIT DATA HERE --}}
-    <div id="EditDataRMDForm" class="modal fade">
+    @foreach ($rekam_medik as $data)
+    <div id="EditDataRMDForm-{{ $data->id_rmd }}" class="modal fade">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3>Edit Data Rekam Medik</h3>
+                    <h4 class="modal-title">Edit Data Rekam Medik</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
                 <div class="modal-body">
-                    <form role="form" method="POST" action="">
-                        @csrf
-                        <input type="hidden" name="id_rmd" value="">
-                            <div class="form-group">
-                                <label class="control-label">Tanggal</label>
-                                <input type="date" class="form-control input-lg" name="tanggal" value="" required>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label class="control-label">Id Kategori</label>
-                                <input type="text" class="form-control input-lg" name="id_kategori" value="" required>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">Id Ktg</label>
-                                <input type="text" class="form-control input-lg" name="id_ktg" value="" required>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">Nama Hewan</label>
-                                <input type="text" class="form-control input-lg" name="nama_hewan" value="" required>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">Nama Peternak</label>
-                                <input type="text" class="form-control input-lg" name="nama_peternak" value="" required>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">Alamat</label>
-                                <textarea type="text" class="form-control input-lg" name="alamat" value="" required></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">Keluhan</label>
-                                <textarea type="text" class="form-control input-lg" name="keluhan" value="" required></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">Diagnosa</label>
-                                <input type="text" class="form-control input-lg" name="diagnosa" value="" required>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">Pelayanan</label>
-                                <input type="text" class="form-control input-lg" name="pelayanan" value="" required>
-                            </div>
-                            <div class="form-group">
-                                <div>
-                                    <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                    <form role="form" method="POST"  action="{{ url('petugas/rekam-medik/edit/'.$data->id_rmd) }}">
+                            @csrf
+                            <input type="hidden" name="id_rmd" value="{{ $data->id_rmd }}">
+                            <div class="row">
+                                <div class="col">
+                                    <label class="control-label">ID Rekam Medik</label>
+                                    <input type="text" class="form-control" name="id_rmd" value="{{ $data->id_rmd }}" disabled>
                                 </div>
+                                <div class="col">
+                                    <label class="control-label">Nama Peternak</label>
+                                    <input type="text" class="form-control input-lg" name="nama_peternak" value="{{ $data->nama_peternak }}"  required>
+                                </div>
+                            </div><br>
+                            <div class="row">
+                                <div class="col">
+                                    <label class="control-label">Tanggal</label>
+                                    <input type="date" class="form-control" name="tanggal" value="{{ $data->tanggal }}">
+                                </div>
+                                <div class="col">
+                                    <label class="control-label">Alamat</label>
+                                    <textarea type="text" class="form-control input-lg" name="alamat" required>{{ $data->alamat }}</textarea>
+                                </div>
+                            </div><br>
+                            <div class="row">
+                                <div class="col">
+                                    <label class="control-label">Id Kategori</label>
+                                    <input type="text" class="form-control input-lg" name="id_kategori" value="{{ $data->id_kategori }}"  required>
+                                </div>
+                                <div class="col">
+                                    <label class="control-label">Keluhan</label>
+                                    <textarea type="text" class="form-control input-lg" name="keluhan" equired>{{ $data->keluhan }}</textarea>
+                                </div>
+                            </div><br>
+                            <div class="row">
+                                <div class="col">
+                                    <label class="control-label">Id Ktg</label>
+                                    <input type="text" class="form-control input-lg" name="id_ktg" value="{{ $data->id_ktg }}"  required>
+                                </div>
+                                <div class="col">
+                                    <label class="control-label">Diagnosa</label>
+                                    <input type="text" class="form-control input-lg" name="diagnosa" value="{{ $data->diagnosa }}"  required>
+                                </div>
+                            </div><br>
+                            <div class="row">
+                                <div class="col">
+                                    <label class="control-label">Nama Hewan</label>
+                                    <input type="text" class="form-control input-lg" name="nama_hewan" value="{{ $data->nama_hewan }}"  required>
+                                </div>
+                                <div class="col">
+                                    <label class="control-label">Pelayanan</label>
+                                    <input type="text" class="form-control input-lg" name="pelayanan" value="{{ $data->pelayanan }}"  required>
+                                </div>
+                            </div><br>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                                <button type="submit" class="btn btn-primary">Edit</button>
                             </div>
                     </form>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
+    @endforeach
+
+    {{-- MODAL DELETE HERE --}}
+    @foreach ($rekam_medik as $data)
+    <div id="HapusDataRMD-{{ $data->id_rmd }}" class="modal fade">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Hapus Data Rekam Medik</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form action="{{ url('petugas/rekam-medik/delete/'.$data->id_rmd) }}" method="GET"> 
+                <div class="modal-body">
+                <p>Apakah anda yakin ingin menghapus data dengan ID <b>{{ $data->id_rmd }}</b> ini?</p>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                <button type="submit" class="btn btn-danger">Hapus</button>
+                </div>
+            </form>
+          </div>
+        </div>
+    </div>
+    @endforeach
 </div>
 
 <section>
     @include('petugas/layouts.footer');
 </section>
+
+{{-- Script Here --}}
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </body>
 </html>
