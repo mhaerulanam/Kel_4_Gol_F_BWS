@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Rekam Medik</title>
+<title>Data Obat</title>
 
       <link rel="stylesheet" href="{{ asset('Frontend/assets/css/bootstrap.min.css')}}">
       <link rel="stylesheet" href="{{ asset('Frontend/assets/css/owl.carousel.min.css')}}">
@@ -265,12 +265,12 @@ $(document).ready(function(){
             <div class="table-title">
                 <div class="row">
                     <div class="col-sm-4">
-                        <h2>Tabel Rekam Medik</h2>
+                        <h2>Tabel Data Obat</h2>
                     </div>
                     <div class="col-sm-8">						
                         <a href="#" class="btn btn-primary"><i class="material-icons">&#xE863;</i> <span>Refresh List</span></a>
                         <a href="#" class="btn btn-secondary"><i class="material-icons">&#xE24D;</i> <span>Export to Excel</span></a>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#TambahDataRMDForm">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#TambahDataObat">
                             <i class="material-icons">add</i><span>Tambah</span>
                         </button>
                     </div>
@@ -296,7 +296,7 @@ $(document).ready(function(){
                             <label>Search</label>
                             <input type="text" class="form-control">
                         </div>
-                        <div class="filter-group">
+                        {{-- <div class="filter-group">
                             <label>Jenis</label>
                             <select class="form-control">
                                 <option>All</option>
@@ -316,7 +316,7 @@ $(document).ready(function(){
                                 <option>Kerbau</option>
                                 <option>Kuda</option>
                             </select>
-                        </div>
+                        </div> --}}
                         <span class="filter-icon"><i class="fa fa-filter"></i></span>
                     </div>
                 </div>
@@ -325,37 +325,31 @@ $(document).ready(function(){
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Id RMD</th>
-                        <th>Tanggal</th>
-                        <th>Id Kategori</th>
-                        <th>Id Ktg</th>						
-                        <th>Nama Hewan</th>						
-                        <th>Nama Peternak</th>
-                        <th>Alamat</th>
-                        <th>Keluhan</th>
-                        <th>Diagnosa</th>
-                        <th>Pelayanan</th>
+                        <th>Id Obat</th>
+                        <th>Nama Obat</th>
+                        <th>Stok</th>
+                        <th>Supplier</th>						
+                        <th>Expired</th>						
+                        <th>Keterangan</th>
+                        <th>Terakhir Dirubah</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($rekam_medik as $item)
+                    @foreach ($data_obat as $item)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $item->id_rmd}}</td>
-                        <td>{{ date('d-M-y', strtotime($item->tanggal)) }}</td>
-                        <td>{{ $item->id_kategori }}</td>
-                        <td>{{ $item->id_ktg }}</td>
-                        <td>{{ $item->nama_hewan }}</td>
-                        <td>{{ $item->nama_peternak }}</td>
-                        <td>{{ $item->alamat }}</td>
-                        <td>{{ $item->keluhan }}</td>
-                        <td>{{ $item->diagnosa }}</td>
-                        <td>{{ $item->pelayanan }}</td>
+                        <td>{{ $item->id_obat}}</td>
+                        <td>{{ $item->nama_obat }}</td>
+                        <td>{{ $item->stok }}</td>
+                        <td>{{ $item->supplier }}</td>
+                        <td>{{ date('d-M-y', strtotime($item->expired)) }}</td>
+                        <td>{{ $item->keterangan }}</td>
+                        <td>{{ \Carbon\Carbon::parse($item->updated_at)->diffForHumans() }}</td>
                         <td>
                         <div class="btn-group">
-                            <a href="" method="GET" class="btn btn-warning" data-toggle="modal" data-target="#EditDataRMDForm-{{ $item->id_rmd }}"><i class="fa fa-edit"></i></a>
-                            <a href="" method="GET" class="btn btn-danger" data-toggle="modal" data-target="#HapusDataRMD-{{ $item->id_rmd }}"><i class="fa fa-trash-o"></i></a>
+                            <a href="" method="GET" class="btn btn-warning" data-toggle="modal" data-target="#EditDataObat-{{ $item->id_obat }}"><i class="fa fa-edit"></i></a>
+                            <a href="" method="GET" class="btn btn-danger" data-toggle="modal" data-target="#HapusDataObat-{{ $item->id_obat }}"><i class="fa fa-trash-o"></i></a>
                         </div>
                         </td>
                     </tr>
@@ -381,62 +375,38 @@ $(document).ready(function(){
     
     
     {{-- MODAL TAMBAH DATA HERE --}}
-    <div id="TambahDataRMDForm" class="modal fade">
+    <div id="TambahDataObat" class="modal fade">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Tambah Data Rekam Medik</h4>
+                    <h4 class="modal-title">Tambah Data Obat</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form role="form" method="POST" id="rekam_medik_form" action="{{route('simpandata')}}">
+                    <form role="form" method="POST" id="data_obat_form" action="{{ route('simpanobat') }}">
                         @csrf
-                        <input type="hidden" name="id_rmd" value="">
+                        <input type="hidden" name="id_obat" value="">
                         <div class="form-group">
-                            <label class="control-label">Tanggal</label>
-                            <input type="date" class="form-control" name="tanggal" required>
-                        </div><br>
-                        <div class="row">
-                            <div class="col">
-                                <label class="control-label">Id Kategori</label>
-                                <input type="text" class="form-control input-lg" name="id_kategori" required>
-                            </div>
-                            <div class="col">
-                                <label class="control-label">Alamat</label>
-                                <textarea type="text" class="form-control input-lg" name="alamat" required></textarea>
-                            </div>
-                        </div><br>
-                        <div class="row">
-                            <div class="col">
-                                <label class="control-label">Id Ktg</label>
-                                <input type="text" class="form-control input-lg" name="id_ktg" required>
-                            </div>
-                            <div class="col">
-                                <label class="control-label">Keluhan</label>
-                                <textarea type="text" class="form-control input-lg" name="keluhan" required></textarea>
-                            </div>
-                        </div><br>
-                        <div class="row">
-                            <div class="col">
-                                <label class="control-label">Nama Hewan</label>
-                                <input type="text" class="form-control input-lg" name="nama_hewan" required>
-                            </div>
-                            <div class="col">
-                                <label class="control-label">Diagnosa</label>
-                                <input type="text" class="form-control input-lg" name="diagnosa" required>
-                            </div>
-                        </div><br>
-                        <div class="row">
-                            <div class="col">
-                                <label class="control-label">Nama Peternak</label>
-                                <input type="text" class="form-control input-lg" name="nama_peternak" required>
-                            </div>
-                            <div class="col">
-                                <label class="control-label">Pelayanan</label>
-                                <input type="text" class="form-control input-lg" name="pelayanan" required>
-                            </div>
+                            <label class="control-label">Nama Obat</label>
+                            <input type="text" class="form-control" name="nama_obat" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Stok</label>
+                            <input type="number" class="form-control" name="stok" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Supplier</label>
+                            <input type="text" class="form-control" name="supplier" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Expired</label>
+                            <input type="date" class="form-control" name="expired" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Keterangan</label>
+                            <textarea class="form-control" name="keterangan" required></textarea>
                         </div><br>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
@@ -449,69 +419,39 @@ $(document).ready(function(){
     </div><!-- /.modal -->
 
     {{-- MODAL EDIT DATA HERE --}}
-    @foreach ($rekam_medik as $data)
-    <div id="EditDataRMDForm-{{ $data->id_rmd }}" class="modal fade">
+    @foreach ($data_obat as $data)
+    <div id="EditDataObat-{{ $data->id_obat }}" class="modal fade">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Edit Data Rekam Medik</h4>
+                    <h4 class="modal-title">Edit Data Obat</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form role="form" method="POST"  action="{{ url('petugas/rekam-medik/edit/'.$data->id_rmd) }}">
+                    <form role="form" method="POST"  action="{{ url('petugas/data-obat/edit/'.$data->id_obat) }}">
                             @csrf
-                            <input type="hidden" name="id_rmd" value="{{ $data->id_rmd }}">
-                            <div class="row">
-                                <div class="col">
-                                    <label class="control-label">ID Rekam Medik</label>
-                                    <input type="text" class="form-control" name="id_rmd" value="{{ $data->id_rmd }}" disabled>
-                                </div>
-                                <div class="col">
-                                    <label class="control-label">Nama Peternak</label>
-                                    <input type="text" class="form-control input-lg" name="nama_peternak" value="{{ $data->nama_peternak }}"  required>
-                                </div>
-                            </div><br>
-                            <div class="row">
-                                <div class="col">
-                                    <label class="control-label">Tanggal</label>
-                                    <input type="date" class="form-control" name="tanggal" value="{{ $data->tanggal }}">
-                                </div>
-                                <div class="col">
-                                    <label class="control-label">Alamat</label>
-                                    <textarea type="text" class="form-control input-lg" name="alamat" required>{{ $data->alamat }}</textarea>
-                                </div>
-                            </div><br>
-                            <div class="row">
-                                <div class="col">
-                                    <label class="control-label">Id Kategori</label>
-                                    <input type="text" class="form-control input-lg" name="id_kategori" value="{{ $data->id_kategori }}"  required>
-                                </div>
-                                <div class="col">
-                                    <label class="control-label">Keluhan</label>
-                                    <textarea type="text" class="form-control input-lg" name="keluhan" equired>{{ $data->keluhan }}</textarea>
-                                </div>
-                            </div><br>
-                            <div class="row">
-                                <div class="col">
-                                    <label class="control-label">Id Ktg</label>
-                                    <input type="text" class="form-control input-lg" name="id_ktg" value="{{ $data->id_ktg }}"  required>
-                                </div>
-                                <div class="col">
-                                    <label class="control-label">Diagnosa</label>
-                                    <input type="text" class="form-control input-lg" name="diagnosa" value="{{ $data->diagnosa }}"  required>
-                                </div>
-                            </div><br>
-                            <div class="row">
-                                <div class="col">
-                                    <label class="control-label">Nama Hewan</label>
-                                    <input type="text" class="form-control input-lg" name="nama_hewan" value="{{ $data->nama_hewan }}"  required>
-                                </div>
-                                <div class="col">
-                                    <label class="control-label">Pelayanan</label>
-                                    <input type="text" class="form-control input-lg" name="pelayanan" value="{{ $data->pelayanan }}"  required>
-                                </div>
+                            <input type="hidden" name="id_rmd" value="{{ $data->id_obat }}">
+                            <div class="form-group">
+                                <label class="control-label">Nama Obat</label>
+                                <input type="text" class="form-control" name="nama_obat" value="{{ $data->nama_obat }}" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Stok</label>
+                                <input type="number" class="form-control" name="stok" value="{{ $data->stok }}" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Supplier</label>
+                                <input type="text" class="form-control" name="supplier" value="{{ $data->supplier }}" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Expired</label>
+                                <input type="date" class="form-control" name="expired" value="{{ $data->expired }}" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Keterangan</label>
+                                <textarea class="form-control" name="keterangan" required>{{ $data->keterangan }}</textarea>
                             </div><br>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
@@ -525,19 +465,19 @@ $(document).ready(function(){
     @endforeach
 
     {{-- MODAL DELETE HERE --}}
-    @foreach ($rekam_medik as $data)
-    <div id="HapusDataRMD-{{ $data->id_rmd }}" class="modal fade">
+    @foreach ($data_obat as $data)
+    <div id="HapusDataObat-{{ $data->id_obat }}" class="modal fade">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title">Hapus Data Rekam Medik</h5>
+              <h5 class="modal-title">Hapus Data Obat</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <form action="{{ url('petugas/rekam-medik/delete/'.$data->id_rmd) }}" method="GET"> 
+            <form action="{{ url('petugas/data-obat/delete/'.$data->id_obat) }}" method="GET"> 
                 <div class="modal-body">
-                <p>Apakah anda yakin ingin menghapus data dengan ID <b>{{ $data->id_rmd }}</b> ini?</p>
+                <p>Apakah anda yakin ingin menghapus data dengan ID <b>{{ $data->id_obat }}</b> ini?</p>
                 </div>
                 <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
