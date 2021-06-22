@@ -25,7 +25,7 @@
                                          <li><a href="#">DATA</a>
                                          <ul class="submenu">
                                                  <li><a href="/petugas/rekam-medik">REKAM MEDIK</a></li>
-                                                 <li><a href="dataobat.php">OBAT</a></li>
+                                                 <li><a href="/petugas/data-obat">OBAT</a></li>
                                                  <li><a href="data_hewan.php">HEWAN</a></li>                                                 
                                              </ul>
                                          </li>

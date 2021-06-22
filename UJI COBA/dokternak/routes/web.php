@@ -50,11 +50,16 @@ Route::group(['namespace' => 'Petugas'], function()
     Route::resource('petugas/tutorial', 'TutorialController');
     Route::resource('petugas/tulisartikel', 'TulisArtikelController');
     Route::resource('petugas/rekam-medik', 'RekammedikController');
+    Route::resource('petugas/data-obat', 'DataObatController');
    // CRUD Rekam Medik -------------------------------------------------------
-   Route::POST('petugas/rekam-medik/','RekammedikController@index')->name('index');
    Route::POST('petugas/rekam-medik/simpandata','RekammedikController@store')->name('simpandata');
    Route::match(['get','post'], 'petugas/rekam-medik/edit/{id}','RekammedikController@edit');
    Route::GET('petugas/rekam-medik/delete/{id}','RekammedikController@delete');
+   // -------------------------------------------------------------------------
+   // CRUD Data Obat -------------------------------------------------------
+   Route::POST('petugas/data-obat/simpanobat','DataObatController@store')->name('simpanobat');
+   Route::match(['get','post'], 'petugas/data-obat/edit/{id}','DataObatController@edit');
+   Route::GET('petugas/data-obat/delete/{id}','DataObatController@delete');
    // -------------------------------------------------------------------------
 });
 
