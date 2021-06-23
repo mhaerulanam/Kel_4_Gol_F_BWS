@@ -56,7 +56,8 @@
                             <article class="blog_item">
                                     <div class="blog_item_img">
                                         {{-- //Code untuk menampilkan gambar yang berbentuk blob --}}
-                                        <img class="card-img rounded-0" src="data:image/png;base64,{{ chunk_split(base64_encode($data_artikel->gambar)) }}" alt="gambar artikel">
+                                        <!-- <img class="card-img rounded-0" src="data:image/png;base64,{{ chunk_split(base64_encode($data_artikel->gambar)) }}" alt="gambar artikel"> -->
+                                        <img class="card-img rounded-0" src="/data/data_artikel/{{ $data_artikel->gambar }}">
                                         <a href="/artikel/{{ $data_artikel->id_artikel }}/detail/" class="blog_item_date">
                                             <h3>{{ $data_artikel->nama_penulis }}</h3>
                                         </a>
@@ -127,7 +128,7 @@
                             <h3 class="widget_title">Artikel Lainnya</h3>
                             @foreach ($artikel as $data_artikel)  
                             <div class="media post_item">
-                                <img src="data:image/png;base64,{{ chunk_split(base64_encode($data_artikel->gambar)) }}" width="120px" />
+                                <img src="/data/data_artikel/{{ $data_artikel->gambar }}" width="120px" />
                                 <div class="media-body">
                                         <a href="detailartikel.php?id_artikel=">
                                             <h6>{{ $data_artikel->judul }}</h6>
