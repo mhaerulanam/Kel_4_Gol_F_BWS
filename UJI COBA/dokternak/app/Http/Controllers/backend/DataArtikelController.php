@@ -17,7 +17,7 @@ class DataArtikelController extends Controller
 {
     public function index()
     {
-        $artikel = Artikel::join('kategori_artikel_tabel', 'kategori_artikel_tabel.id_ktg', '=', 'artikel.id_ktg')
+        $artikel = Artikel::join('kategori_artikel', 'kategori_artikel.id_ktg', '=', 'artikel.id_ktg')
                     ->orderBy('id_artikel','desc')
                     ->get();
         // $artikel = Artikel::all();
@@ -77,7 +77,8 @@ class DataArtikelController extends Controller
     public function edit($id)
     {
         $artikel = Artikel::where('id_artikel',$id)->first();
-        return view('backend.data_artikel.create',compact('artikel'));
+        $kategori = KatArtikel::all();
+        return view('backend.data_artikel.create',compact('artikel','kategori'));
     }
 
     public function update(Request $request, $id)
@@ -100,8 +101,17 @@ class DataArtikelController extends Controller
 
         $status= "tampil";
 
-        $getimageName = time().'.'.$request->gambar->getClientOriginalExtension();
-        $request->gambar->move(public_path('data/data_artikel'), $getimageName);
+        $gbr=$request->nama_gambar;
+        // if (isset($request->gambar) == NULL){
+        if($request->has('gambar')) {
+            $getimageName = time().'.'.$request->gambar->getClientOriginalExtension();
+            $request->gambar->move(public_path('data/data_artikel'), $getimageName);
+        }else {
+            $getimageName = $gbr;
+        }
+
+        // $getimageName = time().'.'.$request->gambar->getClientOriginalExtension();
+        // $request->gambar->move(public_path('data/data_artikel'), $getimageName);
         $data_simpan = [
             'id_ktg' => $request->id_ktg,
             'tanggal' => $request->tanggal,

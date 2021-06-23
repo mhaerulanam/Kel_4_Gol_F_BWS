@@ -102,11 +102,12 @@
                           <div class="valid-feedback"> Looks good! </div>
                         </div>
                       </div>
+                      <input type="hidden" name="nama_gambar" value="{{ isset($artikel) ? $artikel->gambar : '' }}">
                       <div class="form-row">
                         <div class="col-md-6 mb-3">
                           <label for="validationCustom3">Gambar</label>
                           <td><img src="/data/data_artikel/{{ isset($artikel) ? $artikel->gambar : '' }}"></td>
-                          <input type="file" name="gambar" id="gambar" class="form-control {{ $errors->has('gambar') ? 'is-invalid' : ''}}" >
+                          <input type="file" name="gambar" id="gambar" value="{{ isset($artikel) ? $artikel->gambar : '' }}" class="form-control {{ $errors->has('gambar') ? 'is-invalid' : ''}}" >
                         @if ( $errors->has('gambar'))
                         <span class="text-danger small">
                             <p>{{ $errors->first('gambar') }}</p>
