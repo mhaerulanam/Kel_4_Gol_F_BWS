@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class KatArtikel extends Model
 {
-    protected $table = 'kategori_artikel_tabel';
+    protected $table = 'kategori_artikel';
     protected $primaryKey = 'id_ktg';
     protected $fillable = [
         'id_ktg', 'kategori_artikel',

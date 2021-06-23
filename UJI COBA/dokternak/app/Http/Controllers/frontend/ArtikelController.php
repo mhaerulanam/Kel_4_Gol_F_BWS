@@ -12,7 +12,7 @@ class ArtikelController extends Controller
     public function index()
     {
         // $artikel = Artikel::orderBy('tanggal', 'desc')->paginate(2);
-        $artikel = Artikel::join('kategori_artikel_tabel', 'kategori_artikel_tabel.id_ktg', '=', 'artikel.id_ktg')
+        $artikel = Artikel::join('kategori_artikel', 'kategori_artikel.id_ktg', '=', 'artikel.id_ktg')
         ->orderBy('id_artikel','desc')
         ->paginate(2);
         return view('frontend.artikel',compact('artikel'))->with('artikel', $artikel);;

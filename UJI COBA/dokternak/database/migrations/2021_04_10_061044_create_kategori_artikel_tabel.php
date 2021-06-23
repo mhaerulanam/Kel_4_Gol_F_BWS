@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateKategoriArtikelTabel extends Migration
+class CreateKategoriArtikel extends Migration
 {
     /**
      * Run the migrations.
