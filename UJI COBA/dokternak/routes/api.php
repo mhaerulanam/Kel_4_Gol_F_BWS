@@ -48,3 +48,10 @@ Route::post('api_tutorial', 'ApiTutorialController@createTutorial');
 Route::put('api_tutorial/{id_tutorial}', 'ApiTutorialController@updateTutorial');
 Route::delete('api_tutorial/{id_tutorial}', 'ApiTutorialController@deleteTutorial');
 
+//Route Api Kritik dan saran
+Route::get('api_kritikdansaran', 'ApiKritikdanSaranController@getAll');
+Route::get('api_kritikdansaran/{id_ks}', 'ApiKritikdanSaranController@getKs');
+Route::post('api_kritikdansaran', 'ApiKritikdanSaranController@createKs');
+Route::put('api_kritikdansaran/{id_ks}', 'ApiKritikdanSaranController@updateKs');
+Route::delete('api_kritikdansaran/{id_ks}', 'ApiKritikdanSaranController@deleteKs');
+
