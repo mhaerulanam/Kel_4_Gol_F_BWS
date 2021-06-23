@@ -12,4 +12,8 @@ class Artikel extends Model
     protected $fillable = [
          'id_ktg', 'tanggal', 'nama_penulis','judul', 'isi', 'gambar', 'sumber','status',
     ];
+
+    public function katart(){
+    	return $this->belongsTo(KatArtikel::class);
+    }
 }

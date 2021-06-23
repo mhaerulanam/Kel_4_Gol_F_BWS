@@ -12,12 +12,9 @@ class DetailDokterController extends Controller
     {
         $dokter = DB::table('dokter')
         ->join('jabatan','dokter.id_jabatan', '=', 'jabatan.jabatan')
-        ->select(*)
         ->get();
 
-
-
-        return view('frontend.detaildokter', compact('dokter'))->('dokter',$dokter);
+        return view('frontend.detaildokter', compact('dokter'));
 
     }
 

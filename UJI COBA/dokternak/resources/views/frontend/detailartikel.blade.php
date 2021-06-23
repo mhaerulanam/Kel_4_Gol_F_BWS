@@ -26,9 +26,11 @@
 
 <body>
 
+@include('frontend/layouts.navbar');
+
    <!-- Hero Area Start-->
    <div class="slider-area ">
-      <div class="single-slider section-overly slider-height2 d-flex align-items-center" data-background="assets/img/gallery/s2.jpg">
+      <div class="single-slider section-overly slider-height2 d-flex align-items-center" data-background="{{ asset('Frontend/assets/img/gallery/s2.jpg') }}">
           <div class="container">
               <div class="row">
                   <div class="col-xl-12">
@@ -55,7 +57,7 @@
                            <h2>{{ $artikel->judul }}</h2>
                            <ul class="blog-info-link mt-3 mb-4">
                               <li><a href="#"><i class="fa fa-user"></i> {{ $artikel->nama_penulis}}</a></li>
-                              <li><a href="#"><i></i>{{ $artikel->id_ktg}}</a></li>
+                              <li><a href="#"><i></i>{{ $artikel->kategori_artikel}}</a></li>
                               <li><a href="#"><i class="fa fa-comments"></i>{{ $artikel->tanggal}}</a></li>
                            </ul>
                            <p class="excert">
