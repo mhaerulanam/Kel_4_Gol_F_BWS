@@ -3,33 +3,28 @@
 namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\controller;
+use App\Models\peternak;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use App\Models\admin;
-use App\Models\User;
-use App\Models\Role;
-use Dotenv\Validator;
-use Illuminate\Auth\Events\Validated;
-use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Validator as FacadesValidator;
+use App\Models\Petugas;
 
-class AdminController extends Controller
+class DataPetugasController extends Controller
 {
     public function index()
     {
         $data = [
-            'admin' => Admin::with('roles')->orderBy('id','desc')->where('is_admin',1)->get(),
+            'petugas' => Petugas::with('roles')->orderBy('id','desc')->where('is_admin',2)->get(),
         ];
-        return view('backend.admin.index',compact('data'));
+        return view('backend.datapetugas.index',compact('data'));
         // return view('backend.peternak.index');
     }
 
 
     public function create()
     {
-        $role =  Role::where('id_role',1)->first();
-        return view('backend.admin.create',compact('role'));
+        $datapetugas = null;
+        return view('backend.datapetugas.create',compact('datapetugas'));
     }
 
     public function store(Request $request)
@@ -50,23 +45,25 @@ class AdminController extends Controller
             // 'tingkatan' => 'required|numeric',
         ], $message)->validate();
 
+        $role = 2;
+
         $data_simpan = [
             'name' => $request->name,
             'email' => $request->email,
-            'is_admin' => $request->id_role,
+            'is_admin' => $role,
             'password' => Hash::make($request['password']),
         ];
 
-        Admin::create($data_simpan);
+        Petugas::create($data_simpan);
 
-        return redirect()->route('admin.index')
+        return redirect()->route('datapetugas.index')
                         ->with('success','Data peternak baru telah berhasil disimpan');
     }
 
     public function edit($id)
     {
-        $admin = Admin::where('id',$id)->first();
-        return view('backend.admin.create',compact('admin'));
+        $datapetugas = Petugas::where('id',$id)->first();
+        return view('backend.datapetugas.create',compact('datapetugas'));
     }
 
     public function update(Request $request, $id)
@@ -93,16 +90,16 @@ class AdminController extends Controller
             'password' => Hash::make($request['password']),
         ];
 
-        Admin::where('id', $id)->update($data_simpan);
+        Petugas::where('id', $id)->update($data_simpan);
 
-        return redirect()->route('admin.index')
+        return redirect()->route('datapetugas.index')
                         ->with('success','Data admin telah berhasil diperbarui');
     }
 
     public function destroy($id)
     {
-        $admin = Admin::where('id',$id)->delete();
-        return redirect()->route('admin.index')
+        $admin = Petugas::where('id',$id)->delete();
+        return redirect()->route('datapetugas.index')
                         ->with('success','Data admin telah berhasil dihapus');
     }
 }

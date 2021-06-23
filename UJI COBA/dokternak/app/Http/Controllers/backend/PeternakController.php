@@ -17,7 +17,7 @@ class PeternakController extends Controller
     public function index()
     {
         $data = [
-            'peternak' => Peternak::orderBy('id','desc')->get(),
+            'peternak' => Peternak::with('roles')->where('is_admin',0)->paginate(2),
         ];
         return view('backend.peternak.index',compact('data'));
         // return view('backend.peternak.index');
@@ -48,7 +48,7 @@ class PeternakController extends Controller
             // 'tingkatan' => 'required|numeric',
         ], $message)->validate();
 
-        $role = 1;
+        $role = 0;
 
         $data_simpan = [
             'name' => $request->name,

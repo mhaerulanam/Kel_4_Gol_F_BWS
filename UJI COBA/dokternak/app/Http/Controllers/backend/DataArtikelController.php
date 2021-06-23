@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\artikel;
+use App\Models\KatArtikel;
 use Dotenv\Validator;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Support\Facades\Crypt;
@@ -16,18 +17,23 @@ class DataArtikelController extends Controller
 {
     public function index()
     {
-        $data = [
-            'artikel' => Artikel::orderBy('id_artikel','desc')->get(),
-        ];
-        return view('backend.data_artikel.index',compact('data'));
+        $artikel = Artikel::join('kategori_artikel_tabel', 'kategori_artikel_tabel.id_ktg', '=', 'artikel.id_ktg')
+                    ->orderBy('id_artikel','desc')
+                    ->get();
+        // $artikel = Artikel::all();
+        // $artikel = DB::table('artikel')
+        //             ->join('kategori_artikel_tabel', 'kategori_artikel_tabel.id_ktg', '=', 'artikel.id_ktg')
+        //             ->get();
+
+        return view('backend.data_artikel.index',compact('artikel'));
         // return view('backend.peternak.index');
     }
 
 
     public function create()
     {
-        $artikel = null;
-        return view('backend.data_artikel.create',compact('artikel'));
+        $kategori = KatArtikel::all();
+        return view('backend.data_artikel.create',compact('kategori'));
     }
 
     public function store(Request $request)

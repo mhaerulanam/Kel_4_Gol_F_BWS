@@ -68,7 +68,7 @@
                         <td>{{ $no++ }}</td>
                         <td>{{ $item->name }}</td>
                         <td>{{ $item->email }}</td>
-                        <td>{{ $item->is_admin }}</td>
+                        <td>Admin</td>
                         <td>{{ $item->password }}</td>
                         <td>
                         <div class="btn-group">

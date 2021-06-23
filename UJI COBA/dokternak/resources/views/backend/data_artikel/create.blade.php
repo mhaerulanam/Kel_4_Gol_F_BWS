@@ -68,8 +68,10 @@
                             <datalist id="id_ktg" name="id_ktg">
                             <div class="form-select" id="default-select">
                                 <select name="s_kategori" class="form-control" id="exampleFormControlSelect1">              
-                                    <option value="" ></option>
-                                    </select><br>
+                                  @foreach ($kategori as $data_kategori)
+                                    <option value="{{ $data_kategori->id_ktg }}" >{{ $data_kategori->kategori_artikel }}</option>
+                                  @endforeach     
+                                  </select><br>
                             </div>
                       </div>
                       <input type="hidden" name="tanggal" value="{{ date('Y-m-d') }}">

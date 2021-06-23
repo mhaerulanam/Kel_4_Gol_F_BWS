@@ -41,11 +41,11 @@
               <div class="card-body">
                 <div class="row align-items-center mb-2">
                   <div class="col">
-                    <h5 class="card-title">Data User Peternak</h5>
+                    <h5 class="card-title">Data User Petugas</h5>
                     </div>
                   <div class="col-auto">
                     <div class="form">
-                      <a href="{{ route('peternak.create') }}"><button class="btn btn-primary"
+                      <a href="{{ route('datapetugas.create') }}"><button class="btn btn-primary"
                           type="button"><i class="fa fa-plus"></i><span>Tambah</span></button></a>
                     </div>
                   </div>
@@ -63,18 +63,17 @@
                   </thead>
                   <tbody>
                     @php $no = 1; @endphp
-                    
-                    @foreach ($data['peternak'] as $item)
+                    @foreach ($data['petugas'] as $item)
                     <tr>
                         <td>{{ $no++ }}</td>
                         <td>{{ $item->name }}</td>
                         <td>{{ $item->email }}</td>
-                        <td>Peternak</td>
+                        <td>Petugas</td>
                         <td>{{ $item->password }}</td>
                         <td>
                         <div class="btn-group">
-                            <a href="{{ route('peternak.edit',$item->id)}}" class="btn btn-warning">Edit<i class="fa fa-edit"></i></a>
-                            <form action="{{ route('peternak.destroy',$item->id)}}" method="POST">
+                            <a href="{{ route('datapetugas.edit',$item->id)}}" class="btn btn-warning">Edit<i class="fa fa-edit"></i></a>
+                            <form action="{{ route('datapetugas.destroy',$item->id)}}" method="POST">
                             @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger" 

@@ -51,17 +51,16 @@
                 </div>
                 <div class="card-body">
                   <form class="needs-validation" id="admin_form" method="POST"
-                            action="{{ isset($admin) ? route('admin.update',$admin->id) : 
+                            action="{{ isset($datapetugas) ? route('admin.update',$datapetugas->id) : 
                             route('admin.store') }}">
                                 {!! csrf_field() !!}
-                                {!! isset($admin) ? method_field('PUT') : '' !!}
-                      <input type="hidden" name="id" value="{{ isset($admin) ? $admin->id : '' }}"> <br/>
-                      <input type="text" name="id_role" value="{{ $role->id_role }}"> <br/>
+                                {!! isset($datapetugas) ? method_field('PUT') : '' !!}
+                      <input type="hidden" name="id" value="{{ isset($datapetugas) ? $datapetugas->id : '' }}"> <br/>
                       <div class="form-row">
                       <div class="col-md-6 mb-3">
                         <label for="validationCustom3">Nama Lengkap</label>
                         <input class="form-control" id="name" name="name" minlength="5" type="text" placeholder="Masukkan nama"
-                        value="{{ isset($admin) ? $admin->name : '' }}"  
+                        value="{{ isset($datapetugas) ? $datapetugas->name : '' }}"  
                             required>
                         <div class="valid-feedback"> Looks good! </div>
                       </div>
@@ -72,7 +71,7 @@
                       <div class="col-md-8 mb-3">
                         <label for="exampleInputEmail2">Email address</label>
                         <input type="email" class="form-control" id="exampleInputEmail2" name="email" minlength="5" placeholder="Masukkan email" aria-describedby="Masukkan email" 
-                        value="{{ isset($admin) ? $admin->email : '' }}"  
+                        value="{{ isset($datapetugas) ? $datapetugas->email : '' }}"  
                         required>
                         <div class="invalid-feedback"> Please use a valid email </div>
                         <small id="emailHelp1" class="form-text text-muted">We'll never share your email with anyone else.</small>
@@ -83,7 +82,7 @@
                       <label for="validationCustomPassword">Password</label>
                       <div class="input-group">
                         <input type="password" class="form-control" id="validationCustomPassword" name="password" minlength="5" placeholder="Masukkan password" aria-describedby="inputGroupPrepend" 
-                        value="{{ isset($admin) ? $admin->password : '' }}"  
+                        value="{{ isset($datapetugas) ? $datapetugas->password : '' }}"  
                         required>
                         <div class="invalid-feedback"> Please choose a password. </div>
                       </div>
@@ -91,7 +90,7 @@
                     </div>
                    
                     <button class="btn btn-primary" type="submit">Save</button>
-                    <a href="{{ route('admin.index') }}"><button class="btn btn-default"
+                    <a href="{{ route('datapetugas.index') }}"><button class="btn btn-default"
                         type="button">Cancel</button></a>
                   </form>
                 </div> <!-- /.card-body -->

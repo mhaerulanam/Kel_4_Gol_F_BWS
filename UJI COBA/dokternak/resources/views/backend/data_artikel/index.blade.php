@@ -54,7 +54,7 @@
                   <thead>
                     <tr>
                       <th>NO</th>
-                      <th>ID Artikel</th>
+                      {{-- <th>ID Artikel</th> --}}
                       <th>ID Kategori</th>
                       <th>Tanggal</th>
                       <th>Nama Penulis</th>
@@ -67,11 +67,11 @@
                   </thead>
                   <tbody>
                     @php $no = 1; @endphp
-                    @foreach ($data['artikel'] as $item)
+                    @foreach ($artikel as $item)
                     <tr>
                         <td>{{ $no++ }}</td>
-                        <td>{{ $item->id_artikel }}</td>
-                        <td>{{ $item->id_ktg }}</td>
+                        {{-- <td>{{ $item->id_artikel }}</td> --}}
+                        <td>{{ $item->kategori_artikel }}</td>
                         <td>{{ $item->tanggal }}</td>
                         <td>{{ $item->nama_penulis }}</td>
                         <td>{{ $item->judul }}</td>
