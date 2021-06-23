@@ -186,7 +186,7 @@
                                         <div class="item-box-blog">
                                         <div class="item-box-blog-image">
                                         {{-- //Code untuk menampilkan gambar yang berbentuk blob --}}
-                                        <img class="card-img rounded-0" src="data:image/png;base64,{{ chunk_split(base64_encode($data_puskeswan->gambar)) }}" alt="gambar puskeswan" width="300px" height="300px">
+                                        <img class="card-img rounded-0" src="/data/data_puskeswan/{{ $data_puskeswan->gambar }}" alt="gambar puskeswan" width="300px" height="300px">
                                         </div>
                                         
                                     
