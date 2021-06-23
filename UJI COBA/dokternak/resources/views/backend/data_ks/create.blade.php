@@ -31,7 +31,7 @@
       <div class="row justify-content-center">
         <div class="col-12">
           <header class="panel-heading">
-            {{ isset($admin_lecturer) ? 'Mengubah' : 'Menambahkan' }} Data Tutorial
+            {{ isset($admin_lecturer) ? 'Mengubah' : 'Menambahkan' }} Data Kritik dan Saran
         </header>
           @if ($errors->any())
             <div class="alert alert-danger">
