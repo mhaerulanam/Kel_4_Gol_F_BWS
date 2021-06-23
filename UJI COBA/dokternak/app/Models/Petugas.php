@@ -10,7 +10,7 @@ class Petugas extends Model
     protected $table = 'users';
     protected $primaryKey = 'id';
     protected $fillable = [
-        'name', 'email', '','password',
+        'name', 'email','is_admin','password',
     ];
 
     public function roles(){

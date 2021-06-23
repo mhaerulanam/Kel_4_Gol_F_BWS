@@ -51,11 +51,12 @@
                 </div>
                 <div class="card-body">
                   <form class="needs-validation" id="admin_form" method="POST"
-                            action="{{ isset($datapetugas) ? route('admin.update',$datapetugas->id) : 
-                            route('admin.store') }}">
+                            action="{{ isset($datapetugas) ? route('datapetugas.update',$datapetugas->id) : 
+                            route('datapetugas.store') }}">
                                 {!! csrf_field() !!}
                                 {!! isset($datapetugas) ? method_field('PUT') : '' !!}
                       <input type="hidden" name="id" value="{{ isset($datapetugas) ? $datapetugas->id : '' }}"> <br/>
+                      <input type="hidden" name="id_role" value="{{ $role->id_role }}"> <br/>
                       <div class="form-row">
                       <div class="col-md-6 mb-3">
                         <label for="validationCustom3">Nama Lengkap</label>

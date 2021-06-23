@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator as FacadesValidator;
 use App\Models\Petugas;
+use App\Models\Role;
 
 class DataPetugasController extends Controller
 {
@@ -23,8 +24,8 @@ class DataPetugasController extends Controller
 
     public function create()
     {
-        $datapetugas = null;
-        return view('backend.datapetugas.create',compact('datapetugas'));
+        $role =  Role::where('id_role',2)->first();
+        return view('backend.datapetugas.create',compact('role'));
     }
 
     public function store(Request $request)
@@ -45,19 +46,18 @@ class DataPetugasController extends Controller
             // 'tingkatan' => 'required|numeric',
         ], $message)->validate();
 
-        $role = 2;
 
         $data_simpan = [
             'name' => $request->name,
             'email' => $request->email,
-            'is_admin' => $role,
+            'is_admin' => $request->id_role,
             'password' => Hash::make($request['password']),
         ];
 
         Petugas::create($data_simpan);
 
         return redirect()->route('datapetugas.index')
-                        ->with('success','Data peternak baru telah berhasil disimpan');
+                        ->with('success','Data petugas baru telah berhasil disimpan');
     }
 
     public function edit($id)
