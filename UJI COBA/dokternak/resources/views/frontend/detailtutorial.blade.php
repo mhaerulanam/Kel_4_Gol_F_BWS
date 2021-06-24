@@ -61,7 +61,7 @@
                     </div>
                     <div class="col-xl-6 col-lg-6">
                         <div class="support-location-img">
-                            <img src="data:image/png;base64,{{ chunk_split(base64_encode($tutorial->icon)) }}">
+                            <img class="card-img rounded-0" src="/data/data_tutorial/{{ $tutorial->icon }}">
                         </div>
                     </div>
                 </div> 
