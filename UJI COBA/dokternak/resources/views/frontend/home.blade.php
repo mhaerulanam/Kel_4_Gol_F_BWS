@@ -124,10 +124,10 @@
                                 <div class="single-job-items mb-30">
                                     <div class="job-items">
                                         <div class="company-img">
-                                            <a href="job_details.html"><img src="data:image/png;base64,{{ chunk_split(base64_encode($data_dokter->foto)) }}" alt=""  width="100px"></a>
+                                            <a href="job_details.html"><img class="card-img rounded-0" src="/data/data_dokter/{{ $data_dokter->foto }}" alt=""  width="100px"></a>
                                         </div>
                                         <div class="job-tittle">
-                                            <a href="job_details.html"><h4>{{ $data_dokter->nama }}</h4></a>
+                                            <a href="job_details.html"><h4>{{ $data_dokter->nama_dokter }}</h4></a>
                                             <ul>
                                                 <li>{{ $data_dokter->id_jabatan }}</li>
                                                 <li><i class="fas fa-map-marker-alt"></i>{{ $data_dokter->tempat }}</li>
@@ -172,7 +172,7 @@
                                                         <div class="blog-img">  
                                                             <!-- <img src="assets/img/blog/home-blog1.jpg" alt=""> -->
                                                             <!-- Baris img src dibawah ini untuk memanggil gambar sesuai syntax di gambar.php -->
-                                                            <img src="data:image/png;base64,{{ chunk_split(base64_encode($data_artikel->gambar)) }}" alt="post" width="100px"/>
+                                                            <img class="card-img rounded-0" src="/data/data_artikel/{{ $data_artikel->gambar }}"alt="post" width="100px" />
                                                             <div class="blog-date text-center">
                                                                 <span>{{ $data_artikel->tanggal }}</span>
                                                                 <p>Kategori :{{ $data_artikel->id_ktg }}</p>
@@ -213,7 +213,7 @@
                     <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
                         <div class="single-services text-center mb-30">
                             <div class="services-ion">
-                                <span class=""><img src="data:image/png;base64,{{ chunk_split(base64_encode($data_tutorial->icon)) }}" alt=""></span>
+                                <span class=""><img class="card-img rounded-0" src="/data/data_tutorial/{{ $data_tutorial->icon }}" width="50px"></span>
                             </div>
                             <div class="services-cap">
                                <h5><a href="job_listing.html">{{ $data_tutorial->judul_tutorial }}</a></h5>
