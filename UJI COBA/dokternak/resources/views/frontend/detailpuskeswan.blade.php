@@ -62,7 +62,7 @@
           <div class="page-header-image" data-parallax="true" style="background-image: {{ asset('Frontend/assets/img/gallery/s2.jpg')}}"></div>
           <div class="container">
             <div class="content-center">
-              <div class="cc-profile-image"><a href="#"><img src="data:image/png;base64,{{ chunk_split(base64_encode($puskeswan->gambar)) }}" alt="Image"/></a></div>
+              <div class="cc-profile-image"><a href="#"><img src="/data/data_puskeswan/{{ $puskeswan->gambar }}" alt="Image"/></a></div>
               <div class="h2 title">{{ $puskeswan->nama_puskeswan }}</div>
               <p class="capt">{{ $puskeswan->alamat}}</p>
               <a class="genric-btn primary" href="{{ $puskeswan->maps}}" terget="_blank">Cek Lokasi</a>
