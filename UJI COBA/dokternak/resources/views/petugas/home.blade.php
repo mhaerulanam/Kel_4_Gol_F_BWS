@@ -277,7 +277,7 @@
                                                         <div class="blog-img">  
                                                             <!-- <img src="assets/img/blog/home-blog1.jpg" alt=""> -->
                                                             <!-- Baris img src dibawah ini untuk memanggil gambar sesuai syntax di gambar.php -->
-                                                            <img src="data:image/png;base64,{{ chunk_split(base64_encode($data_artikel->gambar)) }}" alt="post" width="100px"/>
+                                                            <img class="card-img rounded-0" src="/data/data_artikel/{{ $data_artikel->gambar }}"alt="post" width="100px"/>
                                                             <div class="blog-date text-center">
                                                                 <span>{{ $data_artikel->tanggal }}</span>
                                                                 <p>Kategori :{{ $data_artikel->id_ktg }}</p>
