@@ -14,7 +14,7 @@ class ArtikelController extends Controller
         $artikel = Artikel::orderBy('tanggal', 'desc')->paginate(2);
         $getAnimals = Cat::all();
 
-        return view('frontend.artikel',[
+        return view('petugas.artikel',[
             'artikel' => $artikel,
             'animals' => $getAnimals,
             'count'     => DB::table('Artikel')->distinct('id_ktg')->count('id_ktg')

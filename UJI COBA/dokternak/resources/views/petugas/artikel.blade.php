@@ -56,7 +56,7 @@
                             <article class="blog_item">
                                     <div class="blog_item_img">
                                         {{-- //Code untuk menampilkan gambar yang berbentuk blob --}}
-                                        <img class="card-img rounded-0" src="data:image/png;base64,{{ chunk_split(base64_encode($data_artikel->gambar)) }}" alt="gambar artikel">
+                                        <img class="card-img rounded-0" src="/data/data_artikel/{{ $data_artikel->gambar }}">
                                         <a href="#" class="blog_item_date">
                                             <h3>{{ $data_artikel->nama_penulis }}</h3>
                                         </a>
@@ -123,17 +123,17 @@
                         </aside>
 
                         <aside class="single_sidebar_widget popular_post_widget">
-                            <h3 class="widget_title">Recent Post</h3>
-                            @foreach ($artikel as $data_artikel)                            
+                            <h3 class="widget_title">Artikel Lainnya</h3>
+                            @foreach ($artikel as $data_artikel)  
                             <div class="media post_item">
-                                <img src="data:image/png;base64,{{ chunk_split(base64_encode($data_artikel->gambar)) }}" alt="post" width="100px">
+                                <img src="/data/data_artikel/{{ $data_artikel->gambar }}" width="120px" />
                                 <div class="media-body">
-                                    <a href="single-blog.html">
-                                        <h3>{{ $data_artikel->judul }}</h3>
-                                    </a>
-                                    <p>{{ $data_artikel->tanggal }}</p>
+                                        <a href="detailartikel.php?id_artikel=">
+                                            <h6>{{ $data_artikel->judul }}</h6>
+                                        </a>
+                                        <p>{{ $data_artikel->tanggal }}</p>
                                 </div>
-                            </div>
+                            </div> 
                             @endforeach
                         </aside>
                     </div>
