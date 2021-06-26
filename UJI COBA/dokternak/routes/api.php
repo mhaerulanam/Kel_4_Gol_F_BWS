@@ -27,6 +27,14 @@ Route::post('api_users', 'ApiUsersController@createUsers');
 Route::put('api_users/{id}', 'ApiUsersController@updateUsers');
 Route::delete('api_users/{id}', 'ApiUsersController@deleteUsers');
 
+//Route Api Petugas
+Route::get('api_petugas', 'ApiPetugasController@getAll');
+Route::get('api_petugas/{id}', 'ApiPetugasController@getPetugas');
+Route::post('api_petugas', 'ApiPetugasController@createPetugas');
+Route::put('api_petugas/{id}', 'ApiPetugasController@updatePetugas');
+Route::delete('api_petugas/{id}', 'ApiPetugasController@deletePetugas');
+Route::get('api_petugas/cari/petugas', 'ApiPetugasController@cariPetugas');
+
 //Route Api Artikel
 Route::get('api_artikel', 'ApiArtikelController@getAll');
 Route::get('api_artikel/{id_artikel}', 'ApiArtikelController@getArtikel');

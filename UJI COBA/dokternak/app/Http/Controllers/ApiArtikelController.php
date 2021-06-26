@@ -10,13 +10,21 @@ class ApiArtikelController extends Controller
     public function getAll() 
     {
         $artikel = Artikel::all();
-        return response()->json($artikel, 201);
+        return response()->json([
+            'status' => 'ok',
+            'message' => 'Artikel Berhasil Ditampilkan Semua',
+            'data' => $artikel
+        ], 201);
     }
 
     public function getArtikel($id) 
     {
         $artikel = Artikel::find($id);
-        return response()->json($artikel, 200);
+        return response()->json([
+            'status' => 'ok',
+            'message' => 'Artikel Berhasil Ditampilkan per-item',
+            'data' => $artikel
+        ], 200);
     }
 
     public function createArtikel(Request $request) 
