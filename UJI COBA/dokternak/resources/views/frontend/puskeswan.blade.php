@@ -200,7 +200,7 @@
                                         <div class="item-box-blog">
                                         <div class="item-box-blog-image">
                                         {{-- //Code untuk menampilkan gambar yang berbentuk blob --}}
-                                        <img src="/data/data_puskeswan/{{ $data_puskeswan->gambar }}" width="300px" >
+                                        <img src="/data/data_puskeswan/{{ $data_puskeswan->gambar }}" width="300px" height="300px">
                                         </div>
                                         
                                     
