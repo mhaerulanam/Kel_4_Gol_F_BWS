@@ -18,7 +18,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-//Route Api 
+//Route Api Login
+Route::post('api_users/login/peternak','ApiUsersController@loginUser');
 
 //Route Api Users
 Route::get('api_users', 'ApiUsersController@getAll');
@@ -26,6 +27,14 @@ Route::get('api_users/{id}', 'ApiUsersController@getUsers');
 Route::post('api_users', 'ApiUsersController@createUsers');
 Route::put('api_users/{id}', 'ApiUsersController@updateUsers');
 Route::delete('api_users/{id}', 'ApiUsersController@deleteUsers');
+
+//Route Api Petugas
+Route::get('api_petugas', 'ApiPetugasController@getAll');
+Route::get('api_petugas/{id}', 'ApiPetugasController@getPetugas');
+Route::post('api_petugas', 'ApiPetugasController@createPetugas');
+Route::put('api_petugas/{id}', 'ApiPetugasController@updatePetugas');
+Route::delete('api_petugas/{id}', 'ApiPetugasController@deletePetugas');
+Route::get('api_petugas/cari/petugas', 'ApiPetugasController@cariPetugas');
 
 //Route Api Artikel
 Route::get('api_artikel', 'ApiArtikelController@getAll');
@@ -55,3 +64,9 @@ Route::post('api_kritikdansaran', 'ApiKritikdanSaranController@createKs');
 Route::put('api_kritikdansaran/{id_ks}', 'ApiKritikdanSaranController@updateKs');
 Route::delete('api_kritikdansaran/{id_ks}', 'ApiKritikdanSaranController@deleteKs');
 
+//Route Api Dokumentasi
+Route::get('api_dokumentasi', 'ApiDokumentasiController@getAll');
+Route::get('api_dokumentasi/{id_dokumentasi}', 'ApiDokumentasiController@getDokumentasi');
+Route::post('api_dokumentasi', 'ApiDokumentasiController@createDokumentasi');
+Route::put('api_dokumentasi/{id_dokumentasi}', 'ApiDokumentasiController@updateDokumentasi');
+Route::delete('api_dokumentasi/{id_dokumentasi}', 'ApiDokumentasiController@deleteDokumentasi');

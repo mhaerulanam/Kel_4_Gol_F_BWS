@@ -44,7 +44,7 @@ class HomeController extends Controller
         $data = [
             'dokter' => DB::table('dokter')
             ->where('alamat', 'LIKE', '%' . $kategori . '%')
-            ->where('nama','like',"%".$cari."%")
+            ->where('nama_dokter','like',"%".$cari."%")
             ->paginate(3),
             'artikel' => Artikel::orderBy('tanggal', 'desc')->paginate(2),
             'tutorial' => Tutorial::orderBy('id_tutorial')->paginate(3),
