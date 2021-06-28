@@ -16,7 +16,11 @@ class RekammedikController extends Controller
 {
     public function index()
     {
-        $rekam_medik = DB::table('rekam_medik')->get();
+        // $rekam_medik = DB::table('rekam_medik')->get();
+        $rekam_medik = rekam_medik::join('kategori_artikel', 'kategori_artikel.id_ktg', '=', 'rekam_medik.id_ktg')
+                    ->join('kategori_hewan', 'kategori_hewan.id_kategori','=','rekam_medik.id_kategori')
+                    ->orderBy('id_rmd','desc')
+                    ->get();
         return view('petugas.rekam_medik.index', compact('rekam_medik'));
     }
 
@@ -39,10 +43,10 @@ class RekammedikController extends Controller
         ], $message)->validate();
 
         $kode = date('yHi'); //tahun,jam,menit
-        $id_rmd= "RMD$kode";
+        // $id_rmd= "RMD$kode";
 
         $data_simpan = [
-            'id_rmd' => $id_rmd,
+            'id_rmd' => $kode,
             'tanggal' => $request->tanggal,
             'id_kategori' => $request->id_kategori, 
             'id_ktg' => $request->id_ktg, 

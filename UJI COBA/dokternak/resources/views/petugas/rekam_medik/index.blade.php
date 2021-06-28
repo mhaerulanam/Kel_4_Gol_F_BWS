@@ -327,8 +327,8 @@ $(document).ready(function(){
                         <th>No</th>
                         <th>Id RMD</th>
                         <th>Tanggal</th>
-                        <th>Id Kategori</th>
-                        <th>Id Ktg</th>						
+                        <th>Kategori Hewan</th>
+                        <th>Jenis Hewan</th>						
                         <th>Nama Hewan</th>						
                         <th>Nama Peternak</th>
                         <th>Alamat</th>
@@ -344,8 +344,8 @@ $(document).ready(function(){
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $item->id_rmd}}</td>
                         <td>{{ date('d-M-y', strtotime($item->tanggal)) }}</td>
-                        <td>{{ $item->id_kategori }}</td>
-                        <td>{{ $item->id_ktg }}</td>
+                        <td>{{ $item->kategori_hewan }}</td>
+                        <td>{{ $item->kategori_artikel }}</td>
                         <td>{{ $item->nama_hewan }}</td>
                         <td>{{ $item->nama_peternak }}</td>
                         <td>{{ $item->alamat }}</td>
@@ -400,8 +400,12 @@ $(document).ready(function(){
                         </div><br>
                         <div class="row">
                             <div class="col">
-                                <label class="control-label">Id Kategori</label>
-                                <input type="text" class="form-control input-lg" name="id_kategori" required>
+                                <label class="control-label">Pilih Kategori Hewan</label>
+                                <select name="id_kategori" class="form-control">
+                                    @foreach ($rekam_medik as $data)
+                                      <option value="{{ $data->id_kategori }}" selected>{{ $data->kategori_hewan}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="col">
                                 <label class="control-label">Alamat</label>
@@ -410,8 +414,13 @@ $(document).ready(function(){
                         </div><br>
                         <div class="row">
                             <div class="col">
-                                <label class="control-label">Id Ktg</label>
-                                <input type="text" class="form-control input-lg" name="id_ktg" required>
+                                <label class="control-label">Pilih Jenis Hewan</label>
+                                {{-- <input type="text" class="form-control input-lg" name="id_ktg" required> --}}
+                                <select name="id_ktg" class="form-control">
+                                    @foreach ($rekam_medik as $data)
+                                      <option value="{{ $data->id_ktg }}" selected>{{ $data->kategori_artikel}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="col">
                                 <label class="control-label">Keluhan</label>
