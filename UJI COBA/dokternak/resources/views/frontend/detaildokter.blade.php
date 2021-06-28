@@ -66,8 +66,8 @@
           <div class="page-header-image" data-parallax="true" style="background-image: url('{{ asset('Frontend/assets/img/gallery/s2.jpg')}}');"></div>
           <div class="container">
             <div class="content-center">
-              <div class="cc-profile-image"><a href="#"><img src="data:image/png;base64,{{ chunk_split(base64_encode($dokter->foto)) }}"/></a></div>
-              <div class="h2 title">{{ $dokter->nama }}</div>
+              <div class="cc-profile-image"><a href="#"><img src="/data/data_dokter/{{ $dokter->foto }}" /></a></div>
+              <div class="h2 title">{{ $dokter->nama_dokter }}</div>
               <p class="capt">{{ $dokter->id_jabatan}}</p>
               <!-- <a class="genric-btn primary" href="https://api.whatsapp.com/send?phone=">WhatsApp</a>
               <a class="genric-btn primary" href="form_konsultasi.php?id_dokter=">Konsultasi</a> -->
