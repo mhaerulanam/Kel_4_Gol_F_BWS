@@ -159,8 +159,22 @@
 <!-- <div class="our-services section-pad-t30"> -->
             <div class="container">  
             <div class="pagination-area pb-300 text-center">
-                <div class="blog_right_sidebar">          
-                <aside class="single_sidebar_widget search_widget">
+                <div class="blog_right_sidebar"> 
+                  <aside class="single_sidebar_widget search_widget">
+                    <form action="/puskeswan/cari" method="GET">
+                        <div class="form-group">
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" placeholder='Search Keyword'
+                                    onfocus="this.placeholder = ''"
+                                    onblur="this.placeholder = 'Search Keyword'" name="cari">
+                                <div class="input-group-append">
+                                    <input type="submit" class="btn btn-primary mb-1" value="CARI"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </aside>         
+                {{-- <aside class="single_sidebar_widget search_widget">
                             <form method="POST">
                                 <div class="input-group mb-3">
                                         <input type="text" class="form-control" placeholder='cari puskeswan' name="cari" id="cari puskeswan" value=""
@@ -171,7 +185,7 @@
                                         </div>
                                    </div>      
                             </form>
-                        </aside>
+                        </aside> --}}
                   </div>
                 </div>
                
@@ -186,7 +200,7 @@
                                         <div class="item-box-blog">
                                         <div class="item-box-blog-image">
                                         {{-- //Code untuk menampilkan gambar yang berbentuk blob --}}
-                                        <img class="card-img rounded-0" src="/data/data_puskeswan/{{ $data_puskeswan->gambar }}" alt="gambar puskeswan" width="300px" height="300px">
+                                        <img src="/data/data_puskeswan/{{ $data_puskeswan->gambar }}" width="300px" >
                                         </div>
                                         
                                     

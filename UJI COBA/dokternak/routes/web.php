@@ -93,7 +93,7 @@ Route::group(['namespace' => 'Frontend'], function()
 {
     // Route::resource('home', 'HomeController');
     // Route::resource('artikel', 'ArtikelController');
-    Route::resource('puskeswan', 'PuskeswanController');
+    // Route::resource('puskeswan', 'PuskeswanController');
     Route::resource('tentangkami', 'TentangKamiController');
     Route::resource('dokter', 'DaftarDokterController');
     Route::resource('detailartikel', 'DetailArtikelController');
@@ -130,6 +130,7 @@ Route::get('/dokter/{id}/detail', 'frontend\DaftarDokterController@detail');
 
 //Route Puskeswan
 Route::get('/puskeswan', 'frontend\PuskeswanController@index');
+Route::get('/puskeswan/cari', 'frontend\PuskeswanController@cari');
 Route::get('/puskeswan/{id}/detail', 'frontend\PuskeswanController@detail');
 
 //Route Konsultasi
