@@ -497,8 +497,16 @@ $(document).ready(function(){
                             </div><br>
                             <div class="row">
                                 <div class="col">
-                                    <label class="control-label">Id Kategori</label>
-                                    <input type="text" class="form-control input-lg" name="id_kategori" value="{{ $data->id_kategori }}"  required>
+                                    <label class="control-label">Pilih Kategori Hewan</label>
+                                    {{-- <input type="text" class="form-control input-lg" name="id_kategori" value="{{ $data->id_kategori }}"  required> --}}
+                                    <div class="tab">
+                                        <input type="radio" name="id_kategori" id="tab-l" class="tab-switch" value="1"  <?php if($data['id_kategori']=='1') echo 'checked' ?>>
+                                        <label for="tab-l" class="tab-label">Hewan Ternak</label>
+                                    </div>
+                                    <div class="tab">
+                                        <input type="radio" name="id_kategori" id="tab-p" class="tab-switch" value="2"  <?php if($data['id_kategori']=='2') echo 'checked' ?>>
+                                        <label for="tab-p" class="tab-label">Hewan Kesayangan/Pets</label>
+                                    </div>
                                 </div>
                                 <div class="col">
                                     <label class="control-label">Keluhan</label>
@@ -507,8 +515,13 @@ $(document).ready(function(){
                             </div><br>
                             <div class="row">
                                 <div class="col">
-                                    <label class="control-label">Id Ktg</label>
-                                    <input type="text" class="form-control input-lg" name="id_ktg" value="{{ $data->id_ktg }}"  required>
+                                    <label class="control-label">Pilih Jenis Hewan</label>
+                                    {{-- <input type="text" class="form-control input-lg" name="id_ktg" value="{{ $data->id_ktg }}"  required> --}}
+                                    <select name="id_ktg" class="form-control" value="{{ $data->id_ktg }}">
+                                        @foreach ($kategori_artikel as $data2)
+                                          <option value="{{ $data2->id_ktg }}" selected>{{ $data2->kategori_artikel}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                                 <div class="col">
                                     <label class="control-label">Diagnosa</label>
