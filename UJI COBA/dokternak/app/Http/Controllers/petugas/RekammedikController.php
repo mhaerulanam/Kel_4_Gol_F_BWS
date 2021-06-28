@@ -21,7 +21,8 @@ class RekammedikController extends Controller
                     ->join('kategori_hewan', 'kategori_hewan.id_kategori','=','rekam_medik.id_kategori')
                     ->orderBy('id_rmd','desc')
                     ->get();
-        return view('petugas.rekam_medik.index', compact('rekam_medik'));
+        $kategori_artikel = DB::table('kategori_artikel')->orderBy('id_ktg','desc')->get();
+        return view('petugas.rekam_medik.index', compact('rekam_medik','kategori_artikel'));
     }
 
     public function create()

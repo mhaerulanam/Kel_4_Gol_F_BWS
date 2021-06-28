@@ -401,11 +401,14 @@ $(document).ready(function(){
                         <div class="row">
                             <div class="col">
                                 <label class="control-label">Pilih Kategori Hewan</label>
-                                <select name="id_kategori" class="form-control">
-                                    @foreach ($rekam_medik as $data)
-                                      <option value="{{ $data->id_kategori }}" selected>{{ $data->kategori_hewan}}</option>
-                                    @endforeach
-                                </select>
+                                <div class="tab">
+                                    <input type="radio" name="id_kategori" id="tab-l" class="tab-switch" value="1" selected>
+                                    <label for="tab-l" class="tab-label">Hewan Ternak</label>
+                                </div>
+                                <div class="tab">
+                                    <input type="radio" name="id_kategori" id="tab-p" class="tab-switch" value="2" selected>
+                                    <label for="tab-p" class="tab-label">Hewan Kesayangan/Pets</label>
+                                </div>
                             </div>
                             <div class="col">
                                 <label class="control-label">Alamat</label>
@@ -417,7 +420,7 @@ $(document).ready(function(){
                                 <label class="control-label">Pilih Jenis Hewan</label>
                                 {{-- <input type="text" class="form-control input-lg" name="id_ktg" required> --}}
                                 <select name="id_ktg" class="form-control">
-                                    @foreach ($rekam_medik as $data)
+                                    @foreach ($kategori_artikel as $data)
                                       <option value="{{ $data->id_ktg }}" selected>{{ $data->kategori_artikel}}</option>
                                     @endforeach
                                 </select>
