@@ -297,24 +297,18 @@ $(document).ready(function(){
                             <input type="text" class="form-control">
                         </div>
                         <div class="filter-group">
-                            <label>Jenis</label>
-                            <select class="form-control">
-                                <option>All</option>
-                                <option>Berlin</option>
-                                <option>London</option>
-                                <option>Madrid</option>
-                                <option>New York</option>
-                                <option>Paris</option>								
+                            <label>Jenis Hewan</label>
+                            <select name="id_ktg" class="form-control">
+                                @foreach ($kategori_artikel as $data)
+                                  <option value="{{ $data->id_ktg }}" selected>{{ $data->kategori_artikel}}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="filter-group">
-                            <label>Kategori</label>
+                            <label>Kategori Hewan</label>
                             <select class="form-control">
-                                <option>Kucing</option>
-                                <option>Kambing</option>
-                                <option>Sapi</option>
-                                <option>Kerbau</option>
-                                <option>Kuda</option>
+                                <option>Hewan Ternak</option>
+                                <option>Hewan Kesayangan/Pets</option>
                             </select>
                         </div>
                         <span class="filter-icon"><i class="fa fa-filter"></i></span>
