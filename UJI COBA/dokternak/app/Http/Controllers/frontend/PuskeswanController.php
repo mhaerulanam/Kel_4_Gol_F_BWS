@@ -20,12 +20,11 @@ class PuskeswanController extends Controller
         //Menangkap data pencarian
         $cari = $request->cari;
 
-        //mengambil data dari tabel artikel sesuai pencarian data
+        //mengambil data dari tabel puskeswan sesuai pencarian data
         $puskeswan = DB::table('puskeswan')
-        ->where('judul','like',"%".$cari."%")
-        ->paginate(3);
-
-        //mengirim data artikel ke view artikel
+        ->where('nama_puskeswan','like',"%".$cari."%")
+        ->paginate(2);
+        //mengirim data puskeswan ke view puskeswan
         return view('frontend.puskeswan',compact('puskeswan'));
     }
 
