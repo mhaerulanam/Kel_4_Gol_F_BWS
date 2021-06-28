@@ -64,3 +64,9 @@ Route::post('api_kritikdansaran', 'ApiKritikdanSaranController@createKs');
 Route::put('api_kritikdansaran/{id_ks}', 'ApiKritikdanSaranController@updateKs');
 Route::delete('api_kritikdansaran/{id_ks}', 'ApiKritikdanSaranController@deleteKs');
 
+//Route Api Dokumentasi
+Route::get('api_dokumentasi', 'ApiDokumentasiController@getAll');
+Route::get('api_dokumentasi/{id_dokumentasi}', 'ApiDokumentasiController@getDokumentasi');
+Route::post('api_dokumentasi', 'ApiDokumentasiController@createDokumentasi');
+Route::put('api_dokumentasi/{id_dokumentasi}', 'ApiDokumentasiController@updateDokumentasi');
+Route::delete('api_dokumentasi/{id_dokumentasi}', 'ApiDokumentasiController@deleteDokumentasi');
