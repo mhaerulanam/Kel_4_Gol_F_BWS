@@ -66,6 +66,18 @@
                       </div>
                     </div> <!-- /.form-row -->
                     <div class="form-row">
+                    <div class="col-md-4 mb-3">
+                      <label for="validationCustomUsername">Username</label>
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text" id="inputGroupPrepend">@</span>
+                        </div>
+                        <input type="text" class="form-control" id="validationCustomUsername" name="username" minlength="5" placeholder="Masukkan username" aria-describedby="inputGroupPrepend" 
+                        value="{{ isset($peternak) ? $peternak->username : '' }}"  
+                        required>
+                        <div class="invalid-feedback"> Please choose a username. </div>
+                      </div>
+                    </div>
                     </div>
                     <div class="form-row">
                       <div class="col-md-8 mb-3">

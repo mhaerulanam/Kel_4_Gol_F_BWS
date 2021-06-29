@@ -6,7 +6,13 @@
           <!-- nav bar -->
           <div class="w-100 mb-4 d-flex">
             <a class="navbar-brand mx-auto mt-2 flex-fill text-center" href="./index.html">
-              <img src="{{ asset('Frontend/assets/img/logo/logo1.png') }}" alt="">
+              <svg version="1.1" id="logo" class="navbar-brand-img brand-sm" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 120 120" xml:space="preserve">
+                <g>
+                  <polygon class="st0" points="78,105 15,105 24,87 87,87 	" />
+                  <polygon class="st0" points="96,69 33,69 42,51 105,51 	" />
+                  <polygon class="st0" points="78,33 15,33 24,15 87,15 	" />
+                </g>
+              </svg>
             </a>
           </div>
           <ul class="navbar-nav flex-fill w-100 mb-2">
@@ -43,7 +49,7 @@
               <ul  class="collapse list-unstyled pl-4 w-100" id="ui-elements">
                 <li class="nav-item dropdown">
                     <li class="nav-item">
-                      <a class="nav-link pl-3" href="/dashboard/peternak"><span class="ml-1 item-text">Data User Peternak</span>
+                      <a class="nav-link pl-3" href="/admin,"><span class="ml-1 item-text">Data User Admin</span>
                       </a>
                     </li>
                 </li>
@@ -51,7 +57,7 @@
               <ul  class="collapse list-unstyled pl-4 w-100" id="ui-elements">
                 <li class="nav-item dropdown">
                     <li class="nav-item">
-                      <a class="nav-link pl-3" href="/dashboard/admin"><span class="ml-1 item-text">Data User Admin</span>
+                      <a class="nav-link pl-3" href="/admin,"><span class="ml-1 item-text">Data User Dokter</span>
                       </a>
                     </li>
                 </li>
@@ -59,83 +65,14 @@
               <ul  class="collapse list-unstyled pl-4 w-100" id="ui-elements">
                 <li class="nav-item dropdown">
                     <li class="nav-item">
-                      <a class="nav-link pl-3" href="/dashboard/datapetugas"><span class="ml-1 item-text">Data User Petugas</span>
+                      <a class="nav-link pl-3" href="/peternak"><span class="ml-1 item-text">Data User Peternak</span>
                       </a>
                     </li>
                 </li>
               </ul>
             </li>
           </ul>
-          <ul class="navbar-nav flex-fill w-100 mb-2">
-            <li class="nav-item dropdown">
-              <a href="#ui-elements" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
-                <i class="fe fe-box fe-16"></i>
-                <span class="ml-3 item-text">Data Dokter</span>
-              </a>
-              <ul  class="collapse list-unstyled pl-4 w-100" id="ui-elements">
-                <li class="nav-item dropdown">
-                    <li class="nav-item">
-                      <a class="nav-link pl-3" href="/dashboard/dtdokter"><span class="ml-1 item-text">Data Dokter</span>
-                      </a>
-                    </li>
-                </li>
-              </ul>
-              <ul class="navbar-nav flex-fill w-100 mb-2">
-                <li class="nav-item dropdown">
-                  <a href="#ui-elements" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
-                    <i class="fe fe-box fe-16"></i>
-                    <span class="ml-3 item-text">Data Artikel</span>
-                  </a>
-                  <ul  class="collapse list-unstyled pl-4 w-100" id="ui-elements">
-                    <li class="nav-item dropdown">
-                        <li class="nav-item">
-                          <a class="nav-link pl-3" href="/dashboard/data_artikel"><span class="ml-1 item-text">Data Artikel</span>
-                          </a>
-                        </li>
-                    </li>
-                  </ul>
-              <ul class="navbar-nav flex-fill w-100 mb-2">
-            <li class="nav-item dropdown">
-              <a href="#ui-elements" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
-                <i class="fe fe-box fe-16"></i>
-                <span class="ml-3 item-text">Data Tutorial</span>
-              </a>
-              <ul  class="collapse list-unstyled pl-4 w-100" id="ui-elements">
-                <li class="nav-item dropdown">
-                    <li class="nav-item">
-                      <a class="nav-link pl-3" href="/dashboard/data_tutorial"><span class="ml-1 item-text">Tutorial</span>
-                      </a>
-                    </li>
-                </li>
-              </ul>
-              <ul class="navbar-nav flex-fill w-100 mb-2">
-                <li class="nav-item dropdown">
-                  <a href="#ui-elements" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
-                    <i class="fe fe-box fe-16"></i>
-                    <span class="ml-3 item-text">Data Puskeswan</span>
-                  </a>
-                  <ul  class="collapse list-unstyled pl-4 w-100" id="ui-elements">
-                    <li class="nav-item dropdown">
-                        <li class="nav-item">
-                          <a class="nav-link pl-3" href="/dashboard/data_puskeswan"><span class="ml-1 item-text">Data Puskeswan</span>
-                          </a>
-                        </li>
-                    </li>
-                  </ul>
-                  <ul class="navbar-nav flex-fill w-100 mb-2">
-                    <li class="nav-item dropdown">
-                      <a href="#ui-elements" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
-                        <i class="fe fe-box fe-16"></i>
-                        <span class="ml-3 item-text">Data Kritik dan Saran</span>
-                      </a>
-                      <ul  class="collapse list-unstyled pl-4 w-100" id="ui-elements">
-                        <li class="nav-item dropdown">
-                            <li class="nav-item">
-                              <a class="nav-link pl-3" href="/dashboard/data_ks"><span class="ml-1 item-text">Data Kritik dan Saran</span>
-                              </a>
-                            </li>
-                        </li>
-                      </ul>
+          
           {{-- <p class="text-muted nav-heading mt-4 mb-1">
             <span>Components</span>
           </p>

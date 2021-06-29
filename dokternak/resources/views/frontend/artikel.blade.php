@@ -56,18 +56,17 @@
                             <article class="blog_item">
                                     <div class="blog_item_img">
                                         {{-- //Code untuk menampilkan gambar yang berbentuk blob --}}
-                                        <!-- <img class="card-img rounded-0" src="data:image/png;base64,{{ chunk_split(base64_encode($data_artikel->gambar)) }}" alt="gambar artikel"> -->
-                                        <img class="card-img rounded-0" src="/data/data_artikel/{{ $data_artikel->gambar }}">
-                                        <a href="/artikel/{{ $data_artikel->id_artikel }}/detail/" class="blog_item_date">
+                                        <img class="card-img rounded-0" src="data:image/png;base64,{{ chunk_split(base64_encode($data_artikel->gambar)) }}" alt="gambar artikel">
+                                        <a href="#" class="blog_item_date">
                                             <h3>{{ $data_artikel->nama_penulis }}</h3>
                                         </a>
                                     </div>
                                     <div class="blog_details">
                                         <a class="d-inline-block" href="single-blog.html">
-                                            <h2><a href="/artikel/{{ $data_artikel->id_artikel }}/detail/">{{ $data_artikel->judul }}</a></h2>
+                                            <h2><a href="detailartikel.php?id_artikel=id">{{ $data_artikel->judul }}</a></h2>
                                         </a>
                                         {{-- Code untuk memotong text menggunakan Str limit --}}
-                                        <p>{{\Illuminate\Support\Str::limit($data_artikel->isi, 250)}}  <a href="/artikel/{{ $data_artikel->isi }}/detail/" class="more-btn">  <strong> Read more » </strong></a></p>
+                                        <p>{{\Illuminate\Support\Str::limit($data_artikel->isi, 250)}}  <a href="detailartikel.php?id_artikel=id isi" class="more-btn">  <strong> Read more » </strong></a></p>
                                         <ul class="blog-info-link">
                                             <li><a>{{ $data_artikel->id_ktg }}</a></li>
                                             <li><a>{{ $data_artikel->tanggal }}</a></li>
@@ -85,18 +84,18 @@
                     <div class="blog_right_sidebar">
                         <div class="btn_tulis">
                             <div class="items-link f-center">
-                                <a href="tulisartikel" class="genric-btn primary">++ TULIS ARTIKEL</a>
+                                <a href="tulis_artikel.php" class="genric-btn primary">++ TULIS ARTIKEL</a>
                             </div>
                         </div>
                         <aside class="single_sidebar_widget search_widget">
-                            <form action="/artikel/cari" method="GET">
+                            <form action="#">
                                 <div class="form-group">
                                     <div class="input-group mb-3">
                                         <input type="text" class="form-control" placeholder='Search Keyword'
                                             onfocus="this.placeholder = ''"
-                                            onblur="this.placeholder = 'Search Keyword'" name="cari">
+                                            onblur="this.placeholder = 'Search Keyword'">
                                         <div class="input-group-append">
-                                            <input type="submit" class="btn btn-primary mb-1" value="CARI"></div>
+                                            <button class="btns" type="button"><i class="ti-search"></i></button>
                                         </div>
                                     </div>
                                 </div>
@@ -109,33 +108,38 @@
                             <h4 class="widget_title">Category</h4>
                             <ul class="list cat-list">
                                 <li>
-                                    <a href="/artikel/cari?cari=kucing" class="d-flex">
+                                    <a href="#" class="d-flex">
                                         <p>Kucing</p>
-                                        <p>(2)</p>
+                                        <p>(3)</p>
                                     </a>
                                 </li>   
                                 <li>
-                                    <a href="/artikel/cari?cari=kambing" class="d-flex">
+                                    <a href="#" class="d-flex">
                                         <p>Kambing</p>
                                         <p>(2)</p>
                                     </a>
-                                </li>                          
+                                </li> 
+                                <li>
+                                    <a href="#" class="d-flex">
+                                        <p>Ikan</p>
+                                        <p>(2)</p>
+                                    </a>
+                                </li>                           
                             </ul>
                         </aside>
-              
-                        <!-- Artikel Lainnya -->
+
                         <aside class="single_sidebar_widget popular_post_widget">
-                            <h3 class="widget_title">Artikel Lainnya</h3>
-                            @foreach ($artikel as $data_artikel)  
+                            <h3 class="widget_title">Recent Post</h3>
+                            @foreach ($artikel as $data_artikel)                            
                             <div class="media post_item">
-                                <img src="/data/data_artikel/{{ $data_artikel->gambar }}" width="120px" />
+                                <img src="data:image/png;base64,{{ chunk_split(base64_encode($data_artikel->gambar)) }}" alt="post" width="100px">
                                 <div class="media-body">
-                                        <a href="detailartikel.php?id_artikel=">
-                                            <h6>{{ $data_artikel->judul }}</h6>
-                                        </a>
-                                        <p>{{ $data_artikel->tanggal }}</p>
+                                    <a href="single-blog.html">
+                                        <h3>{{ $data_artikel->judul }}</h3>
+                                    </a>
+                                    <p>{{ $data_artikel->tanggal }}</p>
                                 </div>
-                            </div> 
+                            </div>
                             @endforeach
                         </aside>
                     </div>
@@ -152,7 +156,7 @@
                         <nav aria-label="Page navigation example">
                         <ul class="pagination justify-content-start">     
                         {{-- //pagination use bootstrap --}}
-                            {{ $artikel->links()}}
+                {{ $artikel->links()}}
                             </ul>
                         </nav>
                     </div>
@@ -168,40 +172,40 @@
         
     <!-- JS here -->
 	
-		  <!-- All JS Custom Plugins Link Here here -->
-          <script src="{{ asset('Petugas/assets/js/vendor/modernizr-3.5.0.min.js') }}"></script>
-          <!-- Jquery, Popper, Bootstrap -->
-          <script src="{{ asset('Petugas/assets/js/vendor/jquery-1.12.4.min.js') }}"></script>
-          <script src="{{ asset('Petugas/assets/js/popper.min.js') }}"></script>
-          <script src="{{ asset('Petugas/assets/js/bootstrap.min.js') }}"></script>
-          <!-- Jquery Mobile Menu -->
-          <script src="{{ asset('Petugas/assets/js/jquery.slicknav.min.js') }}"></script>
-  
-          <!-- Jquery Slick , Owl-Carousel Plugins -->
-          <script src="{{ asset('Petugas/assets/js/owl.carousel.min.js') }}"></script>
-          <script src="{{ asset('Petugas/assets/js/slick.min.js') }}"></script>
-          <script src="{{ asset('Petugas/assets/js/price_rangs.js') }}"></script>
-          
-          <!-- One Page, Animated-HeadLin -->
-          <script src="{{ asset('Petugas/assets/js/wow.min.js') }}"></script>
-          <script src="{{ asset('Petugas/assets/js/animated.headline.js') }}"></script>
-          <script src="{{ asset('Petugas/assets/js/jquery.magnific-popup.js') }}"></script>
-  
-          <!-- Scrollup, nice-select, sticky -->
-          <script src="{{ asset('Petugas/assets/js/jquery.scrollUp.min.js') }}"></script>
-          <script src="{{ asset('Petugas/assets/js/jquery.nice-select.min.js') }}"></script>
-          <script src="{{ asset('Petugas/assets/js/jquery.sticky.js') }}"></script>
-          
-          <!-- contact js -->
-          <script src="{{ asset('Petugas/assets/js/contact.js') }}"></script>
-          <script src="{{ asset('Petugas/assets/js/jquery.form.js') }}"></script>
-          <script src="{{ asset('Petugas/assets/js/jquery.validate.min.js') }}"></script>
-          <script src="{{ asset('Petugas/assets/js/mail-script.js') }}"></script>
-          <script src="{{ asset('Petugas/assets/js/jquery.ajaxchimp.min.js') }}"></script>
-          
-          <!-- Jquery Plugins, main Jquery -->	
-          <script src="{{ asset('Petugas/assets/js/plugins.js') }}"></script>
-          <script src="{{ asset('Petugas/assets/js/main.js') }}"></script>
+		<!-- All JS Custom Plugins Link Here here -->
+        <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
+		<!-- Jquery, Popper, Bootstrap -->
+		<script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
+        <script src="./assets/js/popper.min.js"></script>
+        <script src="./assets/js/bootstrap.min.js"></script>
+	    <!-- Jquery Mobile Menu -->
+        <script src="./assets/js/jquery.slicknav.min.js"></script>
+
+		<!-- Jquery Slick , Owl-Carousel Plugins -->
+        <script src="./assets/js/owl.carousel.min.js"></script>
+        <script src="./assets/js/slick.min.js"></script>
+        <script src="./assets/js/price_rangs.js"></script>
+
+		<!-- One Page, Animated-HeadLin -->
+        <script src="./assets/js/wow.min.js"></script>
+		<script src="./assets/js/animated.headline.js"></script>
+		
+		<!-- Scrollup, nice-select, sticky -->
+        <script src="./assets/js/jquery.scrollUp.min.js"></script>
+        <script src="./assets/js/jquery.nice-select.min.js"></script>
+		<script src="./assets/js/jquery.sticky.js"></script>
+        <script src="./assets/js/jquery.magnific-popup.js"></script>
+
+        <!-- contact js -->
+        <script src="./assets/js/contact.js"></script>
+        <script src="./assets/js/jquery.form.js"></script>
+        <script src="./assets/js/jquery.validate.min.js"></script>
+        <script src="./assets/js/mail-script.js"></script>
+        <script src="./assets/js/jquery.ajaxchimp.min.js"></script>
+        
+		<!-- Jquery Plugins, main Jquery -->	
+        <script src="./assets/js/plugins.js"></script>
+        <script src="./assets/js/main.js"></script>
         
 </body>
 </html>

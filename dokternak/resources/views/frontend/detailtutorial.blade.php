@@ -28,7 +28,7 @@
     @include('frontend/layouts.navbar');
    <!-- Hero Area Start-->
    <div class="slider-area ">
-      <div class="single-slider section-overly slider-height2 d-flex align-items-center" data-background="{{ asset('Frontend/assets/img/gallery/s2.jpg')}}">
+      <div class="single-slider section-overly slider-height2 d-flex align-items-center" data-background="assets/img/gallery/s2.jpg">
           <div class="container">
               <div class="row">
                   <div class="col-xl-12">
@@ -61,7 +61,7 @@
                     </div>
                     <div class="col-xl-6 col-lg-6">
                         <div class="support-location-img">
-                            <img class="card-img rounded-0" src="/data/data_tutorial/{{ $tutorial->icon }}">
+                            <img src="data:image/png;base64,{{ chunk_split(base64_encode($tutorial->icon)) }}">
                         </div>
                     </div>
                 </div> 
@@ -69,7 +69,7 @@
         </div> 
         <!-- Support Company End-->
         <!-- How  Apply Process Start-->
-        {{-- <div class="apply-process-area apply-bg pt-150 pb-150" data-background="assets/img/gallery/how-applybg.png">
+        <div class="apply-process-area apply-bg pt-150 pb-150" data-background="assets/img/gallery/how-applybg.png">
             <div class="container">
                 <!-- Section Tittle -->
                     <div class="col-lg-12">
@@ -85,7 +85,7 @@
                         <div class="col-lg-4 col-md-6">
                         <div class="single-services text-center mb-30">
                                 <div class="services-ion">
-                                <img src="data:image/png;base64,{{ chunk_split(base64_encode($tutorial->icon)) }}"><br>
+                                <img src="gambartutorial.php?id_tutorial="width="80px"><br>
                             
                                 </div>
                                 <div class="services-cap">
@@ -102,49 +102,50 @@
                 </div>
                 </div>
             </div>
-        </div> --}}
+        </div>
         <!-- How  Apply Process End-->
 
 <section>
     @include('frontend/layouts.footer');
 </section>
         
-        <!-- JS here -->
+<!-- JS here -->
 	
-		  <!-- All JS Custom Plugins Link Here here -->
-          <script src="{{ asset('Petugas/assets/js/vendor/modernizr-3.5.0.min.js') }}"></script>
-          <!-- Jquery, Popper, Bootstrap -->
-          <script src="{{ asset('Petugas/assets/js/vendor/jquery-1.12.4.min.js') }}"></script>
-          <script src="{{ asset('Petugas/assets/js/popper.min.js') }}"></script>
-          <script src="{{ asset('Petugas/assets/js/bootstrap.min.js') }}"></script>
-          <!-- Jquery Mobile Menu -->
-          <script src="{{ asset('Petugas/assets/js/jquery.slicknav.min.js') }}"></script>
-  
-          <!-- Jquery Slick , Owl-Carousel Plugins -->
-          <script src="{{ asset('Petugas/assets/js/owl.carousel.min.js') }}"></script>
-          <script src="{{ asset('Petugas/assets/js/slick.min.js') }}"></script>
-          <script src="{{ asset('Petugas/assets/js/price_rangs.js') }}"></script>
-          
-          <!-- One Page, Animated-HeadLin -->
-          <script src="{{ asset('Petugas/assets/js/wow.min.js') }}"></script>
-          <script src="{{ asset('Petugas/assets/js/animated.headline.js') }}"></script>
-          <script src="{{ asset('Petugas/assets/js/jquery.magnific-popup.js') }}"></script>
-  
-          <!-- Scrollup, nice-select, sticky -->
-          <script src="{{ asset('Petugas/assets/js/jquery.scrollUp.min.js') }}"></script>
-          <script src="{{ asset('Petugas/assets/js/jquery.nice-select.min.js') }}"></script>
-          <script src="{{ asset('Petugas/assets/js/jquery.sticky.js') }}"></script>
-          
-          <!-- contact js -->
-          <script src="{{ asset('Petugas/assets/js/contact.js') }}"></script>
-          <script src="{{ asset('Petugas/assets/js/jquery.form.js') }}"></script>
-          <script src="{{ asset('Petugas/assets/js/jquery.validate.min.js') }}"></script>
-          <script src="{{ asset('Petugas/assets/js/mail-script.js') }}"></script>
-          <script src="{{ asset('Petugas/assets/js/jquery.ajaxchimp.min.js') }}"></script>
-          
-          <!-- Jquery Plugins, main Jquery -->	
-          <script src="{{ asset('Petugas/assets/js/plugins.js') }}"></script>
-          <script src="{{ asset('Petugas/assets/js/main.js') }}"></script>
+		<!-- All JS Custom Plugins Link Here here -->
+      <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
+		<!-- Jquery, Popper, Bootstrap -->
+		<script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
+      <script src="./assets/js/popper.min.js"></script>
+      <script src="./assets/js/bootstrap.min.js"></script>
+      <!-- Jquery Mobile Menu -->
+      <script src="./assets/js/jquery.slicknav.min.js"></script>
+
+		<!-- Jquery Slick , Owl-Carousel Plugins -->
+      <script src="./assets/js/owl.carousel.min.js"></script>
+      <script src="./assets/js/slick.min.js"></script>
+      <script src="./assets/js/price_rangs.js"></script>
+      <!-- Date Picker -->
+      <script src="./assets/js/gijgo.min.js"></script>
+		<!-- One Page, Animated-HeadLin -->
+      <script src="./assets/js/wow.min.js"></script>
+		<script src="./assets/js/animated.headline.js"></script>
+      <script src="./assets/js/jquery.magnific-popup.js"></script>
+
+		<!-- Scrollup, nice-select, sticky -->
+      <script src="./assets/js/jquery.scrollUp.min.js"></script>
+      <script src="./assets/js/jquery.nice-select.min.js"></script>
+		<script src="./assets/js/jquery.sticky.js"></script>
+      
+      <!-- contact js -->
+      <script src="./assets/js/contact.js"></script>
+      <script src="./assets/js/jquery.form.js"></script>
+      <script src="./assets/js/jquery.validate.min.js"></script>
+      <script src="./assets/js/mail-script.js"></script>
+      <script src="./assets/js/jquery.ajaxchimp.min.js"></script>
+        
+		<!-- Jquery Plugins, main Jquery -->	
+      <script src="./assets/js/plugins.js"></script>
+      <script src="./assets/js/main.js"></script>
 
 </body>
 </html>
