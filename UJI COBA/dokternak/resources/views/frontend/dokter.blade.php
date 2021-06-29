@@ -176,41 +176,41 @@
                                     </div> 
                                 </div>
                                 </div>
-                            </div>
+                            </div>	
+                            </form  method="POST" action="/dokter/cari" >
                                 <div class="input-group mb-3">
-                                        <input list="nt" class="form-control" placeholder='Masukkan nama Dokter atau lokasi kecamatan Anda ...' name="nt" id="cari dokter" value=""
+                                    {{ csrf_field() }}
+                                        <input list="nt" class="form-control" placeholder='Masukkan nama Dokter atau lokasi kecamatan Anda ...' name="cari_petugas" id="cari dokter" value=""
                                             onfocus="this.placeholder = ''"
                                             onblur="this.placeholder = 'Masukkan nama Dokter atau lokasi kecamatan Anda ... '">
-                                            {{-- <datalist id="nt">
-                                                <option value="Bondowoso" <?php if ($nt=="Bondowoso"){ echo "selected"; } ?>>Bondowoso</option>
-                                                <option value="Binakal" <?php if ($nt=="Binakal"){ echo "selected"; } ?>>Binakal</option>
-                                                <option value="Cermee" <?php if ($nt=="Cermee"){ echo "selected"; } ?>>Cermee</option>
-                                                <option value="Curahdami" <?php if ($nt=="Curahdami"){ echo "selected"; } ?>>Curahdami</option>
-                                                <option value="Grujugan" <?php if ($nt=="Grujugan"){ echo "selected"; } ?>>Grujugan</option>
-                                                <option value="Jambesari" <?php if ($nt=="Jambesari"){ echo "selected"; } ?>>Jambesari</option>
-                                                <option value="Klabang" <?php if ($nt=="Klabang"){ echo "selected"; } ?>>Klabang</option>
-                                                <option value="Maesan" <?php if ($nt=="Maesan"){ echo "selected"; } ?>>Maesan</option>
-                                                <option value="Pakem" <?php if ($nt=="Pakem"){ echo "selected"; } ?>>Pakem</option>
-                                                <option value="Prajekan" <?php if ($nt=="Prajekan"){ echo "selected"; } ?>>Prajekan</option>
-                                                <option value="Pujer" <?php if ($nt=="Pujer"){ echo "selected"; } ?>>Pujer</option>
-                                                <option value="Sempol" <?php if ($nt=="Sempol"){ echo "selected"; } ?>>Sempol</option>
-                                                <option value="Sukosari" <?php if ($nt=="Sukosari"){ echo "selected"; } ?>>Sukosari</option>
-                                                <option value="Sumberwringin" <?php if ($nt=="Sumberwringin"){ echo "selected"; } ?>>Sumberwringin</option>
-                                                <option value="Taman Krocok" <?php if ($nt=="Taman Krocok"){ echo "selected"; } ?>>Taman Krocok</option>
-                                                <option value="Tamanan" <?php if ($nt=="Tamanan"){ echo "selected"; } ?>>Tamanan</option>
-                                                <option value="Tapen" <?php if ($nt=="Tapen"){ echo "selected"; } ?>>Tapen</option>
-                                                <option value="Tegalampel" <?php if ($nt=="Tegalampel"){ echo "selected"; } ?>>Tegalampel</option>
-                                                <option value="Tenggarang" <?php if ($nt=="Tenggarang"){ echo "selected"; } ?>>Tenggarang</option>
-                                                <option value="Tlogosari" <?php if ($nt=="Tlogosari"){ echo "selected"; } ?>>Tlogosari</option>
-                                                <option value="Wonosari" <?php if ($nt=="Wonosari"){ echo "selected"; } ?>>Wonosari</option>
-                                                <option value="Wringin" <?php if ($nt=="Wringin"){ echo "selected"; } ?>>Wringin</option>
+                                            <datalist id="nt"> 
+                                                <option value="Bondowoso" >Bondowoso</option>
+                                                <option value="Binakal" >Binakal</option>
+                                                <option value="Cermee">Cermee</option>
+                                                <option value="Curahdami">Curahdami</option>
+                                                <option value="Grujugan" >Grujugan</option>
+                                                <option value="Jambesari" >Jambesari</option>
+                                                <option value="Klabang" >Klabang</option>
+                                                <option value="Maesan" >Maesan</option>
+                                                <option value="Pakem" >Pakem</option>
+                                                <option value="Prajekan" >Prajekan</option>
+                                                <option value="Pujer" >Pujer</option>
+                                                <option value="Sempol" >Sempol</option>
+                                                <option value="Sukosari" >Sukosari</option>
+                                                <option value="Sumberwringin" >Sumberwringin</option>
+                                                <option value="Taman Krocok" >Taman Krocok</option>
+                                                <option value="Tamanan" >Tamanan</option>
+                                                <option value="Tapen" >Tapen</option>
+                                                <option value="Tegalampel">Tegalampel</option>
+                                                <option value="Tenggarang" >Tenggarang</option>
+                                                <option value="Tlogosari" >Tlogosari</option>
+                                                <option value="Wonosari" >Wonosari</option>
+                                                <option value="Wringin" >Wringin</option>
                                             </datalist> --}}
                                         <div class="input-group-append">
                                             <button class="btns" type="submit" name="submit"><i class="ti-search"></i></button> 
                                         </div>
                                 </div>
-                                   
-                            </form>
                         </aside>
                 </div>
                 <?php
