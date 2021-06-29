@@ -13,7 +13,7 @@ class CreateKrtikdansaranTabel extends Migration
      */
     public function up()
     {
-        Schema::create('krtikdansaran_tabel', function (Blueprint $table) {
+        Schema::create('krtik_dan_saran', function (Blueprint $table) {
             $table->integer('id_ks',11);
             $table->date('tanggal');
             $table->text('komentar');

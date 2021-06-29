@@ -4,14 +4,17 @@ namespace App\Http\Controllers\frontend;
 use App\Http\Controllers\controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\artikel;
 
 class ArtikelController extends Controller
 {
 
     public function index()
     {
-        $artikel = DB::table('artikel')->orderBy('tanggal', 'desc')->paginate(2);
-
+        // $artikel = Artikel::orderBy('tanggal', 'desc')->paginate(2);
+        $artikel = Artikel::join('kategori_artikel', 'kategori_artikel.id_ktg', '=', 'artikel.id_ktg')
+        ->orderBy('id_artikel','desc')
+        ->paginate(2);
         return view('frontend.artikel',compact('artikel'))->with('artikel', $artikel);;
         // return view('frontend.artikel');
 
@@ -26,6 +29,7 @@ class ArtikelController extends Controller
 
         //mengambul data dari tabel artikel sesuai pencarian data
         $artikel = DB::table('artikel')
+        ->join('kategori_artikel', 'kategori_artikel.id_ktg', '=', 'artikel.id_ktg')
         ->where('judul','like',"%".$cari."%")
         ->paginate(2);
 
@@ -33,10 +37,12 @@ class ArtikelController extends Controller
         return view('frontend.artikel',compact('artikel'));
     }
 
-    public function ReadMore($id)
-    {
-        $artikel = DB::table('users')->where('id',$id)->first();
-        return view('frontend.artikel',compact('artikel'));
+    public function detail($id) {
+        // $artikel2 = Artikel::orderBy('tanggal', 'desc')->paginate(2);
+        $artikel2 = Artikel::join('kategori_artikel', 'kategori_artikel.id_ktg', '=', 'artikel.id_ktg')
+        ->paginate(2);
+        $artikel = DB::table('artikel')->join('kategori_artikel', 'kategori_artikel.id_ktg', '=', 'artikel.id_ktg')->where('id_artikel',$id)->first();
+        return view('frontend.detailartikel',compact('artikel','artikel2'));
     }
 
 }

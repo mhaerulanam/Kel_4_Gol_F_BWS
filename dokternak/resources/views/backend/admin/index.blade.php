@@ -45,7 +45,7 @@
                     </div>
                   <div class="col-auto">
                     <div class="form">
-                      <a href="{{ route('peternak.create') }}"><button class="btn btn-primary"
+                      <a href="{{ route('admin.create') }}"><button class="btn btn-primary"
                           type="button"><i class="fa fa-plus"></i><span>Tambah</span></button></a>
                     </div>
                   </div>
@@ -56,23 +56,23 @@
                       <th>NO</th>
                       <th>Nama</th>
                       <th>Email</th>
-                      <th>Username</th>
+                      <th>Role</th>
                       <th>Password</th>
                       <th>Aksi</th>
                     </tr>
                   </thead>
                   <tbody>
                     @php $no = 1; @endphp
-                    @foreach ($admin as $item)
+                    @foreach ($data['admin'] as $item)
                     <tr>
                         <td>{{ $no++ }}</td>
                         <td>{{ $item->name }}</td>
                         <td>{{ $item->email }}</td>
-                        <td>{{ $item->username }}</td>
+                        <td>Admin</td>
                         <td>{{ $item->password }}</td>
                         <td>
                         <div class="btn-group">
-                            <a href="{{ route('peternak.edit',$item->id)}}" class="btn btn-warning">Edit<i class="fa fa-edit"></i></a>
+                            <a href="{{ route('admin.edit',$item->id)}}" class="btn btn-warning">Edit<i class="fa fa-edit"></i></a>
                             <form action="{{ route('admin.destroy',$item->id)}}" method="POST">
                             @csrf
                                 @method('DELETE')

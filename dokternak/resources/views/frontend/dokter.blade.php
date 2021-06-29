@@ -134,7 +134,7 @@
     <!-- Banner Atas Start-->
    
    <div class="slider-area ">
-      <div class="single-slider section-overly slider-height2 d-flex align-items-center" data-background="{{ asset('Fronentd/assets/img/gallery/s2.jpg')}}">
+      <div class="single-slider section-overly slider-height2 d-flex align-items-center" data-background="{{ asset('Frontend/assets/img/gallery/s2.jpg') }}">
           <div class="container">
               <div class="row">
                   <div class="col-xl-12">
@@ -176,41 +176,41 @@
                                     </div> 
                                 </div>
                                 </div>
-                            </div>
+                            </div>	
+                            </form  method="POST" action="/dokter/cari" >
                                 <div class="input-group mb-3">
-                                        <input list="nt" class="form-control" placeholder='Masukkan nama Dokter atau lokasi kecamatan Anda ...' name="nt" id="cari dokter" value=""
+                                    {{ csrf_field() }}
+                                        <input list="nt" class="form-control" placeholder='Masukkan nama Dokter atau lokasi kecamatan Anda ...' name="cari_petugas" id="cari dokter" value=""
                                             onfocus="this.placeholder = ''"
                                             onblur="this.placeholder = 'Masukkan nama Dokter atau lokasi kecamatan Anda ... '">
-                                            {{-- <datalist id="nt">
-                                                <option value="Bondowoso" <?php if ($nt=="Bondowoso"){ echo "selected"; } ?>>Bondowoso</option>
-                                                <option value="Binakal" <?php if ($nt=="Binakal"){ echo "selected"; } ?>>Binakal</option>
-                                                <option value="Cermee" <?php if ($nt=="Cermee"){ echo "selected"; } ?>>Cermee</option>
-                                                <option value="Curahdami" <?php if ($nt=="Curahdami"){ echo "selected"; } ?>>Curahdami</option>
-                                                <option value="Grujugan" <?php if ($nt=="Grujugan"){ echo "selected"; } ?>>Grujugan</option>
-                                                <option value="Jambesari" <?php if ($nt=="Jambesari"){ echo "selected"; } ?>>Jambesari</option>
-                                                <option value="Klabang" <?php if ($nt=="Klabang"){ echo "selected"; } ?>>Klabang</option>
-                                                <option value="Maesan" <?php if ($nt=="Maesan"){ echo "selected"; } ?>>Maesan</option>
-                                                <option value="Pakem" <?php if ($nt=="Pakem"){ echo "selected"; } ?>>Pakem</option>
-                                                <option value="Prajekan" <?php if ($nt=="Prajekan"){ echo "selected"; } ?>>Prajekan</option>
-                                                <option value="Pujer" <?php if ($nt=="Pujer"){ echo "selected"; } ?>>Pujer</option>
-                                                <option value="Sempol" <?php if ($nt=="Sempol"){ echo "selected"; } ?>>Sempol</option>
-                                                <option value="Sukosari" <?php if ($nt=="Sukosari"){ echo "selected"; } ?>>Sukosari</option>
-                                                <option value="Sumberwringin" <?php if ($nt=="Sumberwringin"){ echo "selected"; } ?>>Sumberwringin</option>
-                                                <option value="Taman Krocok" <?php if ($nt=="Taman Krocok"){ echo "selected"; } ?>>Taman Krocok</option>
-                                                <option value="Tamanan" <?php if ($nt=="Tamanan"){ echo "selected"; } ?>>Tamanan</option>
-                                                <option value="Tapen" <?php if ($nt=="Tapen"){ echo "selected"; } ?>>Tapen</option>
-                                                <option value="Tegalampel" <?php if ($nt=="Tegalampel"){ echo "selected"; } ?>>Tegalampel</option>
-                                                <option value="Tenggarang" <?php if ($nt=="Tenggarang"){ echo "selected"; } ?>>Tenggarang</option>
-                                                <option value="Tlogosari" <?php if ($nt=="Tlogosari"){ echo "selected"; } ?>>Tlogosari</option>
-                                                <option value="Wonosari" <?php if ($nt=="Wonosari"){ echo "selected"; } ?>>Wonosari</option>
-                                                <option value="Wringin" <?php if ($nt=="Wringin"){ echo "selected"; } ?>>Wringin</option>
+                                            <datalist id="nt"> 
+                                                <option value="Bondowoso" >Bondowoso</option>
+                                                <option value="Binakal" >Binakal</option>
+                                                <option value="Cermee">Cermee</option>
+                                                <option value="Curahdami">Curahdami</option>
+                                                <option value="Grujugan" >Grujugan</option>
+                                                <option value="Jambesari" >Jambesari</option>
+                                                <option value="Klabang" >Klabang</option>
+                                                <option value="Maesan" >Maesan</option>
+                                                <option value="Pakem" >Pakem</option>
+                                                <option value="Prajekan" >Prajekan</option>
+                                                <option value="Pujer" >Pujer</option>
+                                                <option value="Sempol" >Sempol</option>
+                                                <option value="Sukosari" >Sukosari</option>
+                                                <option value="Sumberwringin" >Sumberwringin</option>
+                                                <option value="Taman Krocok" >Taman Krocok</option>
+                                                <option value="Tamanan" >Tamanan</option>
+                                                <option value="Tapen" >Tapen</option>
+                                                <option value="Tegalampel">Tegalampel</option>
+                                                <option value="Tenggarang" >Tenggarang</option>
+                                                <option value="Tlogosari" >Tlogosari</option>
+                                                <option value="Wonosari" >Wonosari</option>
+                                                <option value="Wringin" >Wringin</option>
                                             </datalist> --}}
                                         <div class="input-group-append">
                                             <button class="btns" type="submit" name="submit"><i class="ti-search"></i></button> 
                                         </div>
                                 </div>
-                                   
-                            </form>
                         </aside>
                 </div>
                 <?php
@@ -238,12 +238,12 @@
                                             <div class="col-md-10">
                                                 <div class="our-team">
                                                 <div class="pic">
-                                                    <img class="card-img rounded-0" src="data:image/png;base64,{{ chunk_split(base64_encode($data_dokter->foto)) }}" alt="gambar dokter" width="300px">
+                                                    <img src="/data/data_dokter/{{ $data_dokter->foto }}" alt="gambar dokter" width="300px">
                                                 </div>
                                                 <div class="blog_details">
                                                     {{-- Code untuk memotong text menggunakan Str limit --}}
                                                     <div class="team-content">
-                                                        <h4 class="title">{{ $data_dokter->nama }}</h4>
+                                                        <h4 class="title">{{ $data_dokter->nama_dokter }}</h4>
                                                         <span class="post">{{ $data_dokter->id_jabatan }} </span>
                                                         <span class="post">{{ $data_dokter->tempat }}</span>
                                                         <p><span class="post">{{ $data_dokter->telpon }}</span></p><br>
@@ -253,11 +253,11 @@
                                                         <li><a>{{ $data_dokter->telpon }}</a></li>
                                                     </ul> --}}
                                                     <div class="services-cap">
-                                                    <a href="/dokter/{{ $data_dokter->id_dokter }}/detail/">Detail</a>
+                                                    <a href="/dokter/{{ $data_dokter->id_dokter }}/detail/" class="genric-btn primary radius">Detail</a>
                                                     </div>
                                                     {{-- <ul class="social"> 
                                                         <li>
-                                                       
+                                                        
                                                         </li>
                                                     </ul> --}}
                                                 </div>
@@ -307,40 +307,40 @@
 
   <!-- JS here -->
 	
-		<!-- All JS Custom Plugins Link Here here -->
-        <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
-		<!-- Jquery, Popper, Bootstrap -->
-		<script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
-        <script src="./assets/js/popper.min.js"></script>
-        <script src="./assets/js/bootstrap.min.js"></script>
-	    <!-- Jquery Mobile Menu -->
-        <script src="./assets/js/jquery.slicknav.min.js"></script>
-
-		<!-- Jquery Slick , Owl-Carousel Plugins -->
-        <script src="./assets/js/owl.carousel.min.js"></script>
-        <script src="./assets/js/slick.min.js"></script>
-        <script src="./assets/js/price_rangs.js"></script>
-
-		<!-- One Page, Animated-HeadLin -->
-        <script src="./assets/js/wow.min.js"></script>
-		<script src="./assets/js/animated.headline.js"></script>
-		
-		<!-- Scrollup, nice-select, sticky -->
-        <script src="./assets/js/jquery.scrollUp.min.js"></script>
-        <script src="./assets/js/jquery.nice-select.min.js"></script>
-		<script src="./assets/js/jquery.sticky.js"></script>
-        <script src="./assets/js/jquery.magnific-popup.js"></script>
-
-        <!-- contact js -->
-        <script src="./assets/js/contact.js"></script>
-        <script src="./assets/js/jquery.form.js"></script>
-        <script src="./assets/js/jquery.validate.min.js"></script>
-        <script src="./assets/js/mail-script.js"></script>
-        <script src="./assets/js/jquery.ajaxchimp.min.js"></script>
-        
-		<!-- Jquery Plugins, main Jquery -->	
-        <script src="./assets/js/plugins.js"></script>
-        <script src="./assets/js/main.js"></script>
+		  <!-- All JS Custom Plugins Link Here here -->
+          <script src="{{ asset('Petugas/assets/js/vendor/modernizr-3.5.0.min.js') }}"></script>
+          <!-- Jquery, Popper, Bootstrap -->
+          <script src="{{ asset('Petugas/assets/js/vendor/jquery-1.12.4.min.js') }}"></script>
+          <script src="{{ asset('Petugas/assets/js/popper.min.js') }}"></script>
+          <script src="{{ asset('Petugas/assets/js/bootstrap.min.js') }}"></script>
+          <!-- Jquery Mobile Menu -->
+          <script src="{{ asset('Petugas/assets/js/jquery.slicknav.min.js') }}"></script>
+  
+          <!-- Jquery Slick , Owl-Carousel Plugins -->
+          <script src="{{ asset('Petugas/assets/js/owl.carousel.min.js') }}"></script>
+          <script src="{{ asset('Petugas/assets/js/slick.min.js') }}"></script>
+          <script src="{{ asset('Petugas/assets/js/price_rangs.js') }}"></script>
+          
+          <!-- One Page, Animated-HeadLin -->
+          <script src="{{ asset('Petugas/assets/js/wow.min.js') }}"></script>
+          <script src="{{ asset('Petugas/assets/js/animated.headline.js') }}"></script>
+          <script src="{{ asset('Petugas/assets/js/jquery.magnific-popup.js') }}"></script>
+  
+          <!-- Scrollup, nice-select, sticky -->
+          <script src="{{ asset('Petugas/assets/js/jquery.scrollUp.min.js') }}"></script>
+          <script src="{{ asset('Petugas/assets/js/jquery.nice-select.min.js') }}"></script>
+          <script src="{{ asset('Petugas/assets/js/jquery.sticky.js') }}"></script>
+          
+          <!-- contact js -->
+          <script src="{{ asset('Petugas/assets/js/contact.js') }}"></script>
+          <script src="{{ asset('Petugas/assets/js/jquery.form.js') }}"></script>
+          <script src="{{ asset('Petugas/assets/js/jquery.validate.min.js') }}"></script>
+          <script src="{{ asset('Petugas/assets/js/mail-script.js') }}"></script>
+          <script src="{{ asset('Petugas/assets/js/jquery.ajaxchimp.min.js') }}"></script>
+          
+          <!-- Jquery Plugins, main Jquery -->	
+          <script src="{{ asset('Petugas/assets/js/plugins.js') }}"></script>
+          <script src="{{ asset('Petugas/assets/js/main.js') }}"></script>
         
 </body>
 </html>

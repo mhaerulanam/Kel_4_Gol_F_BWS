@@ -20,7 +20,7 @@
                         <div class="col-lg-3 col-md-2">
                             <!-- Logo -->
                             <div class="logo">
-                                <a href="LandingPageDokter.php"><img src="{{ asset('Frontend/assets/img/logo/logo1.png') }}" alt=""></a>
+                                <a href="/home"><img src="{{ asset('Frontend/assets/img/logo/logo1.png') }}" alt=""></a>
                             </div> 
                             <div class="col-12">
                                 <div class="mobile_menu d-block d-lg-none"></div>
@@ -35,13 +35,13 @@
                                         <ul id="navigation">
                                             <li><a href="/home">HOME</a></li>
                                             <li><a href="/artikel">ARTIKEL </a></li>
-                                            <li><a href="riwayat_konsultasi.php">KONSULTASI</a></li>
-                                            <li><a href="dokter">DOKTER</a></li>
+                                            <li><a href="/konsultasi">KONSULTASI</a></li>
+                                            <li><a href="/dokter">DOKTER</a></li>
                                             <li><a href="#">INFORMASI</a>
                                                 <ul class="submenu">
-                                                    <li><a href="puskeswan">PUSKESWAN</a></li>
-                                                    <li><a href="tutorial">TUTORIAL</a></li>
-                                                    <li><a href="tentangkami">TENTANG KAMI</a></li>                                                 
+                                                    <li><a href="/puskeswan">PUSKESWAN</a></li>
+                                                    <li><a href="/tutorial">TUTORIAL</a></li>
+                                                    <li><a href="/tentangkami">TENTANG KAMI</a></li>                                                 
                                                 </ul>
                                             </li>
                                         </ul>

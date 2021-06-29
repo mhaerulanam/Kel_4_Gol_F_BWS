@@ -31,7 +31,7 @@
       <div class="row justify-content-center">
         <div class="col-12">
           <header class="panel-heading">
-            {{ isset($admin_lecturer) ? 'Mengubah' : 'Menambahkan' }} admin
+            {{ isset($admin_lecturer) ? 'Mengubah' : 'Menambahkan' }} Admin
         </header>
           @if ($errors->any())
             <div class="alert alert-danger">
@@ -50,12 +50,13 @@
                   <strong class="card-title">Advanced Validation</strong>
                 </div>
                 <div class="card-body">
-                  <form class="needs-validation" id="peternak_form" method="POST"
-                            action="{{ isset($peternak) ? route('peternak.update',$peternak->id) : 
-                            route('peternak.store') }}">
+                  <form class="needs-validation" id="admin_form" method="POST"
+                            action="{{ isset($admin) ? route('admin.update',$admin->id) : 
+                            route('admin.store') }}">
                                 {!! csrf_field() !!}
-                                {!! isset($peternak) ? method_field('PUT') : '' !!}
+                                {!! isset($admin) ? method_field('PUT') : '' !!}
                       <input type="hidden" name="id" value="{{ isset($admin) ? $admin->id : '' }}"> <br/>
+                      <input type="text" name="id_role" value="{{ $role->id_role }}"> <br/>
                       <div class="form-row">
                       <div class="col-md-6 mb-3">
                         <label for="validationCustom3">Nama Lengkap</label>
@@ -66,18 +67,6 @@
                       </div>
                     </div> <!-- /.form-row -->
                     <div class="form-row">
-                    <div class="col-md-4 mb-3">
-                      <label for="validationCustomUsername">Username</label>
-                      <div class="input-group">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text" id="inputGroupPrepend">@</span>
-                        </div>
-                        <input type="text" class="form-control" id="validationCustomUsername" name="username" minlength="5" placeholder="Masukkan username" aria-describedby="inputGroupPrepend" 
-                        value="{{ isset($admin) ? $admin->username : '' }}"  
-                        required>
-                        <div class="invalid-feedback"> Please choose a username. </div>
-                      </div>
-                    </div>
                     </div>
                     <div class="form-row">
                       <div class="col-md-8 mb-3">

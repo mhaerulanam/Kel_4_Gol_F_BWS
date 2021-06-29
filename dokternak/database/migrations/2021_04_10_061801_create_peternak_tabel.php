@@ -13,7 +13,7 @@ class CreatePeternakTabel extends Migration
      */
     public function up()
     {
-        Schema::create('peternak_tabel', function (Blueprint $table) {
+        Schema::create('peternak', function (Blueprint $table) {
             $table->integer('id_peternak')->primary();
             $table->string('namadepan_peternak',15);
             $table->string('namabelakang_peternak',30);

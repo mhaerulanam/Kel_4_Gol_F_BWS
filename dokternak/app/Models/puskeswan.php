@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class puskeswan extends Model
 {
     protected $table = 'puskeswan';
-    protected $primaryKey = 'id';
-    protected $fillable = [
+    protected $primaryKey = 'id_puskeswan';
+    protected $fillable =  [
         'id_puskeswan', 'nama_puskeswan', 'alamat', 'jam_kerja', 'gambar','maps', 
     ];
 }
