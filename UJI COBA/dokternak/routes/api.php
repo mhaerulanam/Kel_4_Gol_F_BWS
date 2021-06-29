@@ -64,6 +64,13 @@ Route::post('api_kritikdansaran', 'ApiKritikdanSaranController@createKs');
 Route::put('api_kritikdansaran/{id_ks}', 'ApiKritikdanSaranController@updateKs');
 Route::delete('api_kritikdansaran/{id_ks}', 'ApiKritikdanSaranController@deleteKs');
 
+//Route Api Banner
+Route::get('api_banner', 'ApiBannerController@getAll');
+Route::get('api_banner/{id_banner}', 'ApiBannerController@getBn');
+Route::post('api_banner', 'ApiBannerController@createBn');
+Route::put('api_banner/{id_banner}', 'ApiBannerController@updateBn');
+Route::delete('api_banner/{id_banner}', 'ApiBannerController@deleteBn');
+
 //Route Api Dokumentasi
 Route::get('api_dokumentasi', 'ApiDokumentasiController@getAll');
 Route::get('api_dokumentasi/{id_dokumentasi}', 'ApiDokumentasiController@getDokumentasi');
