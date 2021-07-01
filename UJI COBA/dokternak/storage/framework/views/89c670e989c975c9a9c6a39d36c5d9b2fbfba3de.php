@@ -152,7 +152,7 @@
                                     </div>
                                 </div>
                                 <div class="items-link f-right">
-                                    <a href="job_details.html">Detail</a>
+                                    <a href="/dokter/<?php echo e($data_dokter->id_dokter); ?>/detail/" >Detail</a>
                                     
                                 </div>
                             </div>
@@ -175,7 +175,7 @@
                                     </div>
                                 </div>
                                 <div class="items-link f-right">
-                                    <a href="job_details.html">Detail</a>
+                                    <a href="/dokter/<?php echo e($data_dokter->id_dokter); ?>/detail/" >Detail</a>
                                     
                                 </div>
                             </div>

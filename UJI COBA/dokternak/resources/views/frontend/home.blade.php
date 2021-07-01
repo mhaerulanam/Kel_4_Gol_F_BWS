@@ -113,7 +113,7 @@
                                         </div>
                                     </div>
                                     <div class="items-link f-right">
-                                        <a href="job_details.html">Detail</a>
+                                        <a href="/dokter/{{ $data_dokter->id_dokter }}/detail/" class="genric-btn primary radius">Detail</a>
                                         {{-- <span>7 hours ago</span> --}}
                                     </div>
                                 </div>
@@ -136,7 +136,7 @@
                                         </div>
                                     </div>
                                     <div class="items-link f-right">
-                                        <a href="job_details.html">Detail</a>
+                                        <a href="/dokter/{{ $data_dokter->id_dokter }}/detail/" class="genric-btn primary radius">Detail</a>
                                         {{-- <span>7 hours ago</span> --}}
                                     </div>
                                 </div>

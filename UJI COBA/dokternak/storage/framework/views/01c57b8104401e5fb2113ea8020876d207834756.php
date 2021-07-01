@@ -98,26 +98,26 @@
                             <div class="col-xl-10">
                                 <?php if(! $kode = 11): ?>
                                     <?php $__currentLoopData = $data['dokter']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $data_dokter): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <!-- single-job-content -->
-                                    <div class="single-job-items mb-30">
-                                        <div class="job-items">
-                                            <div class="company-img">
-                                                <a href="job_details.html"><img src="/data/data_dokter/<?php echo e($dokter->foto); ?>" class="center" alt="" width="100" height="100"></a>
-                                            </div>
-                                            <div class="job-tittle">
-                                                <a href="job_details.html"><h4><?php echo e($data_dokter->nama); ?></h4></a>
-                                                <ul>
-                                                    <li><?php echo e($data_dokter->id_jabatan); ?></li>
-                                                    <li><i class="fas fa-map-marker-alt"></i><?php echo e($data_dokter->tempat); ?></li>
-                                                    <li><?php echo e($data_dokter->telpon); ?></li>
-                                                </ul>
-                                            </div>
+                                <!-- single-job-content -->
+                                <div class="single-job-items mb-30">
+                                    <div class="job-items">
+                                        <div class="company-img">
+                                            <a href="job_details.html"><img class="center" src="/data/data_dokter/<?php echo e($data_dokter->foto); ?>" alt="" width="100" height="100"></a>
                                         </div>
-                                        <div class="items-link f-right">
-                                            <a href="job_details.html">Detail</a>
-                                            
+                                        <div class="job-tittle">
+                                            <a href="job_details.html"><h4><?php echo e($data_dokter->nama_dokter); ?></h4></a>
+                                            <ul>
+                                                <li><?php echo e($data_dokter->id_jabatan); ?></li>
+                                                <li><i class="fas fa-map-marker-alt"></i><?php echo e($data_dokter->tempat); ?></li>
+                                                <li><?php echo e($data_dokter->telpon); ?></li>
+                                            </ul>
                                         </div>
                                     </div>
+                                    <div class="items-link f-right">
+                                        <a href="/dokter/<?php echo e($data_dokter->id_dokter); ?>/detail/" class="genric-btn primary radius">Detail</a>
+                                        
+                                    </div>
+                                </div>
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 <?php endif; ?>
                                 <?php $__currentLoopData = $data['dokter']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $data_dokter): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -137,7 +137,7 @@
                                         </div>
                                     </div>
                                     <div class="items-link f-right">
-                                        <a href="job_details.html">Detail</a>
+                                        <a href="/dokter/<?php echo e($data_dokter->id_dokter); ?>/detail/" class="genric-btn primary radius">Detail</a>
                                         
                                     </div>
                                 </div>
