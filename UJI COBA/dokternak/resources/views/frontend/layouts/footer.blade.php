@@ -23,7 +23,7 @@
                             <p>Website Dokternak dikembangkan oleh mahasiswa Teknik Informatika, Politeknik Negeri Jember Kampus Bondowoso. Website ini bertujuan sebagai wadah komunikasi
                                 Dokter Hewan, Peternak, dan Petlovers.</p>
                                 <!-- #ganti nama file  -->
-                                <li><a href="aboutus.php"> selengkapnya-></a></li> 
+                                <li><a href="/tentangkami"> selengkapnya-></a></li> 
                             </ul>
                         </div>
 

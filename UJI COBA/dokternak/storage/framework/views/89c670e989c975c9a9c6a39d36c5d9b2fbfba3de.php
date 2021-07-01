@@ -42,7 +42,7 @@
         </style>
 </head>
 <body>
-    <?php echo $__env->make('layouts.navbar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>;
+    <?php echo $__env->make('../layouts.navbar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>;
      <!-- Preloader Start -->
      <div id="preloader-active">
         <div class="preloader d-flex align-items-center justify-content-center">
@@ -220,7 +220,7 @@
                                                             <div class="blog-cap">
                                                                 <p><?php echo e($data_artikel->nama_penulis); ?></p>
                                                                 <h3><?php echo e($data_artikel->judul); ?><a href="detailartikel.php?id_artikel=<?php echo e($data_artikel->judul); ?>"></a></h3>
-                                                                <a href="#" class="more-btn">Read more »</a>
+                                                                <a class="more-btn" href="/artikel/<?php echo e($data_artikel->id_artikel); ?>/detail/">Read more»</a>
                                                             </div>
                                                         </div>
                                                     </div> 

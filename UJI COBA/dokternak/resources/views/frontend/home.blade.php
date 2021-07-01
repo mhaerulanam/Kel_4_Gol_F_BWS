@@ -101,10 +101,10 @@
                                 <div class="single-job-items mb-30">
                                     <div class="job-items">
                                         <div class="company-img">
-                                            <a href="job_details.html"><img class="center" src="/data/data_dokter/{{ $data_dokter->foto }}" alt="" width="100" height="100"></a>
+                                            <a><img class="center" src="/data/data_dokter/{{ $data_dokter->foto }}" alt="" width="100" height="100"></a>
                                         </div>
                                         <div class="job-tittle">
-                                            <a href="job_details.html"><h4>{{ $data_dokter->nama_dokter }}</h4></a>
+                                            <a href="/dokter/{{ $data_dokter->id_dokter }}/detail/"><h4>{{ $data_dokter->nama_dokter }}</h4></a>
                                             <ul>
                                                 <li>{{ $data_dokter->id_jabatan }}</li>
                                                 <li><i class="fas fa-map-marker-alt"></i>{{ $data_dokter->tempat }}</li>
@@ -124,10 +124,10 @@
                                 <div class="single-job-items mb-30">
                                     <div class="job-items">
                                         <div class="company-img">
-                                            <a href="job_details.html"><img class="center" src="/data/data_dokter/{{ $data_dokter->foto }}" alt="" width="100" height="100"></a>
+                                            <a><img class="center" src="/data/data_dokter/{{ $data_dokter->foto }}" alt="" width="100" height="100"></a>
                                         </div>
                                         <div class="job-tittle">
-                                            <a href="job_details.html"><h4>{{ $data_dokter->nama_dokter }}</h4></a>
+                                            <a href="/dokter/{{ $data_dokter->id_dokter }}/detail/"><h4>{{ $data_dokter->nama_dokter }}</h4></a>
                                             <ul>
                                                 <li>{{ $data_dokter->id_jabatan }}</li>
                                                 <li><i class="fas fa-map-marker-alt"></i>{{ $data_dokter->tempat }}</li>
@@ -181,7 +181,7 @@
                                                         <div class="blog-cap">
                                                             <p>{{ $data_artikel->nama_penulis}}</p>
                                                             <h3>{{ $data_artikel->judul }}<a href="detailartikel.php?id_artikel={{ $data_artikel->judul }}"></a></h3>
-                                                            <a href="/artikel/{{ $data_artikel->id_artikel }}/detail/" class="more-btn">Read more»</a>
+                                                            <a class="more-btn" href="/artikel/{{ $data_artikel->id_artikel }}/detail/">Read more»</a>
                                                         </div>
                                                     </div>
                                                 </div> 
