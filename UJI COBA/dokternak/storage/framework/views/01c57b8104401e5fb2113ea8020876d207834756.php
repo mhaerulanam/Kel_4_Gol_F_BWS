@@ -102,7 +102,7 @@
                                     <div class="single-job-items mb-30">
                                         <div class="job-items">
                                             <div class="company-img">
-                                                <a href="job_details.html"><img src="data:image/png;base64,<?php echo e(chunk_split(base64_encode($data_dokter->foto))); ?>" alt="" width="100px"></a>
+                                                <a href="job_details.html"><img src="/data/data_dokter/<?php echo e($dokter->foto); ?>" class="center" alt="" width="100" height="100"></a>
                                             </div>
                                             <div class="job-tittle">
                                                 <a href="job_details.html"><h4><?php echo e($data_dokter->nama); ?></h4></a>
@@ -125,7 +125,7 @@
                                 <div class="single-job-items mb-30">
                                     <div class="job-items">
                                         <div class="company-img">
-                                            <a href="job_details.html"><img class="card-img rounded-0" src="/data/data_dokter/<?php echo e($data_dokter->foto); ?>" alt=""  width="100px"></a>
+                                            <a href="job_details.html"><img class="center" src="/data/data_dokter/<?php echo e($data_dokter->foto); ?>" alt="" width="100" height="100"></a>
                                         </div>
                                         <div class="job-tittle">
                                             <a href="job_details.html"><h4><?php echo e($data_dokter->nama_dokter); ?></h4></a>

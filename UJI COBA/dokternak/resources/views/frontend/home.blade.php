@@ -97,26 +97,26 @@
                             <div class="col-xl-10">
                                 @if (! $kode = 11)
                                     @foreach ($data['dokter'] as $data_dokter)
-                                    <!-- single-job-content -->
-                                    <div class="single-job-items mb-30">
-                                        <div class="job-items">
-                                            <div class="company-img">
-                                                <a href="job_details.html"><img src="data:image/png;base64,{{ chunk_split(base64_encode($data_dokter->foto)) }}" alt="" width="100px"></a>
-                                            </div>
-                                            <div class="job-tittle">
-                                                <a href="job_details.html"><h4>{{ $data_dokter->nama }}</h4></a>
-                                                <ul>
-                                                    <li>{{ $data_dokter->id_jabatan }}</li>
-                                                    <li><i class="fas fa-map-marker-alt"></i>{{ $data_dokter->tempat }}</li>
-                                                    <li>{{ $data_dokter->telpon }}</li>
-                                                </ul>
-                                            </div>
+                                <!-- single-job-content -->
+                                <div class="single-job-items mb-30">
+                                    <div class="job-items">
+                                        <div class="company-img">
+                                            <a href="job_details.html"><img class="center" src="/data/data_dokter/{{ $data_dokter->foto }}" alt="" width="100" height="100"></a>
                                         </div>
-                                        <div class="items-link f-right">
-                                            <a href="job_details.html">Detail</a>
-                                            {{-- <span>7 hours ago</span> --}}
+                                        <div class="job-tittle">
+                                            <a href="job_details.html"><h4>{{ $data_dokter->nama_dokter }}</h4></a>
+                                            <ul>
+                                                <li>{{ $data_dokter->id_jabatan }}</li>
+                                                <li><i class="fas fa-map-marker-alt"></i>{{ $data_dokter->tempat }}</li>
+                                                <li>{{ $data_dokter->telpon }}</li>
+                                            </ul>
                                         </div>
                                     </div>
+                                    <div class="items-link f-right">
+                                        <a href="job_details.html">Detail</a>
+                                        {{-- <span>7 hours ago</span> --}}
+                                    </div>
+                                </div>
                                     @endforeach
                                 @endif
                                 @foreach ($data['dokter'] as $data_dokter)
@@ -124,7 +124,7 @@
                                 <div class="single-job-items mb-30">
                                     <div class="job-items">
                                         <div class="company-img">
-                                            <a href="job_details.html"><img class="card-img rounded-0" src="/data/data_dokter/{{ $data_dokter->foto }}" alt=""  width="100px"></a>
+                                            <a href="job_details.html"><img class="center" src="/data/data_dokter/{{ $data_dokter->foto }}" alt="" width="100" height="100"></a>
                                         </div>
                                         <div class="job-tittle">
                                             <a href="job_details.html"><h4>{{ $data_dokter->nama_dokter }}</h4></a>
