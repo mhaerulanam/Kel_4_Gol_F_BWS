@@ -64,8 +64,8 @@
                       <th>Foto</th>
                       <th>Id Jabatan</th>
                       <th>Jadwal Kerja</th>
-                      <th>Username</th>
-                      <th>Password</th>
+                      {{-- <th>Username</th>
+                      <th>Password</th> --}}
                       <th>Aksi</th>
                     </tr>
                   </thead>
@@ -75,7 +75,7 @@
                     <tr>
                         <td>{{ $no++ }}</td>
                         <td>{{ $item->id_dokter }}</td>
-                        <td>{{ $item->nama }}</td>
+                        <td>{{ $item->nama_dokter }}</td>
                         <td>{{ $item->email }}</td>
                         <td>{{ $item->jenis_kelamin }}</td>
                         <td>{{ $item->alamat }}</td>
@@ -84,8 +84,8 @@
                         <td><img src="data:image/png;base64,{{ chunk_split(base64_encode($item->foto)) }}"></td>
                         <td>{{ $item->id_jabatan }}</td>
                         <td>{{ $item->jadwal_kerja }}</td>
-                        <td>{{ $item->username }}</td>
-                        <td>{{ $item->password }}</td>
+                        {{-- <td>{{ $item->username }}</td>
+                        <td>{{ $item->password }}</td> --}}
                         <td>
                         <div class="btn-group">
                             <a href="{{ route('dtdokter.edit',$item->id_dokter)}}" class="btn btn-warning">Edit<i class="fa fa-edit"></i></a>

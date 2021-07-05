@@ -60,7 +60,7 @@
                       <div class="col-md-4 mb-2">
                         <label for="validationCustom3">Nama Lengkap</label>
                         <input class="form-control" id="nama" name="nama" minlength="5" type="text" placeholder="Masukkan nama"
-                        value="{{ isset($dtdokter) ? $dtdokter->nama : '' }}"  
+                        value="{{ isset($dtdokter) ? $dtdokter->nama_dokter : '' }}"  
                             required>
                         <div class="valid-feedback"> Looks good! </div>
                       </div>
@@ -114,6 +114,7 @@
                     <div class="form-row">
                       <div class="col-md-4 mb-2">
                         <label for="validationCustom3">Foto</label>
+                        <td><img src="/data/data_dokter/{{ isset($dtdokter) ? $dtdokter->foto : '' }}" width="200"></td>
                         <input type="file" name="foto" id="foto" class="form-control {{ $errors->has('foto') ? 'is-invalid' : ''}}" value="{{ isset($dtdokter) ? $dtdokter->foto : '' }}" required>
                             @if ( $errors->has('foto'))
                             <span class="text-danger small">
@@ -122,15 +123,23 @@
                         @endif
                     </div>
                     </div>
-                    <div class="form-row">
-                      <div class="col-md-4 mb-2">
-                        <label for="exampleInputJabatan">Jabatan</label>
-                        <input type="id_jabatan" class="form-control" id="exampleInputJabatan" name="id_jabatan" minlength="5" placeholder="Masukkan Jabatan" aria-describedby="Masukkan Jabatan" 
-                        value="{{ isset($dtdokter) ? $dtdokter->id_jabatan : '' }}"  
-                        required>
-                        <div class="invalid-feedback"> Please use a valid jabatan </div>
-                      </div>
-                    </div>
+                    <div class="col-md-6 mb-3">
+                      <label for="validationCustom3">Jabatan</label>
+                      <input list="id_jabatan" class="form-control {{ $errors->has('id_jabatan') ? 'is-invalid' : ''}}" placeholder='Masukkan jabatan' value="{{ isset($dtdokter) ? $dtdokter->id_jabatan : '' }}" name="id_jabatan" >
+                        @if ( $errors->has('id_jabatan'))
+                            <span class="text-danger small">
+                                <p>{{ $errors->first('id_jabatan') }}</p>
+                            </span>
+                        @endif
+                        <datalist id="id_jabatan" name="id_jabatan">
+                        <div class="form-select" id="default-select">
+                            <select name="s_jabatan" class="form-control" id="exampleFormControlSelect1">              
+                              @foreach ($jabatan as $data_jabatan)
+                                <option value="{{ $data_jabatan->id_jabatan }}" >{{ $data_jabatan->jabatan }}</option>
+                              @endforeach     
+                              </select><br>
+                        </div>
+                  </div>
                     <div class="col-md-6 mb-3">
                     <div class="form-row">
                       <div class="col-md-8 mb-3">
@@ -141,7 +150,7 @@
                         <div class="invalid-feedback"> Please use a valid jadwal kerja </div>
                       </div>
                     </div>
-                    <div class="form-row">
+                    {{-- <div class="form-row">
                     <div class="col-md-4 mb-2">
                       <label for="validationCustomUsername">Username</label>
                       <div class="input-group">
@@ -166,7 +175,7 @@
                         <div class="invalid-feedback"> Please choose a password. </div>
                       </div>
                     </div>
-                    </div>
+                    </div> --}}
                    
                     <button class="btn btn-primary" type="submit">Save</button>
                     <a href="{{ route('dtdokter.index') }}"><button class="btn btn-default"

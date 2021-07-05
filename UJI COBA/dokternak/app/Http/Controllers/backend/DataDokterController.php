@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\dokter;
+use App\Models\jabatan;
 use Dotenv\Validator;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Support\Facades\Crypt;
@@ -23,8 +24,8 @@ class DataDokterController extends Controller
 
     public function create()
     {
-        $dtdokter = null;
-        return view('backend.dokter.create',compact('dtdokter'));
+        $jabatan = Jabatan::all();
+        return view('backend.dokter.create',compact('jabatan'));
     }
 
     public function store(Request $request)
@@ -64,8 +65,8 @@ class DataDokterController extends Controller
             'foto' => $request->foto,
             'id_jabatan' => $request->id_jabatan,
             'jadwal_kerja' => $request->jadwal_kerja,
-            'username' => $request->username,
-            'password' => Hash::make($request['password']),
+            // 'username' => $request->username,
+            // 'password' => Hash::make($request['password']),
         ];
 
         dokter::create($data_simpan);
@@ -78,7 +79,8 @@ class DataDokterController extends Controller
     public function edit($id)
     {
         $dtdokter = Dokter::where('id_dokter',$id)->first();
-        return view('backend.dokter.create',compact('dtdokter'));
+        $jabatan = Jabatan::all();
+        return view('backend.dokter.create',compact('dtdokter','jabatan'));
     }
 
     public function update(Request $request, $id)
@@ -102,8 +104,8 @@ class DataDokterController extends Controller
             'foto' => $request->foto,
             'id_jabatan' => $request->id_jabatan,
             'jadwal_kerja' => $request->jadwal_kerja,
-            'username' => $request->username,
-            'password' => Hash::make($request['password']),
+            // 'username' => $request->username,
+            // 'password' => Hash::make($request['password']),
         ];
 
         Dokter::where('id_dokter', $id)->update($data_simpan);
