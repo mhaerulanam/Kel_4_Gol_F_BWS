@@ -9,14 +9,9 @@ class DaftarDokterController extends Controller
 {
     public function index()
     {
-        $dokter = DB::table('dokter')->paginate(3);
-        $jabatan = DB::table('jabatan');
-
-        return view('frontend.dokter',compact('dokter'))->with('dokter', $dokter);;
-        // return view('frontend.artikel');
-
-        // mengirim data pegawai ke view index
-		// return view('frontend.artikel',['artikel' => $artikel]);
+        $dokter = DB::table('dokter')->join('jabatan', 'jabatan.id_jabatan', '=', 'dokter.id_jabatan')
+        ->paginate(3);
+        return view('frontend.dokter',compact('dokter'));
     }
 
     public function cari(Request $request)
@@ -34,8 +29,10 @@ class DaftarDokterController extends Controller
     }
 
     public function detail($id) {
-        $dokter = DB::table('dokter')->where('id_dokter',$id)->first();
-        return view('frontend.detaildokter',compact('dokter'));
+        $dokter2 = DB::table('dokter')->join('jabatan', 'jabatan.id_jabatan', '=', 'dokter.id_jabatan')
+        ->get();
+        $dokter = DB::table('dokter')->join('jabatan', 'jabatan.id_jabatan', '=', 'dokter.id_jabatan')->where('id_dokter',$id)->first();
+        return view('frontend.detaildokter',compact('dokter','dokter2'));
     }
 
 }

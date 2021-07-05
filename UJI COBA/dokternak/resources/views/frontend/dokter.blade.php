@@ -244,7 +244,7 @@
                                                     {{-- Code untuk memotong text menggunakan Str limit --}}
                                                     <div class="team-content">
                                                         <h4 class="title">{{ $data_dokter->nama_dokter }}</h4>
-                                                        <span class="post">{{ $data_dokter->id_jabatan }} </span>
+                                                        <span class="post">{{ $data_dokter->jabatan }} </span>
                                                         <span class="post">{{ $data_dokter->tempat }}</span>
                                                         <p><span class="post">{{ $data_dokter->telpon }}</span></p><br>
                                                     {{-- <ul class="blog-info-link">
