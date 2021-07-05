@@ -22,26 +22,20 @@ class DaftarDokterController extends Controller
     public function cari(Request $request)
     {
         //Menangkap data pencarian
-        $cari = $request->cari_petugas;
+        $cari = $request->cari;
 
-        $kode = 11;
+        //mengambul data dari tabel artikel sesuai pencarian data
+        $dokter = DB::table('dokter')
+        ->where('nama_dokter','like',"%".$cari."%")
+        ->paginate(2);
 
-        //mengambul data dari tabel dokter sesuai pencarian data
-        $data = [
-            'dokter' => DB::table('dokter')
-            ->where('alamat', 'LIKE', '%' . $cari . '%')
-            ->where('nama_dokter','like',"%".$cari."%")
-            ->paginate(3),
-        ];
-
-        //mengirim data artikel ke view dokter
-        return view('frontend.dokter',compact('data','kode'));
+        //mengirim data artikel ke view artikel
+        return view('frontend.dokter',compact('dokter'));
     }
 
     public function detail($id) {
         $dokter = DB::table('dokter')->where('id_dokter',$id)->first();
         return view('frontend.detaildokter',compact('dokter'));
     }
-
 
 }

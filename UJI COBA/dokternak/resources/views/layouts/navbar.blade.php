@@ -22,7 +22,7 @@
                                         <ul id="navigation">
                                             <li><a href="/">HOME</a></li>
                                             <li><a href="/artikel">ARTIKEL </a></li>
-                                            <li><a href="riwayat_konsultasi.php">KONSULTASI</a></li>
+                                            <li><a href="{{ route('login') }}">KONSULTASI</a></li>
                                             <li><a href="dokter">DOKTER</a></li>
                                             <li><a href="#">INFORMASI</a>
                                                 <ul class="submenu">
