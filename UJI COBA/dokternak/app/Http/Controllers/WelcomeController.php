@@ -15,9 +15,9 @@ class WelcomeController extends Controller
     public function index()
     {
         $data = [
-            'dokter' => Dokter::orderBy('id_dokter', 'desc')->paginate(3),
             'artikel' => Artikel::orderBy('tanggal', 'desc')->paginate(2),
             'tutorial' => Tutorial::orderBy('id_tutorial')->paginate(4),
+            'dokter' => DB::table('dokter')->join('jabatan', 'jabatan.id_jabatan', '=', 'dokter.id_jabatan')->paginate(3),
         ];
         return view('welcome',compact('data'));
         // return view('frontend.home');

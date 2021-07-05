@@ -106,7 +106,7 @@
                                         <div class="job-tittle">
                                             <a href="/dokter/{{ $data_dokter->id_dokter }}/detail/"><h4>{{ $data_dokter->nama_dokter }}</h4></a>
                                             <ul>
-                                                <li>{{ $data_dokter->id_jabatan }}</li>
+                                                <li>{{ $data_dokter->jabatan }}</li>
                                                 <li><i class="fas fa-map-marker-alt"></i>{{ $data_dokter->tempat }}</li>
                                                 <li>{{ $data_dokter->telpon }}</li>
                                             </ul>
@@ -129,7 +129,7 @@
                                         <div class="job-tittle">
                                             <a href="/dokter/{{ $data_dokter->id_dokter }}/detail/"><h4>{{ $data_dokter->nama_dokter }}</h4></a>
                                             <ul>
-                                                <li>{{ $data_dokter->id_jabatan }}</li>
+                                                <li>{{ $data_dokter->jabatan }}</li>
                                                 <li><i class="fas fa-map-marker-alt"></i>{{ $data_dokter->tempat }}</li>
                                                 <li>{{ $data_dokter->telpon }}</li>
                                             </ul>
