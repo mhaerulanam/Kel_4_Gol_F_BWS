@@ -213,7 +213,7 @@
                                                                 <img class="card-img rounded-0" src="/data/data_artikel/{{ $data_artikel->gambar }}"alt="post" width="100px"/>
                                                                 <div class="blog-date text-center">
                                                                     <span>{{ $data_artikel->tanggal }}</span>
-                                                                    <p>Kategori :{{ $data_artikel->id_ktg }}</p>
+                                                                    <p>Kategori :{{ $data_artikel->kategori_artikel }}</p>
                                                                 </div>
                                                             </div>
                                                             <div class="blog-cap">
