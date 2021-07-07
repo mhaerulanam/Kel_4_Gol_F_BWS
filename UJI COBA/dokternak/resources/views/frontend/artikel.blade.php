@@ -69,7 +69,7 @@
                                         {{-- Code untuk memotong text menggunakan Str limit --}}
                                         <p>{{\Illuminate\Support\Str::limit($data_artikel->isi, 250)}}  <a href="/artikel/{{ $data_artikel->isi }}/detail/" class="more-btn">  <strong> Read more » </strong></a></p>
                                         <ul class="blog-info-link">
-                                            <li><a>{{ $data_artikel->id_ktg }}</a></li>
+                                            <li><a>{{ $data_artikel->kategori_artikel }}</a></li>
                                             <li><a>{{ $data_artikel->tanggal }}</a></li>
                                         </ul>
                                     </div>

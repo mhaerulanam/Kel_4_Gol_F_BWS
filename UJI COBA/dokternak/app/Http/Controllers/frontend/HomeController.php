@@ -22,8 +22,11 @@ class HomeController extends Controller
     {
 
         $data = [
-            'dokter' => Dokter::orderBy('id_dokter', 'desc')->paginate(3),
-            'artikel' => Artikel::orderBy('tanggal', 'desc')->paginate(2),
+          'dokter' => DB::table('dokter')->join('jabatan', 'jabatan.id_jabatan', '=', 'dokter.id_jabatan')->paginate(3),
+          'artikel' => DB::table('artikel')->join('kategori_artikel', 'kategori_artikel.id_ktg', '=', 'artikel.id_ktg')
+          ->orderBy('id_artikel','desc')
+          ->where('status','=','tampil')
+          ->paginate(2),
             'tutorial' => Tutorial::orderBy('judul_tutorial', 'desc')->paginate(4),
             
         ];

@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Artikel;
+use Illuminate\Support\Facades\DB;
 
 class ApiArtikelController extends Controller
 {
     public function getAll() 
     {
-        $artikel = Artikel::all();
+        // $artikel = Artikel::all();
+        $artikel = DB::table('Artikel')->join('kategori_artikel', 'kategori_artikel.id_ktg', '=', 'artikel.id_ktg')
+        ->orderBy('id_artikel','desc')->get();
         return response()->json([
             'status' => 'ok',
             'message' => 'Artikel Berhasil Ditampilkan Semua',
