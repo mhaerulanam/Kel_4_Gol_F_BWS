@@ -16,7 +16,7 @@ class DataKritikdanSaranController extends Controller
 {
     public function index()
     {
-        $ks = DB::table('kritikdansaran')->get();
+        $ks = DB::table('kritik_dan_saran')->get();
         return view('backend.data_ks.index', compact('ks'));
         // return view('backend.peternak.index');
     }
@@ -56,10 +56,10 @@ class DataKritikdanSaranController extends Controller
             'pekerjaan' => $request->pekerjaan,
         ];
 
-        kritikdansaran::create($data_simpan);
+        kritik_dan_saran::create($data_simpan);
 
         return redirect()->route('data_ks.index')
-                        ->with('success','Data kritikdansaran baru telah berhasil disimpan');
+                        ->with('success','Data kritik_dan_saran baru telah berhasil disimpan');
     }
 
     public function edit($id)
@@ -97,13 +97,13 @@ class DataKritikdanSaranController extends Controller
         KritikdanSaran::where('id_ks', $id)->update($data_simpan);
 
         return redirect()->route('data_ks.index')
-                        ->with('success','Data kritikdansaran telah berhasil diperbarui');
+                        ->with('success','Data kritik_dan_saran telah berhasil diperbarui');
     }
 
     public function destroy($id)
     {
         $ks = KritikdanSaran::where('id_ks',$id)->delete();
         return redirect()->route('data_ks.index')
-                        ->with('success','Data kritikdansaran telah berhasil dihapus');
+                        ->with('success','Data kritik_dan_saran telah berhasil dihapus');
     }
 }
