@@ -14,6 +14,7 @@ class ArtikelController extends Controller
         // $artikel = Artikel::orderBy('tanggal', 'desc')->paginate(2);
         $artikel = Artikel::join('kategori_artikel', 'kategori_artikel.id_ktg', '=', 'artikel.id_ktg')
         ->orderBy('id_artikel','desc')
+        ->where('status','=','tampil')
         ->paginate(2);
         return view('frontend.artikel',compact('artikel'))->with('artikel', $artikel);;
         // return view('frontend.artikel');

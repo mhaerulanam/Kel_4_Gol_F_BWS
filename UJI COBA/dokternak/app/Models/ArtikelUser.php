@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class ArtikelUser extends Model
 {
-    protected $table = 'artikel_user';
+    protected $table = 'artikel';
     protected $primaryKey = 'id_artikel';
     protected $fillable = [
-        'id_artikel', 'id_ktg', 'tanggal', 'nama_penulis','judul', 'isi', 'gambar', 'sumber',
+        'id_artikel', 'id_ktg', 'tanggal', 'nama_penulis','judul', 'isi', 'gambar', 'sumber','status',
     ];
 }
 
