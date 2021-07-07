@@ -18,8 +18,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-//Route Api Login
+//Route Api Login dan Register
 Route::post('api_users/login/peternak','ApiUsersController@loginUser');
+Route::post('api_users/register/peternak','ApiUsersController@registerUser');
 
 //Route Api Users
 Route::get('api_users', 'ApiUsersController@getAll');

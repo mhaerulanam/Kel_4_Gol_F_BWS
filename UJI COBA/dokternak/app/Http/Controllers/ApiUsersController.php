@@ -7,6 +7,7 @@ use App\Models\peternak;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Validator;
 
 class ApiUsersController extends Controller
 {
@@ -53,20 +54,52 @@ class ApiUsersController extends Controller
     }
 
     public function loginUser(Request $request){
-        $email = $request->email;
+        $user =  Peternak::where('email',$request->email)->first();
+        if ($user) {
+            if (password_verify($request->password,$user->password)) {
+                return response()->json([
+                    'success' => 1,
+                    'message' => 'Selamat Datang '.$user->name,
+                    'user' => $user
+                ]);
+            }
+            return $this->error('Password Salah');
+        } else {
+            return $this->error('Email tidak terdaftar');
+        }
+    }
 
-        $password = $request->password;
+    public function registerUser(Request $request){
+        $validasi = validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'required|unique:users',
+            'password' => 'required|min:8'
+        ]);
 
-        // $passwordhash = Hash::make($password);
-        // $passwordhash2 = bcrypt($password);
-        // $password = Hash::make($request->password);
+        if ($validasi->fails()) {
+            $val = $validasi->errors()->all();
+            return $this->error($val[0]);
+        }
 
-        $user =  Peternak::where('email', '=', $email)->where('password','=', $password)->get();
+        $user = Peternak::create(array_merge($request->all(), [
+            'password' => bcrypt($request->password),
+            'is_admin' => 3
+        ]));
+
+        if ($user) {
+            return response()->json([
+                'success' => 1,
+                'message' => 'Selamat, Registrasi Anda Berhasil!',
+                'user' => $user
+            ]);
+        }
+        return $this->error('Registrasi Gagal');
+    }
+
+    public function error($pesan){
         return response()->json([
-            'status' => 'ok',
-            'message' => 'User Berhasil Login!',
-            'data' => $user
-        ], 201);
-
+            'success' => 0,
+            'message' => $pesan
+        ]);
     }
 }
