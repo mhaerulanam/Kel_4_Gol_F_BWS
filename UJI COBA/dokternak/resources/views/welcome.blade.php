@@ -42,7 +42,7 @@
         </style>
 </head>
 <body>
-    @include('../layouts.navbar');
+    @include('frontend/layouts.navbar');
      <!-- Preloader Start -->
      <div id="preloader-active">
         <div class="preloader d-flex align-items-center justify-content-center">
