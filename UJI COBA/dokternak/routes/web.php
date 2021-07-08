@@ -130,7 +130,6 @@ Route::get('/dokter', 'frontend\DaftarDokterController@index');
 Route::get('/dokter/{id}/detail', 'frontend\DaftarDokterController@detail');
 Route::POST('/dokter/cari', [App\Http\Controllers\frontend\DaftarDokterController::class, 'cari'])->name('dokter.cari');
 
-
 //Route Puskeswan
 Route::get('/puskeswan', 'frontend\PuskeswanController@index');
 Route::get('/puskeswan/cari', 'frontend\PuskeswanController@cari');

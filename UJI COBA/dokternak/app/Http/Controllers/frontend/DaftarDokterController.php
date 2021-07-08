@@ -4,6 +4,7 @@ namespace App\Http\Controllers\frontend;
 use App\Http\Controllers\controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\dokter;
 
 class DaftarDokterController extends Controller
 {
@@ -17,15 +18,31 @@ class DaftarDokterController extends Controller
     public function cari(Request $request)
     {
         //Menangkap data pencarian
-        $cari = $request->cari;
+        // $cari = $request->cari;
 
-        //mengambul data dari tabel artikel sesuai pencarian data
-        $dokter = DB::table('dokter')
-        ->where('nama_dokter','like',"%".$cari."%")
-        ->paginate(2);
+        // //mengambul data dari tabel artikel sesuai pencarian data
+        // $dokter = DB::table('dokter')
+        // ->where('nama_dokter','like',"%".$cari."%")
+        // ->paginate(2);
 
-        //mengirim data artikel ke view artikel
-        return view('frontend.dokter',compact('dokter'));
+        // //mengirim data artikel ke view artikel
+        // return view('frontend.dokter',compact('dokter'));
+
+                //Menangkap data pencarian
+                $cari = $request->cari;
+
+                //mengambul data dari tabel artikel sesuai pencarian data
+                // $dokter = DB::table('dokter')
+                // ->join('jabatan', 'jabatan.id_jabatan', '=', 'dokter.id_dokter')
+                // ->where('nama_dokter','like',"%".$cari."%")
+                // ->paginate(3);
+                $kode = 11;
+                $dokter = DB::table('dokter')
+                    ->join('jabatan', 'jabatan.id_jabatan', '=', 'dokter.id_jabatan')
+                    ->where('nama_dokter','like',"%".$cari."%")
+                    ->paginate(2);
+                //mengirim data artikel ke view artikel
+                return view('frontend.dokter',compact('dokter','kode'));
     }
 
     public function detail($id) {

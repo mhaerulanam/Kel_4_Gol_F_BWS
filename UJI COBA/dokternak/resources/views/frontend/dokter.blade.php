@@ -154,79 +154,45 @@
     <div class="pagination-area pb-200 text-center">
                 <div class="blog_right_sidebar">          
                 <aside class="single_sidebar_widget search_widget">
-                            <form method="POST">
+                            {{-- <form method="POST"> --}}
+                                <form action="/dokter/cari" method="POST" class="search-box">
+                                    @csrf
                             <div class="input-group mb-3">
                                 <div class="wrapper">
                                 <div class="tabs-2">
                                         <div class="tab">
-                                            <input type="radio" name="jabatan" id="tab-param" class="tab-switch" value="J01" selected>
-                                            <label for="tab-param" class="tab-label1">Dokter</label>
+                                            <input type="radio" name="cari" id="tab-param" class="tab-switch" value="dokter" selected>
+                                            <label for="tab-param" class="tab-label">Dokter</label>
                                         </div>
                                         <div class="tab">
-                                            <input type="radio" name="jabatan" id="tab-dok" class="tab-switch" value="J02" selected>
+                                            <input type="radio" name="cari" id="tab-dok" class="tab-switch" value="paramedis" selected>
                                             <label for="tab-dok" class="tab-label">Paramedis</label>
                                         </div>
                                         <div class="tab">
-                                            <input type="radio" name="jabatan" id="tab-ib" class="tab-switch" value="J03" selected>
+                                            <input type="radio" name="cari" id="tab-ib" class="tab-switch" value="petugas inseminasi" selected>
                                             <label for="tab-ib" class="tab-label">Petugas IB</label>
                                         </div>
 
                                     <div class="input-group-append">
-                                        <button type="submit" name="pilih" class="genric-btn primary">CEK</button> 
+                                        <button type="submit" name="cari" class="genric-btn primary">CEK</button> 
                                     </div> 
                                 </div>
                                 </div>
                             </div>
                                 <div class="input-group mb-3">
-                                        <input list="nt" class="form-control" placeholder='Masukkan nama Dokter atau lokasi kecamatan Anda ...' name="nt" id="cari dokter" value=""
-                                            onfocus="this.placeholder = ''"
-                                            onblur="this.placeholder = 'Masukkan nama Dokter atau lokasi kecamatan Anda ... '">
-                                            {{-- <datalist id="nt">
-                                                <option value="Bondowoso" <?php if ($nt=="Bondowoso"){ echo "selected"; } ?>>Bondowoso</option>
-                                                <option value="Binakal" <?php if ($nt=="Binakal"){ echo "selected"; } ?>>Binakal</option>
-                                                <option value="Cermee" <?php if ($nt=="Cermee"){ echo "selected"; } ?>>Cermee</option>
-                                                <option value="Curahdami" <?php if ($nt=="Curahdami"){ echo "selected"; } ?>>Curahdami</option>
-                                                <option value="Grujugan" <?php if ($nt=="Grujugan"){ echo "selected"; } ?>>Grujugan</option>
-                                                <option value="Jambesari" <?php if ($nt=="Jambesari"){ echo "selected"; } ?>>Jambesari</option>
-                                                <option value="Klabang" <?php if ($nt=="Klabang"){ echo "selected"; } ?>>Klabang</option>
-                                                <option value="Maesan" <?php if ($nt=="Maesan"){ echo "selected"; } ?>>Maesan</option>
-                                                <option value="Pakem" <?php if ($nt=="Pakem"){ echo "selected"; } ?>>Pakem</option>
-                                                <option value="Prajekan" <?php if ($nt=="Prajekan"){ echo "selected"; } ?>>Prajekan</option>
-                                                <option value="Pujer" <?php if ($nt=="Pujer"){ echo "selected"; } ?>>Pujer</option>
-                                                <option value="Sempol" <?php if ($nt=="Sempol"){ echo "selected"; } ?>>Sempol</option>
-                                                <option value="Sukosari" <?php if ($nt=="Sukosari"){ echo "selected"; } ?>>Sukosari</option>
-                                                <option value="Sumberwringin" <?php if ($nt=="Sumberwringin"){ echo "selected"; } ?>>Sumberwringin</option>
-                                                <option value="Taman Krocok" <?php if ($nt=="Taman Krocok"){ echo "selected"; } ?>>Taman Krocok</option>
-                                                <option value="Tamanan" <?php if ($nt=="Tamanan"){ echo "selected"; } ?>>Tamanan</option>
-                                                <option value="Tapen" <?php if ($nt=="Tapen"){ echo "selected"; } ?>>Tapen</option>
-                                                <option value="Tegalampel" <?php if ($nt=="Tegalampel"){ echo "selected"; } ?>>Tegalampel</option>
-                                                <option value="Tenggarang" <?php if ($nt=="Tenggarang"){ echo "selected"; } ?>>Tenggarang</option>
-                                                <option value="Tlogosari" <?php if ($nt=="Tlogosari"){ echo "selected"; } ?>>Tlogosari</option>
-                                                <option value="Wonosari" <?php if ($nt=="Wonosari"){ echo "selected"; } ?>>Wonosari</option>
-                                                <option value="Wringin" <?php if ($nt=="Wringin"){ echo "selected"; } ?>>Wringin</option>
-                                            </datalist> --}}
+                                        {{-- <input list="nt" class="form-control" action='cari' placeholder='Masukkan nama Dokter atau lokasi kecamatan Anda ...' name="nt" id="cari dokter" value="" --}}
+                                        <input class="form-control" type ="text" name="cari" placeholder="Masukkan nama Dokter atau Lokasi kecamatan Anda" value="{{ old('cari')}}">
+                                            {{-- onfocus="this.placeholder = ''"
+                                            onblur="this.placeholder = 'Masukkan nama Dokter atau lokasi kecamatan Anda ... '" --}}
+                                            
                                         <div class="input-group-append">
-                                            <button class="btns" type="submit" name="submit"><i class="ti-search"></i></button> 
+                                            <button class="btns" type="submit" name="submit" value="CARI"><i class="ti-search"></i></button> 
                                         </div>
                                 </div>
                                    
                             </form>
                         </aside>
                 </div>
-                <?php
-                    if(isset($_POST['pilih'])){ ?>
-                        <h1>
-                            <b>
-                                <?php 
-                                $kat = $_POST['jabatan'];
-                                $ambilDataa=mysqli_query($koneksi, "SELECT * FROM jabatan WHERE id_jabatan = '$kat'");
-                                $dta = mysqli_fetch_array($ambilDataa);
-                                echo $dta['jabatan']; ?>
-                            </b>
-                        </h1>
-                    <?php
-                    }
-                ?>
                 </div>   
                             <div class="row">    
                 <table>
