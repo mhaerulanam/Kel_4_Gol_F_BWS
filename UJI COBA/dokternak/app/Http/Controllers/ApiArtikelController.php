@@ -59,4 +59,17 @@ class ApiArtikelController extends Controller
             'message' => 'Artikel Berhasil Dihapus!'
         ], 201);
     }
+    public function cariArtikel(Request $request){
+        $cari = $request->judul;
+         //mengambul data dari tabel dokter sesuai pencarian data
+        //  $petugas =  Dokter::where('nama_dokter','like',"%".$request."%");
+        $artikel =  Artikel::where('judul','like',"%".$cari."%")->get();
+
+
+            return response()->json([
+            'status' => 'ok',
+            'message' => 'Artikel yang dicari Berhasil Ditampilkan',
+            'data' => $artikel
+        ], 201);    
+    }
 }
