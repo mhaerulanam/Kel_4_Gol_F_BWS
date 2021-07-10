@@ -4,6 +4,7 @@ namespace App\Http\Controllers\petugas;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator as FacadesValidator;
 use App\Models\Artikel;
 use App\Models\ArtikelUser;
@@ -18,11 +19,11 @@ class TulisArtikelController extends Controller
      */
     public function index()
     {
-        // $data = [
-        //     'peternak' => Artikel::orderBy('id','desc')->get(),
-        // ];
-        $data = null;
-        return view('petugas.tulisartikel',compact('data'));
+
+            $data = null;
+            $kategori_artikel = DB::table('kategori_artikel')->orderBy('id_ktg','asc')->get();
+            return view('petugas.tulisartikel',compact('data','kategori_artikel'));
+    
     }
 
     /**
@@ -49,7 +50,7 @@ class TulisArtikelController extends Controller
 
         $role = 0;
 
-        // rename image name or file name 
+                        // rename image name or file name 
         $getimageName = time().'.'.$request->gambar->getClientOriginalExtension();
         $request->gambar->move(public_path('peternak/artikel/gambar'), $getimageName);
 
@@ -61,12 +62,13 @@ class TulisArtikelController extends Controller
             'isi' => $request->isi,
             'gambar' => $getimageName,
             'sumber' => $request->sumber,
+            'status' => $request->status,
         ];
 
         ArtikelUser::create($data_simpan);
 
         return redirect()->route('tulisartikel.index')
-                        ->with('success','Data peternak baru telah berhasil disimpan, dimohon untuk menunggu konfirmasi dari Admin')
+                        ->with('success','Artikel anda telah berhasil dikirim, mohon untuk menunggu konfirmasi dari Admin')
                         ->with('image',$getimageName);
     }
 

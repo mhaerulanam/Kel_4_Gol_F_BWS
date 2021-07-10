@@ -11,14 +11,12 @@ class ArtikelController extends Controller
 
     public function index()
     {
-        $artikel = Artikel::orderBy('tanggal', 'desc')->paginate(2);
-        $getAnimals = Cat::all();
-
-        return view('petugas.artikel',[
-            'artikel' => $artikel,
-            'animals' => $getAnimals,
-            'count'     => DB::table('Artikel')->distinct('id_ktg')->count('id_ktg')
-        ]);
+        // $artikel = Artikel::orderBy('tanggal', 'desc')->paginate(2);
+        $artikel = DB::table('artikel')->join('kategori_artikel', 'kategori_artikel.id_ktg', '=', 'artikel.id_ktg')
+        ->orderBy('id_artikel','desc')
+        ->where('status','=','tampil')
+        ->paginate(2);
+        return view('frontend.artikel',compact('artikel'))->with('artikel', $artikel);
         // return view('frontend.artikel');
 
         // mengirim data pegawai ke view index
@@ -32,17 +30,20 @@ class ArtikelController extends Controller
 
         //mengambul data dari tabel artikel sesuai pencarian data
         $artikel = DB::table('artikel')
+        ->join('kategori_artikel', 'kategori_artikel.id_ktg', '=', 'artikel.id_ktg')
         ->where('judul','like',"%".$cari."%")
         ->paginate(2);
 
         //mengirim data artikel ke view artikel
-        return view('petugas.artikel',compact('artikel'));
+        return view('frontend.artikel',compact('artikel'));
     }
 
     public function detail($id) {
-        $artikel2 = Artikel::orderBy('tanggal', 'desc')->paginate(2);
-        $artikel = DB::table('artikel')->where('id_artikel',$id)->first();
-        return view('petugas.detailartikel',compact('artikel','artikel2'));
+        // $artikel2 = Artikel::orderBy('tanggal', 'desc')->paginate(2);
+        $artikel2 = Artikel::join('kategori_artikel', 'kategori_artikel.id_ktg', '=', 'artikel.id_ktg')
+        ->paginate(2);
+        $artikel = DB::table('artikel')->join('kategori_artikel', 'kategori_artikel.id_ktg', '=', 'artikel.id_ktg')->where('id_artikel',$id)->first();
+        return view('frontend.detailartikel',compact('artikel','artikel2'));
     }
 
 }
