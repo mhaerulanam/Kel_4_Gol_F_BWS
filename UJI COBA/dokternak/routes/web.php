@@ -137,4 +137,5 @@ Route::get('/puskeswan/cari', 'frontend\PuskeswanController@cari');
 Route::get('/puskeswan/{id}/detail', 'frontend\PuskeswanController@detail');
 
 //Route Konsultasi
-Route::get('/konsultasi', 'frontend\KonsultasiController@index');
+Route::get('/konsultasi', 'frontend\KonsultasiController@index')->name('konsultasi.index');;
+Route::get('/konsultasi/{id}/detail', 'frontend\KonsultasiController@detail')->name('konsultasi.detail');;
