@@ -53,7 +53,7 @@ if (!isset($_SESSION["username"])) {
                 <div class="kotak">
                     <div class="row">
                         <div class="col-lg-12 ">
-                            <form method="POST" action="{{ route('tulisartikel.store') }}" enctype="multipart/form-data">
+                            <form method="POST" action="{{ route('uploadartikel') }}" enctype="multipart/form-data">
                             {!! csrf_field() !!}
                             <!-- <div class="mt-30"> -->
                                 <input type="hidden" name="nama_penulis" value=" {{ Auth::user()->name }}" required class="single-input">
