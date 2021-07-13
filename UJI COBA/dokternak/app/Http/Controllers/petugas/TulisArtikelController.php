@@ -67,7 +67,7 @@ class TulisArtikelController extends Controller
 
         ArtikelUser::create($data_simpan);
 
-        return redirect()->route('tulisartikel.index')
+        return redirect()->back()
                         ->with('success','Artikel anda telah berhasil dikirim, mohon untuk menunggu konfirmasi dari Admin')
                         ->with('image',$getimageName);
     }

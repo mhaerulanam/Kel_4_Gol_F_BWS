@@ -53,6 +53,7 @@ Route::group(['namespace' => 'Petugas'], function()
     Route::resource('petugas/detailartikel', 'DetailArtikelController');
     Route::resource('petugas/tutorial', 'TutorialController');
     Route::resource('petugas/tulisartikel', 'TulisArtikelController');
+    Route::POST('petugas/tulisartikel/uploadartikel','TulisArtikelController@store')->name('uploadartikel');
     Route::resource('petugas/rekam-medik', 'RekammedikController');
     Route::resource('petugas/data-obat', 'DataObatController');
    // CRUD Rekam Medik -------------------------------------------------------

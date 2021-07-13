@@ -25,6 +25,13 @@
       <link rel="stylesheet" href="{{ asset('Frontend/assets/css/style.css')}}">
       <link rel="stylesheet" href="{{ asset('Frontend/assets/css/responsive.css')}}">
 
+      <style>
+        .radiuz{
+        border-radius: 50%;
+        width : 170px;
+        }
+        </style>
+
 
 </head>
 
@@ -124,7 +131,7 @@ Sistem Informasi Dokter Hewan yang merupakan sistem informasi berbasis website u
                             <!-- founder -->
                             <div class="testimonial-founder  ">
                                 <div class="founder-img mb-30">
-                                <img src="{{ asset('Frontend/assets/img/gallery/anam.jpg') }}" class="radiuz" alt="">
+                                <img src="{{ asset('Frontend/assets/img/gallery/anam.png') }}" class="radiuz" alt="">
                                     <span>Muhammad Haerul Anam</span>
                                     <p>Developer Team</p>
                                 </div>
@@ -141,7 +148,7 @@ Sistem Informasi Dokter Hewan yang merupakan sistem informasi berbasis website u
                             <!-- founder -->
                             <div class="testimonial-founder  ">
                                 <div class="founder-img mb-30">
-                                    <img src="{{ asset('Frontend/assets/img/gallery/ardan.jpg') }}" class="radiuz" alt="">
+                                    <img src="{{ asset('Frontend/assets/img/gallery/ardan.png') }}" class="radiuz" alt="">
                                     <span>Ardan Venora Falahudin</span>
                                     <p>Developer Team</p>
                                 </div>
@@ -158,7 +165,7 @@ Sistem Informasi Dokter Hewan yang merupakan sistem informasi berbasis website u
                             <!-- founder -->
                             <div class="testimonial-founder  ">
                                 <div class="founder-img mb-30">
-                                <img src="{{ asset('Frontend/assets/img/gallery/defi.jpg') }}" class="radiuz" alt="">
+                                <img src="{{ asset('Frontend/assets/img/gallery/defi.png') }}" class="radiuz" alt="">
                                     <span>Defi Tamara</span>
                                     <p>Developer Team</p>
                                 </div>
@@ -175,7 +182,7 @@ Sistem Informasi Dokter Hewan yang merupakan sistem informasi berbasis website u
                             <!-- founder -->
                             <div class="testimonial-founder  ">
                                 <div class="founder-img mb-30">
-                                    <img src="{{ asset('Frontend/assets/img/gallery/wike.jpg') }}" class="radiuz" alt="">
+                                    <img src="{{ asset('Frontend/assets/img/gallery/wike.png') }}" class="radiuz" alt="">
                                     <span>Wike Sri Widari</span>
                                     <p>Developer Team</p>
                                 </div>
@@ -192,7 +199,7 @@ Sistem Informasi Dokter Hewan yang merupakan sistem informasi berbasis website u
                             <!-- founder -->
                             <div class="testimonial-founder  ">
                                 <div class="founder-img mb-30">
-                                    <img src="{{ asset('Frontend/assets/img/gallery/widya.jpg') }}" class="radiuz" alt="">
+                                    <img src="{{ asset('Frontend/assets/img/gallery/widya.png') }}" class="radiuz" alt="">
                                     <span>Widya Yuristika Oktavia</span>
                                     <p>Developer Team</p>
                                 </div>

@@ -16,7 +16,7 @@ class ArtikelController extends Controller
         ->orderBy('id_artikel','desc')
         ->where('status','=','tampil')
         ->paginate(2);
-        return view('frontend.artikel',compact('artikel'))->with('artikel', $artikel);
+        return view('petugas.artikel',compact('artikel'))->with('artikel', $artikel);
         // return view('frontend.artikel');
 
         // mengirim data pegawai ke view index
@@ -35,15 +35,16 @@ class ArtikelController extends Controller
         ->paginate(2);
 
         //mengirim data artikel ke view artikel
-        return view('frontend.artikel',compact('artikel'));
+        return view('petugas.artikel',compact('artikel'));
     }
 
     public function detail($id) {
         // $artikel2 = Artikel::orderBy('tanggal', 'desc')->paginate(2);
         $artikel2 = Artikel::join('kategori_artikel', 'kategori_artikel.id_ktg', '=', 'artikel.id_ktg')
+        ->where('artikel.id_artikel','!=',$id)
         ->paginate(2);
         $artikel = DB::table('artikel')->join('kategori_artikel', 'kategori_artikel.id_ktg', '=', 'artikel.id_ktg')->where('id_artikel',$id)->first();
-        return view('frontend.detailartikel',compact('artikel','artikel2'));
+        return view('petugas.detailartikel',compact('artikel','artikel2'));
     }
 
 }
