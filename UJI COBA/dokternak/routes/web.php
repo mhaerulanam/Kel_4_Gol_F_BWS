@@ -99,6 +99,7 @@ Route::group(['namespace' => 'Frontend'], function()
     Route::resource('dokter', 'DaftarDokterController');
     Route::resource('detailartikel', 'DetailArtikelController');
     Route::resource('tulisartikel', 'TulisArtikelController');
+    Route::resource('tuliskonsultasi', 'TulisKonsultasiController');
     Route::resource('detailpuskeswan', 'DetailPuskeswanController');
 });
 Auth::routes();

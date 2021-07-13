@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\peternak;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -65,12 +67,29 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $role = 0;
-        return User::create([
+        User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'is_admin' => $role,
         ]);
 
+        $emailUser = $data['email'];
+
+        $user = DB::table('users')
+        ->whereIn('id', function($query)
+        {
+            $query->select(['id'])
+                  ->from('users')
+                  ->where('email', 'anam@gmail.com');
+        })
+        ->get();
+
+        $idUser = $user['id'];
+
+        return DB::table('peternak')->insert(
+            ['namadepan_peternak' => $data['name'], 'id' => $idUser]
+        );
+        
     }
 }

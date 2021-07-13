@@ -31,7 +31,7 @@
     <link rel="stylesheet" href="{{ asset('Frontend/assets/css/style.css')}}">
     <link rel="stylesheet" href="{{ asset('Frontend/assets/css/responsive.css')}}">
     <link rel="stylesheet" href="{{ asset('Frontend/assets/css/style3.css')}}">
-
+    <link rel="stylesheet" href="{{ asset('Frontend/assets/css/style4.css')}}">
 	<title>Dokternak.id - Konsultasi</title>
     <link rel="shortcut icon" type="image/x-icon" href="href="{{ asset('Frontend/assets/img/favicon.ico')}}">
 
@@ -154,7 +154,7 @@
             </div>
             <div class="srch_bar">
               <div class="stylish-input-group">
-                <a href="form_konsultasi.php" class="genric-btn primary">Konsultasi</a>
+                <a href="tuliskonsultasi" class="genric-btn primary">Konsultasi</a>
             </div>
             </div>
           </div>
@@ -320,7 +320,7 @@
             </div>
             <div class="srch_bar">
               <div class="stylish-input-group">
-                <a href="form_konsultasi.php" class="genric-btn primary">Konsultasi</a>
+                <a href="tuliskonsultasi" class="genric-btn primary">Konsultasi</a>
             </div>
             </div>
           </div>
@@ -497,27 +497,26 @@
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script>
-        $(document).ready(function(){
-            <?php
-                if(isset($_POST['klik'])){
-                    ?>
-                    if($(window).width()<768){
+            @php
+                if (isset($_POST['klik'])){
+                    @endphp
+                    if ($(window).width() < 768){
                         $(".inbox1").css({'display':'none'})
                     }else{
                         $(".inbox1").css({'display':'block'})
                     }
-                    <?php
-                }else if(isset($_POST['klok'])){
-                    ?>
-                    if($(window).width()<768){
+                    @php
+                }else if (isset($_POST['klok'])){
+                    @endphp
+                    if ($(window).width() < 768){
                         $(".inbox2").css({'display':'none'})
                     }else{
                         $(".inbox2").css({'display':'block'})
                     }
-                    <?php
+                    @php
                 }
-            ?>
-        })
+            @endphp
+
     </script>
     </body>
     </html>
