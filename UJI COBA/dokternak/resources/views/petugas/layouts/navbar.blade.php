@@ -20,7 +20,7 @@
                              <div class="main-menu">
                                  <nav class="d-none d-lg-block">
                                      <ul id="navigation">
-                                         <li><a href="/petugas/home">HOME</a></li>
+                                         <li><a href="/lppetugas">HOME</a></li>
                                          <li><a href="/petugas/artikel">ARTIKEL </a></li>
                                          <li><a href="#">DATA</a>
                                          <ul class="submenu">

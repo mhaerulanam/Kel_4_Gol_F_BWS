@@ -50,13 +50,13 @@
             <div class="col-lg-8 posts-list">
                   <div class="single-post">
                      <div class="feature-img">
-                        <img class="img-fluid" src="data:image/png;base64,{{ chunk_split(base64_encode($artikel->gambar)) }}" alt="">
+                        <img src="/data/data_artikel/{{ $artikel->gambar }}" width="650">
                      </div>
                      <div class="blog_details">
                            <h2>{{ $artikel->judul }}</h2>
                            <ul class="blog-info-link mt-3 mb-4">
                               <li><a href="#"><i class="fa fa-user"></i> {{ $artikel->nama_penulis}}</a></li>
-                              <li><a href="#"><i></i>{{ $artikel->id_ktg}}</a></li>
+                              <li><a href="#"><i></i>{{ $artikel->kategori_artikel}}</a></li>
                               <li><a href="#"><i class="fa fa-comments"></i>{{ $artikel->tanggal}}</a></li>
                            </ul>
                            <p class="excert">
@@ -122,21 +122,32 @@
                                 </ul>
                             </aside>
                   
-                  <!-- Artikel Lainnya -->
+                  {{-- <!-- Artikel Lainnya -->
                   <aside class="single_sidebar_widget popular_post_widget">
                      <h3 class="widget_title">Artikel Lainnya</h3>
                      @foreach ($artikel2 as $data_artikel)  
                      <div class="media post_item">
                            <img src="data:image/png;base64,{{ chunk_split(base64_encode($data_artikel->gambar)) }}" width="120px" />
                            <div class="media-body">
-                                 <a href="detailartikel.php?id_artikel=">
-                                    <h6>{{ $data_artikel->judul }}</h6>
-                                 </a>
-                                 <p>{{ $data_artikel->tanggal }}</p>
+                              <a href="/petugas/artikel/{{ $data_artikel->id_artikel }}/detail/">{{ $data_artikel->judul }}</a>
+                              <p>{{ $data_artikel->tanggal }}</p>
                            </div>
                      </div> 
                     @endforeach
-                  </aside>
+                  </aside> --}}
+                  <!-- Artikel Lainnya -->
+                  <aside class="single_sidebar_widget popular_post_widget">
+                     <h3 class="widget_title">Artikel Lainnya</h3>
+                     @foreach ($artikel2 as $data_artikel)  
+                     <div class="media post_item">
+                         <img src="/data/data_artikel/{{ $data_artikel->gambar }}" width="120px" />
+                         <div class="media-body">
+                              <h6><a href="/petugas/artikel/{{ $data_artikel->id_artikel }}/detail/">{{ $data_artikel->judul }}</a></h6>
+                              <p>{{ $data_artikel->tanggal }}</p>
+                         </div>
+                     </div> 
+                     @endforeach
+                 </aside>
                   
                </div>
             </div>
