@@ -56,6 +56,7 @@ Route::group(['namespace' => 'Petugas'], function()
     Route::POST('petugas/tulisartikel/uploadartikel','TulisArtikelController@store')->name('uploadartikel');
     Route::resource('petugas/rekam-medik', 'RekammedikController');
     Route::resource('petugas/data-obat', 'DataObatController');
+    Route::resource('petugas/respon-konsultasi', 'ResponKonsultasiController');
    // CRUD Rekam Medik -------------------------------------------------------
    Route::POST('petugas/rekam-medik/simpandata','RekammedikController@store')->name('simpandata');
    Route::match(['get','post'], 'petugas/rekam-medik/edit/{id}','RekammedikController@edit');

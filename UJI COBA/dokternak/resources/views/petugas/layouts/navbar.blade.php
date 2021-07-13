@@ -29,7 +29,7 @@
                                                  <li><a href="data_hewan.php">HEWAN</a></li>                                                 
                                              </ul>
                                          </li>
-                                         <li><a href="respon_konsultasi.php">NOTIFIKASI</a></li>
+                                         <li><a href="/petugas/respon-konsultasi">NOTIFIKASI</a></li>
                                          <li><a href="/petugas/tutorial">TUTORIAL</a></li>
                                      </ul>
                                  </nav>
