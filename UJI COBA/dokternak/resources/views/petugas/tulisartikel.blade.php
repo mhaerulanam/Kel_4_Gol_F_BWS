@@ -37,93 +37,123 @@ if (!isset($_SESSION["username"])) {
     <h2>
         <center><b>Tulis Artikel</b></center>
     </h2>
-    @if ($message = Session::get('success'))
-    <div class="alert alert-success">
-        <p>{{ $message }}</p>
-    </div>
-   @endif
+    
     <div class="container">
-    <div class="slider-active">
-        <div class="section-top-border">
-            <div class="kotak">
-                <div class="row">
-	                <div class="col-lg-12 ">
-                    <form method="POST" action="{{ route('tulisartikel.store') }}" enctype="multipart/form-data">
-                        {!! csrf_field() !!}
-                        <!-- <div class="mt-30"> -->
-                            <input type="hidden" name="nama_penulis" value=" {{ Auth::user()->name }}" required class="single-input">
-                            <input type="hidden" name="tanggal" value="{{ date('Y-m-d') }}">
-                        <!-- </div> -->
-                        <div class="single-element-widget mt-10">
-                        <h5 class="mb-15">Kategori</h5>
-                            <input list="id_ktg" class="form-control {{ $errors->has('id_ktg') ? 'is-invalid' : ''}}" placeholder='Masukkan Jenis Hewan' value="{{ old('id_ktg')}}" name="id_ktg" >
-                            @if ( $errors->has('id_ktg'))
-                                <span class="text-danger small">
-                                    <p>{{ $errors->first('id_ktg') }}</p>
-                                </span>
-                            @endif
-                            <datalist id="id_ktg" name="id_ktg">
-                            <div class="form-select" id="default-select">
-                                <select name="s_kategori" class="form-control" id="exampleFormControlSelect1">              
-                                    <option value="" ></option>
-                                    </select><br>
+        {{-- Alert --}}
+        @if ($message = Session::get('success'))
+        <div class="alert alert-success" role="alert">
+            {{ $message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        @endif
+        <div class="slider-active">
+            <div class="section-top-border">
+                <div class="kotak">
+                    <div class="row">
+                        <div class="col-lg-12 ">
+                            <form method="POST" action="{{ route('tulisartikel.store') }}" enctype="multipart/form-data">
+                            {!! csrf_field() !!}
+                            <!-- <div class="mt-30"> -->
+                                <input type="hidden" name="nama_penulis" value=" {{ Auth::user()->name }}" required class="single-input">
+                                <input type="hidden" name="tanggal" value="{{ date('Y-m-d') }}">
+                                <input type="hidden" name="status" value="notampil">
+                            <!-- </div> -->
+                            <div class="single-element-widget mt-10">
+                                <h5 class="mb-15">Kategori</h5>
+                                {{-- <input list="id_ktg" class="form-control {{ $errors->has('id_ktg') ? 'is-invalid' : ''}}" placeholder='Masukkan Jenis Hewan' value="{{ old('id_ktg')}}" name="id_ktg" >
+                                @if ( $errors->has('id_ktg'))
+                                    <span class="text-danger small">
+                                        <p>{{ $errors->first('id_ktg') }}</p>
+                                    </span>
+                                @endif
+                                <datalist id="id_ktg" name="id_ktg">
+                                <div class="form-select" id="default-select">
+                                    <select name="s_kategori" class="form-control" id="exampleFormControlSelect1">              
+                                        <option value="" ></option>
+                                        </select><br>
+                                </div> --}}
+                                <div class="form-select">
+                                <select name="id_ktg" class="form-control">
+                                    @foreach ($kategori_artikel as $data)
+                                    <option value="{{ $data->id_ktg }}" selected>{{ $data->kategori_artikel}}</option>
+                                    @endforeach
+                                </select>
+                                </div> 
                             </div>
-                            
-                        </div>
-                        <div class="mt-30">
-                            <h5 class="mb-15">Judul Artikel</h5>
-                            <input type="text" name="judul" placeholder="Masukkan Judul Artikel"
-                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Masukkan Judul Artikel'" class="form-control {{ $errors->has('judul') ? 'is-invalid' : ''}}" required class="single-input-primary">
-                                @if ( $errors->has('judul'))
+                            <div class="mt-30">
+                                <h5 class="mb-15">Judul Artikel</h5>
+                                <input type="text" name="judul" placeholder="Masukkan Judul Artikel"
+                                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Masukkan Judul Artikel'" class="form-control {{ $errors->has('judul') ? 'is-invalid' : ''}}" required class="single-input-primary">
+                                    @if ( $errors->has('judul'))
+                                    <span class="text-danger small">
+                                        <p>{{ $errors->first('judul') }}</p>
+                                    </span>
+                                @endif    
+                            </div>
+                            <div class="mt-30">
+                                <h5 class="mb-15">Sumber</h5>
+                                    <input type="text" name="sumber" placeholder="Masukkan Sumber"
+                                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Masukkan Sumber'" class="form-control {{ $errors->has('sumber') ? 'is-invalid' : ''}}">
+                                @if ( $errors->has('sumber'))
+                                    <span class="text-danger small">
+                                        <p>{{ $errors->first('sumber') }}</p>
+                                    </span>
+                                @endif
+                            </div>
+                            <div class="mt-30">
+                                <h5 class="mb-15">Gambar</h5>
+                                <input type="file" name="gambar" id="gambar" class="form-control {{ $errors->has('gambar') ? 'is-invalid' : ''}}">
+                                @if ( $errors->has('gambar'))
                                 <span class="text-danger small">
-                                    <p>{{ $errors->first('judul') }}</p>
+                                    <p>{{ $errors->first('gambar') }}</p>
                                 </span>
-                            @endif    
-                        </div>
-                        <div class="mt-30">
-                            <h5 class="mb-15">Sumber</h5>
-                                <input type="text" name="sumber" placeholder="Masukkan Sumber"
-                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Masukkan Sumber'" class="form-control {{ $errors->has('sumber') ? 'is-invalid' : ''}}">
-                            @if ( $errors->has('sumber'))
+                                @endif
+                            </div>
+                            <div class="mt-30">
+                                <h5 class="mb-15">Isi Artikel</h5>
+                                <div>
+                                    <textarea class="ckeditor" name="isi" id="ckedtor" required></textarea>
+                                </div>
+                                <br/>
+                                <div id="container_btn">
+                                    <input type="submit" name="tombol" class="genric-btn primary" value="POSTING">             
+                                    <a href="artikel" class="genric-btn default">BATAL</button>
+                                </div>
+                                </form>
+                                @if ( $errors->has('isi'))
                                 <span class="text-danger small">
-                                    <p>{{ $errors->first('sumber') }}</p>
+                                    <p>{{ $errors->first('isi') }}</p>
                                 </span>
-                            @endif
-                        </div><br/>
-                        <div class="mt-30">
-                            <h5 class="mb-15">Gambar</h5>
-                            <input type="file" name="gambar" id="gambar" class="form-control {{ $errors->has('gambar') ? 'is-invalid' : ''}}">
-                            @if ( $errors->has('gambar'))
-                            <span class="text-danger small">
-                                <p>{{ $errors->first('gambar') }}</p>
-                            </span>
-                        @endif
+                                @endif
+                            </div>
                         </div>
                     </div>
                 </div>
+                {{-- <div class="kotak">
+                    <h5 class="mb-15">Isi Artikel</h5>
+                        <div>
+                            <textarea class="ckeditor" name="isi" id="ckedtor" required></textarea>
+                        </div>
+                        <br/>
+                        <div id="container_btn">
+                            <input type="submit" name="tombol" class="genric-btn primary" value="POSTING">             
+                            <a href="artikel" class="genric-btn default">BATAL</button>
+                        </div>
+                        </form>
+                        @if ( $errors->has('isi'))
+                        <span class="text-danger small">
+                            <p>{{ $errors->first('isi') }}</p>
+                        </span>
+                    @endif
+                </div> --}}
             </div>
-            <div class="kotak">
-            <h5 class="mb-15">Isi Artikel</h5>
-                <div>
-                    <textarea class="ckeditor" name="isi" id="ckedtor" required></textarea>
-                </div>
-                <br/>
-                <div id="container_btn">
-                    <input type="submit" name="tombol" class="genric-btn primary" value="POSTING">             
-                    <a href="artikel" class="genric-btn default">BATAL</button>
-                </div>
-                </form>
-                @if ( $errors->has('isi'))
-                <span class="text-danger small">
-                    <p>{{ $errors->first('isi') }}</p>
-                </span>
-            @endif
-            </div>
-   </div>
-   </div>
-</div>
-        @include('frontend/layouts.footer');
-             
+        </div>
+    </div>
+    
+    @include('petugas/layouts.footer');
+    
 
         <!-- All JS Custom Plugins Link Here here -->
         <script src="{{ asset('Petugas/assets/js/vendor/modernizr-3.5.0.min.js') }}"></script>
