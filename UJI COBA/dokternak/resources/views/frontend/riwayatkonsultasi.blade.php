@@ -122,6 +122,15 @@
 <body>
     @include('frontend/layouts.navbar');
 <section>
+     {{-- Alert --}}
+     @if ($message = Session::get('success'))
+     <div class="alert alert-success" role="alert">
+         {{ $message }}
+         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+             <span aria-hidden="true">&times;</span>
+         </button>
+     </div>
+     @endif
     <hr>
         <center><h1>
                 <b>Riwayat Konsultasi</b>
@@ -131,7 +140,7 @@
 </section>  
 <div class="container">
 <div class="tab">
-    @if(isset($_POST['klok']) || isset($_POST['tampilkan']) )
+    @if(isset($konsultasi2) ?? '')
         <button class="tablinks" onclick="openCity(event, 'masuk')" >Kotak Masuk</button>
         <button class="tablinks" onclick="openCity(event, 'terkirim')" id="defaultOpen">Kotak Terkirim</button>
     @else
@@ -324,36 +333,41 @@
             </div>
             </div>
           </div>
+         
           <div class="inbox_chat">
-
             <!-- Daftar Pesan yang belum direspon -->
-                <form method="POST">
+            @foreach ($konsultasi as $data_konsultasi)
+                {{-- <form method="POST"> --}}
+                        {!! csrf_field() !!}
                     <a href="#">
-                    <input type="hidden" name="idst" value="id konsultasi">
-                    <input type="hidden" name="stt" value="off">
+                    {{-- <input type="hidden" name="idst" value="id konsultasi">
+                    <input type="hidden" name="stt" value="off"> --}}
                         <div class="chat_list">
                         <div class="chat_people">
-                            <div class="chat_img" name="klik"> <img src="profil.php?id_dokter=" class="rounded-circle z-depth-0"
+                            <div class="chat_img" name="klik"> <img src="/data/data_dokter/{{ $data_konsultasi->foto }}" class="rounded-circle z-depth-0"
                                                         alt="Nama" height="50"></img></div>
                             <div class="chat_ib">
-                            <h5> Kepada : Nama Dokter <span class="chat_date" name="klik">Tanggal<br></span></h5>
-                            <p name="klik">-- Belum Ada Balasan --</p><button name="klok" class="genric-btn primary-border openMsg" onclick="openCity(event, 'terkirim')"  id="defaultOpen"><p>Lihat</p></button>
+                            <h5> Kepada :  {{ $data_konsultasi->nama_dokter }} <span class="chat_date" name="klik">{{ $data_konsultasi->tanggal }}<br></span></h5>
+                            <p name="klik">-- Belum Ada Balasan --</p>
+                            <a href="/konsultasi/{{ $data_konsultasi->id_konsultasi }}/detail/"><button name="klok" class="genric-btn primary-border openMsg" onclick="openCity(event, 'terkirim')"  id="defaultOpen"><p>Lihat</p></button></a>
                             </div>
                         </div>
                         </div>
                     </a>
-                    </form>
+                    {{-- </form> --}}
+            @endforeach
           </div>
+
         </div>
 
-        @if(isset($_POST['klok']))
+        @if( isset($konsultasi) || isset($konsultasi2) )
 		<!-- <div class="collapse" id="riwayat"> -->
         <div class="mesgs">
           <div class="msg_history">
                 <form method="POST" action="">
                 <div class="row m-0">
                     <div class="flex-grow-1 pl-3">
-                    <h5>Kepada : nama Dokter</h5></h5>
+                    {{-- <h5>Kepada : {{ $konsultasi2->id_dokter }}</h5></h5> --}}
                     </div>
                     <div class="flex-grow-4 pl-1">
                     <input type="hidden" name="idk" value="Id">
@@ -417,7 +431,7 @@
                 </center>
             </div>
         </div>
-@endif
+        @endif
         </div>
     </div>
 </div>

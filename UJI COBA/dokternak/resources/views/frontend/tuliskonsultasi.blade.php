@@ -63,27 +63,32 @@ if (!isset($_SESSION["username"])) {
                             <div class="single-element-widget mt-10">
                                 <h5 class="mb-15">Kepada</h5>
                                 <div class="form-select">
-                                    <input list="id_dokter" class="form-control {{ $errors->has('id_dokter') ? 'is-invalid' : ''}}" placeholder='Masukkan Jenis Hewan'  name="id_d" >
+                                    <select name="id_dokter" class="form-select" id="default-select">
+                                        <option disabled selected> Pilih </option>
+                                        @foreach ($petugas as $datapetugas)
+                                        <option value="{{ $datapetugas->id_dokter }}" selected>{{ $datapetugas->nama_dokter}}</option>
+                                        @endforeach
+                                    </select>
+                                    {{-- <input list="dokter" class="form-control {{ $errors->has('dokter') ? 'is-invalid' : ''}}" placeholder='Masukkan Dokter Tujuan'  name="id_d" >
                                     @if ( $errors->has('id_dokter'))
                                         <span class="text-danger small">
-                                            <p>{{ $errors->first('id_dokter') }}</p>
+                                            <p>{{ $errors->first('dokter') }}</p>
                                         </span>
                                     @endif
-                                    <datalist id="id_dokter" name="id_dokter">
+                                    <datalist id="dokter" name="id_dokter">
                                         @foreach ($petugas as $data_petugas)
                                             <option value="{{ $data_petugas->nama_dokter }}" ></option>
                                         @endforeach
-                                    </datalist>
+                                    </datalist> --}}
                                 </div> 
                             </div>
                             <div class="single-element-widget mt-10">
                                 <h5 class="mb-15">Kategori Hewan</h5>
                                 <div class="form-select">
-                                <select name="id_ktg" class="form-control">
-                                 
-                                    @foreach ($kategori_hewan as $dataku)
+                                <select name="id_kategori" class="form-select" id="default-select">
                                     <option disabled selected> Pilih </option>
-                                    {{-- <option value="{{ $data->id_kategori }}" selected>{{ $data->kategori_hewan}}</option> --}}
+                                    @foreach ($kategori_hewan as $datakathewan)
+                                    <option value="{{ $datakathewan->id_kategori }}" selected>{{ $datakathewan->kategori_hewan}}</option>
                                     @endforeach
                                 </select>
                                 </div> 
@@ -91,11 +96,22 @@ if (!isset($_SESSION["username"])) {
                             <div class="single-element-widget mt-10">
                                 <h5 class="mb-15">Jenis Hewan</h5>
                                 <div class="form-select">
-                                <select name="id_ktg" class="form-control">
-                                    @foreach ($kategori_artikel as $data3)
-                                    <option value="{{ $data3->id_ktg }}" selected>{{ $data3->kategori_artikel}}</option>
+                                {{-- <select name="id_ktg" class="form-select" id="default-select">
+                                    @foreach ($kategori_artikel as $datajenishewan)
+                                    <option value="{{ $datajenishewan->id_ktg }}" selected>{{ $datajenishewan->kategori_artikel}}</option>
                                     @endforeach
-                                </select>
+                                </select> --}}
+                                <input list="id_ktg" class="form-control {{ $errors->has('id_ktg') ? 'is-invalid' : ''}}" placeholder='Masukkan Jenis Hewan'  name="id_ktg" >
+                                    @if ( $errors->has('id_ktg'))
+                                        <span class="text-danger small">
+                                            <p>{{ $errors->first('id_ktg') }}</p>
+                                        </span>
+                                    @endif
+                                    <datalist id="id_ktg" name="id_ktg">
+                                        @foreach ($kategori_artikel as $data_jenis_hewan)
+                                            <option value="{{ $data_jenis_hewan->kategori_artikel }}" ></option>
+                                        @endforeach
+                                    </datalist>
                                 </div> 
                             </div>
                             <div class="mt-30">
@@ -109,7 +125,7 @@ if (!isset($_SESSION["username"])) {
                                 @endif    
                             </div>
                             <div class="mt-30">
-                                <h5 class="mb-15">Keluhab</h5>
+                                <h5 class="mb-15">Keluhan</h5>
                                 <div>
                                     <textarea name="keluhan" placeholder="Tulis Keluhan" {{ $errors->has('keluhan') ? 'is-invalid' : ''}}" required class="single-input-primary"></textarea>
                                     @if ( $errors->has('keluhan'))
@@ -131,9 +147,9 @@ if (!isset($_SESSION["username"])) {
             </div>
         </div>
     </div>
-    
+    <section>
     @include('frontend/layouts.footer');
-    
+    </section>
 
         <!-- All JS Custom Plugins Link Here here -->
         <script src="{{ asset('Petugas/assets/js/vendor/modernizr-3.5.0.min.js') }}"></script>

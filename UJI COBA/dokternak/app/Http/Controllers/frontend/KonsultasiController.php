@@ -10,15 +10,19 @@ class KonsultasiController extends Controller
 {
     public function index()
     {
-        return view('frontend.riwayatkonsultasi');
+        $konsultasi = DB::table('konsultasi')
+        ->join('dokter', 'dokter.id_dokter', '=', 'konsultasi.id_dokter')
+        ->get();
+        return view('frontend.riwayatkonsultasi',compact('konsultasi'));
     }
 
     public function create($id)
     {
-        $dokter = DB::table('dokter')->join('jabatan', 'jabatan.id_jabatan', '=', 'dokter.id_jabatan')->get();
-        $kategori_hewan = DB::table('kategori_hewan')->orderBy('id_kategori','asc')->get();
-        $kategori_artikel = DB::table('kategori_artikel')->orderBy('id_ktg','asc')->get();
-        return view('backend.data_artikel.create',compact('petugas','kategori_artikel','kategori_hewan'));
+        $konsultasi = DB::table('konsultasi')
+                ->join('dokter', 'dokter.id_dokter', '=', 'konsultasi.id_dokter')
+                ->get();
+
+        return view('backend.data_artikel.create',compact('konsultasi'));
     }
 
     public function store(Request $request)
@@ -29,13 +33,6 @@ class KonsultasiController extends Controller
             'max' => ':attribute URL harus diisi maksimal 100 huruf!!!',
             'mimes' => ':attribute harus berupa gambar dengan format (JPEG, PNG, dan SVG)',
         ];
-
-        $validator = FacadesValidator::make($request->all(),[
-            'judul' => 'required|string|min:15|max:100',
-            'id_ktg' => 'required|string|max:15',
-            'sumber' => 'required|string|min:15|max:200',
-            'gambar' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
-        ], $message)->validate();
 
         $status= "tampil";
 
@@ -53,7 +50,7 @@ class KonsultasiController extends Controller
             'status' => $status,
         ];
 
-        Artikel::create($data_simpan);
+        // Artikel::create($data_simpan);
 
         return redirect()->route('data_artikel.index')
                         ->with('success','Data artikel baru telah berhasil disimpan, dimohon untuk menunggu konfirmasi dari Admin')
@@ -61,7 +58,16 @@ class KonsultasiController extends Controller
     }
 
     public function detail($id) {
-  
+        $konsultasi = DB::table('konsultasi')
+        ->join('dokter', 'dokter.id_dokter', '=', 'konsultasi.id_dokter')
+        ->get();
+
+        $konsultasi2 = DB::table('konsultasi')
+        ->join('dokter', 'dokter.id_dokter', '=', 'konsultasi.id_dokter')
+        ->join('kategori_hewan', 'kategori_hewan.id_kategori', '=', 'konsultasi.id_kategori')
+        ->join('kategori_artikel', 'kategori_artikel.id_ktg', '=', 'konsultasi.id_ktg')
+        ->where('konsultasi.id_dokter',$id)->first();
+        return view('frontend.riwayatkonsultasi',compact('konsultasi2','konsultasi'));
     }
 
     public function riwayatKonsultasi($id){

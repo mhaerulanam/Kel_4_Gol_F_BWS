@@ -3,10 +3,18 @@
 namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Dokter as ModelsDokter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator as FacadesValidator;
 use App\Models\KatHewan;
+use App\Models\Konsultasi;
+use App\Models\PeternakUser;
+use App\Models\Petugas;
+use App\Models\RiwayatKonsultasi;
+use App\Models\Dokter;
+use App\Models\KatArtikel;
+use App\Models\DokterUser;
 
 class TulisKonsultasiController extends Controller
 {
@@ -33,25 +41,30 @@ class TulisKonsultasiController extends Controller
             'mimes' => ':attribute harus berupa gambar dengan format (JPEG, PNG, dan SVG)',
         ];
 
+        $idu = $request->id_peternak;
+        $idk = $request->id_ktg;      
+
+
+        $peternak = PeternakUser::where('id', $idu)->first();
+        // $petugasi = DokterUser::where('nama_dokter', $idp)->first();
+        $kategori = KatArtikel::where('kategori_artikel', $idk)->first();
+
+        $id_peternak2 = $peternak->id_peternak;
+        $id_katArtikel2 = $kategori->id_ktg;
+
+
         $data_simpan = [
-            'id_ktg' => $request->id_ktg,
+            'id_ktg' => $id_katArtikel2,
+            'id_peternak' => $id_peternak2,
+            'id_dokter' => $request->id_dokter,
+            'id_kategori' => $request->id_kategori,
             'tanggal' => $request->tanggal,
-            'nama_penulis' => $request->nama_penulis,
-            'judul' => $request->judul,
-            'isi' => $request->isi,
-            'sumber' => $request->sumber,
-            'status' => $request->status,
+            'nama_hewan' => $request->nama_hewan,
+            'keluhan' => $request->keluhan,
+            'status_kirim' => $request->status_kirim,
         ];
 
-        $petugas = DB::table('dokter')->join('jabatan', 'jabatan.id_jabatan', '=', 'dokter.id_jabatan')->get();
-
-        foreach ($petugas as $pegawai) {
-            $id = $pegawai->nama;
-        }
-
-        // ArtikelUser::create($data_simpan);
-
-        return redirect()->route('tulisartikel.index')
-                        ->with('success','Artikel anda telah berhasil dikirim, mohon untuk menunggu konfirmasi dari Admin');
+        return redirect()->route('tuliskonsultasi.index')
+                        ->with('success','Konsultasi berhasil terkirim dimohon untuk menunggu respon dari Petugas');
     }
 }

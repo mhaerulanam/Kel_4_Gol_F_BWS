@@ -4,12 +4,14 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\peternak;
+use App\Models\PeternakUser;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use DateTime;
 
 class RegisterController extends Controller
 {
@@ -67,29 +69,34 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $role = 0;
-        User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'is_admin' => $role,
         ]);
 
-        $emailUser = $data['email'];
+        $dt = new DateTime();
+        $id_peternak=$dt->format('mdHis ');
 
-        $user = DB::table('users')
-        ->whereIn('id', function($query)
-        {
-            $query->select(['id'])
-                  ->from('users')
-                  ->where('email', 'anam@gmail.com');
-        })
-        ->get();
+        $id_user = $user->id;
+        $nama_user = $user->name;
+        $email_user = $user->email;
+        $pass_user = $user->password;
 
-        $idUser = $user['id'];
+        PeternakUser::create([
+            'id_peternak' => $id_peternak,
+            'namadepan_peternak' => $nama_user,
+            'namabelakang_peternak' => '',
+            'no_hp' => '',
+            'jenis_kelamin' => '',
+            'alamat' => '',
+            'foto_peternak' => '',
+            'email_peternak' => $email_user,
+            'id' => $id_user,
+        ]);
 
-        return DB::table('peternak')->insert(
-            ['namadepan_peternak' => $data['name'], 'id' => $idUser]
-        );
+       return $user;
         
     }
 }
