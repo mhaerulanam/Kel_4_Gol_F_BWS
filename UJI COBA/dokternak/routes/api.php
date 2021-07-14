@@ -79,3 +79,10 @@ Route::get('api_dokumentasi/{id_dokumentasi}', 'ApiDokumentasiController@getDoku
 Route::post('api_dokumentasi', 'ApiDokumentasiController@createDokumentasi');
 Route::put('api_dokumentasi/{id_dokumentasi}', 'ApiDokumentasiController@updateDokumentasi');
 Route::delete('api_dokumentasi/{id_dokumentasi}', 'ApiDokumentasiController@deleteDokumentasi');
+
+//Route Api Konsultasi
+Route::get('api_konsultasi/peternak/{id}', 'ApiKonsultasiController@getAll');
+Route::get('api_konsultasi/{id_konsultasi}', 'ApiDokumentasiController@getdetailKonsultasi');
+Route::post('api_konsultasi', 'ApiKonsultasiController@createKonsultasi');
+Route::delete('api_konsultasi/{id_konsultasi}', 'ApiKonsultasiController@deleteKonsultasi');
+

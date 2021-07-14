@@ -141,6 +141,7 @@
 <div class="container">
 <div class="tab">
     @if(isset($konsultasi2) ?? '')
+    {{-- @if (Request::is('konsultasi.detail')) --}}
         <button class="tablinks" onclick="openCity(event, 'masuk')" >Kotak Masuk</button>
         <button class="tablinks" onclick="openCity(event, 'terkirim')" id="defaultOpen">Kotak Terkirim</button>
     @else
@@ -349,7 +350,7 @@
                             <div class="chat_ib">
                             <h5> Kepada :  {{ $data_konsultasi->nama_dokter }} <span class="chat_date" name="klik">{{ $data_konsultasi->tanggal }}<br></span></h5>
                             <p name="klik">-- Belum Ada Balasan --</p>
-                            <a href="/konsultasi/{{ $data_konsultasi->id_konsultasi }}/detail/"><button name="klok" class="genric-btn primary-border openMsg" onclick="openCity(event, 'terkirim')"  id="defaultOpen"><p>Lihat</p></button></a>
+                            <a href="{{ route("konsultasi.detail", $data_konsultasi->id_konsultasi) }}"><button name="klok" class="genric-btn primary-border openMsg" onclick="openCity(event, 'terkirim')"  id="defaultOpen"><p>Lihat</p></button></a>
                             </div>
                         </div>
                         </div>
@@ -360,15 +361,17 @@
 
         </div>
 
-        @if(isset($konsultasi2) )
+        @if(isset($konsultasi2) ?? '')
+        {{-- @if (Request::is('konsultasi.detail')) --}}
 		<!-- <div class="collapse" id="riwayat"> -->
-        @foreach ($konsultasi2 as $data_konsultasi2)
+      
         <div class="mesgs">
+            @foreach ($konsultasi2 as $data_konsultasi2)
           <div class="msg_history">
                 <form method="POST" action="">
                 <div class="row m-0">
                     <div class="flex-grow-1 pl-3">
-                    <h5>Kepada : {{ $data_konsultasi2->id_dokter }}</h5></h5>
+                    <h5>Kepada : {{ $data_konsultasi2->nama_dokter }}</h5></h5>
                     </div>
                     <div class="flex-grow-4 pl-1">
                     <input type="hidden" name="idk" value="Id">
@@ -391,15 +394,15 @@
 								<!-- <a class="text-decoration-none" href="#"> -->
 									<h2 class="text-capitalize h5 mb-0"><b>Anda</b></h2>
 								<!-- </a>  -->
-								<p class="small text-secondary m-0 mt-1"> tanggal</p>
+								<p class="small text-secondary m-0 mt-1"> {{ $data_konsultasi2->tanggal }}</p>
                             </div>
                             <div class="flex-grow-2 pl-2">
-                                <p class="small text-secondary m-0 mt-1">Kategori hewan <br>Nama Hewan</p>
+                                <p class="small text-secondary m-0 mt-1">{{ $data_konsultasi2->kategori_hewan }}<br>{{ $data_konsultasi2->nama_hewan }}</p>
                             </div>
 						<!-- post body -->
 						<div class="">
 							<p class="my-2">
-                           Keluhan
+                                {{ $data_konsultasi2->keluhan }}
 							</p>
 						</div>
 						<hr class="my-1">
@@ -431,8 +434,8 @@
                     </form>
                 </center>
             </div>
+            @endforeach
         </div>
-        @endforeach
         @endif
         </div>
     </div>
