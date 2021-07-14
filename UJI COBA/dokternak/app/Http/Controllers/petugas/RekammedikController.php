@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\rekam_medik;
+use App\Models\Artikel;
+use App\Models\dokter;
+use App\Models\dokter_rekammedik;
 use Dotenv\Validator;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Support\Facades\Crypt;
@@ -14,6 +17,11 @@ use Illuminate\Support\Facades\Validator as FacadesValidator;
 
 class RekammedikController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         // $rekam_medik = DB::table('rekam_medik')->get();
@@ -21,8 +29,14 @@ class RekammedikController extends Controller
                     ->join('kategori_hewan', 'kategori_hewan.id_kategori','=','rekam_medik.id_kategori')
                     ->orderBy('id_rmd','desc')
                     ->get();
+        $rmd_petugas = DB::table('users')->join('dokter','dokter.id','=','users.id')
+                    ->join('dokter_rekammedik','dokter_rekammedik.id_dokter','=','dokter.id_dokter')
+                    ->join('rekam_medik','rekam_medik.id_rmd','=','dokter_rekammedik.id_rmd')
+                    ->join('kategori_artikel', 'kategori_artikel.id_ktg', '=', 'rekam_medik.id_ktg')
+                    ->join('kategori_hewan', 'kategori_hewan.id_kategori','=','rekam_medik.id_kategori')
+                    ->get();
         $kategori_artikel = DB::table('kategori_artikel')->orderBy('id_ktg','desc')->get();
-        return view('petugas.rekam_medik.index', compact('rekam_medik','kategori_artikel'));
+        return view('petugas.rekam_medik.index', compact('rekam_medik','rmd_petugas','kategori_artikel'));
     }
 
     public function create()
@@ -58,8 +72,15 @@ class RekammedikController extends Controller
             'diagnosa' => $request->diagnosa,
             'pelayanan' => $request->pelayanan,
         ];
+        
+        $data_simpan2 = [
+            'id_dokmed' => "",
+            'id_rmd' => $kode,
+            'id_dokter' =>$request->id_dokter,
+        ];
 
         rekam_medik::create($data_simpan);
+        dokter_rekammedik::create($data_simpan2);
 
         return redirect()->back()->with('success','Data Rekam Medik baru telah berhasil disimpan');
     }

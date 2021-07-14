@@ -333,7 +333,10 @@ $(document).ready(function(){
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($rekam_medik as $item)
+                    {{-- Mulai foreach untuk mengambil data rekam medik sesuai petugas yang login --}}
+                    @foreach ($rmd_petugas as $item)
+        
+                    @if ($item->id == Auth::user()->id)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $item->id_rmd}}</td>
@@ -353,6 +356,7 @@ $(document).ready(function(){
                         </div>
                         </td>
                     </tr>
+                    @endif
                     @endforeach
                 </tbody>
             </table>
@@ -388,6 +392,12 @@ $(document).ready(function(){
                     <form role="form" method="POST" id="rekam_medik_form" action="{{route('simpandata')}}">
                         @csrf
                         <input type="hidden" name="id_rmd" value="">
+                        <input type="hidden" name="id_dokmed" value="">
+                        @foreach ($rmd_petugas as $item)
+                            @if ($item->id == Auth::user()->id)
+                            <input type="hidden" name="id_dokter" value="{{ $item->id_dokter }}" required class="single-input">
+                            @endif
+                        @endforeach
                         <div class="form-group">
                             <label class="control-label">Tanggal</label>
                             <input type="date" class="form-control" name="tanggal" required>
