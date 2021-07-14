@@ -56,7 +56,7 @@ class LoginController extends Controller
             }
             elseif (auth()->user()->is_admin == 2) {
                 return redirect()->route('lppetugas');
-            }else{
+            }elseif(auth()->user()->is_admin == 0) {
                 return redirect()->route('home');
             }
         }else{

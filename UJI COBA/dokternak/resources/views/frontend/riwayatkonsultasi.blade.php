@@ -386,7 +386,7 @@
 						<div class="row m-0">
 							<div class="">
 								<a class="text-decoration-none" href="#">
-									<img src="fotoakun.php?id_peternak=id peternak"class="rounded-circle z-depth-0"
+									<img src="/data/data_peternak/{{ $data_konsultasi2->foto_peternak }}"class="rounded-circle z-depth-0"
                                             alt="fotoakun" height="50">
 								</a>
 							</div>
