@@ -19,7 +19,8 @@ class AdminController extends Controller
     public function index()
     {
         $data = [
-            'admin' => Admin::with('roles')->orderBy('id','desc')->where('is_admin',1)->get(),
+            'admin' => Admin::with('roles')->where('is_admin',1)->get(),
+            // 'admin' => Admin::with('roles')->orderBy('id','desc')->where('is_admin',1)->get(),
         ];
         return view('backend.admin.index',compact('data'));
         // return view('backend.peternak.index');
@@ -28,8 +29,9 @@ class AdminController extends Controller
 
     public function create()
     {
-        $role =  Role::where('id_role',1)->first();
-        return view('backend.admin.create',compact('role'));
+        // $role =  Role::where('id_role',1)->first();
+        $admin = null;
+        return view('backend.admin.create',compact('admin'));
     }
 
     public function store(Request $request)
@@ -50,10 +52,12 @@ class AdminController extends Controller
             // 'tingkatan' => 'required|numeric',
         ], $message)->validate();
 
+
+        $role = 1;
         $data_simpan = [
             'name' => $request->name,
             'email' => $request->email,
-            'is_admin' => $request->id_role,
+            'is_admin' => $role,
             'password' => Hash::make($request['password']),
         ];
 

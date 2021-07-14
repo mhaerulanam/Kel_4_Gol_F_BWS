@@ -57,7 +57,8 @@
 
                                 <?php echo isset($admin) ? method_field('PUT') : ''; ?>
 
-                      <input type="hidden" name="id" value="<?php echo e(isset($peternak) ? $peternak->id : ''); ?>"> <br/>
+                      <input type="hidden" name="id" value="<?php echo e(isset($admin) ? $admin->id : ''); ?>"> <br/>
+                      
                       <div class="form-row">
                       <div class="col-md-6 mb-3">
                         <label for="validationCustom3">Nama Lengkap</label>
