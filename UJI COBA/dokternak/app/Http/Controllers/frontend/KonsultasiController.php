@@ -23,7 +23,15 @@ class KonsultasiController extends Controller
         ->orderBy('tanggal','desc')
         ->get();
 
+        // $konsultasi2 = DB::table('konsultasi')
+        // ->join('dokter', 'dokter.id_dokter', '=', 'konsultasi.id_dokter')
+        // ->join('kategori_hewan', 'kategori_hewan.id_kategori', '=', 'konsultasi.id_kategori')
+        // ->join('kategori_artikel', 'kategori_artikel.id_ktg', '=', 'konsultasi.id_ktg')
+        // ->where('konsultasi.id_dokter','=',$id)
+        // ->first();
+
         $konsultasi2 = DB::table('konsultasi')
+<<<<<<< Updated upstream
         ->join('dokter', 'dokter.id_dokter', '=', 'konsultasi.id_dokter')
         ->join('kategori_hewan', 'kategori_hewan.id_kategori', '=', 'konsultasi.id_kategori')
         ->join('kategori_artikel', 'kategori_artikel.id_ktg', '=', 'konsultasi.id_ktg')
@@ -32,4 +40,10 @@ class KonsultasiController extends Controller
         return view('frontend.riwayatkonsultasi',compact('konsultasi2','konsultasi'));
     }
 
+=======
+        ->where('konsultasi.id_dokter','=',$id)
+        ->first();
+        return view('frontend.riwayatkonsultasi',compact('konsultasi2','konsultasi'));
+    }
+>>>>>>> Stashed changes
 }
