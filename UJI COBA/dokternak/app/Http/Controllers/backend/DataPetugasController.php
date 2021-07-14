@@ -15,7 +15,8 @@ class DataPetugasController extends Controller
     public function index()
     {
         $data = [
-            'petugas' => Petugas::with('roles')->orderBy('id','desc')->where('is_admin',2)->get(),
+            'petugas' => Petugas::with('roles')->where('is_admin',2)->get(),
+            // 'petugas' => Petugas::with('roles')->orderBy('id','desc')->where('is_admin',2)->get(),
         ];
         return view('backend.datapetugas.index',compact('data'));
         // return view('backend.peternak.index');
@@ -24,8 +25,9 @@ class DataPetugasController extends Controller
 
     public function create()
     {
-        $role =  Role::where('id_role',2)->first();
-        return view('backend.datapetugas.create',compact('role'));
+        // $role =  Role::where('id_role',2)->first();
+        $datapetugas = null;
+        return view('backend.datapetugas.create',compact('datapetugas'));
     }
 
     public function store(Request $request)
@@ -46,11 +48,11 @@ class DataPetugasController extends Controller
             // 'tingkatan' => 'required|numeric',
         ], $message)->validate();
 
-
+        $role = 2;
         $data_simpan = [
             'name' => $request->name,
             'email' => $request->email,
-            'is_admin' => $request->id_role,
+            'is_admin' => $role,
             'password' => Hash::make($request['password']),
         ];
 

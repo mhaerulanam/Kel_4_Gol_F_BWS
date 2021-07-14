@@ -129,7 +129,7 @@
                   <div class="col-xl-12">
                       <div class="hero-cap text-center">
                             <h2>Hallo!</h2>
-                            <h2> Petugas </h2>
+                            <h2> Petugas {{ Auth::user()->name }}</h2>
                       </div>
                   </div>
               </div>
@@ -154,7 +154,7 @@
                     <div class="col-md-6">
                         <div class="profile-head">
                                     <h4><b>
-                                     Nama Dokter</b>
+                                    {{ Auth::user()->name }}</b>
                                     </h4>
                                     <h6>
                                     Jabatan
@@ -180,8 +180,8 @@
                        <div class="profile-work">
                                 <center>
                                 <input type="submit" name="sfoto" class="genric-btn second" value="Simpan"/> <br><br><br>
-                                <label><b>Username : </b></label><br>
-                                <label><b>Password : </b></label>
+                                <label><b>Email : {{ Auth::user()->email }}</b></label><br>
+                                <label><b>Password : {{ Auth::user()->password }}</b></label>
                                 </center>
                          </div>
                     </div>
@@ -280,13 +280,13 @@
                                                             <img class="card-img rounded-0" src="/data/data_artikel/{{ $data_artikel->gambar }}"alt="post" width="100px"/>
                                                             <div class="blog-date text-center">
                                                                 <span>{{ $data_artikel->tanggal }}</span>
-                                                                <p>Kategori :{{ $data_artikel->id_ktg }}</p>
+                                                                <p>Kategori : {{ $data_artikel->kategori_artikel }}</p>
                                                             </div>
                                                         </div>
                                                         <div class="blog-cap">
                                                             <p>{{ $data_artikel->nama_penulis}}</p>
-                                                            <h3>{{ $data_artikel->judul }}<a href="detailartikel.php?id_artikel={{ $data_artikel->judul }}"></a></h3>
-                                                            <a href="#" class="more-btn">Read more »</a>
+                                                            <h3><a href="/petugas/artikel/{{ $data_artikel->id_artikel }}/detail/">{{ $data_artikel->judul }}</a></h3>
+                                                            <a href="/petugas/artikel/{{ $data_artikel->id_artikel }}/detail/" class="more-btn">Read more »</a>
                                                         </div>
                                                     </div>
                                                 </div> 

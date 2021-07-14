@@ -49,7 +49,7 @@ class DataPuskeswanController extends Controller
         ];
 
         $validator = FacadesValidator::make($request->all(),[
-            'gambar' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            // 'gambar' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
             // 'nama' => 'required|string|max:100',
             // 'tingkatan' => 'required|numeric',
         ], $message)->validate();
@@ -57,8 +57,13 @@ class DataPuskeswanController extends Controller
         $dt = new DateTime();
         $id=$dt->format('YmdH');
 
+        $gbr=$request->nama_gambar;
+        if($request->has('gambar')) {
         $getimageName = time().'.'.$request->gambar->getClientOriginalExtension();
         $request->gambar->move(public_path('data/data_puskeswan'), $getimageName);
+        }else {
+            $getimageName = $gbr;
+        }
 
         $data_simpan = [
             'id_puskeswan' => $id,
@@ -96,14 +101,19 @@ class DataPuskeswanController extends Controller
         ];
 
         $validator = FacadesValidator::make($request->all(),[
-            'gambar' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            // 'gambar' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
             // 'nama' => 'required|string|max:100',
             // 'tingkatan' => 'required|numeric',
         ], $message)->validate();
 
 
-        $getimageName = time().'.'.$request->gambar->getClientOriginalExtension();
-        $request->gambar->move(public_path('data/data_puskeswan'), $getimageName);
+        $gbr=$request->nama_gambar;
+        if($request->has('gambar')) {
+            $getimageName = time().'.'.$request->gambar->getClientOriginalExtension();
+            $request->gambar->move(public_path('data/data_puskeswan'), $getimageName);
+        }else {
+            $getimageName = $gbr;
+        }
 
         $data_simpan = [
             'id_puskeswan' => $request->id_puskeswan,

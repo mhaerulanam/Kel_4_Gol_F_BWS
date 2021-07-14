@@ -56,7 +56,7 @@
                                 {!! csrf_field() !!}
                                 {!! isset($admin) ? method_field('PUT') : '' !!}
                       <input type="hidden" name="id" value="{{ isset($admin) ? $admin->id : '' }}"> <br/>
-                      <input type="text" name="id_role" value="{{ $role->id_role }}"> <br/>
+                      {{-- <input type="text" name="id_role" value="{{ $role->id_role }}"> <br/> --}}
                       <div class="form-row">
                       <div class="col-md-6 mb-3">
                         <label for="validationCustom3">Nama Lengkap</label>

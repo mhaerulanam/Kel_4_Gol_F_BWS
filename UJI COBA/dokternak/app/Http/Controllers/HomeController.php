@@ -45,10 +45,16 @@ class HomeController extends Controller
 
     public function lppetugas()
     {
+        // $data = [
+        //     'artikel' => Artikel::orderBy('tanggal', 'desc')->paginate(2),
+        // ];
+        // return view('petugas.home',compact('data'));
         $data = [
-            'artikel' => Artikel::orderBy('tanggal', 'desc')->paginate(2),
-        ];
+            'artikel' => DB::table('artikel')->join('kategori_artikel', 'kategori_artikel.id_ktg', '=', 'artikel.id_ktg')
+            ->orderBy('id_artikel','desc')
+            ->where('status','=','tampil')
+            ->paginate(2),
+          ];
         return view('petugas.home',compact('data'));
-        // return view('petugas.home');
     }
 }

@@ -57,7 +57,6 @@ class DataBannerController extends Controller
         $request->gambar->move(public_path('data/data_banner'), $getimageName);
 
         $data_simpan = [
-            'id_banner' =>$id,
             'gambar' =>$getimageName,
             'status' => $request->status,
         ];

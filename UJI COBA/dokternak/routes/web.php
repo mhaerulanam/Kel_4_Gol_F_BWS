@@ -53,8 +53,10 @@ Route::group(['namespace' => 'Petugas'], function()
     Route::resource('petugas/detailartikel', 'DetailArtikelController');
     Route::resource('petugas/tutorial', 'TutorialController');
     Route::resource('petugas/tulisartikel', 'TulisArtikelController');
+    Route::POST('petugas/tulisartikel/uploadartikel','TulisArtikelController@store')->name('uploadartikel');
     Route::resource('petugas/rekam-medik', 'RekammedikController');
     Route::resource('petugas/data-obat', 'DataObatController');
+    Route::resource('petugas/respon-konsultasi', 'ResponKonsultasiController');
    // CRUD Rekam Medik -------------------------------------------------------
    Route::POST('petugas/rekam-medik/simpandata','RekammedikController@store')->name('simpandata');
    Route::match(['get','post'], 'petugas/rekam-medik/edit/{id}','RekammedikController@edit');
@@ -137,4 +139,5 @@ Route::get('/puskeswan/cari', 'frontend\PuskeswanController@cari');
 Route::get('/puskeswan/{id}/detail', 'frontend\PuskeswanController@detail');
 
 //Route Konsultasi
-Route::get('/konsultasi', 'frontend\KonsultasiController@index');
+Route::get('/konsultasi', 'frontend\KonsultasiController@index')->name('konsultasi.index');;
+Route::get('/konsultasi/{id}/detail', 'frontend\KonsultasiController@detail')->name('konsultasi.detail');;

@@ -44,7 +44,7 @@ class DataTutorialController extends Controller
         ];
 
         $validator = FacadesValidator::make($request->all(),[
-            'judul_tutorial' => 'required|string|min:15|max:100',
+            'judul_tutorial' => 'required|string|min:5|max:100',
             'icon' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
         ], $message)->validate();
 
@@ -95,8 +95,14 @@ class DataTutorialController extends Controller
 
         $status= "tampil";
 
+        $icn=$request->nama_icon;
+        // if (isset($request->gambar) == NULL){
+        if($request->has('icon')) {
         $getimageName = time().'.'.$request->icon->getClientOriginalExtension();
         $request->icon->move(public_path('data/data_tutorial'), $getimageName);
+        }else {
+            $getimageName = $icn;
+        }
 
         $data_simpan = [
             'judul_tutorial' => $request->judul_tutorial,
