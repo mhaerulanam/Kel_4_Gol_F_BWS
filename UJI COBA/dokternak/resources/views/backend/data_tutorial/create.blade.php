@@ -75,6 +75,7 @@
                         <div class="valid-feedback"> Looks good! </div>
                       </div>
                     </div>
+                    <input type="hidden" name="nama_icon" value="{{ isset($tutorial) ? $tutorial->icon : '' }}">
                     <div class="form-row">
                       <div class="col-md-6 mb-3">
                         <label for="validationCustom3">Icon</label>
