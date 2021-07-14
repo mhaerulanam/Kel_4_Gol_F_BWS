@@ -63,7 +63,7 @@
                   </thead>
                   <tbody>
                     @php $no = 1; @endphp
-                    @foreach ($data['kritikdansaran_tabel'] as $item)
+                    @foreach ($data['kritikdansaran'] as $item)
                     <tr>
                         <td>{{ $no++ }}</td>
                         <td>{{ $item->tanggal }}</td>
