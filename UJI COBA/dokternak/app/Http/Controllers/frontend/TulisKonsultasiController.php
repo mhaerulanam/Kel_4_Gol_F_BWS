@@ -64,6 +64,8 @@ class TulisKonsultasiController extends Controller
             'status_kirim' => $request->status_kirim,
         ];
 
+        Konsultasi::create($data_simpan);
+
         return redirect()->route('tuliskonsultasi.index')
                         ->with('success','Konsultasi berhasil terkirim dimohon untuk menunggu respon dari Petugas');
     }

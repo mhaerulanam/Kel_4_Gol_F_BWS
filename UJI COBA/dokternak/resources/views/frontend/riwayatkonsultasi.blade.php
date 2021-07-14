@@ -360,14 +360,15 @@
 
         </div>
 
-        @if( isset($konsultasi) || isset($konsultasi2) )
+        @if(isset($konsultasi2) )
 		<!-- <div class="collapse" id="riwayat"> -->
+        @foreach ($konsultasi2 as $data_konsultasi2)
         <div class="mesgs">
           <div class="msg_history">
                 <form method="POST" action="">
                 <div class="row m-0">
                     <div class="flex-grow-1 pl-3">
-                    {{-- <h5>Kepada : {{ $konsultasi2->id_dokter }}</h5></h5> --}}
+                    <h5>Kepada : {{ $data_konsultasi2->id_dokter }}</h5></h5>
                     </div>
                     <div class="flex-grow-4 pl-1">
                     <input type="hidden" name="idk" value="Id">
@@ -431,6 +432,7 @@
                 </center>
             </div>
         </div>
+        @endforeach
         @endif
         </div>
     </div>

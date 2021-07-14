@@ -8,6 +8,7 @@ use App\Models\Artikel;
 use App\Models\dokter;
 use App\Models\puskeswan;
 use App\Models\tutorial;
+use App\Models\jabatan;
 
 
 class HomeController extends Controller
@@ -49,12 +50,16 @@ class HomeController extends Controller
         //     'artikel' => Artikel::orderBy('tanggal', 'desc')->paginate(2),
         // ];
         // return view('petugas.home',compact('data'));
+        // $id_petugas = Auth::user()->id;
+        $petugas = DB::table('users')->join('dokter','dokter.id','=','users.id')
+            ->join('jabatan','jabatan.id_jabatan','=','dokter.id_jabatan')
+            ->get();
         $data = [
             'artikel' => DB::table('artikel')->join('kategori_artikel', 'kategori_artikel.id_ktg', '=', 'artikel.id_ktg')
             ->orderBy('id_artikel','desc')
             ->where('status','=','tampil')
             ->paginate(2),
           ];
-        return view('petugas.home',compact('data'));
+        return view('petugas.home',compact('data','petugas'));
     }
 }

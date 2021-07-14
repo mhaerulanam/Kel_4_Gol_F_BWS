@@ -129,7 +129,12 @@
                   <div class="col-xl-12">
                       <div class="hero-cap text-center">
                             <h2>Hallo!</h2>
-                            <h2> Petugas {{ Auth::user()->name }}</h2>
+                            {{-- Mulai foreach untuk mengambil data petugas dari 3 tabel = users, dokter, dan jabatan --}}
+                            @foreach ($petugas as $data_petugas)
+        
+                                @if ($data_petugas->id == Auth::user()->id)
+                                <h2>{{ $data_petugas->jabatan }} {{ $data_petugas->nama_dokter }}</h2>
+                                
                       </div>
                   </div>
               </div>
@@ -143,23 +148,23 @@
             <form method="post" enctype="multipart/form-data">
                 <div class="row">
                     <div class="col-md-4">
-                        <div class="profile-img">
-                            <img src="#" alt=""/>
+                        <center>
+                            <img src="/data/data_dokter/{{ $data_petugas->foto }}" alt="" width="150px" height="150px"/><br><br>
+                        </center>
+                        {{-- <div class="profile-img">
+                            <img src="/data/data_dokter/{{ $data_petugas->foto }}" alt="" width="100px" height="100px"/>
                             <div class="file btn btn-lg btn-primary">
                                 <input type="file" name="foto" id="foto">
                                 Ubah Foto Profil
                             </div>
-                        </div>
+                        </div> --}}
+                        {{-- Foto dipindah karena ketika foto berada didalam div profile-img, ukurannya tidak bisa diatur --}}
                     </div>
                     <div class="col-md-6">
                         <div class="profile-head">
-                                    <h4><b>
-                                    {{ Auth::user()->name }}</b>
-                                    </h4>
-                                    <h6>
-                                    Jabatan
-                                    </h6>
-                                    <p>Tempat</p>
+                                    <h4><b>{{ $data_petugas->nama_dokter }}</b></h4>
+                                    <h6>{{ $data_petugas->jabatan }}</h6>
+                                    <p>{{ $data_petugas->tempat }}</p>
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <li class="nav-item">
                                     <a class="nav-link active" id="home-tsab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Data Pribadi</a>
@@ -179,9 +184,10 @@
                     <div class="col-md-4">
                        <div class="profile-work">
                                 <center>
-                                <input type="submit" name="sfoto" class="genric-btn second" value="Simpan"/> <br><br><br>
-                                <label><b>Email : {{ Auth::user()->email }}</b></label><br>
-                                <label><b>Password : {{ Auth::user()->password }}</b></label>
+                                {{-- <input type="submit" name="sfoto" class="genric-btn second" value="Simpan"/> <br><br><br> --}}
+                                <label><b>Username : </b>{{ Auth::user()->name }}</label><br>
+                                <label><b>Email akun : </b>{{ Auth::user()->email }}</label><br>
+                                {{-- <label><b>Password : {{ Auth::user()->password }}</b></label> --}}
                                 </center>
                          </div>
                     </div>
@@ -190,45 +196,59 @@
                             <div class="container tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>Nama :</label>
+                                                <label>Nama</label>
                                             </div>
-                                    
+                                            <div class="col-md-6">
+                                                <p>: {{ $data_petugas->nama_dokter }}</p>
+                                            </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>Jenis Kelamin :</label>
+                                                <label>Jenis Kelamin</label>
                                             </div>
-                                            
+                                            <div class="col-md-6">
+                                                <p>: {{ $data_petugas->jenis_kelamin }}</p>
+                                            </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <label>Email</label>
                                             </div>
-                                            
+                                            <div class="col-md-6">
+                                                <p>: {{ $data_petugas->email }}</p>
+                                            </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>No. Handphone/Whatsapp :</label>
+                                                <label>No. Handphone/Whatsapp</label>
                                             </div>
-                                            
+                                            <div class="col-md-6">
+                                                <p>: {{ $data_petugas->telpon }}</p>
+                                            </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>Kecamatan (Tempat Dinas/Praktek) :</label>
+                                                <label>Kecamatan (Tempat Dinas/Praktek)</label>
                                             </div>
-                                            
+                                            <div class="col-md-6">
+                                                <p>: {{ $data_petugas->tempat }}</p>
+                                            </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>Jadwal Kerja :</label>
+                                                <label>Jadwal Kerja</label>
                                             </div>
-                                            
+                                            <div class="col-md-6">
+                                                <p>: {{ $data_petugas->jadwal_kerja }}</p>
+                                            </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>Alamat :</label>
+                                                <label>Alamat</label>
                                             </div>
-                                            
+                                            <div class="col-md-6">
+                                                <p>: {{ $data_petugas->alamat }}</p>
+                                            </div>
                                         </div>
                             </div>
                             <div class="container tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
@@ -242,9 +262,10 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        
-                                        
                             </div>
+                            @endif   
+                            @endforeach
+                            {{-- End foreach dan if --}}
                         </div>
                     </div>
                 </div>
