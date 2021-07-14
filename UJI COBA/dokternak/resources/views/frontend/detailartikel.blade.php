@@ -122,21 +122,33 @@
                                     </li>                           
                                 </ul>
                             </aside>
-                 <!-- Artikel Lainnya -->
-                 <aside class="single_sidebar_widget popular_post_widget">
+                            {{-- <!-- Artikel Lainnya -->
+                  <aside class="single_sidebar_widget popular_post_widget">
                      <h3 class="widget_title">Artikel Lainnya</h3>
                      @foreach ($artikel2 as $data_artikel)  
                      <div class="media post_item">
                            <img src="data:image/png;base64,{{ chunk_split(base64_encode($data_artikel->gambar)) }}" width="120px" />
                            <div class="media-body">
-                                 <a href="detailartikel.php?id_artikel=">
-                                    <h6>{{ $data_artikel->judul }}</h6>
-                                 </a>
-                                 <p>{{ $data_artikel->tanggal }}</p>
+                              <a href="/artikel/{{ $data_artikel->id_artikel }}/detail/">{{ $data_artikel->judul }}</a>
+                              <p>{{ $data_artikel->tanggal }}</p>
                            </div>
                      </div> 
                     @endforeach
-                  </aside>
+                  </aside> --}}
+                  <!-- Artikel Lainnya -->
+                  <aside class="single_sidebar_widget popular_post_widget">
+                     <h3 class="widget_title">Artikel Lainnya</h3>
+                     @foreach ($artikel2 as $data_artikel)  
+                     <div class="media post_item">
+                         <img src="/data/data_artikel/{{ $data_artikel->gambar }}" width="120px" />
+                         <div class="media-body">
+                              <h6><a href="/artikel/{{ $data_artikel->id_artikel }}/detail/">{{ $data_artikel->judul }}</a></h6>
+                              <p>{{ $data_artikel->tanggal }}</p>
+                         </div>
+                     </div> 
+                     @endforeach
+                 </aside>
+                  
                </div>
             </div>
          </div>
