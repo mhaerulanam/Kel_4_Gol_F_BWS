@@ -49,7 +49,7 @@ Route::group(['namespace' => 'backend'], function()
 Route::group(['namespace' => 'Petugas'], function()
 {
   Route::resource('petugas/tentangkami', 'TentangKamiController');
-    Route::resource('petugas/artikel', 'ArtikelController');
+    // Route::resource('petugas/artikel', 'ArtikelController');
     Route::resource('petugas/home', 'HomeController');
     Route::resource('petugas/detailartikel', 'DetailArtikelController');
     Route::resource('petugas/tutorial', 'TutorialController');

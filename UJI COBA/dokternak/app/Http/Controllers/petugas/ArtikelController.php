@@ -4,7 +4,7 @@ namespace App\Http\Controllers\petugas;
 use App\Http\Controllers\controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Models\{artikel, Cat};
+use App\Models\{artikel};
 
 class ArtikelController extends Controller
 {
@@ -37,6 +37,7 @@ class ArtikelController extends Controller
         //mengirim data artikel ke view artikel
         return view('petugas.artikel',compact('artikel'));
     }
+
 
     public function detail($id) {
         // $artikel2 = Artikel::orderBy('tanggal', 'desc')->paginate(2);
