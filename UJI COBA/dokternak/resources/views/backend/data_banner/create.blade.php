@@ -50,7 +50,7 @@
                   <strong class="card-title">Advanced Validation</strong>
                 </div>
                 <div class="card-body">
-                  <form class="needs-validation" id="puskeswan_form" method="POST" enctype="multipart/form-data"
+                  <form class="needs-validation" id="banner_form" method="POST" enctype="multipart/form-data"
                             action="{{ isset($banner) ? route('data_banner.update',$banner->id_banner) : 
                             route('data_banner.store') }}">
                                 {!! csrf_field() !!}
@@ -84,6 +84,7 @@
                         <div class="valid-feedback"> Looks good! </div>
                       </div>
                     </div> -->
+                    <input type="hidden" name="nama_gambar" value="{{ isset($banner) ? $banner->gambar : '' }}">
                     <div class="form-row">
                         <div class="col-md-6 mb-3">
                           <label for="validationCustom3">Gambar</label>
