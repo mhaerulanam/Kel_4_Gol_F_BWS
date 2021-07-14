@@ -122,9 +122,8 @@
                                     </li>                           
                                 </ul>
                             </aside>
-                  
-                  <!-- Artikel Lainnya -->
-                  <aside class="single_sidebar_widget popular_post_widget">
+                 <!-- Artikel Lainnya -->
+                 <aside class="single_sidebar_widget popular_post_widget">
                      <h3 class="widget_title">Artikel Lainnya</h3>
                      @foreach ($artikel2 as $data_artikel)  
                      <div class="media post_item">
@@ -138,7 +137,6 @@
                      </div> 
                     @endforeach
                   </aside>
-                  
                </div>
             </div>
          </div>
