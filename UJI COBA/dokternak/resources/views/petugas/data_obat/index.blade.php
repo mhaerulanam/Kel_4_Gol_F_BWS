@@ -336,7 +336,10 @@ $(document).ready(function(){
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($data_obat as $item)
+                    {{-- Mulai foreach untuk mengambil data obat sesuai petugas yang login --}}
+                    @foreach ($obat_petugas as $item)
+        
+                    @if ($item->id == Auth::user()->id)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $item->id_obat}}</td>
@@ -353,6 +356,7 @@ $(document).ready(function(){
                         </div>
                         </td>
                     </tr>
+                    @endif
                     @endforeach
                 </tbody>
             </table>
@@ -388,6 +392,11 @@ $(document).ready(function(){
                     <form role="form" method="POST" id="data_obat_form" action="{{ route('simpanobat') }}">
                         @csrf
                         <input type="hidden" name="id_obat" value="">
+                        @foreach ($obat_petugas as $item)
+                            @if ($item->id == Auth::user()->id)
+                            <input type="hidden" name="id_dokter" value="{{ $item->id_dokter }}" required class="single-input">
+                            @endif
+                        @endforeach
                         <div class="form-group">
                             <label class="control-label">Nama Obat</label>
                             <input type="text" class="form-control" name="nama_obat" required>

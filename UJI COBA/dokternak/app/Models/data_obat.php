@@ -10,6 +10,6 @@ class data_obat extends Model
     protected $table = 'data_obat';
     protected $primarykey = 'id_obat';
     protected $fillable = [
-        '','nama_obat','stok','supplier','expired','keterangan',
+        'id_obat','nama_obat','stok','supplier','expired','keterangan',
     ];
 }
