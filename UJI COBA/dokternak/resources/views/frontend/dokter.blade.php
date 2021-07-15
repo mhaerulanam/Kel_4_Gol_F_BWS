@@ -154,31 +154,33 @@
     <div class="pagination-area pb-200 text-center">
                 <div class="blog_right_sidebar">          
                 <aside class="single_sidebar_widget search_widget">
-                            {{-- <form method="POST"> --}}
-                                <form action="/dokter/cari" method="POST" class="search-box">
+                                <form action="/dokter/kategori" method="POST" class="search-box">
                                     @csrf
                             <div class="input-group mb-3">
                                 <div class="wrapper">
                                 <div class="tabs-2">
                                         <div class="tab">
-                                            <input type="radio" name="cari" id="tab-param" class="tab-switch" value="dokter" selected>
+                                            <input type="radio" name="cari" id="tab-param" class="tab-switch" value="Dokter" selected>
                                             <label for="tab-param" class="tab-label">Dokter</label>
                                         </div>
                                         <div class="tab">
-                                            <input type="radio" name="cari" id="tab-dok" class="tab-switch" value="paramedis" selected>
+                                            <input type="radio" name="cari" id="tab-dok" class="tab-switch" value="Paramedis" selected>
                                             <label for="tab-dok" class="tab-label">Paramedis</label>
                                         </div>
                                         <div class="tab">
-                                            <input type="radio" name="cari" id="tab-ib" class="tab-switch" value="petugas inseminasi" selected>
+                                            <input type="radio" name="cari" id="tab-ib" class="tab-switch" value="Petugas Inseminasi Buatan" selected>
                                             <label for="tab-ib" class="tab-label">Petugas IB</label>
                                         </div>
 
                                     <div class="input-group-append">
-                                        <button type="submit" name="cari" class="genric-btn primary">CEK</button> 
+                                        <button type="submit" name="submit" value="CARI" class="genric-btn primary">CEK</button> 
                                     </div> 
                                 </div>
                                 </div>
                             </div>
+                        </form>
+                            <form action="/dokter/cari" method="POST" class="search-box">
+                                    @csrf
                                 <div class="input-group mb-3">
                                         {{-- <input list="nt" class="form-control" action='cari' placeholder='Masukkan nama Dokter atau lokasi kecamatan Anda ...' name="nt" id="cari dokter" value="" --}}
                                         <input class="form-control" type ="text" name="cari" placeholder="Masukkan nama Dokter atau Lokasi kecamatan Anda" value="{{ old('cari')}}">
@@ -189,7 +191,6 @@
                                             <button class="btns" type="submit" name="submit" value="CARI"><i class="ti-search"></i></button> 
                                         </div>
                                 </div>
-                                   
                             </form>
                         </aside>
                 </div>
