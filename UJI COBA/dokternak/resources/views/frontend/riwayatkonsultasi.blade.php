@@ -171,60 +171,41 @@
           <div class="inbox_chat">
 
               <!-- Daftar Pesan yang sudah di respon -->
-              @if('off')
-                <form method="POST">
+              @foreach ($riwayat_konsultasi as $data_riwayatkonsultasi)
                     <a href="#">
-                    <input type="hidden" name="ids" value="id">
-                    <input type="hidden" name="stt" value="off">
                         <div class="chat_list ">
                         <div class="chat_people">
-                            <div class="chat_img" name="klik"> <img src="profil.php?id_dokter" class="rounded-circle z-depth-0"
+                            <div class="chat_img" name="klik"> <img src="/data/data_dokter/{{ $data_riwayatkonsultasi->foto }}" class="rounded-circle z-depth-0"
                                                         alt="Nama" height="50"></img></div>
                             <div class="chat_ib">
-                            <h5> Dari : Nama <span class="    chat_date" name="klik">tanggal<br></span></h5>
-                            <p>isi pesan singkat</p>
-                            <input type="submit" name="klik" class="genric-btn primary-border" value="Lihat">
+                            <h5> Dari : {{ $data_riwayatkonsultasi->nama_dokter }} <span class="    chat_date" name="klik">{{ $data_riwayatkonsultasi->tanggal_respon }}<br></span></h5>
+                            <p>{{\Illuminate\Support\Str::limit($data_riwayatkonsultasi->respon, 40)}} </p>
+                            <a href="{{ route("konsultasi.detailmasuk", $data_riwayatkonsultasi->id_riwayat) }}"><input type="submit" name="klik" class="genric-btn primary-border" value="Lihat"></a>
                             </div>
                         </div>
                         </div>
                     </a>
-                    </form>
-                    @else
-                <form method="POST">
-                    <a href="#">
-                    <input type="hidden" name="ids" value="id">
-                    <input type="hidden" name="stt" value="off">
-                        <div class="chat_list active_chat">
-                        <div class="chat_people">
-                            <div class="chat_img" name="klik"> <img src="profil.php?id_dokter=" class="rounded-circle z-depth-0"
-                                                        alt="nama" height="50"></img></div>
-                            <div class="chat_ib">
-                            <h5> Kepada : nama <span class="chat_date" name="klik">tanggal</span></h5>
-                            <p name="klik">respon</p><input type="submit" name="klik" class="genric-btn primary-border" value="Lihat">
-                            </div>
-                        </div>
-                        </div>
-                    </a>
-                    </form>
-                    @endif
+            @endforeach
           </div>
         </div>
 
-        @if(isset($_POST['klik']))
+        @if(isset($riwayat_konsultasi2) ?? '')
         <div class="mesgs">
+            @foreach ($riwayat_konsultasi2 as $data_riwayatdetail)
           <div class="msg_history">
-                <form method="POST" action="">
                 <div class="row m-0">
                     <div class="flex-grow-1 pl-3">
-                    <h5>Dari : Nama Peternak</h5></h5>
+                    <h5>Dari : {{ $data_riwayatdetail->nama_dokter }}</h5></h5>
                     </div>
                     <div class="flex-grow-4 pl-1">
                     <input type="hidden" name="idkr" value="id dokter">
                     <input type="hidden" name="idk" value="id k">
-                    <input type="submit" name="hapus" class="genric-btn danger" onclick="return confirm('Apakah Anda yakin ingin menghapus pesan ini?')" value="HAPUS"> 
+                    <a href="{{ route('konsultasi.hapusmasuk',['id'=>$data_riwayatdetail->id_riwayat,'idk'=>$data_riwayatdetail->id_konsultasi,'idr'=>$data_riwayatdetail->id_respon])}}"><button type="submit" class="genric-btn danger"
+                        onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus
+                        <i class="fa fa-trash-o"></i></button></a>
+                    {{-- <input type="submit" name="hapus" class="genric-btn danger" onclick="return confirm('Apakah Anda yakin ingin menghapus pesan ini?')" value="HAPUS">  --}}
                     </div>
                 </div>
-                </form>
 				<!-- Post Begins -->
 				<section class="card mt-4">
 					<div class="border p-2">
@@ -232,7 +213,7 @@
 						<div class="row m-0">
 							<div class="">
 								<a class="text-decoration-none" href="#">
-									<img src="fotoakun.php?id_peternak="class="rounded-circle z-depth-0"
+									<img src="/data/data_peternak/{{ $data_riwayatdetail->foto_peternak }}"class="rounded-circle z-depth-0"
                                             alt="fotoakun" height="50">
 								</a>
 							</div>
@@ -240,16 +221,16 @@
 								<!-- <a class="text-decoration-none" href="#"> -->
 									<h2 class="text-capitalize h5 mb-0"><b>Anda</b></h2>
 								<!-- </a>  -->
-								<p class="small text-secondary m-0 mt-1"> Tanggal</p>
+								<p class="small text-secondary m-0 mt-1"> {{ $data_riwayatdetail->tanggal }}</p>
                             </div>
                             <div class="flex-grow-2 pl-2">
-                                <p class="small text-secondary m-0 mt-1">kategori hewan<br>Nama hewan</p>
+                                <p class="small text-secondary m-0 mt-1">{{ $data_riwayatdetail->kategori_hewan }}<br>{{ $data_riwayatdetail->nama_hewan }}</p>
                             </div>
 						</div>
 						<!-- post body -->
 						<div class="">
 							<p class="my-2">
-                           Keluhan
+                           {{ $data_riwayatdetail->keluhan }}
 							</p>
 						</div>
 						<hr class="my-1">
@@ -273,19 +254,19 @@
 											<div class="d-flex">
 												<div class="">
 													<a class="text-decoration-none" href="#">
-													<img src="profil.php?id_dokter=Id" class="rounded-circle z-depth-0"
+													<img src="/data/data_dokter/{{ $data_riwayatdetail->foto }}" class="rounded-circle z-depth-0"
                                                         alt="Nama" height="40"></img>
 													</a>
 												</div>
 												<div class="flex-grow-1 pl-2">
-													<a class="text-decoration-none text-capitalize h6 m-0" href="#">Nama</a>
-													<p class="small m-0 text-muted">Tanggal</p>
+													<a class="text-decoration-none text-capitalize h6 m-0" href="#">{{ $data_riwayatdetail->nama_dokter }}</a>
+													<p class="small m-0 text-muted">{{ $data_riwayatdetail->tanggal_respon }}</p>
 												</div>		
 											</div>
 											<!-- comment header -->
 											<!-- comment body -->
 											<div class="card-body p-0">
-												<p class="card-text h7 mb-1">isi Respon</p>		
+												<p class="card-text h7 mb-1">{{ $data_riwayatdetail->respon }}</p>		
 											</div>
 										</div>
 									</section>
@@ -307,6 +288,7 @@
                         </center>
                     </form>
                 </div>
+                @endforeach
             </div>
             @endif
         </div>
@@ -368,17 +350,16 @@
         <div class="mesgs">
             @foreach ($konsultasi2 as $data_konsultasi2)
           <div class="msg_history">
-                <form method="POST" action="">
                 <div class="row m-0">
                     <div class="flex-grow-1 pl-3">
                     <h5>Kepada : {{ $data_konsultasi2->nama_dokter }}</h5></h5>
                     </div>
                     <div class="flex-grow-4 pl-1">
-                    <input type="hidden" name="idk" value="Id">
-                    <input type="submit" name="hps" class="genric-btn danger" onclick="return confirm('Apakah Anda yakin ingin menghapus pesan ini?')" value="HAPUS"> 
+                        <a href="{{ route('konsultasi.hapus',$data_konsultasi2->id_konsultasi)}}"><button type="submit" class="genric-btn danger"
+                        onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus
+                        <i class="fa fa-trash-o"></i></button></a>
                     </div>
                 </div>
-                </form>
 				<!-- Post Begins -->
 				<section class="card mt-4">
 					<div class="border p-2">

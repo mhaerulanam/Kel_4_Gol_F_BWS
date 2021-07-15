@@ -144,3 +144,6 @@ Route::get('/puskeswan/{id}/detail', 'frontend\PuskeswanController@detail');
 //Route Konsultasi
 Route::get('/konsultasi', 'frontend\KonsultasiController@index')->name('konsultasi.index');
 Route::get('/konsultasi/{id}/detail', 'frontend\KonsultasiController@detail')->name('konsultasi.detail');
+Route::get('/konsultasi/{id}/detailmasuk', 'frontend\KonsultasiController@detailmasuk')->name('konsultasi.detailmasuk');
+Route::get('/konsultasi/{id}/hapus','frontend\KonsultasiController@hapus')->name('konsultasi.hapus');
+Route::get('/konsultasi/{id}/hapusmasuk/{idk}/detail/{idr}','frontend\KonsultasiController@hapusmasuk')->name('konsultasi.hapusmasuk');
