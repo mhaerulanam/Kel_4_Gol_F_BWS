@@ -149,5 +149,4 @@ Route::get('/konsultasi/{id}/hapus','frontend\KonsultasiController@hapus')->name
 Route::get('/konsultasi/{id}/hapusmasuk/{idk}/detail/{idr}','frontend\KonsultasiController@hapusmasuk')->name('konsultasi.hapusmasuk');
 
 //Route Profil
-//Route::get('frontend/profil','frontend\ProfilController@index');
 Route::get('/profil', 'frontend\ProfilController@index');
