@@ -172,6 +172,24 @@
 
               <!-- Daftar Pesan yang sudah di respon -->
               @foreach ($riwayat_konsultasi as $data_riwayatkonsultasi)
+                @php
+                    $status = $data_riwayatkonsultasi->status_kirim 
+                @endphp
+                    @if ($status == 'norespon') 
+                        <a href="#">
+                            <div class="chat_list active_chat">
+                            <div class="chat_people">
+                                <div class="chat_img" name="klik"> <img src="/data/data_dokter/{{ $data_riwayatkonsultasi->foto }}" class="rounded-circle z-depth-0"
+                                                            alt="" height="50"></img></div>
+                                <div class="chat_ib">
+                                <h5>  Dari : {{ $data_riwayatkonsultasi->nama_dokter }} <span class="chat_date" name="klik">{{ $data_riwayatkonsultasi->tanggal_respon }}</span></h5>
+                                <p>{{\Illuminate\Support\Str::limit($data_riwayatkonsultasi->respon, 40)}} </p>
+                                <a href="{{ route("konsultasi.detailmasuk",['id'=>$data_riwayatkonsultasi->id_riwayat,'idk'=>$data_riwayatkonsultasi->id_konsultasi])}}"><input type="submit" name="klik" class="genric-btn primary-border" value="Lihat"></a>
+                                </div>
+                            </div>
+                            </div>
+                        </a>
+                    @elseif ($status == 'terespon')
                     <a href="#">
                         <div class="chat_list ">
                         <div class="chat_people">
@@ -180,11 +198,12 @@
                             <div class="chat_ib">
                             <h5> Dari : {{ $data_riwayatkonsultasi->nama_dokter }} <span class="    chat_date" name="klik">{{ $data_riwayatkonsultasi->tanggal_respon }}<br></span></h5>
                             <p>{{\Illuminate\Support\Str::limit($data_riwayatkonsultasi->respon, 40)}} </p>
-                            <a href="{{ route("konsultasi.detailmasuk", $data_riwayatkonsultasi->id_riwayat) }}"><input type="submit" name="klik" class="genric-btn primary-border" value="Lihat"></a>
+                            <a href="{{ route("konsultasi.detailmasuk",['id'=>$data_riwayatkonsultasi->id_riwayat,'idk'=>$data_riwayatkonsultasi->id_konsultasi])}}"><input type="submit" name="klik" class="genric-btn primary-border" value="Lihat"></a>
                             </div>
                         </div>
                         </div>
                     </a>
+                    @endif
             @endforeach
           </div>
         </div>

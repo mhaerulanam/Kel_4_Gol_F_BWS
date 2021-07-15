@@ -100,12 +100,19 @@ class KonsultasiController extends Controller
         // return $konsultasi2;
     }
 
-    public function detailmasuk($id) {
+    public function detailmasuk($id, $idk) {
         $idu = Auth::id();
         $peternak = PeternakUser::where('id', $idu)->first();
         $id_peternak = $peternak->id_peternak;
 
-        
+        $status = 'terespon';
+
+        $data_simpan = [
+            'status_kirim' => $status,
+        ];
+
+        Konsultasi::where('id_konsultasi', $idk)->update($data_simpan);
+
         $konsultasi = Konsultasi::select('konsultasi.*','dokter.*','peternak.*')
                     ->join('dokter', 'dokter.id_dokter', '=', 'konsultasi.id_dokter')
                     ->join('peternak', 'peternak.id_peternak', '=', 'konsultasi.id_peternak')
