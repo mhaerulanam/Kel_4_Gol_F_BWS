@@ -339,6 +339,10 @@
           <div class="inbox_chat">
             <!-- Daftar Pesan yang belum direspon -->
             @foreach ($konsultasi as $data_konsultasi)
+            @php
+            $status = $data_konsultasi->status_kirim 
+            @endphp
+            @if ($status == 'norespon') 
                 {{-- <form method="POST"> --}}
                         {!! csrf_field() !!}
                     <a href="#">
@@ -356,6 +360,7 @@
                         </div>
                         </div>
                     </a>
+            @endif
                     {{-- </form> --}}
             @endforeach
           </div>
