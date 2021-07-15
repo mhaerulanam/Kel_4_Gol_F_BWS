@@ -60,9 +60,18 @@
                       <input type="hidden" name="id" value="<?php echo e(isset($peternak) ? $peternak->id : ''); ?>"> <br/>
                       <div class="form-row">
                       <div class="col-md-6 mb-3">
-                        <label for="validationCustom3">Nama Lengkap</label>
-                        <input class="form-control" id="name" name="name" minlength="5" type="text" placeholder="Masukkan nama"
-                        value="<?php echo e(isset($peternak) ? $peternak->name : ''); ?>"  
+                        <label for="validationCustom3">Nama Depan</label>
+                        <input class="form-control" id="name" name="namadepan_peternak" minlength="5" type="text" placeholder="Masukkan Nama Depan"
+                        value="<?php echo e(isset($peternak) ? $peternak->namadepan_peternak : ''); ?>"  
+                            required>
+                        <div class="valid-feedback"> Looks good! </div>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="col-md-6 mb-3">
+                        <label for="validationCustom3">Nama Belakang</label>
+                        <input class="form-control" id="name" name="namabelakang_peternak" minlength="5" type="text" placeholder="Masukkan Nama Belakang"
+                        value="<?php echo e(isset($peternak) ? $peternak->namabelakang_peternak : ''); ?>"  
                             required>
                         <div class="valid-feedback"> Looks good! </div>
                       </div>
@@ -72,13 +81,40 @@
                     <div class="form-row">
                       <div class="col-md-8 mb-3">
                         <label for="exampleInputEmail2">Email address</label>
-                        <input type="email" class="form-control" id="exampleInputEmail2" name="email" minlength="5" placeholder="Masukkan email" aria-describedby="Masukkan email" 
-                        value="<?php echo e(isset($peternak) ? $peternak->email : ''); ?>"  
+                        <input type="email" class="form-control" id="exampleInputEmail2" name="email_peternak" minlength="5" placeholder="Masukkan email" aria-describedby="Masukkan email" 
+                        value="<?php echo e(isset($peternak) ? $peternak->email_peternak : ''); ?>"  
                         required>
                         <div class="invalid-feedback"> Please use a valid email </div>
                         <small id="emailHelp1" class="form-text text-muted">We'll never share your email with anyone else.</small>
                       </div>
                     </div> <!-- /.form-row -->
+                    <div class="form-row">
+                      <div class="col-md-6 mb-3">
+                        <label for="validationCustom3">No Hp</label>
+                        <input class="form-control" id="name" name="namabelakang_peternak" minlength="5" type="integer" placeholder="Masukkan No Handphone"
+                        value="<?php echo e(isset($peternak) ? $peternak->namabelakang_peternak : ''); ?>"  
+                            required>
+                        <div class="valid-feedback"> Looks good! </div>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="col-md-6 mb-3">
+                        <label for="validationCustom3">Jenis Kelamin</label>
+                        <input class="form-control" id="name" name="jenis_kelamin" minlength="5" type="text" placeholder="Masukkan Nama Belakang"
+                        value="<?php echo e(isset($peternak) ? $peternak->jenis_kelamin : ''); ?>"  
+                            required>
+                        <div class="valid-feedback"> Looks good! </div>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="col-md-6 mb-3">
+                        <label for="validationCustom3">Alamat</label>
+                        <input class="form-control" id="name" name="alamat" minlength="5" type="text" placeholder="Masukkan Alamat"
+                        value="<?php echo e(isset($peternak) ? $peternak->alamat : ''); ?>"  
+                            required>
+                        <div class="valid-feedback"> Looks good! </div>
+                      </div>
+                    </div>
                     <div class="form-row">
                     <div class="col-md-4 mb-3">
                       <label for="validationCustomPassword">Password</label>
@@ -90,6 +126,7 @@
                       </div>
                     </div>
                     </div>
+                   <!-- /.form-row -->
                    
                     <button class="btn btn-primary" type="submit">Save</button>
                     <a href="<?php echo e(route('peternak.index')); ?>"><button class="btn btn-default"

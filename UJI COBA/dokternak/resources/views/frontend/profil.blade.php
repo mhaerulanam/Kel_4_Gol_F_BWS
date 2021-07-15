@@ -150,7 +150,7 @@
                           <span><b>{{ $profils->jenis_kelamin }}</b></span> <BR>
                           <span>
                               <ul>
-                                  <li><a href="/editprofil" ><i class="fas fa-edit" aria-hidden="true"></i><span>Edit Akun</span></a></li>
+                                  <li><a href="{{ route("editprofil.edit",['id'=>$profils->id_peternak]) }}" ><i class="fas fa-edit" aria-hidden="true"></i><span>Edit Akun</span></a></li>
                               </ul>
                           </span>
                       </div>

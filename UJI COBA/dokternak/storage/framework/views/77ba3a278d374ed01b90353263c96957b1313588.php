@@ -55,19 +55,26 @@
                       <th>NO</th>
                       <th>Nama</th>
                       <th>Email</th>
-                      <th>Role</th>
+                      <th>No Hp</th>
+                      <th>Jenis Kelamin</th>
+                      <th>Alamat</th>
+                      <th>Foto Peternak</th>
                       <th>Password</th>
                       <th>Aksi</th>
                     </tr>
                   </thead>
                   <tbody>
                     <?php $no = 1; ?>
-                    <?php $__currentLoopData = $data['peternak']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    
+                    <?php $__currentLoopData = $peternak; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <tr>
                         <td><?php echo e($no++); ?></td>
-                        <td><?php echo e($item->name); ?></td>
+                        <td><?php echo e($item->namadepan_peternak); ?> <?php echo e($item->namabelakang_peternak); ?></td>
                         <td><?php echo e($item->email); ?></td>
-                        <td><?php echo e($item->is_admin); ?></td>
+                        <td><?php echo e($item->no_hp); ?></td>
+                        <td><?php echo e($item->jenis_kelamin); ?></td>
+                        <td><?php echo e($item->alamat); ?></td>
+                        <td><img src="/data/data_peternak/<?php echo e($item->foto_peternak); ?>" width="100"></td>
                         <td><?php echo e($item->password); ?></td>
                         <td>
                         <div class="btn-group">
