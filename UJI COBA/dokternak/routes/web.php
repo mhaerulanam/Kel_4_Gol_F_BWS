@@ -112,6 +112,7 @@ Route::group(['namespace' => 'Petugas'], function()
    Route::POST('petugas/data-obat/simpanobat','DataObatController@store')->name('simpanobat');
    Route::match(['get','post'], 'petugas/data-obat/edit/{id}','DataObatController@edit');
    Route::GET('petugas/data-obat/delete/{id}','DataObatController@delete');
+   Route::get('cetak_pdf/dataobat','DataObatController@cetakobat')->name('petugas.data_obat.cetak_pdf');
    // -------------------------------------------------------------------------
    //  Respon Konsultasi
    Route::get('/petugas/respon-konsultasi', 'ResponKonsultasiController@index')->name('respon.index');

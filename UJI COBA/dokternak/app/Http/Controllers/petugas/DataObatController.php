@@ -13,6 +13,8 @@ use Dotenv\Validator;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Validator as FacadesValidator;
+use Illuminate\Support\Facades\Auth;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class DataObatController extends Controller
 {
@@ -91,5 +93,19 @@ class DataObatController extends Controller
         return redirect()->back()->with('success','Data Obat telah berhasil dihapus');
     }
 
+    public function cetakobat()
+    {
+        $id = Auth::id();
+        $petugas = DB::table('dokter')->where('id',$id)->first();
+        $id_dokter = $petugas->id_dokter;
+
+        $data_obat = data_obat::join('dokter_obat', 'dokter_obat.id_obat', '=', 'data_obat.id_obat')
+                    ->where('dokter_obat.id_dokter',$id_dokter)
+                    ->orderBy('data_obat.id_obat','desc')
+                    ->get();
+
+        $pdf = PDF::loadview('petugas/data_obat/cetak_pdf',['data_obat'=>$data_obat]);
+        return view('petugas.data_obat.cetak_pdf', compact('data_obat'));
+    }
 }
 
