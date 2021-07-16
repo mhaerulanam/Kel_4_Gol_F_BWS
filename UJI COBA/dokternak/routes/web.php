@@ -155,4 +155,6 @@ Route::get('/konsultasi/{id}/hapus','frontend\KonsultasiController@hapus')->name
 Route::get('/konsultasi/{id}/hapusmasuk/{idk}/detail/{idr}','frontend\KonsultasiController@hapusmasuk')->name('konsultasi.hapusmasuk');
 
 //Route Profil
-Route::get('/profil', 'frontend\ProfilController@index');
+Route::get('/profil', 'frontend\ProfilController@index')->name('profil.index');
+Route::get('/editprofil/{id}', 'frontend\ProfilController@edit')->name('editprofil.edit');
+Route::PUT('/editprofil/{id}','frontend\ProfilController@update')->name('editprofil.update');
