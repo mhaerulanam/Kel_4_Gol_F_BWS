@@ -232,6 +232,13 @@
                                           </article>
                                           </tr>
                                           @endforeach
+                                          @if ($dokter->isEmpty())
+                                          <div class="col">
+                                              <center>
+                                                  <img src="{{ asset('Frontend/assets/img/icon/error.png') }}" class="datatidakada" alt="Data Kosong">
+                                              </center>
+                                          </div>
+                                          @endif
                                           </tbody>
                                       </table> 
                                                 

@@ -224,6 +224,13 @@
                             </div> 
                             </tr>
                         @endforeach
+                        @if ($puskeswan->isEmpty())
+                        <div class="col">
+                            <center>
+                                <img src="{{ asset('Frontend/assets/img/icon/error.png') }}" class="datatidakada" alt="Data Kosong">
+                            </center>
+                        </div>
+                        @endif
                     </tbody>
                     </table> 
   <!--Pagination Start  -->
@@ -244,7 +251,7 @@
             </div>
         </div>
                    
-
+<br><br>
 <section>
     @include('frontend/layouts.footer');
 </section>

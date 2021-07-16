@@ -90,6 +90,10 @@ Route::group(['namespace' => 'Petugas'], function()
    Route::get('/petugas/respon-konsultasi/{id}/detail', 'ResponKonsultasiController@detail')->name('respon.detail');
    Route::get('/petugas/respon-konsultasi/{id}/detailterkirim', 'ResponKonsultasiController@detailterkirim')->name('respon.detailterkirim');
    Route::get('/petugas/respon-konsultasi/{id}/hapusterkirim/{idk}/riwayat','ResponKonsultasiController@hapusterkirim')->name('respon.hapusterkirim');
+   //Route Profil
+  //  Route::get('/profil', 'frontend\ProfilController@index')->name('profil.index');
+   Route::get('lppetugas/editprofil/{id}', 'EditProfilController@edit')->name('editprofilpetugas.edit');
+   Route::PUT('lppetugas/editprofil/{id}','EditProfilController@update')->name('editprofilpetugas.update');
 });
 
 Auth::routes();

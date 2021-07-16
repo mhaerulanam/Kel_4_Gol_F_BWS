@@ -76,6 +76,13 @@
                             </article>
                             </tr>
                             @endforeach
+                            @if ($artikel->isEmpty())
+                            <div class="col">
+                                <center>
+                                    <img src="{{ asset('Frontend/assets/img/icon/error.png') }}" class="datatidakada" alt="Data Kosong">
+                                </center>
+                            </div>
+                            @endif
                             </tbody>
                         </table> 
                     </div>
@@ -96,7 +103,7 @@
                                             onfocus="this.placeholder = ''"
                                             onblur="this.placeholder = 'Search Keyword'" name="cari">
                                         <div class="input-group-append">
-                                            <input type="submit" class="btn btn-primary mb-1" value="CARI"></div>
+                                            <input type="submit" class="btn btn-primary mb-1" value="CARI">
                                         </div>
                                     </div>
                                 </div>
@@ -104,26 +111,22 @@
                                     type="submit">Search</button> -->
                             </form>
                         </aside>
-
                         <aside class="single_sidebar_widget post_category_widget">
                             <h4 class="widget_title">Category</h4>
                             <ul class="list cat-list">
+                                @foreach ($kategori_artikel as $data_katartikel)
                                 <li>
-                                    <a href="/artikel/cari?cari=kucing" class="d-flex">
-                                        <p>Kucing</p>
-                                        <p>(2)</p>
+                                    <a href="/artikel/cari?cari={{ $data_katartikel->kategori_artikel }}" class="d-flex">
+                                        <p> {{ $data_katartikel->kategori_artikel }}</p>
+                                        <p></p>
                                     </a>
-                                </li>   
-                                <li>
-                                    <a href="/artikel/cari?cari=kambing" class="d-flex">
-                                        <p>Kambing</p>
-                                        <p>(2)</p>
-                                    </a>
-                                </li>                          
+                                </li>  
+                                @endforeach                       
                             </ul>
                         </aside>
                     </div>
                 </div>
+            </div>
             </div>
         </div>
     </section>

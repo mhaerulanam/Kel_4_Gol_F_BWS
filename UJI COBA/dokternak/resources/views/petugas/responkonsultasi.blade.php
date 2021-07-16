@@ -173,7 +173,7 @@
                     <a href="#">
                         <div class="chat_list ">
                         <div class="chat_people">
-                            <div class="chat_img" name="klik"> <img src="/data/data_peternak/{{ $data_riwayatkonsultasi->foto }}" class="rounded-circle z-depth-0"
+                            <div class="chat_img" name="klik"> <img src="/data/data_peternak/{{ $data_riwayatkonsultasi->foto_peternak }}" class="rounded-circle z-depth-0"
                                                         alt="Nama" height="50"></img></div>
                             <div class="chat_ib">
                             <h5> Dari : {{ $data_riwayatkonsultasi->namadepan_peternak }} <span class="    chat_date" name="klik">{{ $data_riwayatkonsultasi->tanggal }}<br></span></h5>
@@ -311,7 +311,7 @@
                     <input type="hidden" name="stt" value="off"> --}}
                         <div class="chat_list">
                         <div class="chat_people">
-                            <div class="chat_img" name="klik"> <img src="/data/data_peternak/{{ $data_konsultasi->foto }}" class="rounded-circle z-depth-0"
+                            <div class="chat_img" name="klik"> <img src="/data/data_peternak/{{ $data_konsultasi->foto_peternak }}" class="rounded-circle z-depth-0"
                                                         alt="Nama" height="50"></img></div>
                             <div class="chat_ib">
                             <h5> Kepada : {{ $data_konsultasi->namadepan_peternak }} <span class="chat_date" name="klik">{{ $data_konsultasi->tanggal }}<br></span></h5>

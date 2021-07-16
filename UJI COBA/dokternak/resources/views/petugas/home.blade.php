@@ -145,6 +145,15 @@
     <hr><br><br><h2>Akun Profile</h2>
     </div>
 <div class="container emp-profile">
+            {{-- Alert --}}
+            @if (session('success'))
+                    <div class="alert alert-success" role="alert">
+                        {{ session('success') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+            @endif
             <form method="post" enctype="multipart/form-data">
                 <div class="row">
                     <div class="col-md-4">
@@ -176,7 +185,8 @@
                         </div>
                     </div>
                     <div class="col-md-2">
-                        <a href="editbiodatadokter.php" class="genric-btn primary">Edit Profile</a> <br><br><br>
+                        {{-- {{ route("editprofilpetugas.edit",['id'=>$data_petugas->id_dokter]) }} --}}
+                        <a href="{{ route("editprofilpetugas.edit",['id'=>$data_petugas->id_dokter]) }}" class="genric-btn primary">Edit Profile</a> <br><br><br>
                         <!-- <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/> -->
                     </div>
                 </div>
