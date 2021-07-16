@@ -81,8 +81,10 @@ Route::put('api_dokumentasi/{id_dokumentasi}', 'ApiDokumentasiController@updateD
 Route::delete('api_dokumentasi/{id_dokumentasi}', 'ApiDokumentasiController@deleteDokumentasi');
 
 //Route Api Konsultasi
-Route::get('api_konsultasi/peternak/{id}', 'ApiKonsultasiController@getAll');
-Route::get('api_konsultasi/{id_konsultasi}', 'ApiDokumentasiController@getdetailKonsultasi');
-Route::post('api_konsultasi', 'ApiKonsultasiController@createKonsultasi');
+Route::get('api_konsultasi/konsultasiterkirim/{id}', 'ApiKonsultasiController@getTerkirim');
+Route::get('api_konsultasi/{id_peternak}/detailterkirim/{id}', 'ApiKonsultasiController@getDetailTerkirim');
+Route::get('api_konsultasi/konsultasimasuk/{id}', 'ApiKonsultasiController@getMasuk');
+Route::get('api_konsultasi/{id_peternak}/detailMasuk/{id}', 'ApiKonsultasiController@getDetailMasuk');
+Route::post('api_konsultasi', 'ApiKonsultasiController@tulisKonsultasi');
 Route::delete('api_konsultasi/{id_konsultasi}', 'ApiKonsultasiController@deleteKonsultasi');
 
