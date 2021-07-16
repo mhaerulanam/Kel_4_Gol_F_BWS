@@ -75,38 +75,44 @@
                                  <form method="POST" action="/home/cari" class="search-box">
                                     {{ csrf_field() }}
                                     <div class="input-form">
-                                        <input type="text" placeholder="Masukkan Nama Dokter" name="cari_petugas" id="s_keyword" value="">
+                                        {{-- <input type="text" placeholder="Masukkan Nama Dokter" name="cari_petugas" id="s_keyword" value=""> --}}
+                                        <input list="cari_petugas" class="form-control {{ $errors->has('cari_petugas') ? 'is-invalid' : ''}}" placeholder='Masukkan Nama Dokter' id="s_keyword" name="cari_petugas" >
+                                        <datalist id="cari_petugas" name="cari_petugas">
+                                            @foreach ($data['pencarian_dokter'] as $data_doktercari)
+                                            <option value="{{ $data_doktercari->nama_dokter }}" >{{ $data_doktercari->nama_dokter }}</option>
+                                            @endforeach
+                                        </datalist>
                                     </div>
-                                    <div class="select-form">
-                                        <div class="select-itms">
-                                            <select name="kategori_kecamatan" class="form-control" id="exampleFormControlSelect1">
-                                                <option value="Bondowoso" >Bondowoso</option>
-                                                <option value="Binakal" >Binakal</option>
-                                                <option value="Cermee">Cermee</option>
-                                                <option value="Curahdami">Curahdami</option>
-                                                <option value="Grujugan" >Grujugan</option>
-                                                <option value="Jambesari" >Jambesari</option>
-                                                <option value="Klabang" >Klabang</option>
-                                                <option value="Maesan" >Maesan</option>
-                                                <option value="Pakem" >Pakem</option>
-                                                <option value="Prajekan" >Prajekan</option>
-                                                <option value="Pujer" >Pujer</option>
-                                                <option value="Sempol" >Sempol</option>
-                                                <option value="Sukosari" >Sukosari</option>
-                                                <option value="Sumberwringin" >Sumberwringin</option>
-                                                <option value="Taman Krocok" >Taman Krocok</option>
-                                                <option value="Tamanan" >Tamanan</option>
-                                                <option value="Tapen" >Tapen</option>
-                                                <option value="Tegalampel">Tegalampel</option>
-                                                <option value="Tenggarang" >Tenggarang</option>
-                                                <option value="Tlogosari" >Tlogosari</option>
-                                                <option value="Wonosari" >Wonosari</option>
-                                                <option value="Wringin" >Wringin</option>
-    
-                                            </select>
-                                        </div>
+                                    <div class="input-form">
+                                        {{-- <div class="select-itms"> --}}
+                                        <input list="kategori_kecamatan" class="form-control {{ $errors->has('kategori_kecamatan') ? 'is-invalid' : ''}}" placeholder='Masukkan Lokasi Kecamatan' id="s_keyword" name="kategori_kecamatan" >
+                                        <datalist id="kategori_kecamatan" name="kategori_kecamatan">
+                                            <option value="Bondowoso" >Bondowoso</option>
+                                            <option value="Binakal" >Binakal</option>
+                                            <option value="Cermee">Cermee</option>
+                                            <option value="Curahdami">Curahdami</option>
+                                            <option value="Grujugan" >Grujugan</option>
+                                            <option value="Jambesari" >Jambesari</option>
+                                            <option value="Klabang" >Klabang</option>
+                                            <option value="Maesan" >Maesan</option>
+                                            <option value="Pakem" >Pakem</option>
+                                            <option value="Prajekan" >Prajekan</option>
+                                            <option value="Pujer" >Pujer</option>
+                                            <option value="Sempol" >Sempol</option>
+                                            <option value="Sukosari" >Sukosari</option>
+                                            <option value="Sumberwringin" >Sumberwringin</option>
+                                            <option value="Taman Krocok" >Taman Krocok</option>
+                                            <option value="Tamanan" >Tamanan</option>
+                                            <option value="Tapen" >Tapen</option>
+                                            <option value="Tegalampel">Tegalampel</option>
+                                            <option value="Tenggarang" >Tenggarang</option>
+                                            <option value="Tlogosari" >Tlogosari</option>
+                                            <option value="Wonosari" >Wonosari</option>
+                                            <option value="Wringin" >Wringin</option>
+                                        </datalist>
+                                        {{-- </div> --}}
                                     </div>
-                                    <div class="search-form">
+                                    <div class="">
                                     {{-- <a><button id="search" name="search" class="btn head-btn1">Cari</button></a> --}}
                                     <a><input type="submit" class="btn btn-primary mb-1" class="btn head-btn1" value="CARI"></a>
                                     </div>	

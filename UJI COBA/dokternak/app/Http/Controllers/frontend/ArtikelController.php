@@ -5,6 +5,7 @@ use App\Http\Controllers\controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\artikel;
+use App\Models\KatArtikel;
 
 class ArtikelController extends Controller
 {
@@ -16,7 +17,9 @@ class ArtikelController extends Controller
         ->orderBy('id_artikel','desc')
         ->where('status','=','tampil')
         ->paginate(2);
-        return view('frontend.artikel',compact('artikel'))->with('artikel', $artikel);
+
+        $kategori_artikel = KatArtikel::all();
+        return view('frontend.artikel',compact('artikel','kategori_artikel'))->with('artikel', $artikel);
         // return view('frontend.artikel');
 
         // mengirim data pegawai ke view index
@@ -33,9 +36,10 @@ class ArtikelController extends Controller
         ->join('kategori_artikel', 'kategori_artikel.id_ktg', '=', 'artikel.id_ktg')
         ->where('judul','like',"%".$cari."%")
         ->paginate(2);
+        $kategori_artikel = KatArtikel::all();
 
         //mengirim data artikel ke view artikel
-        return view('frontend.artikel',compact('artikel'));
+        return view('frontend.artikel',compact('artikel','kategori_artikel'));
     }
 
     public function detail($id) {

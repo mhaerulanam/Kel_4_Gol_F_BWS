@@ -16,6 +16,7 @@ class WelcomeController extends Controller
     {
         $data = [
             'artikel' => DB::table('artikel')->join('kategori_artikel', 'kategori_artikel.id_ktg', '=', 'artikel.id_ktg')->paginate(2),
+            'pencarian_dokter' => DB::table('dokter')->join('jabatan', 'jabatan.id_jabatan', '=', 'dokter.id_jabatan')->get(),
             'tutorial' => Tutorial::orderBy('id_tutorial')->paginate(4),
             'dokter' => DB::table('dokter')->join('jabatan', 'jabatan.id_jabatan', '=', 'dokter.id_jabatan')->paginate(3),
         ];
