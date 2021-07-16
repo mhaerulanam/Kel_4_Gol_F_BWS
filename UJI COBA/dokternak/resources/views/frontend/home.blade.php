@@ -175,7 +175,8 @@
                                     <nav aria-label="Page navigation example">
                                     <ul class="pagination justify-content-start">     
                                     {{-- //pagination use bootstrap --}}
-                                    {{ $data['dokter']->links()}}
+                                    {{-- {{ $data['dokter']->links()}} --}}
+                                    {{ $data['dokter']->onEachSide(1)->links() }}
                                     </ul>
                                     </nav>
                                 </div>
@@ -244,7 +245,8 @@
                                     {{-- //pagination use bootstrap --}}
                                     {{-- {{ $data['artikel']->links()}} --}}
                                     {{-- {!! $data['artikel']->appends(['sort' => 'artikel'])->links() !!} --}}
-                                    {{ $data['artikel']->fragment('artikel')->links() }}
+                                    {{-- {{ $data['artikel']->fragment('artikel')->links() }} --}}
+                                    {{ $data['artikel']->onEachSide(1)->links() }}
                                     </ul>
                                     </nav>
                                 </div>
