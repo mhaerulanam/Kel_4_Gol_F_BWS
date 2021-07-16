@@ -62,6 +62,13 @@ Route::POST('dashboard/data_tutorial/simpandata','DataTutorialController@store')
 Route::match(['get','post'], 'dashboard/data_tutorial/edit/{id}','DataTutorialController@edit');
 Route::GET('dashboard/data_tutorial/delete/{id}','DataTutorialController@delete');
 Route::get('/cetak_pdf/data_tutorial','DataTutorialController@cetak_pdf')->name('backend.data_tutorial.cetak_pdf');
+
+//CRUD Data Tutorial -------------------------------------------------------------------
+Route::POST('dashboard/data_puskeswan/simpandata','DataPuskeswanController@store')->name('simpandata');
+Route::match(['get','post'], 'dashboard/data_puskeswan/edit/{id}','DataPuskeswanController@edit');
+Route::GET('dashboard/data_tutorial/delete/{id}','DataPuskeswanController@delete');
+Route::get('/cetak_pdf/data_puskeswan','DataPuskeswanController@cetak_pdf')->name('backend.data_tutorial.cetak_pdf');
+
 });
 // ------------------------------------------------------------------------
 

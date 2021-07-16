@@ -49,11 +49,19 @@
                     </div>
                   </div>
                 </div>
+                <div class="widget-box">
+                  <a href="/cetak_pdf/data_artikel" class="btn btn-primary" target="_blank">CETAK PDF</a>
+                  
+                      <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
+                  
+                
+                      </div>
+                </div>
                 <table class="table table-hover">
                   <thead>
                     <tr>
                       <th>NO</th>
-                      <th>ID Artikel</th>
+                      
                       <th>ID Kategori</th>
                       <th>Tanggal</th>
                       <th>Nama Penulis</th>
@@ -66,16 +74,16 @@
                   </thead>
                   <tbody>
                     <?php $no = 1; ?>
-                    <?php $__currentLoopData = $data['artikel']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <?php $__currentLoopData = $artikel; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <tr>
                         <td><?php echo e($no++); ?></td>
-                        <td><?php echo e($item->id_artikel); ?></td>
-                        <td><?php echo e($item->id_ktg); ?></td>
+                        
+                        <td><?php echo e($item->kategori_artikel); ?></td>
                         <td><?php echo e($item->tanggal); ?></td>
                         <td><?php echo e($item->nama_penulis); ?></td>
                         <td><?php echo e($item->judul); ?></td>
-                        <td><?php echo e($item->isi); ?></td>
-                        <td><img src="data:image/png;base64,<?php echo e(chunk_split(base64_encode($item->gambar))); ?>"></td>
+                        <td><?php echo e(\Illuminate\Support\Str::limit($item->isi , 250)); ?> <a href="/artikel/<?php echo e($item->id_artikel); ?>/detail/" class="more-btn">  <strong> Read more » </strong></a></td>
+                        <td><img src="/data/data_artikel/<?php echo e($item->gambar); ?>" width="200"></td>
                         <td><?php echo e($item->sumber); ?></td>
                         <td>
                         <div class="btn-group">

@@ -11,19 +11,28 @@ use DateTime;
 use Dotenv\Validator;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Support\Facades\Crypt;
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\Validator as FacadesValidator;
 
 class DataPuskeswanController extends Controller
 {
     public function index()
     {
-        $data = [
-            'puskeswan' => Puskeswan::orderBy('id_puskeswan','desc')->get(),
-        ];
-        return view('backend.data_puskeswan.index',compact('data'));
+        $puskeswan = DB::table('puskeswan')->get();
+        return view('backend.data_puskeswan.index', compact('puskeswan'));
+        // $data = [
+        //     'puskeswan' => Puskeswan::orderBy('id_puskeswan','desc')->get(),
+        // ];
+        // return view('backend.data_puskeswan.index',compact('data'));
         // return view('backend.peternak.index');
     }
 
+    public function cetak_pdf()
+    {
+        $puskeswan = DB::table('puskeswan')->get();
+    	$pdf = PDF::loadview('backend/data_puskeswan.cetak_pdf',['puskeswan'=>$puskeswan]);
+    	return view ('backend.data_puskeswan.cetak_pdf',compact('puskeswan'));
+    }
 
     public function create()
     {

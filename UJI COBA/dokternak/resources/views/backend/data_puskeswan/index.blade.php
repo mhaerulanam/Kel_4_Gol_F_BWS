@@ -50,6 +50,11 @@
                     </div>
                   </div>
                 </div>
+                <div class="widget-box">
+                  <a href="/cetak_pdf/data_puskeswan" class="btn btn-primary" target="_blank">CETAK PDF</a>
+                      <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
+                      </div>
+                </div>
                 <table class="table table-hover">
                   <thead>
                     <tr>
@@ -65,7 +70,7 @@
                   </thead>
                   <tbody>
                     @php $no = 1; @endphp
-                    @foreach ($data['puskeswan'] as $item)
+                    @foreach ($puskeswan as $item)
                     <tr>
                         <td>{{ $no++ }}</td>
                         <td>{{ $item->id_puskeswan }}</td>
