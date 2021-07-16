@@ -49,6 +49,10 @@
                     </div>
                   </div>
                 </div>
+                <div class="widget-box">
+                  <a href="/cetak_pdf/admin" class="btn btn-primary" target="_blank">CETAK PDF</a>
+                      <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
+                      </div>
                 <table class="table table-hover">
                   <thead>
                     <tr>
@@ -67,7 +71,7 @@
                         <td><?php echo e($no++); ?></td>
                         <td><?php echo e($item->name); ?></td>
                         <td><?php echo e($item->email); ?></td>
-                        <td><?php echo e($item->is_admin); ?></td>
+                        <td>Admin</td>
                         <td><?php echo e($item->password); ?></td>
                         <td>
                         <div class="btn-group">
