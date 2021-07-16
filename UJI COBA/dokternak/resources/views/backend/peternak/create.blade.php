@@ -50,17 +50,26 @@
                   <strong class="card-title">Advanced Validation</strong>
                 </div>
                 <div class="card-body">
-                  <form class="needs-validation" id="peternak_form" method="POST"
-                            action="{{ isset($peternak) ? route('peternak.update',$peternak->id) : 
+                  <form class="needs-validation" id="peternak_form" method="POST" enctype="multipart/form-data"
+                            action="{{ isset($peternak) ? route('peternak.update',$peternak->id_peternak) : 
                             route('peternak.store') }}">
                                 {!! csrf_field() !!}
                                 {!! isset($peternak) ? method_field('PUT') : '' !!}
-                      <input type="hidden" name="id" value="{{ isset($peternak) ? $peternak->id : '' }}"> <br/>
+                      <input type="hidden" name="id" value="{{ isset($peternak) ? $peternak->id_peternak : '' }}"> <br/>
                       <div class="form-row">
                       <div class="col-md-6 mb-3">
-                        <label for="validationCustom3">Nama Lengkap</label>
-                        <input class="form-control" id="name" name="name" minlength="5" type="text" placeholder="Masukkan nama"
-                        value="{{ isset($peternak) ? $peternak->name : '' }}"  
+                        <label for="validationCustom3">Nama Depan</label>
+                        <input class="form-control" id="name" name="namadepan_peternak" minlength="5" type="text" placeholder="Masukkan Nama Depan"
+                        value="{{ isset($peternak) ? $peternak->namadepan_peternak : '' }}"  
+                            required>
+                        <div class="valid-feedback"> Looks good! </div>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="col-md-6 mb-3">
+                        <label for="validationCustom3">Nama Belakang</label>
+                        <input class="form-control" id="name" name="namabelakang_peternak" minlength="5" type="text" placeholder="Masukkan Nama Belakang"
+                        value="{{ isset($peternak) ? $peternak->namabelakang_peternak : '' }}"  
                             required>
                         <div class="valid-feedback"> Looks good! </div>
                       </div>
@@ -70,13 +79,55 @@
                     <div class="form-row">
                       <div class="col-md-8 mb-3">
                         <label for="exampleInputEmail2">Email address</label>
-                        <input type="email" class="form-control" id="exampleInputEmail2" name="email" minlength="5" placeholder="Masukkan email" aria-describedby="Masukkan email" 
-                        value="{{ isset($peternak) ? $peternak->email : '' }}"  
+                        <input type="email" class="form-control" id="exampleInputEmail2" name="email_peternak" minlength="5" placeholder="Masukkan email" aria-describedby="Masukkan email" 
+                        value="{{ isset($peternak) ? $peternak->email_peternak : '' }}"  
                         required>
                         <div class="invalid-feedback"> Please use a valid email </div>
                         <small id="emailHelp1" class="form-text text-muted">We'll never share your email with anyone else.</small>
                       </div>
                     </div> <!-- /.form-row -->
+                    <div class="form-row">
+                      <div class="col-md-6 mb-3">
+                        <label for="validationCustom3">No Hp</label>
+                        <input class="form-control" id="name" name="no_hp" minlength="5" type="integer" placeholder="Masukkan No Handphone"
+                        value="{{ isset($peternak) ? $peternak->namabelakang_peternak : '' }}"  
+                            required>
+                        <div class="valid-feedback"> Looks good! </div>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="col-md-6 mb-3">
+                        <label for="validationCustom3">Jenis Kelamin</label>
+                        <input class="form-control" id="name" name="jenis_kelamin" minlength="5" type="text" placeholder="Masukkan Nama Belakang"
+                        value="{{ isset($peternak) ? $peternak->jenis_kelamin : '' }}"  
+                            required>
+                        <div class="valid-feedback"> Looks good! </div>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="col-md-6 mb-3">
+                        <label for="validationCustom3">Alamat</label>
+                        <input class="form-control" id="name" name="alamat" minlength="5" type="text" placeholder="Masukkan Alamat"
+                        value="{{ isset($peternak) ? $peternak->alamat : '' }}"  
+                            required>
+                        <div class="valid-feedback"> Looks good! </div>
+                      </div>
+                    </div>
+
+                    <input type="hidden" name="nama_gambar" value="{{ isset($peternak) ? $peternak->foto_peternak : '' }}">
+                      <div class="form-row">
+                        <div class="col-md-6 mb-3">
+                          <label for="validationCustom3">Gambar</label>
+                          <td><img src="/data/data_peternak/{{ isset($peternak) ? $peternak->foto_peternak : '' }}" width="100px"></td>
+                          <input type="file" name="foto_peternak" id="foto_peternak" value="{{ isset($peternak) ? $peternak->foto_peternak : '' }}" class="form-control {{ $errors->has('foto_peternak') ? 'is-invalid' : ''}}" >
+                        @if ( $errors->has('foto_peternak'))
+                        <span class="text-danger small">
+                            <p>{{ $errors->first('foto_peternak') }}</p>
+                        </span>
+                    @endif
+                        </div>
+                      </div>
+
                     <div class="form-row">
                     <div class="col-md-4 mb-3">
                       <label for="validationCustomPassword">Password</label>
@@ -88,6 +139,7 @@
                       </div>
                     </div>
                     </div>
+                   <!-- /.form-row -->
                    
                     <button class="btn btn-primary" type="submit">Save</button>
                     <a href="{{ route('peternak.index') }}"><button class="btn btn-default"

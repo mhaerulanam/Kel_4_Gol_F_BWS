@@ -1,5 +1,5 @@
 @extends('backend/layouts.template')
-  
+
 @section('content')
 <main role="main" class="main-content">
   <div class="container-fluid">
@@ -56,7 +56,10 @@
                       <th>NO</th>
                       <th>Nama</th>
                       <th>Email</th>
-                      <th>Role</th>
+                      <th>No Hp</th>
+                      <th>Jenis Kelamin</th>
+                      <th>Alamat</th>
+                      <th>Foto Peternak</th>
                       <th>Password</th>
                       <th>Aksi</th>
                     </tr>
@@ -64,16 +67,19 @@
                   <tbody>
                     @php $no = 1; @endphp
                     
-                    @foreach ($data['peternak'] as $item)
+                    @foreach ($peternak as $item)
                     <tr>
                         <td>{{ $no++ }}</td>
-                        <td>{{ $item->name }}</td>
+                        <td>{{ $item->namadepan_peternak }} {{ $item->namabelakang_peternak }}</td>
                         <td>{{ $item->email }}</td>
-                        <td>Peternak</td>
-                        <td>{{ $item->password }}</td>
+                        <td>{{ $item->no_hp }}</td>
+                        <td>{{ $item->jenis_kelamin }}</td>
+                        <td>{{ $item->alamat }}</td>
+                        <td><img src="/data/data_peternak/{{ $item->foto_peternak }}" width="100"></td>
+                        <td>{{\Illuminate\Support\Str::limit ($item->password,10) }}</td>
                         <td>
                         <div class="btn-group">
-                            <a href="{{ route('peternak.edit',$item->id)}}" class="btn btn-warning">Edit<i class="fa fa-edit"></i></a>
+                            <a href="{{ route('peternak.edit',$item->id_peternak)}}" class="btn btn-warning">Edit<i class="fa fa-edit"></i></a>
                             <form action="{{ route('peternak.destroy',$item->id)}}" method="POST">
                             @csrf
                                 @method('DELETE')
