@@ -334,18 +334,18 @@ input[type=text]:placeholder {
                 <div class="card-header">{{ __('Reset Password') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('password.update') }}">
+                    <form method="POST" action="{{ route('update-password') }}">
                         @csrf
 
                         <input type="hidden" name="token" value="{{ $token }}">
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="oldpassword" required autocomplete="new-password">
 
-                                @error('email')
+                                @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -397,23 +397,24 @@ input[type=text]:placeholder {
                   </div> --}}
               
                   <!-- Password reset Form -->
-                  <form method="POST" action="{{ route('password.update') }}">
+                  <form method="POST" action="{{ route('update-password') }}">
                     @csrf
-                    <input id="email" type="email" placeholder="Masukkan Email Tujuan" class="fadeIn second @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
-
-                    @error('email')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                    <input id="password" type="password" placeholder="Masukkan Password Baru" class="fadeIn third @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                    <input id="password" type="password" placeholder="Masukkan Password Lama" class="fadeIn third @error('password') is-invalid @enderror" name="oldpassword" required autocomplete="new-password">
 
                     @error('password')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
-                    <input id="password-confirm" placeholder="Masukkan Konfirmasi Password Baru" type="password" class="fadeIn second" name="password_confirmation" required autocomplete="new-password">
+
+                    <input id="password" type="password" placeholder="Masukkan Password Baru" class="fadeIn third @error('password') is-invalid @enderror" name="newpassword" required autocomplete="new-password">
+
+                    @error('password')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                    <input id="password-confirm" placeholder="Masukkan Ulang Password Baru" type="password" class="fadeIn second" name="password_confirmation" required autocomplete="new-password">
                     {{-- <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
                     <input type="text" id="password" class="fadeIn third" name="login" placeholder="password"><br> --}}
                     <br><br><button type="submit" class="btn btn-primary">
