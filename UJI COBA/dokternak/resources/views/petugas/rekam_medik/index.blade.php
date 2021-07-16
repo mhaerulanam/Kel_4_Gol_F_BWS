@@ -269,7 +269,7 @@ $(document).ready(function(){
                     </div>
                     <div class="col-sm-8">						
                         <a href="#" class="btn btn-primary"><i class="material-icons">&#xE863;</i> <span>Refresh List</span></a>
-                        <a href="#" class="btn btn-secondary"><i class="material-icons">&#xE24D;</i> <span>Export to Excel</span></a>
+                        <a href="/cetak_pdf/rekammedik" class="btn btn-secondary" target="_blank"><i class="material-icons">&#xE24D;</i> <span>Export to PDF</span></a>
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#TambahDataRMDForm">
                             <i class="material-icons">add</i><span>Tambah</span>
                         </button>
