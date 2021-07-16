@@ -50,6 +50,10 @@
                     </div>
                   </div>
                 </div>
+                <div class="widget-box">
+                  <a href="/cetak_pdf/peternak" class="btn btn-primary" target="_blank">CETAK PDF</a>
+                      <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
+                      </div>
                 <table class="table table-hover">
                   <thead>
                     <tr>

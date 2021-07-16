@@ -27,7 +27,7 @@ class DataBannerController extends Controller
     public function cetak_pdf()
     {
         $banner = DB::table('banner')->get();
-    	$pdf = PDF::loadview('backend/data_banner.cetak_pdf',['banner'=>$banner]);
+    	$pdf = PDF::loadview('backend/data_banner/cetak_pdf',['banner'=>$banner]);
     	return view ('backend.data_banner.cetak_pdf',compact('banner'));
     }
     public function create()
