@@ -11,6 +11,7 @@ use DateTime;
 use Dotenv\Validator;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Support\Facades\Crypt;
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\Validator as FacadesValidator;
 
 class DataTutorialController extends Controller
@@ -20,6 +21,13 @@ class DataTutorialController extends Controller
         $tutorial = DB::table('tutorial')->get();
         return view('backend.data_tutorial.index', compact('tutorial'));
         // return view('backend.peternak.index');
+    }
+
+    public function cetak_pdf()
+    {
+        $tutorial = DB::table('tutorial')->get();
+    	$pdf = PDF::loadview('backend/data_tutorial.cetak_pdf',['tutorial'=>$tutorial]);
+    	return view ('backend.data_tutorial.cetak_pdf',compact('tutorial'));
     }
 
 

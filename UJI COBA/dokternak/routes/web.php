@@ -51,11 +51,17 @@ Route::match(['get','post'], 'dashboard/data_artikel/edit/{id}','DataArtikelCont
 Route::GET('dashboard/data_artikel/delete/{id}','DataArtikelController@delete');
 Route::get('/cetak_pdf/data_artikel','DataArtikelController@cetakartikel')->name('backend.data_artikel.cetak_pdf');
 
-//CRUD Data Artikel -------------------------------------------------------------------
+//CRUD Data Banner -------------------------------------------------------------------
 Route::POST('dashboard/data_banner/simpandata','DataBannerController@store')->name('simpandata');
 Route::match(['get','post'], 'dashboard/data_banner/edit/{id}','DataBannerController@edit');
 Route::GET('dashboard/data_banner/delete/{id}','DataBannerController@delete');
 Route::get('/cetak_pdf/data_banner','DataBannerController@cetak_pdf')->name('backend.data_banner.cetak_pdf');
+
+//CRUD Data Tutorial -------------------------------------------------------------------
+Route::POST('dashboard/data_tutorial/simpandata','DataTutorialController@store')->name('simpandata');
+Route::match(['get','post'], 'dashboard/data_tutorial/edit/{id}','DataTutorialController@edit');
+Route::GET('dashboard/data_tutorial/delete/{id}','DataTutorialController@delete');
+Route::get('/cetak_pdf/data_tutorial','DataTutorialController@cetak_pdf')->name('backend.data_tutorial.cetak_pdf');
 });
 // ------------------------------------------------------------------------
 

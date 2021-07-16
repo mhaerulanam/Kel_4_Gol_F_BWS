@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Laporan PDF</title>
+	<title>Laporan PDF </title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
@@ -20,19 +20,21 @@
 		<thead>
 			<tr>
 				<th>NO</th>
-                      <th>ID Banner</th>
-                      <th>Gambar</th>
-                      <th>Status</th>
+                      <th>ID Tutorial</th>
+                      <th>Judul Tutorial</th>
+                      <th>Isi</th>
+                      <th>Icon</th>
 			</tr>
 		</thead>
 		<tbody>
 			@php $no = 1; @endphp
-                    @foreach ($banner as $item)
+                    @foreach ($tutorial as $item)
                     <tr>
                         <td>{{ $no++ }}</td>
-                        <td>{{ $item->id_banner }}</td>
-                        <td><img src="/data/data_banner/{{ $item->gambar }}" width="200"></td>
-                        <td>{{ $item->status }}</td>
+                        <td>{{ $item->id_tutorial }}</td>
+                        <td>{{ $item->judul_tutorial }}</td>
+                        <td>{{ $item->isi }}</td>
+                        <td><img src="/data/data_tutorial/{{ $item->icon }}" width="200"></td>
 			</tr>
 			@endforeach
 		</tbody>

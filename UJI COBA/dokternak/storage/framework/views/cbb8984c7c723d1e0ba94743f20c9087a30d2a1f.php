@@ -49,6 +49,11 @@
                     </div>
                   </div>
                 </div>
+                <div class="widget-box">
+                  <a href="/cetak_pdf/data_tutorial" class="btn btn-primary" target="_blank">CETAK PDF</a>
+                      <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
+                      </div>
+                </div>
                 <table class="table table-hover">
                   <thead>
                     <tr>
@@ -69,7 +74,8 @@
                         <td><?php echo e($item->id_tutorial); ?></td>
                         <td><?php echo e($item->judul_tutorial); ?></td>
                         <td><?php echo e($item->isi); ?></td>
-                        <td><img src="data:image/png;base64,<?php echo e(chunk_split(base64_encode($item->icon))); ?>"></td>
+                        
+                        <td><img src="/data/data_tutorial/<?php echo e($item->icon); ?>" width="200"></td>
                         <td>
                         <div class="btn-group">
                             <a href="<?php echo e(route('data_tutorial.edit',$item->id_tutorial)); ?>" class="btn btn-warning">Edit<i class="fa fa-edit"></i></a>
