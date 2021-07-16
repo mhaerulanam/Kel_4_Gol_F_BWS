@@ -254,7 +254,7 @@ form {
         
             <div class="form-group">
                 <label for="no_hp"><span class="glyphicon glyphicon-earphone"></span> No Handphone / Telpon</label>
-                <input type="text" class="form-control" name="telpon" value="{{ isset($profil) ? $profil->telpon : '' }}" required>
+                <input type="number" class="form-control" name="telpon" value="{{ isset($profil) ? $profil->telpon : '' }}" required>
             </div>
         <div class="form-group">
             <input type="hidden" name="nama_gambar" value="{{ isset($profil) ? $profil->foto : '' }}">
