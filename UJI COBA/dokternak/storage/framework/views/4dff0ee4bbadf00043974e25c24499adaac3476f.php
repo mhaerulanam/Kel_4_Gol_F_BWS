@@ -49,6 +49,11 @@
                     </div>
                   </div>
                 </div>
+                <div class="widget-box">
+                  <a href="/cetak_pdf/data_puskeswan" class="btn btn-primary" target="_blank">CETAK PDF</a>
+                      <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
+                      </div>
+                </div>
                 <table class="table table-hover">
                   <thead>
                     <tr>
@@ -64,14 +69,14 @@
                   </thead>
                   <tbody>
                     <?php $no = 1; ?>
-                    <?php $__currentLoopData = $data['puskeswan']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <?php $__currentLoopData = $puskeswan; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <tr>
                         <td><?php echo e($no++); ?></td>
                         <td><?php echo e($item->id_puskeswan); ?></td>
                         <td><?php echo e($item->nama_puskeswan); ?></td>
                         <td><?php echo e($item->alamat); ?></td>
                         <td><?php echo e($item->jam_kerja); ?></td>
-                        <td><img src="data:image/png;base64,<?php echo e(chunk_split(base64_encode($item->gambar))); ?>"></td>
+                        <td><img src="/data/data_puskeswan/<?php echo e($item->gambar); ?>" width="200"></td>
                         <td><?php echo e($item->maps); ?></td>
                         <td>
                         <div class="btn-group">
