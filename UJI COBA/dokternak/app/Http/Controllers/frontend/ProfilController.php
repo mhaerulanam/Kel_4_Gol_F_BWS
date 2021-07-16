@@ -32,11 +32,21 @@ class ProfilController extends Controller
         // ]);
 
         $message = [
-            'numeric' => ':attributer harus diisi nomor.'
+            'required' => ':attribute wajib diisi!!!',
+            'min' => ':attribute harus diisi minimal 15 huruf!!!',
+            'max' => ':attribute URL harus diisi maksimal 100 huruf!!!',
+            'mimes' => ':attribute harus berupa gambar dengan format (JPEG, PNG, dan SVG)',
         ];
 
-        $getimageName = time().'.'.$request->foto_peternak->getClientOriginalExtension();
-        $request->foto_peternak->move(public_path('data/data_peternak'), $getimageName);
+        $gbr=$request->nama_gambar;
+        // if (isset($request->gambar) == NULL){
+        if($request->has('foto_peternak')) {
+            $getimageName = time().'.'.$request->foto_peternak->getClientOriginalExtension();
+            $request->foto_peternak->move(public_path('data/data_peternak'), $getimageName);
+        }else {
+            $getimageName = $gbr;
+        }
+        
 
 
         $data_simpan = [
