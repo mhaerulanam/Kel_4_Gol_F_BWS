@@ -6,6 +6,7 @@ use App\Http\Controllers\controller;
 use App\Models\peternak;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\Validator as FacadesValidator;
 use App\Models\Petugas;
 use App\Models\Role;
@@ -22,6 +23,15 @@ class DataPetugasController extends Controller
         // return view('backend.peternak.index');
     }
 
+    public function cetak_pdf()
+    {
+        $data = [
+            'petugas' => Petugas::with('roles')->where('is_admin',2)->get(),
+            // 'petugas' => Petugas::with('roles')->orderBy('id','desc')->where('is_admin',2)->get(),
+        ];
+    	$pdf = PDF::loadview('backend/datapetugas/cetak_pdf',['data'=>$data]);
+    	return view ('backend.datapetugas.cetak_pdf',compact('data'));
+    }
 
     public function create()
     {

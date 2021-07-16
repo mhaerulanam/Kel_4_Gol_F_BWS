@@ -75,6 +75,12 @@ Route::match(['get','post'], 'dashboard/peternak/edit/{id}','PeternakController@
 Route::GET('dashboard/peternak/delete/{id}','PeternakController@delete');
 Route::get('/cetak_pdf/peternak','PeternakController@cetak_pdf')->name('backend.peternak.cetak_pdf');
 
+//CRUD Data Petugas -------------------------------------------------------------------
+Route::POST('dashboard/datapetugas/simpandata','DataPetugasController@store')->name('simpandata');
+Route::match(['get','post'], 'dashboard/datapetugas/edit/{id}','DataPetugasController@edit');
+Route::GET('dashboard/datapetugas/delete/{id}','DataPetugasController@delete');
+Route::get('/cetak_pdf/datapetugas','DataPetugasController@cetak_pdf')->name('backend.datapetugas.cetak_pdf');
+
 });
 // ------------------------------------------------------------------------
 
