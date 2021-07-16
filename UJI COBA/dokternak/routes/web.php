@@ -42,6 +42,21 @@ Route::group(['namespace' => 'backend'], function()
     Route::resource('/dashboard/data_ks', 'DataKritikdanSaranController');
     Route::resource('/dashboard/dokumentasi', 'DokumentasiController');
     Route::resource('/dashboard/data_banner', 'DataBannerController');
+
+
+//CRUD Data Artikel -------------------------------------------------------------------
+// Route::get('/dashboard/data_artikel', 'backend/DataArtikelController@index');
+Route::POST('dashboard/data_artikel/simpandata','DataArtikelController@store')->name('simpandata');
+Route::match(['get','post'], 'dashboard/data_artikel/edit/{id}','DataArtikelController@edit');
+Route::GET('dashboard/data_artikel/delete/{id}','DataArtikelController@delete');
+Route::GET('/editprofil/{id}','frontend\ProfilController@update')->name('editprofil.update');
+// Route::GET('dashboard/data_artikel/cetak_pdf','backend\DataArtikelController@cetak_pdf');
+// Route::GET('/cetak_pdf', 'backend/DataArtikelController@cetakartikel')->name('data_artikel.cetak_pdf');
+// Route::get('dashboard/data_artikel/cetak_pdf',\App\Http\Controllers\backend\DataArtikelController::class . '@cetak_pdf')->name('backend.data_artikel.cetak_pdf');
+// Route::get('dashboard/data_artikel/cetak_pdf', 'backend/DataArtikelController@cetak_pdf')->name('backend.data_artikel.cetak_pdf');
+// Route::get('/report/cetak_pdf', 'ReportController@cetak_pdf')->name('admin.report.cetak_pdf');
+// Route::get('/report/cetak_pdf', 'ReportController@cetak_pdf');
+// Route::resource('/report','ReportController');
 });
 // ------------------------------------------------------------------------
 
