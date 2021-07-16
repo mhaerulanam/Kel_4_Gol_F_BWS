@@ -109,6 +109,10 @@ Route::get('admin/{id}', function ($id = null) {
   //  
 })->middleware('auth');
 
+//Route Reset Password
+Route::get('change-password', 'frontend\ResetPasswordController@changePassword')->name('change-password')->middleware('auth');
+Route::POST('update-password', 'frontend\ResetPasswordController@updatePassword')->name('update-password')->middleware('auth');
+
  //Route Artikel
  Route::get('petugas/artikel', 'petugas\ArtikelController@index');
  Route::get('petugas/artikel/cari', 'petugas\ArtikelController@cari');

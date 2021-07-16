@@ -104,7 +104,7 @@ trait ResetsPasswords
      * @param  string  $password
      * @return void
      */
-    protected function resetPassword($user, $password)
+    protected function resetpassword($user, $password)
     {
         $this->setUserPassword($user, $password);
 
