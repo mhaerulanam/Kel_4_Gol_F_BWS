@@ -208,7 +208,7 @@ form {
             <input type="email" class="form-control" name="email_peternak" value="{{ isset($profil) ? $profil->email_peternak : '' }}" required>
           </div>
 
-          <div class="form-row">
+          {{-- <div class="form-row">
             <div class="col-md-4 mb-2">
               <label for="validationCustom3">Foto</label>
               <td><img src="/data/data_peternak/{{ isset($profil) ? $profil->foto_peternak : '' }}" width="200"></td>
@@ -219,7 +219,21 @@ form {
                   </span>
               @endif
           </div>
-          </div>
+          </div> --}}
+
+          <input type="hidden" name="nama_gambar" value="{{ isset($profil) ? $profil->foto_peternak : '' }}">
+                      <div class="form-row">
+                        <div class="col-md-6 mb-3">
+                          <label for="validationCustom3">Gambar</label>
+                          <td><img src="/data/data_peternak/{{ isset($profil) ? $profil->foto_peternak : '' }}" width="100px"></td>
+                          <input type="file" name="foto_peternak" id="foto_peternak" value="{{ isset($profil) ? $profil->foto_peternak : '' }}" class="form-control {{ $errors->has('foto_peternak') ? 'is-invalid' : ''}}" >
+                        @if ( $errors->has('foto_peternak'))
+                        <span class="text-danger small">
+                            <p>{{ $errors->first('foto_peternak') }}</p>
+                        </span>
+                    @endif
+                        </div>
+                      </div>
 
         <!-- Kanan Bang **************************************************************************************-->
         <!-- <div id="right"> -->
