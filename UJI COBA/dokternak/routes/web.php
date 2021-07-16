@@ -49,8 +49,9 @@ Route::group(['namespace' => 'backend'], function()
 Route::POST('dashboard/data_artikel/simpandata','DataArtikelController@store')->name('simpandata');
 Route::match(['get','post'], 'dashboard/data_artikel/edit/{id}','DataArtikelController@edit');
 Route::GET('dashboard/data_artikel/delete/{id}','DataArtikelController@delete');
-Route::GET('/editprofil/{id}','frontend\ProfilController@update')->name('editprofil.update');
-// Route::GET('dashboard/data_artikel/cetak_pdf','backend\DataArtikelController@cetak_pdf');
+Route::get('/cetak_pdf/data_artikel','DataArtikelController@cetakartikel')->name('backend.data_artikel.cetak_pdf');
+// Route::GET('das','frontend\ProfilController@update')->name('editprofil.update');
+// Route::GET('dashboard/data_artikel/cetak_pdf','backend\DataArtikelController@cetakartikel')->name('data_artikel.cetak_pdf');
 // Route::GET('/cetak_pdf', 'backend/DataArtikelController@cetakartikel')->name('data_artikel.cetak_pdf');
 // Route::get('dashboard/data_artikel/cetak_pdf',\App\Http\Controllers\backend\DataArtikelController::class . '@cetak_pdf')->name('backend.data_artikel.cetak_pdf');
 // Route::get('dashboard/data_artikel/cetak_pdf', 'backend/DataArtikelController@cetak_pdf')->name('backend.data_artikel.cetak_pdf');

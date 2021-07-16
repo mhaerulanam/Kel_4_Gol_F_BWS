@@ -51,9 +51,11 @@
                   </div>
                 </div>
                 <div class="widget-box">
-                  <a href="{{ route('data_artikel.cetak_pdf') }}" class="btn btn-primary" target="_blank">CETAK PDF</a>
+                  <a href="/cetak_pdf/data_artikel" class="btn btn-primary" target="_blank">CETAK PDF</a>
                   {{-- <a href="{{ route('backend.data_artikel.cetak_pdf') }}" class="btn btn-primary" target="_blank">CETAK PDF</a> --}}
                       <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
+                  {{-- <a href="{{ route('backend.data_artikel.cetak_pdf') }}" class="btn btn-primary" target="_blank">CETAK PDF</a> --}}
+                {{-- <a href="/dashboard/data_artikel/cetak_pdf" class="btn btn-primary" target="_blank">CETAK PDF</a> --}}
                       </div>
                 </div>
                 <table class="table table-hover">

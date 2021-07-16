@@ -11,6 +11,8 @@ use App\Models\KatArtikel;
 use Dotenv\Validator;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Support\Facades\Crypt;
+// use Barryvdh\DomPDF\PDF;
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\Validator as FacadesValidator;
 
 class DataArtikelController extends Controller
@@ -29,16 +31,18 @@ class DataArtikelController extends Controller
         // return view('backend.peternak.index');
     }
 
-    // public function cetak_pdf()
     public function cetakartikel()
     {
     	// $artikel = Artikel::all();
+        $artikel = Artikel::join('kategori_artikel', 'kategori_artikel.id_ktg', '=', 'artikel.id_ktg')
+                    ->orderBy('id_artikel','desc')
+                    ->get();
         // $pdf = PDF::loadView('backend.data_artikel.cetak_pdf', $artikel);
-    	// $pdf = PDF::loadview('data_artikel.cetak_pdf',['artikel'=>$artikel]);
-    	// return view ('backend.data_artikel.cetak_pdf');
+    	$pdf = PDF::loadview('backend/data_artikel/cetak_pdf',['artikel'=>$artikel]);
+    	return view ('backend.data_artikel.cetak_pdf',compact('artikel'));
         // $artikel = Artikel::latest()->get();
-        $artikel = Artikel::with('id_artikel') ->get();
-        return view('backend.data_artikel.cetak_pdf',compact('artikel'));
+        // $artikel = Artikel::with('id_artikel') ->get();
+        // return view('backend.data_artikel.cetak_pdf',compact('artikel'));
     }
 
     public function create()
