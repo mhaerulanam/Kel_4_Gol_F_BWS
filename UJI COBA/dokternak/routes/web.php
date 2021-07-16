@@ -68,6 +68,12 @@ Route::group(['namespace' => 'Petugas'], function()
    Route::match(['get','post'], 'petugas/data-obat/edit/{id}','DataObatController@edit');
    Route::GET('petugas/data-obat/delete/{id}','DataObatController@delete');
    // -------------------------------------------------------------------------
+   //  Respon Konsultasi
+   Route::get('/petugas/respon-konsultasi', 'ResponKonsultasiController@index')->name('respon.index');
+   Route::get('/petugas/respon-konsultasi/{id}/detail', 'ResponKonsultasiController@detail')->name('respon.detail');
+   Route::get('/petugas/respon-konsultasi/{id}/detailterkirim', 'ResponKonsultasiController@detailterkirim')->name('respon.detailterkirim');
+   Route::get('/petugas/respon-konsultasi/{id}/hapus','ResponKonsultasiController@hapus')->name('respon.hapus');
+   Route::get('/petugas/respon-konsultasi/{id}/hapusmasuk/{idk}/detail/{idr}','ResponKonsultasiController@hapusmasuk')->name('respon.hapusmasuk');
 });
 
 Auth::routes();
