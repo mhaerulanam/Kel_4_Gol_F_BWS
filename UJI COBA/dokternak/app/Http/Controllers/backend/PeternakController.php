@@ -6,7 +6,8 @@ use App\Http\Controllers\controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Models\peternak;
+use App\Models\PeternakUser;
+use App\Models\User;
 use Dotenv\Validator;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Support\Facades\Crypt;
@@ -16,11 +17,13 @@ class PeternakController extends Controller
 {
     public function index()
     {
-        $data = [
-            'peternak' => Peternak::with('roles')->where('is_admin',0)->paginate(2),
-        ];
-        return view('backend.peternak.index',compact('data'));
-        // return view('backend.peternak.index');
+    
+        $peternak = PeternakUser::select('peternak.*', 'users.*')
+            ->join('users', 'users.id', '=', 'peternak.id') 
+            ->where('is_admin',0)
+            ->get();
+
+        return view('backend.peternak.index',compact('peternak'));
     }
 
 
@@ -32,68 +35,83 @@ class PeternakController extends Controller
 
     public function store(Request $request)
     {
-        // DB::table('users')->insert([
-        //     'name' => $request->name,
-        //     'username' => $request->username,
-        //     'email' => $request->email,
-        //     'password' => Hash::make($request['password']),
-        // ]);
-
         $message = [
-            'numeric' => ':attributer harus diisi nomor.'
+            'required' => ':attribute wajib diisi!!!',
+            'min' => ':attribute harus diisi minimal 15 huruf!!!',
+            'max' => ':attribute URL harus diisi maksimal 100 huruf!!!',
+            'mimes' => ':attribute harus berupa gambar dengan format (JPEG, PNG, dan SVG)',
         ];
 
         $validator = FacadesValidator::make($request->all(),[
-            // 'nama' => 'required|string|max:100',
-            // 'tingkatan' => 'required|numeric',
+            'judul' => 'required|string|min:15|max:100',
+            'id_ktg' => 'required|string|max:15',
+            'sumber' => 'required|string|min:15|max:200',
+            'gambar' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
         ], $message)->validate();
 
-        $role = 0;
+        $status= "tampil";
+
+        $getimageName = time().'.'.$request->foto_peternak->getClientOriginalExtension();
+        $request->foto_peternak->move(public_path('data/data_peternak'), $getimageName);
 
         $data_simpan = [
-            'name' => $request->name,
-            'email' => $request->email,
-            'is_admin' => $role,
-            'password' => Hash::make($request['password']),
+            'namadepan_peternak' => $request->namadepan_peternak,
+            'namabelakang_peternak' => $request->namabelakang_peternak,
+            'no_hp' => $request->no_hp,
+            'jenis_kelamin' => $request->jenis_kelamin,
+            'alamat' => $request->alamat,
+            'foto_peternak' => $getimageName,
         ];
 
-        peternak::create($data_simpan);
+        PeternakUser::create($data_simpan);
 
         return redirect()->route('peternak.index')
-                        ->with('success','Data peternak baru telah berhasil disimpan');
+                        ->with('success','Data peternak baru telah berhasil disimpan, dimohon untuk menunggu konfirmasi dari Admin')
+                        ->with('image',$getimageName);
     }
 
     public function edit($id)
     {
-        $peternak = Peternak::where('id',$id)->first();
+        $peternak = PeternakUser::select('peternak.*','users.*')
+        ->join('users', 'users.id', '=', 'peternak.id') 
+        ->where('id_peternak', $id)->first();
         return view('backend.peternak.create',compact('peternak'));
+        
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request , $id)
     {
-        // DB::table('users')->where('id',$request->id)->update([
-        //     'name' => $request->name,
-        //     'username' => $request->username,
-        //     'email' => $request->email,
-        //     'password' => Hash::make($request['password']),
-        // ]);
 
         $message = [
             'numeric' => ':attributer harus diisi nomor.'
         ];
 
         $validator = FacadesValidator::make($request->all(),[
-            // 'nama' => 'required|string|max:100',
-            // 'tingkatan' => 'required|numeric',
         ], $message)->validate();
 
+        $status= "tampil";
+
+
+        $gbr=$request->nama_gambar;
+        
+        if($request->has('foto_peternak')) {
+            $getimageName = time().'.'.$request->foto_peternak->getClientOriginalExtension();
+            $request->foto_peternak->move(public_path('data/data_peternak'), $getimageName);
+        }else {
+            $getimageName = $gbr;
+        }
+
+
         $data_simpan = [
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request['password']),
+            'namadepan_peternak' => $request->namadepan_peternak,
+            'namabelakang_peternak' => $request->namabelakang_peternak,
+            'no_hp' => $request->no_hp,
+            'jenis_kelamin' => $request->jenis_kelamin,
+            'alamat' => $request->alamat,
+            'foto_peternak' => $getimageName,
         ];
 
-        Peternak::where('id', $id)->update($data_simpan);
+        PeternakUser::where('id_peternak', $id)->update($data_simpan);
 
         return redirect()->route('peternak.index')
                         ->with('success','Data peternak telah berhasil diperbarui');
@@ -101,8 +119,14 @@ class PeternakController extends Controller
 
     public function destroy($id)
     {
-        $peternak = Peternak::where('id',$id)->delete();
+        
+        //$peternak = PeternakUser::where('id_peternak',$id)->delete();
+        //$iduser = $peternak->id; 
+        $user = User::where('id',$id)->delete();
         return redirect()->route('peternak.index')
                         ->with('success','Data peternak telah berhasil dihapus');
+          //return $peternak;
     }
+
+   
 }
