@@ -25,7 +25,7 @@
 </head>
 
 <body>
-    @include('frontend/layouts.navbar');
+    @include('petugas/layouts.navbar');
    <!-- Hero Area Start-->
    <div class="slider-area ">
       <div class="single-slider section-overly slider-height2 d-flex align-items-center" data-background="{{ asset('Frontend/assets/img/gallery/s2.jpg')}}">
@@ -106,7 +106,7 @@
         <!-- How  Apply Process End-->
 
 <section>
-    @include('frontend/layouts.footer');
+    @include('petugas/layouts.footer');
 </section>
         
         <!-- JS here -->
