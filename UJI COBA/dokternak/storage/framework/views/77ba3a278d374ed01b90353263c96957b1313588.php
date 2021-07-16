@@ -1,5 +1,5 @@
 
-  
+
 <?php $__env->startSection('content'); ?>
 <main role="main" class="main-content">
   <div class="container-fluid">
@@ -49,6 +49,10 @@
                     </div>
                   </div>
                 </div>
+                <div class="widget-box">
+                  <a href="/cetak_pdf/peternak" class="btn btn-primary" target="_blank">CETAK PDF</a>
+                      <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
+                      </div>
                 <table class="table table-hover">
                   <thead>
                     <tr>
@@ -75,10 +79,10 @@
                         <td><?php echo e($item->jenis_kelamin); ?></td>
                         <td><?php echo e($item->alamat); ?></td>
                         <td><img src="/data/data_peternak/<?php echo e($item->foto_peternak); ?>" width="100"></td>
-                        <td><?php echo e($item->password); ?></td>
+                        <td><?php echo e(\Illuminate\Support\Str::limit ($item->password,10)); ?></td>
                         <td>
                         <div class="btn-group">
-                            <a href="<?php echo e(route('peternak.edit',$item->id)); ?>" class="btn btn-warning">Edit<i class="fa fa-edit"></i></a>
+                            <a href="<?php echo e(route('peternak.edit',$item->id_peternak)); ?>" class="btn btn-warning">Edit<i class="fa fa-edit"></i></a>
                             <form action="<?php echo e(route('peternak.destroy',$item->id)); ?>" method="POST">
                             <?php echo csrf_field(); ?>
                                 <?php echo method_field('DELETE'); ?>

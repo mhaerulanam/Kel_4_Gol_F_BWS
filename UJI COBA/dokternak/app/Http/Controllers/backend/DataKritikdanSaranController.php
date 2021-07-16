@@ -56,7 +56,7 @@ class DataKritikdanSaranController extends Controller
             'pekerjaan' => $request->pekerjaan,
         ];
 
-        kritik_dan_saran::create($data_simpan);
+        kritikdansaran::create($data_simpan);
 
         return redirect()->route('data_ks.index')
                         ->with('success','Data kritik_dan_saran baru telah berhasil disimpan');

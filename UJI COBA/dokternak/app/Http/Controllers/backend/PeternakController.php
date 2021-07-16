@@ -11,6 +11,7 @@ use App\Models\User;
 use Dotenv\Validator;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Support\Facades\Crypt;
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\Validator as FacadesValidator;
 
 class PeternakController extends Controller
@@ -26,6 +27,15 @@ class PeternakController extends Controller
         return view('backend.peternak.index',compact('peternak'));
     }
 
+    public function cetak_pdf()
+    {
+        $peternak = PeternakUser::select('peternak.*', 'users.*')
+        ->join('users', 'users.id', '=', 'peternak.id') 
+        ->where('is_admin',0)
+        ->get();
+    	$pdf = PDF::loadview('backend/peternak/cetak_pdf',['peternak'=>$peternak]);
+    	return view ('backend.peternak.cetak_pdf',compact('peternak'));
+    }
 
     public function create()
     {
