@@ -43,7 +43,6 @@ class ResponKonsultasiController extends Controller
                     ->join('dokter', 'dokter.id_dokter', '=', 'konsultasi.id_dokter')
                     ->join('peternak', 'peternak.id_peternak', '=', 'konsultasi.id_peternak')
                     ->where('respon_konsultasi.id_dokter',$id_dokter)
-                    ->where('konsultasi.status_kirim','=','terespon')
                     ->orderBy('tanggal','desc')
                     ->get();
         return view('petugas.responkonsultasi',compact('konsultasi','riwayat_konsultasi'));
@@ -107,7 +106,7 @@ class ResponKonsultasiController extends Controller
                     ->join('dokter', 'dokter.id_dokter', '=', 'konsultasi.id_dokter')
                     ->join('peternak', 'peternak.id_peternak', '=', 'konsultasi.id_peternak')
                     ->where('konsultasi.id_dokter',$id_dokter)
-                    ->where('konsultasi.status_kirim','=','terespon')
+                    ->where('konsultasi.status_kirim','=','norespon')
                     ->orderBy('tanggal','desc')
                     ->get();
 
@@ -135,19 +134,42 @@ class ResponKonsultasiController extends Controller
         return view('petugas.responkonsultasi',compact('riwayat_konsultasi','riwayat_konsultasi2','konsultasi'));
     }
 
-    public function hapus($id)
+    public function store(Request $request)
     {
-        RiwayatKonsultasi::where('id_riwayat',$id)->delete();
-        Konsultasi::where('id_konsultasi',$idk)->delete();
-        ResponKonsultasi::where('id_respon',$idr)->delete();
+        $kode = date('Yhi');
+        $tanggal = date('Y-m-d');
+
+        $status = 'terespon';
+
+        $data_simpan = [
+            'status_kirim' => $status,
+        ];
+
+        $data_simpan2 = [
+            'id_respon' => $kode,
+            'id_dokter' => $request->id_dokter,
+            'respon' => $request->respon,
+            'tanggal_respon' => $tanggal,
+        ];
+
+        $data_simpan3 = [
+            'id_konsultasi' => $request->id_konsultasi,
+            'id_respon' => $kode,
+        ];
+
+        Konsultasi::where('id_konsultasi', $request->id_konsultasi)->update($data_simpan);
+        ResponKonsultasi::create($data_simpan2);
+        RiwayatKonsultasi::create($data_simpan3);
+
         return redirect()->route('respon.index')
-                        ->with('success','Konsultasi telah berhasil dihapus');
+                        ->with('success','Respon Anda berhasil dikirim');
     }
 
-    public function hapusmasuk($id, $idk,$idr)
+    public function hapusterkirim($id,$idk)
     {
-        Konsultasi::where('id_konsultasi',$id)->delete();
-        return redirect()->route('respon.detail')
-                        ->with('success','Konsultasi telah berhasil dihapus');
+        RiwayatKonsultasi::where('id_riwayat',$id)->delete();
+        ResponKonsultasi::where('id_respon',$idk)->delete();
+        return redirect()->route('respon.index')
+                        ->with('success','Pesan terkirim telah berhasil dihapus');
     }
 }
