@@ -122,21 +122,30 @@
 <body>
     @include('petugas/layouts.navbar');
 <section>
+     {{-- Alert --}}
+     @if ($message = Session::get('success'))
+     <div class="alert alert-success" role="alert">
+         {{ $message }}
+         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+             <span aria-hidden="true">&times;</span>
+         </button>
+     </div>
+     @endif
     <hr>
         <center><h1>
-                <b>Respon Konsultasi</b>
+                <b>Riwayat Konsultasi</b>
         </h1></center>
     <hr>
 
 </section>  
 <div class="container">
 <div class="tab">
-    @if(isset($_POST['klok']) || isset($_POST['tampilkan']) )
+    @if(isset($konsultasi2) ?? '')
+        <button class="tablinks" onclick="openCity(event, 'masuk')" id="defaultOpen">Kotak Masuk</button>
+        <button class="tablinks" onclick="openCity(event, 'terkirim')" >Kotak Terkirim</button>
+    @else
         <button class="tablinks" onclick="openCity(event, 'masuk')" >Kotak Masuk</button>
         <button class="tablinks" onclick="openCity(event, 'terkirim')" id="defaultOpen">Kotak Terkirim</button>
-    @else
-    <button class="tablinks" onclick="openCity(event, 'masuk')" id="defaultOpen">Kotak Masuk</button>
-    <button class="tablinks" onclick="openCity(event, 'terkirim')" >Kotak Terkirim</button>
     @endif
 </div>
 
@@ -154,67 +163,48 @@
             </div>
             <div class="srch_bar">
               <div class="stylish-input-group">
-                {{-- <a href="tuliskonsultasi" class="genric-btn primary">Konsultasi</a> --}}
             </div>
             </div>
           </div>
           <div class="inbox_chat">
 
-              <!-- Daftar Pesan yang sudah di respon -->
-              @if('off')
-                <form method="POST">
+              <!-- Daftar Pesan masuk dari peternak dan belum direspon -->
+              @foreach ($konsultasi as $data_riwayatkonsultasi)
                     <a href="#">
-                    <input type="hidden" name="ids" value="id">
-                    <input type="hidden" name="stt" value="off">
                         <div class="chat_list ">
                         <div class="chat_people">
-                            <div class="chat_img" name="klik"> <img src="profil.php?id_dokter" class="rounded-circle z-depth-0"
+                            <div class="chat_img" name="klik"> <img src="/data/data_peternak/{{ $data_riwayatkonsultasi->foto }}" class="rounded-circle z-depth-0"
                                                         alt="Nama" height="50"></img></div>
                             <div class="chat_ib">
-                            <h5> Dari : Nama <span class="    chat_date" name="klik">tanggal<br></span></h5>
-                            <p>isi pesan singkat</p>
-                            <input type="submit" name="klik" class="genric-btn primary-border" value="Lihat">
+                            <h5> Dari : {{ $data_riwayatkonsultasi->namadepan_peternak }} <span class="    chat_date" name="klik">{{ $data_riwayatkonsultasi->tanggal }}<br></span></h5>
+                            <p>{{\Illuminate\Support\Str::limit($data_riwayatkonsultasi->keluhan, 40)}} </p>
+                            <a href="{{ route("respon.detail", $data_riwayatkonsultasi->id_konsultasi) }}"><input type="submit" name="klik" class="genric-btn primary-border" value="Lihat"></a>
                             </div>
                         </div>
                         </div>
                     </a>
-                    </form>
-                    @else
-                <form method="POST">
-                    <a href="#">
-                    <input type="hidden" name="ids" value="id">
-                    <input type="hidden" name="stt" value="off">
-                        <div class="chat_list active_chat">
-                        <div class="chat_people">
-                            <div class="chat_img" name="klik"> <img src="profil.php?id_dokter=" class="rounded-circle z-depth-0"
-                                                        alt="nama" height="50"></img></div>
-                            <div class="chat_ib">
-                            <h5> Kepada : nama <span class="chat_date" name="klik">tanggal</span></h5>
-                            <p name="klik">respon</p><input type="submit" name="klik" class="genric-btn primary-border" value="Lihat">
-                            </div>
-                        </div>
-                        </div>
-                    </a>
-                    </form>
-                    @endif
+            @endforeach
           </div>
         </div>
 
-        @if(isset($_POST['klik']))
+        {{-- Tempat if --}}
+        @if(isset($konsultasi2) ?? '')
         <div class="mesgs">
+            @foreach ($konsultasi2 as $data_konsultasi2)
           <div class="msg_history">
-                <form method="POST" action="">
                 <div class="row m-0">
-                    <div class="flex-grow-1 pl-3">
-                    <h5>Dari : Nama Peternak</h5></h5>
-                    </div>
+                    {{-- <div class="flex-grow-1 pl-3">
+                    <h5>Dari : {{ $data_konsultasi2->namadepan_peternak }}</h5></h5>
+                    </div> --}}
                     <div class="flex-grow-4 pl-1">
                     <input type="hidden" name="idkr" value="id dokter">
                     <input type="hidden" name="idk" value="id k">
-                    <input type="submit" name="hapus" class="genric-btn danger" onclick="return confirm('Apakah Anda yakin ingin menghapus pesan ini?')" value="HAPUS"> 
+                    {{-- <a href="{{ route('konsultasi.hapusmasuk',['id'=>$data_riwayatdetail->id_riwayat,'idk'=>$data_riwayatdetail->id_konsultasi,'idr'=>$data_riwayatdetail->id_respon])}}"><button type="submit" class="genric-btn danger"
+                        onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus
+                        <i class="fa fa-trash-o"></i></button></a> --}}
+                    {{-- <input type="submit" name="hapus" class="genric-btn danger" onclick="return confirm('Apakah Anda yakin ingin menghapus pesan ini?')" value="HAPUS">  --}}
                     </div>
                 </div>
-                </form>
 				<!-- Post Begins -->
 				<section class="card mt-4">
 					<div class="border p-2">
@@ -222,72 +212,27 @@
 						<div class="row m-0">
 							<div class="">
 								<a class="text-decoration-none" href="#">
-									<img src="fotoakun.php?id_peternak="class="rounded-circle z-depth-0"
+									<img src="/data/data_peternak/{{ $data_konsultasi2->foto_peternak }}"class="rounded-circle z-depth-0"
                                             alt="fotoakun" height="50">
 								</a>
 							</div>
 							<div class="flex-grow-1 pl-2">
 								<!-- <a class="text-decoration-none" href="#"> -->
-									<h2 class="text-capitalize h5 mb-0"><b>Anda</b></h2>
+									<h2 class="text-capitalize h5 mb-0"><b>{{ $data_konsultasi2->namadepan_peternak }}</b></h2>
 								<!-- </a>  -->
-								<p class="small text-secondary m-0 mt-1"> Tanggal</p>
+								<p class="small text-secondary m-0 mt-1"> {{ $data_konsultasi2->tanggal }}</p>
                             </div>
                             <div class="flex-grow-2 pl-2">
-                                <p class="small text-secondary m-0 mt-1">kategori hewan<br>Nama hewan</p>
+                                <p class="small text-secondary m-0 mt-1">{{ $data_konsultasi2->kategori_hewan }}<br>{{ $data_konsultasi2->nama_hewan }}</p>
                             </div>
 						</div>
 						<!-- post body -->
 						<div class="">
 							<p class="my-2">
-                           Keluhan
+                           {{ $data_konsultasi2->keluhan }}
 							</p>
 						</div>
-						<hr class="my-1">
-                        <!-- post footer begins -->
-                                    <footer class="">
-							<!-- post actions -->
-                                    <div class="">
-                                        <ul class="list-group list-group-horizontal">		
-                                            <li class="list-group-item flex-fill text-center p-0 px-lg-2 border border-right-0 border-top-0 border-bottom-0">
-                                                <a class="small text-decoration-none" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                                    <h6> <i class="fas fa-comment-alt"></i> Respon Konsultasi</h6>
-                                                </a>
-                                            </li>	
-                                        </ul>
-                                    </div>
-                                    <div class="card border border-right-0 border-left-0 border-bottom-0 mt-1">
-									<!-- comment card bgins -->
-									<section>
-										<div class="card p-2 mt-3">
-											<!-- comment header -->
-											<div class="d-flex">
-												<div class="">
-													<a class="text-decoration-none" href="#">
-													<img src="profil.php?id_dokter=Id" class="rounded-circle z-depth-0"
-                                                        alt="Nama" height="40"></img>
-													</a>
-												</div>
-												<div class="flex-grow-1 pl-2">
-													<a class="text-decoration-none text-capitalize h6 m-0" href="#">Nama</a>
-													<p class="small m-0 text-muted">Tanggal</p>
-												</div>		
-											</div>
-											<!-- comment header -->
-											<!-- comment body -->
-											<div class="card-body p-0">
-												<p class="card-text h7 mb-1">isi Respon</p>		
-											</div>
-										</div>
-									</section>
-									<!-- comment card ends -->
-
-                                </div>
-                             
-							</div>
-							<!-- collapsed comments ends -->
-						</footer>
-						<!-- post footer ends -->
-					</div>
+						
 				</section>
                 <!-- Post Ends -->
                 <div class="back">
@@ -297,8 +242,10 @@
                         </center>
                     </form>
                 </div>
+                @endforeach
             </div>
             @endif
+
         </div>
         </div>
     </div>
@@ -320,104 +267,36 @@
             </div>
             <div class="srch_bar">
               <div class="stylish-input-group">
-                <a href="tuliskonsultasi" class="genric-btn primary">Konsultasi</a>
             </div>
             </div>
           </div>
           <div class="inbox_chat">
-
-            <!-- Daftar Pesan yang belum direspon -->
-                <form method="POST">
+            <!-- Daftar pesan masuk -->
+            @foreach ($riwayat_konsultasi as $data_konsultasi)
+                {{-- <form method="POST"> --}}
+                        {!! csrf_field() !!}
                     <a href="#">
-                    <input type="hidden" name="idst" value="id konsultasi">
-                    <input type="hidden" name="stt" value="off">
+                    {{-- <input type="hidden" name="idst" value="id konsultasi">
+                    <input type="hidden" name="stt" value="off"> --}}
                         <div class="chat_list">
                         <div class="chat_people">
-                            <div class="chat_img" name="klik"> <img src="profil.php?id_dokter=" class="rounded-circle z-depth-0"
+                            <div class="chat_img" name="klik"> <img src="/data/data_peternak/{{ $data_konsultasi->foto }}" class="rounded-circle z-depth-0"
                                                         alt="Nama" height="50"></img></div>
                             <div class="chat_ib">
-                            <h5> Kepada : Nama Dokter <span class="chat_date" name="klik">Tanggal<br></span></h5>
-                            <p name="klik">-- Belum Ada Balasan --</p><button name="klok" class="genric-btn primary-border openMsg" onclick="openCity(event, 'terkirim')"  id="defaultOpen"><p>Lihat</p></button>
+                            <h5> Kepada : {{ $data_konsultasi->namadepan_peternak }} <span class="chat_date" name="klik">{{ $data_konsultasi->tanggal }}<br></span></h5>
+                            <p name="klik">{{ $data_konsultasi->respon }}</p>
+                            <a href="{{ route("respon.detail", $data_konsultasi->id_riwayat) }}"><button name="klok" class="genric-btn primary-border openMsg" onclick="openCity(event, 'terkirim')"  id="defaultOpen"><p>Lihat</p></button></a>
                             </div>
                         </div>
                         </div>
                     </a>
-                    </form>
+                    {{-- </form> --}}
+            @endforeach
           </div>
-        </div>
 
-        @if(isset($_POST['klok']))
-		<!-- <div class="collapse" id="riwayat"> -->
-        <div class="mesgs">
-          <div class="msg_history">
-                <form method="POST" action="">
-                <div class="row m-0">
-                    <div class="flex-grow-1 pl-3">
-                    <h5>Kepada : nama Dokter</h5></h5>
-                    </div>
-                    <div class="flex-grow-4 pl-1">
-                    <input type="hidden" name="idk" value="Id">
-                    <input type="submit" name="hps" class="genric-btn danger" onclick="return confirm('Apakah Anda yakin ingin menghapus pesan ini?')" value="HAPUS"> 
-                    </div>
-                </div>
-                </form>
-				<!-- Post Begins -->
-				<section class="card mt-4">
-					<div class="border p-2">
-						<!-- post header -->
-						<div class="row m-0">
-							<div class="">
-								<a class="text-decoration-none" href="#">
-									<img src="fotoakun.php?id_peternak=id peternak"class="rounded-circle z-depth-0"
-                                            alt="fotoakun" height="50">
-								</a>
-							</div>
-							<div class="flex-grow-1 pl-2">
-								<!-- <a class="text-decoration-none" href="#"> -->
-									<h2 class="text-capitalize h5 mb-0"><b>Anda</b></h2>
-								<!-- </a>  -->
-								<p class="small text-secondary m-0 mt-1"> tanggal</p>
-                            </div>
-                            <div class="flex-grow-2 pl-2">
-                                <p class="small text-secondary m-0 mt-1">Kategori hewan <br>Nama Hewan</p>
-                            </div>
-						<!-- post body -->
-						<div class="">
-							<p class="my-2">
-                           Keluhan
-							</p>
-						</div>
-						<hr class="my-1">
-                        <!-- post footer begins -->
-                                    <footer class="">
-							<!-- post actions -->
-                                    <div class="">
-                                        <ul class="list-group list-group-horizontal">		
-                                            <li class="list-group-item flex-fill text-center p-0 px-lg-2 border border-right-0 border-top-0 border-bottom-0">
-                                                <a class="small text-decoration-none" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                                    <h6> <i class="fas fa-comment-alt"></i> Tidak Ada Respon Konsultasi</h6>
-                                                </a>
-                                            </li>	
-                                        </ul>
-                                    </div>
-                             
-							</div>
-							<!-- collapsed comments ends -->
-						</footer>
-						<!-- post footer ends -->
-                    </div>
-				</section>
-                <!-- Post Ends -->
-            </div>
-            <div class="back">
-                <center>
-                    <form action="riwayat_konsultasi.php" method="POST">
-                        <button type="submit" name="tampilkan" class="genric-btn primary-border" >KEMBALI</button>
-                    </form>
-                </center>
-            </div>
         </div>
-@endif
+        {{-- Tempat If --}}
+
         </div>
     </div>
 </div>
@@ -425,7 +304,7 @@
       </div>      
     </div></div>
     <section>
-        @include('petugas/layouts.footer');
+        @include('petugas.layouts.footer');
     </section>
     
 <!-- JS here -->
