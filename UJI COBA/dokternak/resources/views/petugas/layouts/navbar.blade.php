@@ -26,7 +26,7 @@
                                          <ul class="submenu">
                                                  <li><a href="/petugas/rekam-medik">REKAM MEDIK</a></li>
                                                  <li><a href="/petugas/data-obat">OBAT</a></li>
-                                                 <li><a href="data_hewan.php">HEWAN</a></li>                                                 
+                                                 {{-- <li><a href="data_hewan.php">HEWAN</a></li>                                                  --}}
                                              </ul>
                                          </li>
                                          <li><a href="/petugas/respon-konsultasi">NOTIFIKASI</a></li>
