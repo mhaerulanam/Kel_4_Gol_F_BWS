@@ -407,8 +407,7 @@ input[type=text]:placeholder {
                         </span>
                     @enderror
 
-                    <input id="password" type="password" placeholder="Masukkan Password Baru" class="fadeIn third @error('password') is-invalid @enderror" name="newpassword" required autocomplete="new-password">
-
+                    <input id="password" type="password" placeholder="Masukkan Password Baru" class="fadeIn third @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
                     @error('password')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>

@@ -14,6 +14,8 @@ use Dotenv\Validator;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Validator as FacadesValidator;
+use Illuminate\Support\Facades\Auth;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class RekammedikController extends Controller
 {
@@ -110,6 +112,24 @@ class RekammedikController extends Controller
     {
         rekam_medik::where(['id_rmd'=>$id_rmd])->delete();
         return redirect()->back()->with('success','Data rekam medik telah berhasil dihapus');
+    }
+
+    public function cetakrmd()
+    {
+        $id = Auth::id();
+        $petugas = DB::table('dokter')->where('id',$id)->first();
+        $id_dokter = $petugas->id_dokter;
+
+        $rekam_medik = rekam_medik::join('kategori_artikel', 'kategori_artikel.id_ktg', '=', 'rekam_medik.id_ktg')
+                    ->join('kategori_hewan', 'kategori_hewan.id_kategori','=','rekam_medik.id_kategori')
+                    ->join('dokter_rekammedik','dokter_rekammedik.id_rmd','=','rekam_medik.id_rmd')
+                    ->join('dokter','dokter.id_dokter','=','dokter_rekammedik.id_dokter')
+                    ->where('dokter_rekammedik.id_dokter',$id_dokter)
+                    ->orderBy('rekam_medik.id_rmd','desc')
+                    ->get();
+
+        $pdf = PDF::loadview('petugas/rekam_medik/cetak_pdf',['rekam_medik'=>$rekam_medik]);
+        return view('petugas.rekam_medik.cetak_pdf', compact('rekam_medik'));
     }
 
 }

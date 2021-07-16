@@ -299,9 +299,10 @@
                             <div class="row"> 
                         <table>
                             <tbody>         
-                            <tr>
+                                <tr>
                                 @foreach ($data['artikel'] as $data_artikel)                           
-                                    <td>
+                                    
+                                        <td>
                                         <div class="col-xl-10 col-lg-10 col-md-10">
                                                 <div class="home-blog-single mb-30">
                                                     <div class="blog-img-cap">
@@ -324,6 +325,7 @@
                                             </div>
                                         </div>
                                     </td>
+                                    
                             @endforeach
                             </tr>
                             </tbody>
@@ -331,6 +333,24 @@
                     <!-- Blog Area End -->
                     </div>
             </section>
+
+            <!--Pagination Start  -->
+            <div class="pagination-area pb-115 text-center">
+                <div class="container">
+                    <div class="row">
+                        <!-- <div class="col-xl-10"> -->
+                            <div class="single-wrap d-flex justify-content-center">
+                                <nav aria-label="Page navigation example">
+                                <ul class="pagination justify-content-start">     
+                                {{-- //pagination use bootstrap --}}
+                                {{ $data['artikel']->links()}}
+                                </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
     
 

@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\ChangePasswordRequest;
 use Auth;
-use Hash;
+use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 
 class ResetPasswordController extends Controller
@@ -35,7 +35,7 @@ class ResetPasswordController extends Controller
             // $user_password = Hash::make($request->input('password'));
 
             $data_simpan = [
-                'password' =>  Hash::make($request['password']),
+                'password' =>  Hash::make($request->input('password')),
                 
             ];
             
@@ -46,9 +46,6 @@ class ResetPasswordController extends Controller
            if ($user->save()){
                 // return redirect()->back()->with('success', 'Ganti password berhasil.');
                 return $update_user;
-
-            
-
            }else{
                 return redirect()->back()->with('error', 'Password lama invalid.');
 
