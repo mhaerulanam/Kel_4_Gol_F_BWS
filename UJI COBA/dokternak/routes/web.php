@@ -42,6 +42,21 @@ Route::group(['namespace' => 'backend'], function()
     Route::resource('/dashboard/data_ks', 'DataKritikdanSaranController');
     Route::resource('/dashboard/dokumentasi', 'DokumentasiController');
     Route::resource('/dashboard/data_banner', 'DataBannerController');
+
+
+//CRUD Data Artikel -------------------------------------------------------------------
+// Route::get('/dashboard/data_artikel', 'backend/DataArtikelController@index');
+Route::POST('dashboard/data_artikel/simpandata','DataArtikelController@store')->name('simpandata');
+Route::match(['get','post'], 'dashboard/data_artikel/edit/{id}','DataArtikelController@edit');
+Route::GET('dashboard/data_artikel/delete/{id}','DataArtikelController@delete');
+Route::GET('/editprofil/{id}','frontend\ProfilController@update')->name('editprofil.update');
+// Route::GET('dashboard/data_artikel/cetak_pdf','backend\DataArtikelController@cetak_pdf');
+// Route::GET('/cetak_pdf', 'backend/DataArtikelController@cetakartikel')->name('data_artikel.cetak_pdf');
+// Route::get('dashboard/data_artikel/cetak_pdf',\App\Http\Controllers\backend\DataArtikelController::class . '@cetak_pdf')->name('backend.data_artikel.cetak_pdf');
+// Route::get('dashboard/data_artikel/cetak_pdf', 'backend/DataArtikelController@cetak_pdf')->name('backend.data_artikel.cetak_pdf');
+// Route::get('/report/cetak_pdf', 'ReportController@cetak_pdf')->name('admin.report.cetak_pdf');
+// Route::get('/report/cetak_pdf', 'ReportController@cetak_pdf');
+// Route::resource('/report','ReportController');
 });
 // ------------------------------------------------------------------------
 
@@ -70,10 +85,10 @@ Route::group(['namespace' => 'Petugas'], function()
    // -------------------------------------------------------------------------
    //  Respon Konsultasi
    Route::get('/petugas/respon-konsultasi', 'ResponKonsultasiController@index')->name('respon.index');
+   Route::POST('/petugas/respon-konsultasi/kirimbalasan', 'ResponKonsultasiController@store')->name('respon.store');
    Route::get('/petugas/respon-konsultasi/{id}/detail', 'ResponKonsultasiController@detail')->name('respon.detail');
    Route::get('/petugas/respon-konsultasi/{id}/detailterkirim', 'ResponKonsultasiController@detailterkirim')->name('respon.detailterkirim');
-   Route::get('/petugas/respon-konsultasi/{id}/hapus','ResponKonsultasiController@hapus')->name('respon.hapus');
-   Route::get('/petugas/respon-konsultasi/{id}/hapusmasuk/{idk}/detail/{idr}','ResponKonsultasiController@hapusmasuk')->name('respon.hapusmasuk');
+   Route::get('/petugas/respon-konsultasi/{id}/hapusterkirim/{idk}/riwayat','ResponKonsultasiController@hapusterkirim')->name('respon.hapusterkirim');
 });
 
 Auth::routes();

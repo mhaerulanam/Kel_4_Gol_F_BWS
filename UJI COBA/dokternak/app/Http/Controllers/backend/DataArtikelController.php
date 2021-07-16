@@ -29,6 +29,17 @@ class DataArtikelController extends Controller
         // return view('backend.peternak.index');
     }
 
+    // public function cetak_pdf()
+    public function cetakartikel()
+    {
+    	// $artikel = Artikel::all();
+        // $pdf = PDF::loadView('backend.data_artikel.cetak_pdf', $artikel);
+    	// $pdf = PDF::loadview('data_artikel.cetak_pdf',['artikel'=>$artikel]);
+    	// return view ('backend.data_artikel.cetak_pdf');
+        // $artikel = Artikel::latest()->get();
+        $artikel = Artikel::with('id_artikel') ->get();
+        return view('backend.data_artikel.cetak_pdf',compact('artikel'));
+    }
 
     public function create()
     {
