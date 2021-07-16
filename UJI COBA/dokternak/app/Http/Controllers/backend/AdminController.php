@@ -12,6 +12,7 @@ use App\Models\Role;
 use Dotenv\Validator;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Support\Facades\Crypt;
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\Validator as FacadesValidator;
 
 class AdminController extends Controller
@@ -26,6 +27,16 @@ class AdminController extends Controller
         // return view('backend.peternak.index');
     }
 
+
+    public function cetak_pdf()
+    {
+        $data = [
+        'admin' => Admin::with('roles')->where('is_admin',1)->get(),
+        // 'admin' => Admin::with('roles')->orderBy('id','desc')->where('is_admin',1)->get(),
+    ];
+    	$pdf = PDF::loadview('backend/admin/cetak_pdf',['data'=>$data]);
+    	return view ('backend.admin.cetak_pdf',compact('data'));
+    }
 
     public function create()
     {
