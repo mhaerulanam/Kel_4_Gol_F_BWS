@@ -102,6 +102,9 @@
                         <div class="row justify-content-center">
                             <div class="col-xl-10">
                                 @if (! $kode = 11)
+                                <table>
+                                <tbody>
+                                <tr>
                                 @foreach ($data['dokter'] as $data_dokter)
                                 <!-- single-job-content -->
                                 <div class="single-job-items mb-30">
@@ -147,6 +150,9 @@
                                  </div>
                              </div>
                                 @endforeach
+                                </tr>
+                                </tbody>
+                                </table>
                                 @if ($data['dokter']->isEmpty())
                                 <div class="col">
                                     <center>
@@ -159,6 +165,25 @@
                         </div>
                     </div>
                 </section>
+
+                <!--Pagination Start  -->
+                <div class="pagination-area pb-115 text-center">
+                    <div class="container">
+                        <div class="row">
+                            <!-- <div class="col-xl-10"> -->
+                                <div class="single-wrap d-flex justify-content-center">
+                                    <nav aria-label="Page navigation example">
+                                    <ul class="pagination justify-content-start">     
+                                    {{-- //pagination use bootstrap --}}
+                                    {{-- {{ $data['dokter']->links()}} --}}
+                                    {{ $data['dokter']->onEachSide(1)->links() }}
+                                    </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 
                 <section>
                     <!-- Tips dan Trik Start -->
@@ -208,6 +233,27 @@
                     <!-- Blog Area End -->
                     <!--Pagination Start  -->
                     </div>
+
+                    <!--Pagination Start  -->
+                <div class="pagination-area pb-115 text-center">
+                    <div class="container">
+                        <div class="row">
+                            <!-- <div class="col-xl-10"> -->
+                                <div class="single-wrap d-flex justify-content-center">
+                                    <nav aria-label="Page navigation example">
+                                    <ul class="pagination justify-content-start">     
+                                    {{-- //pagination use bootstrap --}}
+                                    {{-- {{ $data['artikel']->links()}} --}}
+                                    {{-- {!! $data['artikel']->appends(['sort' => 'artikel'])->links() !!} --}}
+                                    {{-- {{ $data['artikel']->fragment('artikel')->links() }} --}}
+                                    {{ $data['artikel']->onEachSide(1)->links() }}
+                                    </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
         <section>
         <!-- Our Services Start -->
         <div class="our-services section-pad-t30">
@@ -222,6 +268,7 @@
                     </div>
                 </div>
                 <div class="row d-flex justify-contnet-center">
+                    <table><tbody><tr>
                     @foreach ($data['tutorial'] as $data_tutorial)
                     <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
                         <div class="single-services text-center mb-30">
@@ -237,10 +284,29 @@
                         </div>
                     </div>
                     @endforeach
+                </tr></tbody></table>
             </div>
         </div>
         </div>
         </section>
+
+        <!--Pagination Start  -->
+        <div class="pagination-area pb-115 text-center">
+            <div class="container">
+                <div class="row">
+                    <!-- <div class="col-xl-10"> -->
+                        <div class="single-wrap d-flex justify-content-center">
+                            <nav aria-label="Page navigation example">
+                            <ul class="pagination justify-content-start">     
+                            {{-- //pagination use bootstrap --}}
+                            {{ $data['tutorial']->links()}}
+                            </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
                     </div>
                 </section>
         <section>

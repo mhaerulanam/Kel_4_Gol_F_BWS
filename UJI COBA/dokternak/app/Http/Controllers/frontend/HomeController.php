@@ -22,13 +22,13 @@ class HomeController extends Controller
     {
 
         $data = [
-          'dokter' => DB::table('dokter')->join('jabatan', 'jabatan.id_jabatan', '=', 'dokter.id_jabatan')->paginate(3),
+          'dokter' => DB::table('dokter')->join('jabatan', 'jabatan.id_jabatan', '=', 'dokter.id_jabatan')->paginate(3, ['*'], 'dokter'),
           'pencarian_dokter' => DB::table('dokter')->join('jabatan', 'jabatan.id_jabatan', '=', 'dokter.id_jabatan')->get(),
           'artikel' => DB::table('artikel')->join('kategori_artikel', 'kategori_artikel.id_ktg', '=', 'artikel.id_ktg')
           ->orderBy('id_artikel','desc')
           ->where('status','=','tampil')
-          ->paginate(2),
-            'tutorial' => Tutorial::orderBy('judul_tutorial', 'desc')->paginate(4),
+          ->paginate(2, ['*'], 'artikel'),
+            'tutorial' => Tutorial::orderBy('judul_tutorial', 'desc')->paginate(4, ['*'], 'tutorial'),
             
         ];
         return view('frontend.home',compact('data'));
@@ -48,7 +48,7 @@ class HomeController extends Controller
         $data = [
             'dokter' => DB::table('dokter')
             ->join('jabatan', 'jabatan.id_jabatan', '=', 'dokter.id_jabatan')
-            ->where('alamat', 'LIKE', '%' . $kategori . '%')
+            ->where('tempat', 'LIKE', '%' . $kategori . '%')
             ->where('nama_dokter','like',"%".$cari."%")
             ->paginate(3),
             'pencarian_dokter' => DB::table('dokter')->join('jabatan', 'jabatan.id_jabatan', '=', 'dokter.id_jabatan')->get(),
