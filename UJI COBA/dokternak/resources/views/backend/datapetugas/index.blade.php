@@ -58,25 +58,37 @@
                   <thead>
                     <tr>
                       <th>NO</th>
-                      <th>Nama</th>
+                      <th>Nama Dokter</th>
                       <th>Email</th>
-                      <th>Role</th>
+                      <th>Jenis Kelamin</th>
+                      <th>Alamat</th>
+                      <th>Tempat</th>
+                      <th>Telepon</th>
+                      <th>Foto</th>
+                      <th>Sertifikasi</th>
+                      <th>Jadwal Kerja</th>
                       <th>Password</th>
                       <th>Aksi</th>
                     </tr>
                   </thead>
                   <tbody>
                     @php $no = 1; @endphp
-                    @foreach ($data['petugas'] as $item)
+                    @foreach ($data as $item)
                     <tr>
                         <td>{{ $no++ }}</td>
-                        <td>{{ $item->name }}</td>
+                        <td>{{ $item->nama_dokter }}</td>
                         <td>{{ $item->email }}</td>
-                        <td>Petugas</td>
-                        <td>{{ $item->password }}</td>
+                        <td>{{ $item->jenis_kelamin}}</td>
+                        <td>{{ $item->alamat}}</td>
+                        <td>{{ $item->tempat}}</td>
+                        <td>{{ $item->telpon}}</td>
+                        <td><img src="/data/data_dokter/{{ $item->foto }}" width="100"></td>
+                        <td><img src="/data/data_dokter/{{ $item->sertifikasi }}" width="100"></td>
+                        <td>{{ $item->jadwal_kerja}}</td>
+                        <td>{{\Illuminate\Support\Str::limit ($item->password,5) }}</td>
                         <td>
                         <div class="btn-group">
-                            <a href="{{ route('datapetugas.edit',$item->id)}}" class="btn btn-warning">Edit<i class="fa fa-edit"></i></a>
+                            <a href="{{ route('datapetugas.edit',$item->id_dokter)}}" class="btn btn-warning">Edit<i class="fa fa-edit"></i></a>
                             <form action="{{ route('datapetugas.destroy',$item->id)}}" method="POST">
                             @csrf
                                 @method('DELETE')

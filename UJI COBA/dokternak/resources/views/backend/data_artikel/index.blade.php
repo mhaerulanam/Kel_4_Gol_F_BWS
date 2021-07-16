@@ -85,7 +85,7 @@
                         <td>{{ $item->judul }}</td>
                         <td>{{\Illuminate\Support\Str::limit($item->isi , 250)}} <a href="/artikel/{{ $item->id_artikel }}/detail/" class="more-btn">  <strong> Read more » </strong></a></td>
                         <td><img src="/data/data_artikel/{{ $item->gambar }}" width="200"></td>
-                        <td>{{ $item->sumber }}</td>
+                        <td>{{ \Illuminate\Support\Str::limit($item->sumber , 20) }}</td>
                         <td>
                         <div class="btn-group">
                             <a href="{{ route('data_artikel.edit',$item->id_artikel)}}" class="btn btn-warning">Edit<i class="fa fa-edit"></i></a>

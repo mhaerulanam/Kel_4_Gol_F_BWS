@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\controller;
-use App\Models\peternak;
+use App\Models\DokterUser;
+use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
-use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\Validator as FacadesValidator;
 use App\Models\Petugas;
 use App\Models\Role;
@@ -15,12 +15,13 @@ class DataPetugasController extends Controller
 {
     public function index()
     {
-        $data = [
-            'petugas' => Petugas::with('roles')->where('is_admin',2)->get(),
-            // 'petugas' => Petugas::with('roles')->orderBy('id','desc')->where('is_admin',2)->get(),
-        ];
+
+        $data = DokterUser::select('dokter.*', 'users.*')
+            ->join('users', 'users.id', '=', 'dokter.id') 
+            ->where('is_admin',0)
+            ->get();
+
         return view('backend.datapetugas.index',compact('data'));
-        // return view('backend.peternak.index');
     }
 
     public function cetak_pdf()
@@ -42,76 +43,96 @@ class DataPetugasController extends Controller
 
     public function store(Request $request)
     {
-        // DB::table('users')->insert([
-        //     'name' => $request->name,
-        //     'username' => $request->username,
-        //     'email' => $request->email,
-        //     'password' => Hash::make($request['password']),
-        // ]);
-
         $message = [
-            'numeric' => ':attributer harus diisi nomor.'
+            'required' => ':attribute wajib diisi!!!',
+            'min' => ':attribute harus diisi minimal 15 huruf!!!',
+            'max' => ':attribute URL harus diisi maksimal 100 huruf!!!',
+            'mimes' => ':attribute harus berupa gambar dengan format (JPEG, PNG, dan SVG)',
         ];
 
         $validator = FacadesValidator::make($request->all(),[
-            // 'nama' => 'required|string|max:100',
-            // 'tingkatan' => 'required|numeric',
+            'judul' => 'required|string|min:15|max:100',
+            'id_ktg' => 'required|string|max:15',
+            'sumber' => 'required|string|min:15|max:200',
+            'gambar' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
         ], $message)->validate();
 
-        $role = 2;
+        $status= "tampil";
+
+        $getimageName = time().'.'.$request->foto->getClientOriginalExtension();
+        $request->foto->move(public_path('data/data_dokter'), $getimageName);
+
         $data_simpan = [
-            'name' => $request->name,
+            'nama' => $request->nama_dokter,
             'email' => $request->email,
-            'is_admin' => $role,
-            'password' => Hash::make($request['password']),
+            'jenis_kelamin' => $request->jenis_kelamin,
+            'alamat' => $request->alamat,
+            'tempat' => $request->tempat,
+            'telpon' => $request->telpon,
+            'foto' => $request->foto,
+            'id_jabatan' => $request->id_jabatan,
+            'jadwal_kerja' => $request->jadwal_kerja,
         ];
 
-        Petugas::create($data_simpan);
+        DokterUser::create($data_simpan);
 
         return redirect()->route('datapetugas.index')
-                        ->with('success','Data petugas baru telah berhasil disimpan');
+                        ->with('success','Data petugas baru telah berhasil disimpan')
+                        ->with('image',$getimageName);
     }
 
     public function edit($id)
     {
-        $datapetugas = Petugas::where('id',$id)->first();
+        $datapetugas = DokterUser::select('dokter.*','users.*')
+        ->join('users', 'users.id', '=', 'dokter.id') 
+        ->where('id_dokter', $id)->first();
         return view('backend.datapetugas.create',compact('datapetugas'));
     }
 
     public function update(Request $request, $id)
     {
-        // DB::table('users')->where('id',$request->id)->update([
-        //     'name' => $request->name,
-        //     'username' => $request->username,
-        //     'email' => $request->email,
-        //     'password' => Hash::make($request['password']),
-        // ]);
-
         $message = [
             'numeric' => ':attributer harus diisi nomor.'
         ];
 
         $validator = FacadesValidator::make($request->all(),[
-            // 'nama' => 'required|string|max:100',
-            // 'tingkatan' => 'required|numeric',
         ], $message)->validate();
 
+        $status= "tampil";
+
+
+        $gbr=$request->nama_gambar;
+        
+        if($request->has('foto_peternak')) {
+            $getimageName = time().'.'.$request->foto_peternak->getClientOriginalExtension();
+            $request->foto_peternak->move(public_path('data/data_peternak'), $getimageName);
+        }else {
+            $getimageName = $gbr;
+        }
+
         $data_simpan = [
-            'name' => $request->name,
+            'nama_dokter' => $request->nama_dokter,
             'email' => $request->email,
-            'password' => Hash::make($request['password']),
+            'jenis_kelamin' => $request->jenis_kelamin,
+            'alamat' => $request->alamat,
+            'tempat' => $request->tempat,
+            'telpon' => $request->telpon,
+            'foto' => $request->foto,
+            'sertifikasi' => $request->sertifikasi,
+            'jadwal_kerja' => $request->jadwal_kerja,
         ];
 
-        Petugas::where('id', $id)->update($data_simpan);
+        DokterUser::where('id_dokter', $id)->update($data_simpan);
 
         return redirect()->route('datapetugas.index')
-                        ->with('success','Data admin telah berhasil diperbarui');
+                        ->with('success','Data Petugas telah berhasil diperbarui');
     }
 
     public function destroy($id)
     {
-        $admin = Petugas::where('id',$id)->delete();
+        $admin = User::where('id',$id)->delete();
+        $petugasuser= DokterUser::where('id',$id)->delete();
         return redirect()->route('datapetugas.index')
-                        ->with('success','Data admin telah berhasil dihapus');
+                        ->with('success','Data Petugas telah berhasil dihapus');
     }
 }
