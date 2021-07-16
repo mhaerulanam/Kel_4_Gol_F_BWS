@@ -11,6 +11,8 @@ use DateTime;
 use Dotenv\Validator;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Support\Facades\Crypt;
+// use Barryvdh\DomPDF\PDF;
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\Validator as FacadesValidator;
 
 class DataBannerController extends Controller
@@ -22,7 +24,12 @@ class DataBannerController extends Controller
         // return view('backend.peternak.index');
     }
 
-
+    public function cetak_pdf()
+    {
+        $banner = DB::table('banner')->get();
+    	$pdf = PDF::loadview('backend/data_banner.cetak_pdf',['banner'=>$banner]);
+    	return view ('backend.data_banner.cetak_pdf',compact('banner'));
+    }
     public function create()
     {
         $banner = null;
