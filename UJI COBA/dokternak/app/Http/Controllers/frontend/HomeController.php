@@ -48,7 +48,7 @@ class HomeController extends Controller
         $data = [
             'dokter' => DB::table('dokter')
             ->join('jabatan', 'jabatan.id_jabatan', '=', 'dokter.id_jabatan')
-            ->where('alamat', 'LIKE', '%' . $kategori . '%')
+            ->where('tempat', 'LIKE', '%' . $kategori . '%')
             ->where('nama_dokter','like',"%".$cari."%")
             ->paginate(3),
             'pencarian_dokter' => DB::table('dokter')->join('jabatan', 'jabatan.id_jabatan', '=', 'dokter.id_jabatan')->get(),
