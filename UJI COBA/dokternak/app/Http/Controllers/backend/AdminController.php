@@ -6,12 +6,10 @@ use App\Http\Controllers\controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\AdminUser;
 use App\Models\admin;
 use App\Models\User;
-use App\Models\Role;
 use Dotenv\Validator;
-use Illuminate\Auth\Events\Validated;
-use Illuminate\Support\Facades\Crypt;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\Validator as FacadesValidator;
 
@@ -19,12 +17,12 @@ class AdminController extends Controller
 {
     public function index()
     {
-        $data = [
-            'admin' => Admin::with('roles')->where('is_admin',1)->get(),
-            // 'admin' => Admin::with('roles')->orderBy('id','desc')->where('is_admin',1)->get(),
-        ];
+        $data = AdminUser::select('admin.*', 'users.*')
+            ->join('users', 'users.id', '=', 'admin.id') 
+            ->where('is_admin',1)
+            ->get();
+
         return view('backend.admin.index',compact('data'));
-        // return view('backend.peternak.index');
     }
 
 
@@ -47,68 +45,78 @@ class AdminController extends Controller
 
     public function store(Request $request)
     {
-        // DB::table('users')->insert([
-        //     'name' => $request->name,
-        //     'username' => $request->username,
-        //     'email' => $request->email,
-        //     'password' => Hash::make($request['password']),
-        // ]);
-
         $message = [
-            'numeric' => ':attributer harus diisi nomor.'
+            'required' => ':attribute wajib diisi!!!',
+            'min' => ':attribute harus diisi minimal 15 huruf!!!',
+            'max' => ':attribute URL harus diisi maksimal 100 huruf!!!',
+            'mimes' => ':attribute harus berupa gambar dengan format (JPEG, PNG, dan SVG)',
         ];
 
         $validator = FacadesValidator::make($request->all(),[
-            // 'nama' => 'required|string|max:100',
-            // 'tingkatan' => 'required|numeric',
+            'judul' => 'required|string|min:15|max:100',
+            'id_ktg' => 'required|string|max:15',
+            'sumber' => 'required|string|min:15|max:200',
+            'gambar' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
         ], $message)->validate();
 
+        $status= "tampil";
 
-        $role = 1;
+        $getimageName = time().'.'.$request->foto->getClientOriginalExtension();
+        $request->foto->move(public_path('data/data_admin'), $getimageName);
+
         $data_simpan = [
-            'name' => $request->name,
+            'name' => $request->nama,
             'email' => $request->email,
-            'is_admin' => $role,
-            'password' => Hash::make($request['password']),
+            'jenis_kelamin' => $request->jenis_kelamin,
+            'alamat' => $request->alamat,
+            'foto' => $getimageName,
+            'password' => $request->password,
         ];
 
-        Admin::create($data_simpan);
+        AdminUser::create($data_simpan);
 
         return redirect()->route('admin.index')
-                        ->with('success','Data peternak baru telah berhasil disimpan');
+                        ->with('success','Data Admin baru telah berhasil disimpan, dimohon untuk menunggu konfirmasi dari Admin')
+                        ->with('image',$getimageName);
     }
 
     public function edit($id)
     {
-        $admin = Admin::where('id',$id)->first();
+        $admin = AdminUser::select('admin.*','users.*')
+        ->join('users', 'users.id', '=', 'admin.id') 
+        ->where('id_admin', $id)->first();
         return view('backend.admin.create',compact('admin'));
     }
 
     public function update(Request $request, $id)
     {
-        // DB::table('users')->where('id',$request->id)->update([
-        //     'name' => $request->name,
-        //     'username' => $request->username,
-        //     'email' => $request->email,
-        //     'password' => Hash::make($request['password']),
-        // ]);
-
         $message = [
             'numeric' => ':attributer harus diisi nomor.'
         ];
 
         $validator = FacadesValidator::make($request->all(),[
-            // 'nama' => 'required|string|max:100',
-            // 'tingkatan' => 'required|numeric',
         ], $message)->validate();
 
+        $status= "tampil";
+
+
+        $gbr=$request->nama_gambar;
+        
+        if($request->has('foto')) {
+            $getimageName = time().'.'.$request->foto->getClientOriginalExtension();
+            $request->foto->move(public_path('data/data_admin'), $getimageName);
+        }else {
+            $getimageName = $gbr;
+        }
+
         $data_simpan = [
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request['password']),
+            'nama' => $request->nama,
+            'jenis_kelamin' => $request->jenis_kelamin,
+            'alamat' => $request->alamat,
+            'foto' => $getimageName,
         ];
 
-        Admin::where('id', $id)->update($data_simpan);
+        AdminUser::where('id_admin', $id)->update($data_simpan);
 
         return redirect()->route('admin.index')
                         ->with('success','Data admin telah berhasil diperbarui');
@@ -116,8 +124,10 @@ class AdminController extends Controller
 
     public function destroy($id)
     {
-        $admin = Admin::where('id',$id)->delete();
-        return redirect()->route('admin.index')
-                        ->with('success','Data admin telah berhasil dihapus');
+
+        
+        $admin = User::where('id',$id)->delete();
+                return redirect()->route('admin.index')
+                            ->with('success','Data admin telah berhasil dihapus');
     }
 }
