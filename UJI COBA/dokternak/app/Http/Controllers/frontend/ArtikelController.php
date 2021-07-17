@@ -45,9 +45,11 @@ class ArtikelController extends Controller
     public function detail($id) {
         // $artikel2 = Artikel::orderBy('tanggal', 'desc')->paginate(2);
         $artikel2 = Artikel::join('kategori_artikel', 'kategori_artikel.id_ktg', '=', 'artikel.id_ktg')
+        ->where('artikel.id_artikel','!=',$id)
         ->paginate(2);
         $artikel = DB::table('artikel')->join('kategori_artikel', 'kategori_artikel.id_ktg', '=', 'artikel.id_ktg')->where('id_artikel',$id)->first();
-        return view('frontend.detailartikel',compact('artikel','artikel2'));
+        $kategori_artikel = KatArtikel::all();
+        return view('frontend.detailartikel',compact('artikel','artikel2','kategori_artikel'));
     }
 
 }

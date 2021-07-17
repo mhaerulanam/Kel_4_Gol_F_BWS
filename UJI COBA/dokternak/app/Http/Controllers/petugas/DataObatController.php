@@ -24,7 +24,7 @@ class DataObatController extends Controller
         $obat_petugas = DB::table('users')->join('dokter','dokter.id','=','users.id')
                     ->join('dokter_obat','dokter_obat.id_dokter','=','dokter.id_dokter')
                     ->join('data_obat','data_obat.id_obat','=','dokter_obat.id_obat')
-                    ->get();
+                    ->paginate(5);
         return view('petugas.data_obat.index', compact('data_obat','obat_petugas'));
     }
 

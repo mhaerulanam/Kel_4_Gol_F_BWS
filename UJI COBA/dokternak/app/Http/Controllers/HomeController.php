@@ -9,6 +9,8 @@ use App\Models\dokter;
 use App\Models\puskeswan;
 use App\Models\tutorial;
 use App\Models\jabatan;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 
 class HomeController extends Controller
@@ -41,7 +43,19 @@ class HomeController extends Controller
 
     public function dashboard()
     {
-        return view('backend.dashboard');
+        $id = Auth::id();
+        $user = User::where('id',$id)->first();
+
+        $role = $user->is_admin;
+
+        if ($role == 1) {
+            return view('backend.dashboard');
+        }
+        elseif ($role  == 2) {
+            return redirect()->route('lppetugas');
+        }elseif($role  == 0) {
+            return redirect()->route('home');
+        }
     }
 
     public function lppetugas()
@@ -51,15 +65,28 @@ class HomeController extends Controller
         // ];
         // return view('petugas.home',compact('data'));
         // $id_petugas = Auth::user()->id;
-        $petugas = DB::table('users')->join('dokter','dokter.id','=','users.id')
+        
+        $id = Auth::id();
+        $user = User::where('id',$id)->first();
+
+        $role = $user->is_admin;
+
+        if ($role == 2) {
+            $petugas = DB::table('users')->join('dokter','dokter.id','=','users.id')
             ->join('jabatan','jabatan.id_jabatan','=','dokter.id_jabatan')
             ->get();
-        $data = [
-            'artikel' => DB::table('artikel')->join('kategori_artikel', 'kategori_artikel.id_ktg', '=', 'artikel.id_ktg')
-            ->orderBy('id_artikel','desc')
-            ->where('status','=','tampil')
-            ->paginate(2),
-          ];
-        return view('petugas.home',compact('data','petugas'));
+            $data = [
+                'artikel' => DB::table('artikel')->join('kategori_artikel', 'kategori_artikel.id_ktg', '=', 'artikel.id_ktg')
+                ->orderBy('id_artikel','desc')
+                ->where('status','=','tampil')
+                ->paginate(2),
+            ];
+            return view('petugas.home',compact('data','petugas'));
+        }
+        elseif ($role  == 1) {
+            return redirect()->route('dashboard');
+        }elseif($role  == 0) {
+            return redirect()->route('home');
+        }
     }
 }
