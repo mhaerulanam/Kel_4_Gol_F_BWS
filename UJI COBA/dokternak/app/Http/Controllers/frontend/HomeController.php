@@ -10,6 +10,8 @@ use App\Models\artikel;
 use App\Models\dokter;
 use App\Models\puskeswan;
 use App\Models\tutorial;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class HomeController extends Controller
 {
@@ -21,17 +23,30 @@ class HomeController extends Controller
     public function index()
     {
 
-        $data = [
-          'dokter' => DB::table('dokter')->join('jabatan', 'jabatan.id_jabatan', '=', 'dokter.id_jabatan')->paginate(3, ['*'], 'dokter'),
-          'pencarian_dokter' => DB::table('dokter')->join('jabatan', 'jabatan.id_jabatan', '=', 'dokter.id_jabatan')->get(),
-          'artikel' => DB::table('artikel')->join('kategori_artikel', 'kategori_artikel.id_ktg', '=', 'artikel.id_ktg')
-          ->orderBy('id_artikel','desc')
-          ->where('status','=','tampil')
-          ->paginate(2, ['*'], 'artikel'),
-            'tutorial' => Tutorial::orderBy('judul_tutorial', 'desc')->paginate(4, ['*'], 'tutorial'),
-            
-        ];
-        return view('frontend.home',compact('data'));
+        $id = Auth::id();
+        $user = User::where('id',$id)->first();
+
+        $role = $user->is_admin;
+
+        if ($role == 0) {
+            $data = [
+                'dokter' => DB::table('dokter')->join('jabatan', 'jabatan.id_jabatan', '=', 'dokter.id_jabatan')->paginate(3, ['*'], 'dokter'),
+                'pencarian_dokter' => DB::table('dokter')->join('jabatan', 'jabatan.id_jabatan', '=', 'dokter.id_jabatan')->get(),
+                'artikel' => DB::table('artikel')->join('kategori_artikel', 'kategori_artikel.id_ktg', '=', 'artikel.id_ktg')
+                ->orderBy('id_artikel','desc')
+                ->where('status','=','tampil')
+                ->paginate(2, ['*'], 'artikel'),
+                  'tutorial' => Tutorial::orderBy('judul_tutorial', 'desc')->paginate(4, ['*'], 'tutorial'),
+                  
+              ];
+              return view('frontend.home',compact('data'));
+        }
+        elseif ($role  == 2) {
+            return redirect()->route('lppetugas');
+        }elseif($role  == 1) {
+            return redirect()->route('dashboard');
+        }
+        
 
     }
 
