@@ -1,3 +1,18 @@
+<html>
+<head>
+<!-- CSS here -->
+<link rel="stylesheet" href="{{ asset('Frontend/assets/css/bootstrap.min.css')}}">
+<link rel="stylesheet" href="{{ asset('Frontend/assets/css/owl.carousel.min.css')}}">
+<link rel="stylesheet" href="{{ asset('Frontend/assets/css/slicknav.css')}}">
+<link rel="stylesheet" href="{{ asset('Frontend/assets/css/price_rangs.css')}}">
+<link rel="stylesheet" href="{{ asset('Frontend/assets/css/animate.min.css')}}">
+<link rel="stylesheet" href="{{ asset('Frontend/assets/css/magnific-popup.css')}}">
+<link rel="stylesheet" href="{{ asset('Frontend/assets/css/fontawesome-all.min.css')}}">
+<link rel="stylesheet" href="{{ asset('Frontend/assets/css/themify-icons.css')}}">
+<link rel="stylesheet" href="{{ asset('Frontend/assets/css/slick.css')}}">
+<link rel="stylesheet" href="{{ asset('Frontend/assets/css/nice-select.css')}}">
+<link rel="stylesheet" href="{{ asset('Frontend/assets/css/style.css')}}">
+<link rel="stylesheet" href="{{ asset('Frontend/assets/css/responsive.css')}}">
 <style>
     @import url('https://fonts.googleapis.com/css?family=Poppins');
 
@@ -82,6 +97,27 @@ h2.active {
 
 
 /* FORM TYPOGRAPHY*/
+.btn {
+  background-color: #56baed;
+  border: none;
+  color: white;
+  padding: 15px 80px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  text-transform: uppercase;
+  font-size: 13px;
+  -webkit-box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+  box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+  margin: 5px 20px 40px 20px;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
 
 input[type=button], input[type=submit], input[type=reset]  {
   background-color: #56baed;
@@ -103,6 +139,18 @@ input[type=button], input[type=submit], input[type=reset]  {
   -ms-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
+}
+
+.btn:hover {
+  background-color: #39ace7;
+}
+
+.btn:active {
+  -moz-transform: scale(0.95);
+  -webkit-transform: scale(0.95);
+  -o-transform: scale(0.95);
+  -ms-transform: scale(0.95);
+  transform: scale(0.95);
 }
 
 input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover  {
@@ -242,6 +290,7 @@ input[type=text]:placeholder {
     -webkit-transform: none;
     transform: none;
   }
+  
 }
 
 /* Simple CSS3 Fade-in Animation */
@@ -287,6 +336,19 @@ input[type=text]:placeholder {
   -moz-animation-delay: 1s;
   animation-delay: 1s;
 }
+.close {
+  color: #000000;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
 
 /* Simple CSS3 Fade-in Animation */
 .underlineHover:after {
@@ -324,9 +386,11 @@ input[type=text]:placeholder {
   box-sizing: border-box;
 }
 </style>
-@extends('layouts.app')
+{{-- @extends('frontend.layouts.app')
 
-@section('content')
+@section('content') --}}
+</head>
+<body>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -387,6 +451,8 @@ input[type=text]:placeholder {
             </div> --}}
             <div class="wrapper fadeInDown">
                 <div id="formContent">
+                <a href="/home" class="close">&times;</a>
+
                   <!-- Tabs Titles -->
                   <br><br><h2 class="active"> {{ __('Reset Password') }}</h2><br><br>
                   {{-- <h2 class="inactive underlineHover">Sign Up </h2> --}}
@@ -416,7 +482,7 @@ input[type=text]:placeholder {
                     <input id="password-confirm" placeholder="Masukkan Ulang Password Baru" type="password" class="fadeIn second" name="password_confirmation" required autocomplete="new-password">
                     {{-- <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
                     <input type="text" id="password" class="fadeIn third" name="login" placeholder="password"><br> --}}
-                    <br><br><button type="submit" class="btn btn-primary">
+                    <br><br><button type="submit" class="btn">
                         {{ __('Reset Password') }}
                     </button>
                     {{-- <input type="submit" class="fadeIn fourth" value="Log In"> --}}
@@ -427,4 +493,44 @@ input[type=text]:placeholder {
         </div>
     </div>
 </div>
-@endsection
+{{-- @endsection --}}
+
+  
+<!-- JS here -->
+
+<!-- All JS Custom Plugins Link Here here -->
+    <script src="{{ asset('Petugas/assets/js/vendor/modernizr-3.5.0.min.js') }}"></script>
+    <!-- Jquery, Popper, Bootstrap -->
+    <script src="{{ asset('Petugas/assets/js/vendor/jquery-1.12.4.min.js') }}"></script>
+    <script src="{{ asset('Petugas/assets/js/popper.min.js') }}"></script>
+    <script src="{{ asset('Petugas/assets/js/bootstrap.min.js') }}"></script>
+    <!-- Jquery Mobile Menu -->
+    <script src="{{ asset('Petugas/assets/js/jquery.slicknav.min.js') }}"></script>
+
+    <!-- Jquery Slick , Owl-Carousel Plugins -->
+    <script src="{{ asset('Petugas/assets/js/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('Petugas/assets/js/slick.min.js') }}"></script>
+    <script src="{{ asset('Petugas/assets/js/price_rangs.js') }}"></script>
+    
+    <!-- One Page, Animated-HeadLin -->
+    <script src="{{ asset('Petugas/assets/js/wow.min.js') }}"></script>
+    <script src="{{ asset('Petugas/assets/js/animated.headline.js') }}"></script>
+    <script src="{{ asset('Petugas/assets/js/jquery.magnific-popup.js') }}"></script>
+
+    <!-- Scrollup, nice-select, sticky -->
+    <script src="{{ asset('Petugas/assets/js/jquery.scrollUp.min.js') }}"></script>
+    <script src="{{ asset('Petugas/assets/js/jquery.nice-select.min.js') }}"></script>
+    <script src="{{ asset('Petugas/assets/js/jquery.sticky.js') }}"></script>
+    
+    <!-- contact js -->
+    <script src="{{ asset('Petugas/assets/js/contact.js') }}"></script>
+    <script src="{{ asset('Petugas/assets/js/jquery.form.js') }}"></script>
+    <script src="{{ asset('Petugas/assets/js/jquery.validate.min.js') }}"></script>
+    <script src="{{ asset('Petugas/assets/js/mail-script.js') }}"></script>
+    <script src="{{ asset('Petugas/assets/js/jquery.ajaxchimp.min.js') }}"></script>
+    
+    <!-- Jquery Plugins, main Jquery -->	
+    <script src="{{ asset('Petugas/assets/js/plugins.js') }}"></script>
+    <script src="{{ asset('Petugas/assets/js/main.js') }}"></script>
+</body>
+</html>
