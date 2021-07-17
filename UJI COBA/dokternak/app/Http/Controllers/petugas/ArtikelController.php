@@ -47,7 +47,8 @@ class ArtikelController extends Controller
         ->where('artikel.id_artikel','!=',$id)
         ->paginate(2);
         $artikel = DB::table('artikel')->join('kategori_artikel', 'kategori_artikel.id_ktg', '=', 'artikel.id_ktg')->where('id_artikel',$id)->first();
-        return view('petugas.detailartikel',compact('artikel','artikel2'));
+        $kategori_artikel = KatArtikel::all();
+        return view('petugas.detailartikel',compact('artikel','artikel2','kategori_artikel'));
     }
 
 }

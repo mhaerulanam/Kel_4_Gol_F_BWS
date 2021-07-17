@@ -95,46 +95,23 @@
                <!-- Tulis Artikel -->
                     <div class="btn_tulis">
                             <div class="items-link f-center">
-                                <a href="/artikel" class="genric-btn primary">DAFTAR ARTIKEL</a>
+                                <a href="/petugas/artikel" class="genric-btn primary">DAFTAR ARTIKEL</a>
                                 </div>
                      </div>
-                            <aside class="single_sidebar_widget post_category_widget">
-                                <h4 class="widget_title">Category</h4>
-                                <ul class="list cat-list">
-                                    <li>
-                                        <a href="#" class="d-flex">
-                                            <p>Kucing</p>
-                                            <p>(3)</p>
-                                        </a>
-                                    </li>   
-                                    <li>
-                                        <a href="#" class="d-flex">
-                                            <p>Kambing</p>
-                                            <p>(2)</p>
-                                        </a>
-                                    </li> 
-                                    <li>
-                                        <a href="#" class="d-flex">
-                                            <p>Ikan</p>
-                                            <p>(2)</p>
-                                        </a>
-                                    </li>                           
-                                </ul>
-                            </aside>
-                  
-                  {{-- <!-- Artikel Lainnya -->
-                  <aside class="single_sidebar_widget popular_post_widget">
-                     <h3 class="widget_title">Artikel Lainnya</h3>
-                     @foreach ($artikel2 as $data_artikel)  
-                     <div class="media post_item">
-                           <img src="data:image/png;base64,{{ chunk_split(base64_encode($data_artikel->gambar)) }}" width="120px" />
-                           <div class="media-body">
-                              <a href="/petugas/artikel/{{ $data_artikel->id_artikel }}/detail/">{{ $data_artikel->judul }}</a>
-                              <p>{{ $data_artikel->tanggal }}</p>
-                           </div>
-                     </div> 
-                    @endforeach
-                  </aside> --}}
+                     <aside class="single_sidebar_widget post_category_widget">
+                        <h4 class="widget_title">Category</h4>
+                        <ul class="list cat-list">
+                            @foreach ($kategori_artikel as $data_katartikel)
+                            <li>
+                                <a href="/petugas/artikel/cari?cari={{ $data_katartikel->kategori_artikel }}" class="d-flex">
+                                    <p> {{ $data_katartikel->kategori_artikel }}</p>
+                                    <p></p>
+                                </a>
+                            </li>  
+                            @endforeach                       
+                        </ul>
+                    </aside>
+                            
                   <!-- Artikel Lainnya -->
                   <aside class="single_sidebar_widget popular_post_widget">
                      <h3 class="widget_title">Artikel Lainnya</h3>

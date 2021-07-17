@@ -58,13 +58,13 @@
                                         {{-- //Code untuk menampilkan gambar yang berbentuk blob --}}
                                         <!-- <img class="card-img rounded-0" src="data:image/png;base64,{{ chunk_split(base64_encode($data_artikel->gambar)) }}" alt="gambar artikel"> -->
                                         <img class="card-img rounded-0" src="/data/data_artikel/{{ $data_artikel->gambar }}">
-                                        <a href="/artikel/{{ $data_artikel->id_artikel }}/detail/" class="blog_item_date">
+                                        <a href="/petugas/artikel/{{ $data_artikel->id_artikel }}/detail/" class="blog_item_date">
                                             <h3>{{ $data_artikel->nama_penulis }}</h3>
                                         </a>
                                     </div>
                                     <div class="blog_details">
                                         <a class="d-inline-block" href="single-blog.html">
-                                            <h2><a href="/artikel/{{ $data_artikel->id_artikel }}/detail/">{{ $data_artikel->judul }}</a></h2>
+                                            <h2><a href="/petugas/artikel/{{ $data_artikel->id_artikel }}/detail/">{{ $data_artikel->judul }}</a></h2>
                                         </a>
                                         {{-- Code untuk memotong text menggunakan Str limit --}}
                                         <p>{{\Illuminate\Support\Str::limit($data_artikel->isi, 250)}}  <a href="/artikel/{{ $data_artikel->id_artikel }}/detail/" class="more-btn">  <strong> Read more » </strong></a></p>
@@ -116,7 +116,7 @@
                             <ul class="list cat-list">
                                 @foreach ($kategori_artikel as $data_katartikel)
                                 <li>
-                                    <a href="/artikel/cari?cari={{ $data_katartikel->kategori_artikel }}" class="d-flex">
+                                    <a href="/petugas/artikel/cari?cari={{ $data_katartikel->kategori_artikel }}" class="d-flex">
                                         <p> {{ $data_katartikel->kategori_artikel }}</p>
                                         <p></p>
                                     </a>
