@@ -42,8 +42,8 @@
           </div>
       </div>
    </div>
- <!--================Blog Area =================-->
- <section class="blog_area section-padding">
+    <!--================Blog Area =================-->
+    <section class="blog_area section-padding">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 mb-5 mb-lg-0">
@@ -56,25 +56,33 @@
                             <article class="blog_item">
                                     <div class="blog_item_img">
                                         {{-- //Code untuk menampilkan gambar yang berbentuk blob --}}
+                                        <!-- <img class="card-img rounded-0" src="data:image/png;base64,{{ chunk_split(base64_encode($data_artikel->gambar)) }}" alt="gambar artikel"> -->
                                         <img class="card-img rounded-0" src="/data/data_artikel/{{ $data_artikel->gambar }}">
-                                        <a href="#" class="blog_item_date">
+                                        <a href="/artikel/{{ $data_artikel->id_artikel }}/detail/" class="blog_item_date">
                                             <h3>{{ $data_artikel->nama_penulis }}</h3>
                                         </a>
                                     </div>
                                     <div class="blog_details">
                                         <a class="d-inline-block" href="single-blog.html">
-                                            <h2><a href="/petugas/artikel/{{ $data_artikel->id_artikel }}/detail/">{{ $data_artikel->judul }}</a></h2>
+                                            <h2><a href="/artikel/{{ $data_artikel->id_artikel }}/detail/">{{ $data_artikel->judul }}</a></h2>
                                         </a>
                                         {{-- Code untuk memotong text menggunakan Str limit --}}
-                                        <p>{{\Illuminate\Support\Str::limit($data_artikel->isi, 250)}}  <a href="/petugas/artikel/{{ $data_artikel->id_artikel }}/detail/" class="more-btn">  <strong> Read more » </strong></a></p>
+                                        <p>{{\Illuminate\Support\Str::limit($data_artikel->isi, 250)}}  <a href="/artikel/{{ $data_artikel->id_artikel }}/detail/" class="more-btn">  <strong> Read more » </strong></a></p>
                                         <ul class="blog-info-link">
-                                            <li><a>{{ $data_artikel->id_ktg }}</a></li>
+                                            <li><a>{{ $data_artikel->kategori_artikel }}</a></li>
                                             <li><a>{{ $data_artikel->tanggal }}</a></li>
                                         </ul>
                                     </div>
                             </article>
                             </tr>
                             @endforeach
+                            @if ($artikel->isEmpty())
+                            <div class="col">
+                                <center>
+                                    <img src="{{ asset('Frontend/assets/img/icon/error.png') }}" class="datatidakada" alt="Data Kosong">
+                                </center>
+                            </div>
+                            @endif
                             </tbody>
                         </table> 
                     </div>
@@ -88,14 +96,14 @@
                             </div>
                         </div>
                         <aside class="single_sidebar_widget search_widget">
-                            <form action="/petugas/artikel/cari" method="GET">
+                            <form action="/artikel/cari" method="GET">
                                 <div class="form-group">
                                     <div class="input-group mb-3">
                                         <input type="text" class="form-control" placeholder='Search Keyword'
                                             onfocus="this.placeholder = ''"
                                             onblur="this.placeholder = 'Search Keyword'" name="cari">
                                         <div class="input-group-append">
-                                            <input type="submit" class="btn btn-primary mb-1" value="CARI"></div>
+                                            <input type="submit" class="btn btn-primary mb-1" value="CARI">
                                         </div>
                                     </div>
                                 </div>
@@ -103,41 +111,22 @@
                                     type="submit">Search</button> -->
                             </form>
                         </aside>
-
                         <aside class="single_sidebar_widget post_category_widget">
                             <h4 class="widget_title">Category</h4>
                             <ul class="list cat-list">
+                                @foreach ($kategori_artikel as $data_katartikel)
                                 <li>
-                                    <a href="/petugas/artikel/cari?cari=kucing" class="d-flex">
-                                        <p>Kucing</p>
-                                        <p>(2)</p>
+                                    <a href="/artikel/cari?cari={{ $data_katartikel->kategori_artikel }}" class="d-flex">
+                                        <p> {{ $data_katartikel->kategori_artikel }}</p>
+                                        <p></p>
                                     </a>
-                                </li>   
-                                <li>
-                                    <a href="/petugas/artikel/cari?cari=kambing" class="d-flex">
-                                        <p>Kambing</p>
-                                        <p>(2)</p>
-                                    </a>
-                                </li>                          
+                                </li>  
+                                @endforeach                       
                             </ul>
                         </aside>
-
-                        {{-- <aside class="single_sidebar_widget popular_post_widget">
-                            <h3 class="widget_title">Artikel Lainnya</h3>
-                            @foreach ($artikel as $data_artikel)  
-                            <div class="media post_item">
-                                <img src="/data/data_artikel/{{ $data_artikel->gambar }}" width="120px" />
-                                <div class="media-body">
-                                        <a href="detailartikel.php?id_artikel=">
-                                            <h6>{{ $data_artikel->judul }}</h6>
-                                        </a>
-                                        <p>{{ $data_artikel->tanggal }}</p>
-                                </div>
-                            </div> 
-                            @endforeach
-                        </aside> --}}
                     </div>
                 </div>
+            </div>
             </div>
         </div>
     </section>
