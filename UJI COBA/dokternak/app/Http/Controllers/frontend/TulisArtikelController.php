@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator as FacadesValidator;
 use App\Models\Artikel;
 use App\Models\ArtikelUser;
+use Illuminate\Support\Facades\Auth;
 
 
 class TulisArtikelController extends Controller
@@ -19,9 +20,16 @@ class TulisArtikelController extends Controller
      */
     public function index()
     {
-        $data = null;
-        $kategori_artikel = DB::table('kategori_artikel')->orderBy('id_ktg','asc')->get();
-        return view('frontend.tulisartikel',compact('data','kategori_artikel'));
+        if(!Auth::check()) { // true sekalian session field di users nanti bisa dipanggil via Auth
+            //Login Success
+            return redirect()->route('home');
+        }
+        elseif(Auth::check()) {
+            $data = null;
+            $kategori_artikel = DB::table('kategori_artikel')->orderBy('id_ktg','asc')->get();
+            return view('frontend.tulisartikel',compact('data','kategori_artikel'));
+        }
+       
     }
 
     /**
