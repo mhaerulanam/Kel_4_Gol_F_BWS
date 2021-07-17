@@ -140,8 +140,8 @@ Route::get('admin/{id}', function ($id = null) {
 })->middleware('auth');
 
 //Route Reset Password
-Route::get('change-password', 'frontend\ResetPasswordController@changePassword')->name('change-password')->middleware('auth');
-Route::POST('update-password', 'frontend\ResetPasswordController@updatePassword')->name('update-password')->middleware('auth');
+Route::get('/petugas/change-password', 'petugas\ResetPasswordController@changePassword')->name('petugas.change-password')->middleware('auth');
+Route::POST('/petugas/update-password', 'petugas\ResetPasswordController@updatePassword')->name('petugas.update-password')->middleware('auth');
 
  //Route Artikel
  Route::get('petugas/artikel', 'petugas\ArtikelController@index');
@@ -178,6 +178,10 @@ Route::get('/home/tutorial/{id}/detail', [App\Http\Controllers\frontend\HomeCont
 Route::get('admin/{id}', function ($id = null) {
   //  
 })->middleware('auth');
+
+//Route Reset Password
+Route::get('change-password', 'frontend\ResetPasswordController@changePassword')->name('change-password')->middleware('auth');
+Route::POST('update-password', 'frontend\ResetPasswordController@updatePassword')->name('update-password')->middleware('auth');
 
 //Route Artikel
 Route::get('/artikel', 'Frontend\ArtikelController@index');
