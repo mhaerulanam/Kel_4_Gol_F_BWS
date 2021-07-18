@@ -22,7 +22,11 @@ class ApiArtikelController extends Controller
 
     public function getArtikel($id) 
     {
-        $artikel = Artikel::find($id);
+        $artikel = Artikel::select('artikel.*','kategori_artikel.*')
+        ->join('kategori_artikel', 'kategori_artikel.id_ktg', '=', 'artikel.id_ktg')
+        ->where('artikel.id_artikel',$id)
+        ->first();
+        ;
         return response()->json([
             'status' => 'ok',
             'message' => 'Artikel Berhasil Ditampilkan per-item',

@@ -9,7 +9,9 @@ class ApiPetugasController extends Controller
 {
     public function getAll() 
     {
-        $petugas = Dokter::all();
+        $petugas = Dokter::select('dokter.*','jabatan.*')
+        ->join('jabatan', 'jabatan.id_jabatan', '=', 'dokter.id_jabatan')
+        ->get();
         return response()->json([
             'status' => 'ok',
             'message' => 'Petugas Berhasil Ditampilkan Semua',
@@ -19,7 +21,10 @@ class ApiPetugasController extends Controller
 
     public function getPetugas($id) 
     {
-        $petugas = Dokter::find($id);
+        $petugas = Dokter::select('dokter.*','jabatan.*')
+        ->join('jabatan', 'jabatan.id_jabatan', '=', 'dokter.id_jabatan')
+        ->where('dokter.id_dokter',$id)
+        ->first();
         return response()->json([
             'status' => 'ok',
             'message' => 'Petugas Berhasil Ditampilkan per-item',
