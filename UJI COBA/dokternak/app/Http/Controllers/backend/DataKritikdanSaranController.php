@@ -10,17 +10,24 @@ use App\Models\kritikdansaran;
 use Dotenv\Validator;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Support\Facades\Crypt;
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\Validator as FacadesValidator;
 
 class DataKritikdanSaranController extends Controller
 {
     public function index()
     {
-        $ks = DB::table('kritik_dan_saran')->get();
+        $ks = DB::table('krtik_dan_saran')->get();
         return view('backend.data_ks.index', compact('ks'));
         // return view('backend.peternak.index');
     }
 
+    public function cetak_pdf()
+    {
+        $ks = DB::table('krtik_dan_saran')->get();
+    	$pdf = PDF::loadview('backend/data_ks/cetak_pdf',['ks'=>$ks]);
+    	return view ('backend.data_ks.cetak_pdf',compact('ks'));
+    }
 
     public function create()
     {

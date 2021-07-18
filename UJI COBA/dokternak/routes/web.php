@@ -86,6 +86,13 @@ Route::POST('dashboard/admin/simpandata','AdminController@store')->name('simpand
 Route::match(['get','post'], 'dashboard/admin/edit/{id}','AdminController@edit');
 Route::GET('dashboard/admin/delete/{id}','AdminController@delete');
 Route::get('/cetak_pdf/admin','AdminController@cetak_pdf')->name('backend.admin.cetak_pdf');
+
+//CRUD Data Kritik dan saran -------------------------------------------------------------------
+Route::POST('dashboard/data_ks/simpandata','DataKritikdanSaranController@store')->name('simpandata');
+Route::match(['get','post'], 'dashboard/data_ks/edit/{id}','DataKritikdanSaranController@edit');
+Route::GET('dashboard/data_ks/delete/{id}','DataKritikdanSaranController@delete');
+Route::get('/cetak_pdf/data_ks','DataKritikdanSaranController@cetak_pdf')->name('backend.data_ks.cetak_pdf');
+
 });
 // ------------------------------------------------------------------------
 
