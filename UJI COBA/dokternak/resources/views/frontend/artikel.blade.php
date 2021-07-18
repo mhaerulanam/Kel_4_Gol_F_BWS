@@ -116,7 +116,7 @@
                             <ul class="list cat-list">
                                 @foreach ($kategori_artikel as $data_katartikel)
                                 <li>
-                                    <a href="/artikel/cari?cari={{ $data_katartikel->kategori_artikel }}" class="d-flex">
+                                    <a href="/artikel/kategori?cari={{ $data_katartikel->kategori_artikel }}" class="d-flex">
                                         <p> {{ $data_katartikel->kategori_artikel }}</p>
                                         <p></p>
                                     </a>

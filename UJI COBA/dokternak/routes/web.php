@@ -153,6 +153,7 @@ Route::POST('/petugas/update-password', 'petugas\ResetPasswordController@updateP
  //Route Artikel
  Route::get('petugas/artikel', 'petugas\ArtikelController@index');
  Route::get('petugas/artikel/cari', 'petugas\ArtikelController@cari');
+ Route::get('petugas/artikel/kategori', 'petugas\ArtikelController@kategori');
  Route::get('petugas/artikel/{id}/detail', 'petugas\ArtikelController@detail');
 
  //route tutorial
@@ -193,6 +194,7 @@ Route::POST('update-password', 'frontend\ResetPasswordController@updatePassword'
 //Route Artikel
 Route::get('/artikel', 'Frontend\ArtikelController@index');
 Route::get('/artikel/cari', 'Frontend\ArtikelController@cari');
+Route::get('/artikel/kategori', 'Frontend\ArtikelController@kategori');
 Route::get('/artikel/{id}/detail', 'frontend\ArtikelController@detail');
 
 //Route Tutorial

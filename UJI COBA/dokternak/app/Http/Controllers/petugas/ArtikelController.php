@@ -40,6 +40,22 @@ class ArtikelController extends Controller
         return view('petugas.artikel',compact('artikel','kategori_artikel'));
     }
 
+    public function kategori(Request $request)
+    {
+        //Menangkap data pencarian
+        $cari = $request->cari;
+
+        //mengambul data dari tabel artikel sesuai pencarian data
+        $artikel = DB::table('artikel')
+        ->join('kategori_artikel', 'kategori_artikel.id_ktg', '=', 'artikel.id_ktg')
+        ->where('kategori_artikel.kategori_artikel',$cari)
+        ->paginate(4, ['*'], 'kategoriartikel');
+        $kategori_artikel = KatArtikel::all();
+
+        //mengirim data artikel ke view artikel
+        return view('petugas.artikel',compact('artikel','kategori_artikel'));
+    }
+
 
     public function detail($id) {
         // $artikel2 = Artikel::orderBy('tanggal', 'desc')->paginate(2);

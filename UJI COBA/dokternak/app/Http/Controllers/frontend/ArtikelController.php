@@ -35,7 +35,23 @@ class ArtikelController extends Controller
         $artikel = DB::table('artikel')
         ->join('kategori_artikel', 'kategori_artikel.id_ktg', '=', 'artikel.id_ktg')
         ->where('judul','like',"%".$cari."%")
-        ->paginate(2);
+        ->paginate(2,['*'], 'cariartikel');
+        $kategori_artikel = KatArtikel::all();
+
+        //mengirim data artikel ke view artikel
+        return view('frontend.artikel',compact('artikel','kategori_artikel'));
+    }
+
+    public function kategori(Request $request)
+    {
+        //Menangkap data pencarian
+        $cari = $request->cari;
+
+        //mengambul data dari tabel artikel sesuai pencarian data
+        $artikel = DB::table('artikel')
+        ->join('kategori_artikel', 'kategori_artikel.id_ktg', '=', 'artikel.id_ktg')
+        ->where('kategori_artikel.kategori_artikel',$cari)
+        ->paginate(4, ['*'], 'kategoriartikel');
         $kategori_artikel = KatArtikel::all();
 
         //mengirim data artikel ke view artikel
