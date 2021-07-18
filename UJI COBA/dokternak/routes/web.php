@@ -93,6 +93,9 @@ Route::match(['get','post'], 'dashboard/data_ks/edit/{id}','DataKritikdanSaranCo
 Route::GET('dashboard/data_ks/delete/{id}','DataKritikdanSaranController@delete');
 Route::get('/cetak_pdf/data_ks','DataKritikdanSaranController@cetak_pdf')->name('backend.data_ks.cetak_pdf');
 
+//CRUD Data dokter -------------------------------------------------------------------
+Route::get('/cetak_pdf/dtdokter','DataDokterController@cetak_pdf')->name('backend.dokter.cetak_pdf');
+
 });
 // ------------------------------------------------------------------------
 

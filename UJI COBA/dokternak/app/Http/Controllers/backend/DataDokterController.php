@@ -11,6 +11,7 @@ use App\Models\jabatan;
 use Dotenv\Validator;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Support\Facades\Crypt;
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\Validator as FacadesValidator;
 
 class DataDokterController extends Controller
@@ -21,6 +22,12 @@ class DataDokterController extends Controller
         return view('backend.dokter.index', compact('dtdokter'));
     }
 
+    public function cetak_pdf()
+    {
+        $dtdokter = DB::table('dokter')->get();
+    	$pdf = PDF::loadview('backend/dokter/cetak_pdf',['dtdokter'=>$dtdokter]);
+    	return view ('backend.dokter.cetak_pdf',compact('dtdokter'));
+    }
 
     public function create()
     {
