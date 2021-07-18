@@ -53,10 +53,11 @@ class DataDokterController extends Controller
         ], $message)->validate();
 
         $role = 1;
+        $id = 0;
 
         $data_simpan = [
             
-            'nama' => $request->nama,
+            'nama_dokter' => $request->nama,
             'email' => $request->email,
             'jenis_kelamin' => $request->jenis_kelamin,
             'alamat' => $request->alamat,
@@ -65,13 +66,16 @@ class DataDokterController extends Controller
             'foto' => $request->foto,
             'id_jabatan' => $request->id_jabatan,
             'jadwal_kerja' => $request->jadwal_kerja,
+            'id' => $id,
+            'verifikasi' => 'yes',
+            'sertifikasi' => $request->sertifikasi,
             // 'username' => $request->username,
             // 'password' => Hash::make($request['password']),
         ];
 
         dokter::create($data_simpan);
 
-        return redirect()->route('dokter.index')
+        return redirect()->route('dtdokter.index')
                         ->with('success','Data dokter baru telah berhasil disimpan');
 
     }
@@ -104,13 +108,14 @@ class DataDokterController extends Controller
             'foto' => $request->foto,
             'id_jabatan' => $request->id_jabatan,
             'jadwal_kerja' => $request->jadwal_kerja,
+            'sertifikasi' => $request->sertifikasi,
             // 'username' => $request->username,
             // 'password' => Hash::make($request['password']),
         ];
 
         Dokter::where('id_dokter', $id)->update($data_simpan);
 
-        return redirect()->route('dokter.index')
+        return redirect()->route('dtdokter.index')
                         ->with('success','Data dokter telah berhasil diperbarui');
 
     }
@@ -118,7 +123,7 @@ class DataDokterController extends Controller
     public function destroy($id)
     {
         $dtdokter = Dokter::where('id_dokter',$id)->delete();
-        return redirect()->route('dokter.index')
+        return redirect()->route('dtdokter.index')
                         ->with('success','Data artikel telah berhasil dihapus');
     }
 }

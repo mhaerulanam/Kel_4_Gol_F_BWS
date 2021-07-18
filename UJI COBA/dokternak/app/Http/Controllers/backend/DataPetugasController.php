@@ -63,7 +63,7 @@ class DataPetugasController extends Controller
         $request->foto->move(public_path('data/data_dokter'), $getimageName);
 
         $data_simpan = [
-            'nama' => $request->nama_dokter,
+            'nama_dokter' => $request->nama_dokter,
             'email' => $request->email,
             'jenis_kelamin' => $request->jenis_kelamin,
             'alamat' => $request->alamat,
@@ -72,6 +72,7 @@ class DataPetugasController extends Controller
             'foto' => $request->foto,
             'id_jabatan' => $request->id_jabatan,
             'jadwal_kerja' => $request->jadwal_kerja,
+            'sertifikasi' => $request->sertifikasi,
         ];
 
         DokterUser::create($data_simpan);
