@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator as FacadesValidator;
 use App\Models\Petugas;
 use App\Models\Role;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class DataPetugasController extends Controller
 {
