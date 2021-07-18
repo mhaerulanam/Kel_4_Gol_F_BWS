@@ -60,23 +60,27 @@
                       <th>NO</th>
                       <th>Nama</th>
                       <th>Email</th>
-                      <th>Role</th>
+                      <th>Jenis Kelamin</th>
+                      <th>Alamat</th>
+                      <th>Foto</th>
                       <th>Password</th>
                       <th>Aksi</th>
                     </tr>
                   </thead>
                   <tbody>
                     @php $no = 1; @endphp
-                    @foreach ($data['admin'] as $item)
+                    @foreach ($data as $item)
                     <tr>
                         <td>{{ $no++ }}</td>
-                        <td>{{ $item->name }}</td>
+                        <td>{{ $item->nama }}</td>
                         <td>{{ $item->email }}</td>
-                        <td>Admin</td>
+                        <td>{{ $item->jenis_kelamin }}</td>
+                        <td>{{ $item->alamat }}</td>
+                        <td><img src="/data/data_admin/{{ $item->foto }}" width="100"></td>
                         <td>{{ $item->password }}</td>
                         <td>
                         <div class="btn-group">
-                            <a href="{{ route('admin.edit',$item->id)}}" class="btn btn-warning">Edit<i class="fa fa-edit"></i></a>
+                            <a href="{{ route('admin.edit',$item->id_admin)}}" class="btn btn-warning">Edit<i class="fa fa-edit"></i></a>
                             <form action="{{ route('admin.destroy',$item->id)}}" method="POST">
                             @csrf
                                 @method('DELETE')

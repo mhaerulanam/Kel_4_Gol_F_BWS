@@ -50,18 +50,18 @@
                   <strong class="card-title">Advanced Validation</strong>
                 </div>
                 <div class="card-body">
-                  <form class="needs-validation" id="admin_form" method="POST"
-                            action="{{ isset($admin) ? route('admin.update',$admin->id) : 
+                  <form class="needs-validation" id="admin_form" method="POST" enctype="multipart/form-data"
+                            action="{{ isset($admin) ? route('admin.update',$admin->id_admin) : 
                             route('admin.store') }}">
                                 {!! csrf_field() !!}
                                 {!! isset($admin) ? method_field('PUT') : '' !!}
-                      <input type="hidden" name="id" value="{{ isset($admin) ? $admin->id : '' }}"> <br/>
+                      <input type="hidden" name="id" value="{{ isset($admin) ? $admin->id_admin : '' }}"> <br/>
                       {{-- <input type="text" name="id_role" value="{{ $role->id_role }}"> <br/> --}}
                       <div class="form-row">
                       <div class="col-md-6 mb-3">
                         <label for="validationCustom3">Nama Lengkap</label>
-                        <input class="form-control" id="name" name="name" minlength="5" type="text" placeholder="Masukkan nama"
-                        value="{{ isset($admin) ? $admin->name : '' }}"  
+                        <input class="form-control" id="nama" name="nama" minlength="5" type="text" placeholder="Masukkan nama"
+                        value="{{ isset($admin) ? $admin->nama : '' }}"  
                             required>
                         <div class="valid-feedback"> Looks good! </div>
                       </div>
@@ -78,6 +78,40 @@
                         <small id="emailHelp1" class="form-text text-muted">We'll never share your email with anyone else.</small>
                       </div>
                     </div> <!-- /.form-row -->
+                    <div class="form-row">
+                      <div class="col-md-6 mb-3">
+                        <label for="validationCustom3">Jenis Kelamin</label>
+                        <input class="form-control" id="jenis_kelamin" name="jenis_kelamin" minlength="5" type="text" placeholder="Masukkan Jenis Kelamin"
+                        value="{{ isset($admin) ? $admin->jenis_kelamin : '' }}"  
+                            required>
+                        <div class="valid-feedback"> Looks good! </div>
+                      </div>
+                    </div> <!-- /.form-row -->
+                    <div class="form-row">
+                      <div class="col-md-6 mb-3">
+                        <label for="validationCustom3">Alamat</label>
+                        <input class="form-control" id="alamat" name="alamat" minlength="5" type="text" placeholder="Masukkan Alamat"
+                        value="{{ isset($admin) ? $admin->alamat : '' }}"  
+                            required>
+                        <div class="valid-feedback"> Looks good! </div>
+                      </div>
+                    </div> <!-- /.form-row -->
+
+                    <input type="hidden" name="nama_gambar" value="{{ isset($admin) ? $admin->foto : '' }}">
+                      <div class="form-row">
+                        <div class="col-md-6 mb-3">
+                          <label for="validationCustom3">Foto</label>
+                          <td><img src="/data/data_admin/{{ isset($admin) ? $admin->foto : '' }}" width="100px"></td>
+                          <input type="file" name="foto" id="foto" value="{{ isset($admin) ? $admin->foto : '' }}" class="form-control {{ $errors->has('foto') ? 'is-invalid' : ''}}" >
+                        @if ( $errors->has('foto'))
+                        <span class="text-danger small">
+                            <p>{{ $errors->first('foto') }}</p>
+                        </span>
+                    @endif
+                        </div>
+                      </div>
+
+
                     <div class="form-row">
                     <div class="col-md-4 mb-3">
                       <label for="validationCustomPassword">Password</label>
