@@ -118,7 +118,7 @@ class DataPetugasController extends Controller
             'alamat' => $request->alamat,
             'tempat' => $request->tempat,
             'telpon' => $request->telpon,
-            'foto' => $request->foto,
+            'foto' => $getimageName,
             'sertifikasi' => $request->sertifikasi,
             'jadwal_kerja' => $request->jadwal_kerja,
         ];

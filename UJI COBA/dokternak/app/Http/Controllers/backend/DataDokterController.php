@@ -98,17 +98,26 @@ class DataDokterController extends Controller
             // 'tingkatan' => 'required|numeric',
         ], $message)->validate();
 
+        $gbr=$request->nama_gambar;
+        
+        if($request->has('foto')) {
+            $getimageName = time().'.'.$request->foto_peternak->getClientOriginalExtension();
+            $request->foto->move(public_path('data/data_peternak'), $getimageName);
+        }else {
+            $getimageName = $gbr;
+        }
+
         $data_simpan = [
-            'nama' => $request->nama,
+            'nama_dokter' => $request->nama,
             'email' => $request->email,
             'jenis_kelamin' => $request->jenis_kelamin,
             'alamat' => $request->alamat,
             'tempat' => $request->tempat,
             'telpon' => $request->telpon,
-            'foto' => $request->foto,
+            'foto' => $getimageName,
             'id_jabatan' => $request->id_jabatan,
             'jadwal_kerja' => $request->jadwal_kerja,
-            'sertifikasi' => $request->sertifikasi,
+            'sertifikasi' => 'kosong',
             // 'username' => $request->username,
             // 'password' => Hash::make($request['password']),
         ];

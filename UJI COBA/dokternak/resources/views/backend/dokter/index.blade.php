@@ -81,7 +81,7 @@
                         <td>{{ $item->alamat }}</td>
                         <td>{{ $item->tempat }}</td>
                         <td>{{ $item->telpon }}</td>
-                        <td><img src="data:image/png;base64,{{ chunk_split(base64_encode($item->foto)) }}"></td>
+                        <td><img src="/data/data_dokter/{{ $item->foto }}" width="100"></td>
                         <td>{{ $item->id_jabatan }}</td>
                         <td>{{ $item->jadwal_kerja }}</td>
                         {{-- <td>{{ $item->username }}</td>

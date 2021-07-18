@@ -50,7 +50,7 @@
                   <strong class="card-title">Advanced Validation</strong>
                 </div>
                 <div class="card-body">
-                  <form class="needs-validation" id="dokter_form" method="POST"
+                  <form class="needs-validation" id="dokter_form" method="POST"  enctype="multipart/form-data"
                             action="{{ isset($dtdokter) ? route('dtdokter.update',$dtdokter->id_dokter) : 
                             route('dtdokter.store') }}">
                                 {!! csrf_field() !!}
@@ -115,8 +115,9 @@
                     <div class="form-row">
                       <div class="col-md-4 mb-2">
                         <label for="validationCustom3">Foto</label>
+                        <input type="hidden" name="nama_gambar" value="{{ isset($dtdokter) ? $dtdokter->foto : '' }}">
                         <td><img src="/data/data_dokter/{{ isset($dtdokter) ? $dtdokter->foto : '' }}" width="200"></td>
-                        <input type="file" name="foto" id="foto" class="form-control {{ $errors->has('foto') ? 'is-invalid' : ''}}" value="{{ isset($dtdokter) ? $dtdokter->foto : '' }}" required>
+                        <input type="file" name="foto" id="foto" class="form-control {{ $errors->has('foto') ? 'is-invalid' : ''}}" value="{{ isset($dtdokter) ? $dtdokter->foto : '' }}">
                             @if ( $errors->has('foto'))
                             <span class="text-danger small">
                                 <p>{{ $errors->first('foto') }}</p>
