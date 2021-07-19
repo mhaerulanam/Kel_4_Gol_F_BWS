@@ -83,7 +83,7 @@ class ApiUsersController extends Controller
 
         $user = Peternak::create(array_merge($request->all(), [
             'password' => bcrypt($request->password),
-            'is_admin' => 3
+            'is_admin' => 0
         ]));
 
         if ($user) {
