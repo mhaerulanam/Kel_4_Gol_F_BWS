@@ -25,14 +25,14 @@ class ApiKonsultasiController extends Controller
         ], 201);
     }
 
-    public function getDetailTerkirim($id) 
+    public function getDetailTerkirim($id_konsultasi) 
     {
         $konsultasi = Konsultasi::select('konsultasi.*','dokter.*','peternak.*','kategori_artikel.*','kategori_hewan.*')
                 ->join('dokter', 'dokter.id_dokter', '=', 'konsultasi.id_dokter')
                 ->join('peternak', 'peternak.id_peternak', '=', 'konsultasi.id_peternak')
                 ->join('kategori_hewan', 'kategori_hewan.id_kategori', '=', 'konsultasi.id_kategori')
                 ->join('kategori_artikel', 'kategori_artikel.id_ktg', '=', 'konsultasi.id_ktg')
-                ->where('konsultasi.id_konsultasi',$id)
+                ->where('konsultasi.id_konsultasi',$id_konsultasi)
                 ->orderBy('tanggal','desc')
                 ->get();
         return response()->json([
@@ -57,7 +57,7 @@ class ApiKonsultasiController extends Controller
         ], 200);
     }
 
-    public function getDetailMasuk($id){
+    public function getDetailMasuk($id_riwayat){
         $riwayat_konsultasi = RiwayatKonsultasi::select('riwayat_konsultasi.*','respon_konsultasi.*','konsultasi.*','dokter.*','peternak.*','kategori_artikel.*','kategori_hewan.*')
                 ->join('respon_konsultasi', 'respon_konsultasi.id_respon', '=', 'riwayat_konsultasi.id_respon')
                 ->join('konsultasi', 'konsultasi.id_konsultasi', '=', 'riwayat_konsultasi.id_konsultasi')            
@@ -65,7 +65,7 @@ class ApiKonsultasiController extends Controller
                 ->join('peternak', 'peternak.id_peternak', '=', 'konsultasi.id_peternak')
                 ->join('kategori_hewan', 'kategori_hewan.id_kategori', '=', 'konsultasi.id_kategori')
                 ->join('kategori_artikel', 'kategori_artikel.id_ktg', '=', 'konsultasi.id_ktg')
-                ->where('riwayat_konsultasi.id_riwayat',$id)
+                ->where('riwayat_konsultasi.id_riwayat',$id_riwayat)
                 ->orderBy('tanggal','desc')
                 ->get();
         return response()->json([
