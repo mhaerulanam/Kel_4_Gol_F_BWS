@@ -1,6 +1,7 @@
 @extends('backend/layouts.template')
   
 @section('content')
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 <main role="main" class="main-content">
   <div class="container-fluid">
     <div class="row justify-content-center">
@@ -59,10 +60,23 @@
                       {{-- <input type="hidden" name="id_role" value="{{ $role->id_role }}"> <br/> --}}
                       <div class="form-row">
                       <div class="col-md-6 mb-3">
-                        <label for="validationCustom3">Nama Lengkap Petugas</label>
-                        <input class="form-control" id="nama_dokter" name="nama_dokter" minlength="5" type="text" placeholder="Masukkan nama"
+                        <label for="validationCustom3">Nama Petugas</label>
+                        {{-- <input class="form-control" id="nama_dokter" name="nama_dokter" minlength="5" type="text" placeholder="Masukkan nama"
                         value="{{ isset($datapetugas) ? $datapetugas->nama_dokter : '' }}"  
-                            required>
+                            required> --}}
+                          <div class="form-select">
+                            <select name="nama_dokter" class="form-select" id="default-select" aria-label="Default select example">
+                              <option disabled selected> </option>
+                            @foreach ($petugas as $item)
+                            {{-- <option value="{{ isset($datapetugas)? $datapetugas->nama_dokter: $item->nama_dokter}}" selected>{{ $item->nama_dokter}} </option> --}}
+                            <option value="{{ isset($datapetugas)? 'selected' : ''}}" selected>{{ $item->nama_dokter}} </option>
+                            @if ($item->count())
+                              <option value="{{ $item->id_dokter }}" {{ (isset($datapetugas) == $datapetugas->id_dokter) ? 'selected' : '' }}>{{ $datapetugas->nama_dokter }}</option>
+                            @endif
+                            @endforeach
+                            </select>
+                          </div>
+                          
                         <div class="valid-feedback"> Looks good! </div>
                       </div>
                     </div> <!-- /.form-row -->
@@ -78,79 +92,6 @@
                         <small id="emailHelp1" class="form-text text-muted">We'll never share your email with anyone else.</small>
                       </div>
                     </div> <!-- /.form-row -->
-                    <div class="form-row">
-                      <div class="col-md-6 mb-3">
-                        <label for="validationCustom3">Jenis Kelamin</label>
-                        <input class="form-control" id="jenis_kelamin" name="jenis_kelamin" minlength="5" type="text" placeholder="Masukkan Jenis Kelamin"
-                        value="{{ isset($datapetugas) ? $datapetugas->jenis_kelamin : '' }}"  
-                            required>
-                        <div class="valid-feedback"> Looks good! </div>
-                      </div>
-                    </div> 
-                    <div class="form-row">
-                      <div class="col-md-6 mb-3">
-                        <label for="validationCustom3">Alamat</label>
-                        <input class="form-control" id="alamat" name="alamat" minlength="5" type="text" placeholder="Masukkan Alamat Lengkap"
-                        value="{{ isset($datapetugas) ? $datapetugas->alamat : '' }}"  
-                            required>
-                        <div class="valid-feedback"> Looks good! </div>
-                      </div>
-                    </div> 
-                    <div class="form-row">
-                      <div class="col-md-6 mb-3">
-                        <label for="validationCustom3">Tempat Berdinas</label>
-                        <input class="form-control" id="tempat" name="tempat" minlength="5" type="text" placeholder="Masukkan Tempat Berdinas"
-                        value="{{ isset($datapetugas) ? $datapetugas->tempat : '' }}"  
-                            required>
-                        <div class="valid-feedback"> Looks good! </div>
-                      </div>
-                    </div> 
-                    <div class="form-row">
-                      <div class="col-md-6 mb-3">
-                        <label for="validationCustom3">Nomer Telepon</label>
-                        <input class="form-control" id="telpon" name="telpon" minlength="5" type="text" placeholder="Masukkan Nomer Telepon"
-                        value="{{ isset($datapetugas) ? $datapetugas->telpon : '' }}"  
-                            required>
-                        <div class="valid-feedback"> Looks good! </div>
-                      </div>
-                    </div> 
-                    <input type="hidden" name="nama_gambar" value="{{ isset($datapetugas) ? $datapetugas->foto : '' }}">
-                      <div class="form-row">
-                        <div class="col-md-6 mb-3">
-                          <label for="validationCustom3">Gambar</label>
-                          <td><img src="/data/data_dokter/{{ isset($datapetugas) ? $datapetugas->foto : '' }}" width="100px"></td>
-                          <input type="file" name="foto" id="foto" value="{{ isset($datapetugas) ? $datapetugas->foto : '' }}" class="form-control {{ $errors->has('foto') ? 'is-invalid' : ''}}" >
-                        @if ( $errors->has('foto'))
-                        <span class="text-danger small">
-                            <p>{{ $errors->first('foto') }}</p>
-                        </span>
-                    @endif
-                        </div>
-                      </div>
-
-                      <input type="hidden" name="nama_gambar" value="{{ isset($datapetugas) ? $datapetugas->sertifikasi : '' }}">
-                      <div class="form-row">
-                        <div class="col-md-6 mb-3">
-                          <label for="validationCustom3">Sertifikasi</label>
-                          <td><img src="/data/data_dokter/{{ isset($datapetugas) ? $datapetugas->sertifikasi : '' }}" width="100px"></td>
-                          <input type="file" name="sertifikasi" id="sertifikasi" value="{{ isset($datapetugas) ? $datapetugas->sertifikasi : '' }}" class="form-control {{ $errors->has('sertifikasi') ? 'is-invalid' : ''}}" >
-                        @if ( $errors->has('sertifikasi'))
-                        <span class="text-danger small">
-                            <p>{{ $errors->first('sertifikasi') }}</p>
-                        </span>
-                    @endif
-                        </div>
-                      </div>
-
-                    <div class="form-row">
-                      <div class="col-md-6 mb-3">
-                        <label for="validationCustom3">Jadwal Kerja</label>
-                        <input class="form-control" id="jadwal_kerja" name="jadwal_kerja" minlength="5" type="text" placeholder="Masukkan Jadwal Kerja"
-                        value="{{ isset($datapetugas) ? $datapetugas->jadwal_kerja : '' }}"  
-                            required>
-                        <div class="valid-feedback"> Looks good! </div>
-                      </div>
-                    </div> 
                     <div class="form-row">
                     <div class="col-md-4 mb-3">
                       <label for="validationCustomPassword">Password</label>

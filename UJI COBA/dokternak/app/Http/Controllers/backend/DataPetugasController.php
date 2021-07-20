@@ -10,7 +10,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator as FacadesValidator;
 use App\Models\Petugas;
 use App\Models\Role;
-use Barryvdh\DomPDF\Facade as PDF;
 
 class DataPetugasController extends Controller
 {
@@ -19,31 +18,48 @@ class DataPetugasController extends Controller
 
         $data = DokterUser::select('dokter.*', 'users.*')
             ->join('users', 'users.id', '=', 'dokter.id') 
-            ->where('is_admin',0)
+            ->where('dokter.id','!=',0)
             ->get();
 
         return view('backend.datapetugas.index',compact('data'));
     }
 
-    public function cetak_pdf()
+        public function cetak_pdf()
     {
-        $data = [
-            'petugas' => Petugas::with('roles')->where('is_admin',2)->get(),
-            // 'petugas' => Petugas::with('roles')->orderBy('id','desc')->where('is_admin',2)->get(),
-        ];
-    	$pdf = PDF::loadview('backend/datapetugas/cetak_pdf',['data'=>$data]);
-    	return view ('backend.datapetugas.cetak_pdf',compact('data'));
+        $dtdokter = DB::table('dokter')->get();
+        $pdf = PDF::loadview('backend/dokter/cetak_pdf',['dtdokter'=>$dtdokter]);
+        return view ('backend.dokter.cetak_pdf',compact('dtdokter'));
     }
 
     public function create()
     {
         // $role =  Role::where('id_role',2)->first();
-        $datapetugas = null;
-        return view('backend.datapetugas.create',compact('datapetugas'));
+
+        //$datapetugas = null;
+        $petugas = DokterUser::select('dokter.*')
+            ->where('id',0)
+            ->get();
+        //return $datapetugas;
+        return view('backend.datapetugas.create',compact('petugas'));
     }
 
     public function store(Request $request)
     {
+
+        $nama = $request->nama_dokter;  
+
+        $role = 2;
+        $user = User::create([
+            'name' =>$nama,
+            'email' =>$request->email,
+            'password' => Hash::make($request->password),
+            'is_admin' => $role,
+
+        ]);
+
+        $id_user = $user->id;
+        $emailptr = $user->email;
+
         $message = [
             'required' => ':attribute wajib diisi!!!',
             'min' => ':attribute harus diisi minimal 15 huruf!!!',
@@ -52,35 +68,20 @@ class DataPetugasController extends Controller
         ];
 
         $validator = FacadesValidator::make($request->all(),[
-            'judul' => 'required|string|min:15|max:100',
-            'id_ktg' => 'required|string|max:15',
-            'sumber' => 'required|string|min:15|max:200',
-            'gambar' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            'email' => 'required|string|max:40',
         ], $message)->validate();
 
         $status= "tampil";
 
-        $getimageName = time().'.'.$request->foto->getClientOriginalExtension();
-        $request->foto->move(public_path('data/data_dokter'), $getimageName);
-
         $data_simpan = [
-            'nama_dokter' => $request->nama_dokter,
-            'email' => $request->email,
-            'jenis_kelamin' => $request->jenis_kelamin,
-            'alamat' => $request->alamat,
-            'tempat' => $request->tempat,
-            'telpon' => $request->telpon,
-            'foto' => $request->foto,
-            'id_jabatan' => $request->id_jabatan,
-            'jadwal_kerja' => $request->jadwal_kerja,
-            'sertifikasi' => $request->sertifikasi,
+            'id' => $id_user,
+            'email' => $emailptr,
         ];
 
-        DokterUser::create($data_simpan);
+        DokterUser::where('nama_dokter', $nama)->update($data_simpan);
 
         return redirect()->route('datapetugas.index')
-                        ->with('success','Data petugas baru telah berhasil disimpan')
-                        ->with('image',$getimageName);
+                        ->with('success','Data petugas baru telah berhasil disimpan');
     }
 
     public function edit($id)
@@ -88,7 +89,10 @@ class DataPetugasController extends Controller
         $datapetugas = DokterUser::select('dokter.*','users.*')
         ->join('users', 'users.id', '=', 'dokter.id') 
         ->where('id_dokter', $id)->first();
-        return view('backend.datapetugas.create',compact('datapetugas'));
+        $petugas = DokterUser::select('dokter.*')
+            ->where('id','!=',0)
+            ->get();
+        return view('backend.datapetugas.create',compact('datapetugas','petugas'));
     }
 
     public function update(Request $request, $id)
@@ -113,15 +117,8 @@ class DataPetugasController extends Controller
         }
 
         $data_simpan = [
-            'nama_dokter' => $request->nama_dokter,
-            'email' => $request->email,
-            'jenis_kelamin' => $request->jenis_kelamin,
-            'alamat' => $request->alamat,
-            'tempat' => $request->tempat,
-            'telpon' => $request->telpon,
-            'foto' => $getimageName,
-            'sertifikasi' => $request->sertifikasi,
-            'jadwal_kerja' => $request->jadwal_kerja,
+            'id' => $id_user,
+            'email' => $emailptr,
         ];
 
         DokterUser::where('id_dokter', $id)->update($data_simpan);

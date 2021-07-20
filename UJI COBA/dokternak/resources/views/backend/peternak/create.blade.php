@@ -59,7 +59,7 @@
                       <div class="form-row">
                       <div class="col-md-6 mb-3">
                         <label for="validationCustom3">Nama Depan</label>
-                        <input class="form-control" id="name" name="namadepan_peternak" minlength="5" type="text" placeholder="Masukkan Nama Depan"
+                        <input class="form-control" id="namadepan_peternak" name="namadepan_peternak" minlength="5" type="text" placeholder="Masukkan Nama Depan"
                         value="{{ isset($peternak) ? $peternak->namadepan_peternak : '' }}"  
                             required>
                         <div class="valid-feedback"> Looks good! </div>
@@ -68,7 +68,7 @@
                     <div class="form-row">
                       <div class="col-md-6 mb-3">
                         <label for="validationCustom3">Nama Belakang</label>
-                        <input class="form-control" id="name" name="namabelakang_peternak" minlength="5" type="text" placeholder="Masukkan Nama Belakang"
+                        <input class="form-control" id="namabelakang_peternak" name="namabelakang_peternak" minlength="5" type="text" placeholder="Masukkan Nama Belakang"
                         value="{{ isset($peternak) ? $peternak->namabelakang_peternak : '' }}"  
                             required>
                         <div class="valid-feedback"> Looks good! </div>

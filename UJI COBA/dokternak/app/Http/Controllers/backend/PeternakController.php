@@ -7,12 +7,14 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\PeternakUser;
+use App\Models\Peternak;
 use App\Models\User;
 use Dotenv\Validator;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Support\Facades\Crypt;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\Validator as FacadesValidator;
+use DateTime;
 
 class PeternakController extends Controller
 {
@@ -45,6 +47,26 @@ class PeternakController extends Controller
 
     public function store(Request $request)
     {
+        $nama = $request->namadepan_peternak;    
+
+
+        $role = 0;
+        $user = User::create([
+            'name' =>$nama,
+            'email' =>$request->email_peternak,
+            'password' => Hash::make($request->password),
+            'is_admin' => $role,
+
+        ]);
+
+        $dt = new DateTime();
+        $id_peternak=$dt->format('mdHis ');
+
+        $id_user = $user->id;
+        $nama_user = $user->name;
+        $email_user = $user->email;
+        $pass_user = $user->password;
+
         $message = [
             'required' => ':attribute wajib diisi!!!',
             'min' => ':attribute harus diisi minimal 15 huruf!!!',
@@ -53,10 +75,11 @@ class PeternakController extends Controller
         ];
 
         $validator = FacadesValidator::make($request->all(),[
-            'judul' => 'required|string|min:15|max:100',
-            'id_ktg' => 'required|string|max:15',
-            'sumber' => 'required|string|min:15|max:200',
-            'gambar' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            'namadepan_peternak' => 'required|string|min:2|max:100',
+            'namabelakang_peternak' => 'required|string|min:3|max:100',
+            'email_peternak' => 'required|string|min:15|max:50',
+            'jenis_kelamin' => 'required|string|min:5|max:20',
+            'foto_peternak' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
         ], $message)->validate();
 
         $status= "tampil";
@@ -65,8 +88,11 @@ class PeternakController extends Controller
         $request->foto_peternak->move(public_path('data/data_peternak'), $getimageName);
 
         $data_simpan = [
-            'namadepan_peternak' => $request->namadepan_peternak,
+            'id'=>$id_user,
+            'id_peternak' => $id_peternak,
+            'namadepan_peternak' => $nama,
             'namabelakang_peternak' => $request->namabelakang_peternak,
+            'email_peternak'=> $email_user,
             'no_hp' => $request->no_hp,
             'jenis_kelamin' => $request->jenis_kelamin,
             'alamat' => $request->alamat,
