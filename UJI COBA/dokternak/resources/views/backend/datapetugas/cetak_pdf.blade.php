@@ -1,7 +1,8 @@
+@@ -0,0 +1,59 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Laporan PDF </title>
+	<title>Laporan PDF</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
@@ -18,23 +19,34 @@
 	<table class='table table-bordered'>
 		<thead>
 			<tr>
-					<th>NO</th>
-					<th>Nama</th>
-					<th>Email</th>
-					<th>Role</th>
-					<th>Password</th>
+				<th>NO</th>
+                      <th>ID Dokter</th>
+                      <th>Nama</th>
+                      <th>Email</th>
+                      <th>Jenis Kelamin</th>
+                      <th>Alamat</th>
+                      <th>Tempat</th>
+                      <th>Telpon</th>
+                      <th>Foto</th>
+                      <th>Id Jabatan</th>
+                      <th>Jadwal Kerja</th>
 			</tr>
 		</thead>
 		<tbody>
 			@php $no = 1; @endphp
-			@foreach ($data['petugas'] as $item)
+                    @foreach ($dtdokter as $item)
                     <tr>
                         <td>{{ $no++ }}</td>
-                        <td>{{ $item->name }}</td>
+                        <td>{{ $item->id_dokter }}</td>
+                        <td>{{ $item->nama_dokter }}</td>
                         <td>{{ $item->email }}</td>
-						<td>Petugas</td>
-                        {{-- <td>Petugas</td> --}}
-                        <td>{{ $item->password }}</td>
+                        <td>{{ $item->jenis_kelamin }}</td>
+                        <td>{{ $item->alamat }}</td>
+                        <td>{{ $item->tempat }}</td>
+                        <td>{{ $item->telpon }}</td>
+                        <td><img src="/data/data_dokter/{{ $item->foto }}" width="100"></td>
+                        <td>{{ $item->id_jabatan }}</td>
+                        <td>{{ $item->jadwal_kerja }}</td>
 			</tr>
 			@endforeach
 		</tbody>
