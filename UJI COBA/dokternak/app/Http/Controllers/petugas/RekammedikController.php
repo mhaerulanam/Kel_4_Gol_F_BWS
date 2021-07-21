@@ -49,6 +49,9 @@ class RekammedikController extends Controller
 
     public function store(Request $request)
     {
+        $id = Auth::id();
+        $petugas = DB::table('dokter')->where('id',$id)->first();
+        $id_dokter = $petugas->id_dokter;
 
         $message = [
             'numeric' => ':attribute harus diisi nomor.'
@@ -78,7 +81,7 @@ class RekammedikController extends Controller
         $data_simpan2 = [
             'id_dokmed' => "",
             'id_rmd' => $kode,
-            'id_dokter' =>$request->id_dokter,
+            'id_dokter' =>$id_dokter,
         ];
 
         rekam_medik::create($data_simpan);

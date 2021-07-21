@@ -337,11 +337,13 @@ $(document).ready(function(){
                 </thead>
                 <tbody>
                     {{-- Mulai foreach untuk mengambil data obat sesuai petugas yang login --}}
+                    @php $no = 1; @endphp
                     @foreach ($obat_petugas as $item)
         
                     @if ($item->id == Auth::user()->id)
                     <tr>
-                        <td>{{ $loop->iteration }}</td>
+                        {{-- <td>{{ $loop->iteration }}</td> --}}
+                        <td>{{ $no++ }}</td>
                         <td>{{ $item->id_obat}}</td>
                         <td>{{ $item->nama_obat }}</td>
                         <td>{{ $item->stok }}</td>
