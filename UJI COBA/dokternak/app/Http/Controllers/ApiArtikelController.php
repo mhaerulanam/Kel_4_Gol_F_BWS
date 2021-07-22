@@ -76,4 +76,19 @@ class ApiArtikelController extends Controller
             'data' => $artikel
         ], 201);    
     }
+
+    public function kategoriArtikel(Request $request){
+        $cari = $request->kategori_artikel;
+         //mengambul data dari tabel dokter sesuai pencarian data
+        //  $petugas =  Dokter::where('nama_dokter','like',"%".$request."%");
+        $artikel =  Artikel::select('artikel.*','kategori_artikel.*')
+                    ->join('kategori_artikel', 'kategori_artikel.id_ktg', '=', 'artikel.id_ktg')
+                    ->where('kategori_artikel.kategori_artikel',$cari)->get();
+
+            return response()->json([
+            'status' => 'ok',
+            'message' => 'Petugas yang dicari Berhasil Ditampilkan',
+            'data' => $artikel
+        ], 201);    
+    }
 }

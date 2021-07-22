@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
+use DateTime;
 use App\Models\User;
 
 class ApiUsersController extends Controller
@@ -70,26 +71,65 @@ class ApiUsersController extends Controller
         //     return $this->error('Email tidak terdaftar');
         // }
 
-        $user = User::where('email',$request->email)->first();
+        $user = User::where('email',$request->email)
+        ->where('is_admin',0)            
+        ->first();
 
         $password_user = $user->password;
 
-        if(!$user || !Hash::check($request->password, $password_user)){
-            return response(
-                [
-                    'status'=>401,
-                    'message' => 'Gagal Login!',
-                ]
-            ,401);
+        // if(!$user || !Hash::check($request->password, $password_user)){
+        //     return response(
+        //         [
+        //             'status'=>401,
+        //             'message' => 'Gagal Login!',
+        //         ]
+        //     ,401);
+        // }else{
+        //     $user_d = PeternakUser::select('users.*','peternak.*')
+        //     ->join('users', 'users.id', '=', 'peternak.id')
+        //     ->where("peternak.id",$user->id)->first();
+        //     return response()->json([
+        //         'status' => 'ok',
+        //         'message' => 'login Berhasil!',
+        //         'data' => $user_d,
+        //     ], 200);
+        // }
+
+        if(!$user){
+            if(!Hash::check($request->password, $password_user)){
+                return response(
+                    [
+                        'status'=>402,
+                        'message' => 'Gagal Login!, Email dan Password Salah',
+                    ]
+                ,402);
+            }else{
+                return response(
+                    [
+                        'status'=>401,
+                        'message' => 'Gagal Login!, Password anda Benar, tetapi email Salah',
+                    ]
+                ,401);
+            }
+        
         }else{
-            $user_d = PeternakUser::select('users.*','peternak.*')
-            ->join('users', 'users.id', '=', 'peternak.id')
-            ->where("peternak.id",$user->id)->first();
-            return response()->json([
-                'status' => 'ok',
-                'message' => 'login Berhasil!',
-                'data' => $user_d,
-            ], 200);
+            if(!Hash::check($request->password, $password_user)){
+                return response(
+                    [
+                        'status'=>403,
+                        'message' => 'Gagal Login!, Password Salah',
+                    ]
+                ,403);
+            }else{
+                $user_d = PeternakUser::select('users.*','peternak.*')
+                ->join('users', 'users.id', '=', 'peternak.id')
+                ->where("peternak.id",$user->id)->first();
+                return response()->json([
+                    'status' => 'ok',
+                    'message' => 'login Berhasil!',
+                    'data' => $user_d,
+                ], 200);
+            }
         }
     }
 
@@ -110,11 +150,31 @@ class ApiUsersController extends Controller
             'is_admin' => 0
         ]));
 
+        $dt = new DateTime();
+        $id_peternak=$dt->format('mdHis ');
+
+        $id_user = $user->id;
+        $nama_user = $user->name;
+        $email_user = $user->email;
+        $fotodefault = 'default.jpg';
+
+        $peternak = PeternakUser::create([
+            'id_peternak' => $id_peternak,
+            'namadepan_peternak' => $nama_user,
+            'namabelakang_peternak' => '',
+            'no_hp' => '',
+            'jenis_kelamin' => '',
+            'alamat' => '',
+            'foto_peternak' => $fotodefault,
+            'email_peternak' => $email_user,
+            'id' => $id_user,
+        ]);
+
         if ($user) {
             return response()->json([
                 'success' => 1,
                 'message' => 'Selamat, Registrasi Anda Berhasil!',
-                'user' => $user
+                'user' => $peternak,
             ]);
         }
         return $this->error('Registrasi Gagal');

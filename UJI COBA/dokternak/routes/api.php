@@ -46,6 +46,7 @@ Route::post('api_artikel', 'ApiArtikelController@createArtikel');
 Route::put('api_artikel/{id}', 'ApiArtikelController@updateArtikel');
 Route::delete('api_artikel/{id}', 'ApiArtikelController@deleteArtikel');
 Route::get('api_artikel/cari/artikel', 'ApiArtikelController@cariArtikel');
+Route::get('api_artikel/kategori/artikel', 'ApiArtikelController@kategoriArtikel');
 
 //Route Api Puskeswan
 Route::get('api_puskeswan', 'ApiPuskeswanController@getAll');
