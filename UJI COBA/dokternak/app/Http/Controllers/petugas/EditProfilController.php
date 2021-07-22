@@ -37,7 +37,7 @@ class EditProfilController extends Controller
         // if (isset($request->gambar) == NULL){
         if($request->has('foto')) {
             $getimageName = time().'.'.$request->foto->getClientOriginalExtension();
-            $request->foto->move(public_path('data/data_petugas'), $getimageName);
+            $request->foto->move(public_path('data/data_dokter'), $getimageName);
         }else {
             $getimageName = $gbr;
         }

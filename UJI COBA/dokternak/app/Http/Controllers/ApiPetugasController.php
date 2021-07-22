@@ -75,4 +75,34 @@ class ApiPetugasController extends Controller
             'data' => $petugas
         ], 201);    
     }
+
+    public function kategoriPetugas(Request $request){
+        $cari = $request->jabatan;
+         //mengambul data dari tabel dokter sesuai pencarian data
+        //  $petugas =  Dokter::where('nama_dokter','like',"%".$request."%");
+        $petugas =  Dokter::select('dokter.*','jabatan.*')
+                    ->join('jabatan', 'jabatan.id_jabatan', '=', 'dokter.id_jabatan')
+                    ->where('jabatan.jabatan',$cari)->get();
+
+            return response()->json([
+            'status' => 'ok',
+            'message' => 'Petugas yang dicari Berhasil Ditampilkan',
+            'data' => $petugas
+        ], 201);    
+    }
+
+    public function terdekatPetugas(Request $request){
+        $cari = $request->alamat;
+         //mengambul data dari tabel dokter sesuai pencarian data
+        //  $petugas =  Dokter::where('nama_dokter','like',"%".$request."%");
+        $petugas =  Dokter::select('dokter.*','jabatan.*')
+                        ->join('jabatan', 'jabatan.id_jabatan', '=', 'dokter.id_jabatan')
+                        ->where('alamat','like',"%".$cari."%")->get();
+
+            return response()->json([
+            'status' => 'ok',
+            'message' => 'Petugas yang terdekat Berhasil Ditampilkan',
+            'data' => $petugas
+        ], 201);    
+    }
 }

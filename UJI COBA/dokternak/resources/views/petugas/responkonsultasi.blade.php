@@ -32,7 +32,7 @@
     <link rel="stylesheet" href="{{ asset('Frontend/assets/css/responsive.css')}}">
     <link rel="stylesheet" href="{{ asset('Frontend/assets/css/style3.css')}}">
     <link rel="stylesheet" href="{{ asset('Frontend/assets/css/style4.css')}}">
-	<title>Dokternak.id - Konsultasi</title>
+	<title>Dokternak.id - Notifikasi</title>
     <link rel="shortcut icon" type="image/x-icon" href="href="{{ asset('Frontend/assets/img/favicon.ico')}}">
 
 	<style>

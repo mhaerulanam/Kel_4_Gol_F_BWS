@@ -334,11 +334,13 @@ $(document).ready(function(){
                 </thead>
                 <tbody>
                     {{-- Mulai foreach untuk mengambil data rekam medik sesuai petugas yang login --}}
+                    @php $no = 1; @endphp
                     @foreach ($rmd_petugas as $item)
         
                     @if ($item->id == Auth::user()->id)
                     <tr>
-                        <td>{{ $loop->iteration }}</td>
+                        {{-- <td>{{ $loop->iteration }}</td> --}}
+                        <td>{{ $no++ }}</td>
                         <td>{{ $item->id_rmd}}</td>
                         <td>{{ date('d-M-y', strtotime($item->tanggal)) }}</td>
                         <td>{{ $item->kategori_hewan }}</td>

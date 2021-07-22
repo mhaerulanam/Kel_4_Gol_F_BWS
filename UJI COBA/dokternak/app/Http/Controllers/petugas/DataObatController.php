@@ -36,6 +36,9 @@ class DataObatController extends Controller
 
     public function store(Request $request)
     {
+        $id = Auth::id();
+        $petugas = DB::table('dokter')->where('id',$id)->first();
+        $id_dokter = $petugas->id_dokter;
 
         $message = [
             'numeric' => ':attribute harus diisi nomor.'
@@ -60,7 +63,7 @@ class DataObatController extends Controller
         $do = "DOB$kode2";
         $data_simpan2 = [
             'id_do' => $do,
-            'id_dokter' =>$request->id_dokter,
+            'id_dokter' =>$id_dokter,
             'id_obat' =>$kode,
         ];
 
