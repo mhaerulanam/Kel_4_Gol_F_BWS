@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class puskeswan extends Model
+class Puskeswan extends Model
 {
     protected $table = 'puskeswan';
     protected $primaryKey = 'id_puskeswan';

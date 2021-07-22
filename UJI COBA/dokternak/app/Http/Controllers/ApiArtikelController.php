@@ -11,7 +11,7 @@ class ApiArtikelController extends Controller
     public function getAll() 
     {
         // $artikel = Artikel::all();
-        $artikel = DB::table('Artikel')->join('kategori_artikel', 'kategori_artikel.id_ktg', '=', 'artikel.id_ktg')
+        $artikel = DB::table('artikel')->join('kategori_artikel', 'kategori_artikel.id_ktg', '=', 'artikel.id_ktg')
         ->orderBy('id_artikel','desc')->get();
         return response()->json([
             'status' => 'ok',
