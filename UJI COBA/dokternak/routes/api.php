@@ -36,6 +36,8 @@ Route::post('api_petugas', 'ApiPetugasController@createPetugas');
 Route::put('api_petugas/{id}', 'ApiPetugasController@updatePetugas');
 Route::delete('api_petugas/{id}', 'ApiPetugasController@deletePetugas');
 Route::get('api_petugas/cari/petugas', 'ApiPetugasController@cariPetugas');
+Route::get('api_petugas/kategori/petugas', 'ApiPetugasController@kategoriPetugas');
+Route::get('api_petugas/terdekat/petugas', 'ApiPetugasController@terdekatPetugas');
 
 //Route Api Artikel
 Route::get('api_artikel', 'ApiArtikelController@getAll');
@@ -81,15 +83,20 @@ Route::put('api_dokumentasi/{id_dokumentasi}', 'ApiDokumentasiController@updateD
 Route::delete('api_dokumentasi/{id_dokumentasi}', 'ApiDokumentasiController@deleteDokumentasi');
 
 //Route Api Konsultasi
-// Route::get('api_konsultasi/konsultasiterkirim/{id}', 'ApiKonsultasiController@getTerkirim');
+Route::get('api_konsultasi/konsultasiterkirim/{id}', 'ApiKonsultasiController@getTerkirim');
 // Route::get('api_konsultasi/{id_peternak}/detailterkirim/{id}', 'ApiKonsultasiController@getDetailTerkirim');
-// Route::get('api_konsultasi/konsultasimasuk/{id}', 'ApiKonsultasiController@getMasuk');
+Route::get('api_konsultasi/konsultasimasuk/{id}', 'ApiKonsultasiController@getMasuk');
 // Route::get('api_konsultasi/{id_peternak}/detailmasuk/{id}', 'ApiKonsultasiController@getDetailMasuk');
 Route::post('api_konsultasi', 'ApiKonsultasiController@tulisKonsultasi');
 Route::delete('api_konsultasi/{id_konsultasi}', 'ApiKonsultasiController@deleteKonsultasi');
 
-Route::get('api_konsultasi/konsultasiterkirim', 'ApiKonsultasiController@getTerkirim');
+// Route::get('api_konsultasi/konsultasiterkirim', 'ApiKonsultasiController@getTerkirim');
 Route::get('api_konsultasi/detailterkirim/{id_konsultasi}', 'ApiKonsultasiController@getDetailTerkirim');
-Route::get('api_konsultasi/konsultasimasuk', 'ApiKonsultasiController@getMasuk');
+// Route::get('api_konsultasi/konsultasimasuk', 'ApiKonsultasiController@getMasuk');
 Route::get('api_konsultasi/detailmasuk/{id_riwayat}', 'ApiKonsultasiController@getDetailMasuk');
+
+
+//Route Api Jenis Hewan
+Route::get('api_kategori', 'ApiJenisHewanController@getAll');
+Route::get('api_kategori/kategori/cari', 'ApiJenisHewanController@cariKategori');
 

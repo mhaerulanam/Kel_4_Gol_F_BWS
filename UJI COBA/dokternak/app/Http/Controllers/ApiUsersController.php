@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\peternak;
+use App\Models\PeternakUser;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
+use App\Models\User;
 
 class ApiUsersController extends Controller
 {
@@ -55,17 +57,39 @@ class ApiUsersController extends Controller
 
     public function loginUser(Request $request){
         $user =  Peternak::where('email',$request->email)->first();
-        if ($user) {
-            if (password_verify($request->password,$user->password)) {
-                return response()->json([
-                    'success' => 1,
-                    'message' => 'Selamat Datang '.$user->name,
-                    'user' => $user
-                ]);
-            }
-            return $this->error('Password Salah');
-        } else {
-            return $this->error('Email tidak terdaftar');
+        // if ($user) {
+        //     if (password_verify($request->password,$user->password)) {
+        //         return response()->json([
+        //             'success' => 1,
+        //             'message' => 'Selamat Datang '.$user->name,
+        //             'user' => $user
+        //         ]);
+        //     }
+        //     return $this->error('Password Salah');
+        // } else {
+        //     return $this->error('Email tidak terdaftar');
+        // }
+
+        $user = User::where('email',$request->email)->first();
+
+        $password_user = $user->password;
+
+        if(!$user || !Hash::check($request->password, $password_user)){
+            return response(
+                [
+                    'status'=>401,
+                    'message' => 'Gagal Login!',
+                ]
+            ,401);
+        }else{
+            $user_d = PeternakUser::select('users.*','peternak.*')
+            ->join('users', 'users.id', '=', 'peternak.id')
+            ->where("peternak.id",$user->id)->first();
+            return response()->json([
+                'status' => 'ok',
+                'message' => 'login Berhasil!',
+                'data' => $user_d,
+            ], 200);
         }
     }
 
