@@ -83,6 +83,7 @@ class RegisterController extends Controller
         $nama_user = $user->name;
         $email_user = $user->email;
         $pass_user = $user->password;
+        $fotodefault = 'default.jpg';
 
         PeternakUser::create([
             'id_peternak' => $id_peternak,
@@ -91,7 +92,7 @@ class RegisterController extends Controller
             'no_hp' => '',
             'jenis_kelamin' => '',
             'alamat' => '',
-            'foto_peternak' => '',
+            'foto_peternak' => $fotodefault,
             'email_peternak' => $email_user,
             'id' => $id_user,
         ]);
