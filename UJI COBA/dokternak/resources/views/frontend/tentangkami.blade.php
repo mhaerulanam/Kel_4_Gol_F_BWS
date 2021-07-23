@@ -25,6 +25,26 @@
       <link rel="stylesheet" href="{{ asset('Frontend/assets/css/style.css')}}">
       <link rel="stylesheet" href="{{ asset('Frontend/assets/css/responsive.css')}}">
 
+    <!-- CSS Apps Android -->
+    <link rel="stylesheet" href="{{ asset('Frontend/assets-app/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('Frontend/assets-app/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('Frontend/assets-app/css/et-line.css') }}">
+    <link rel="stylesheet" href="{{ asset('Frontend/assets-app/css/magnific-popup.css') }}">
+    <link rel="stylesheet" href="{{ asset('Frontend/assets-app/css/animate.css') }}">
+    <link rel="stylesheet" href="{{ asset('Frontend/assets-app/css/owl.carousel.css') }}">
+    <link rel="stylesheet" href="{{ asset('Frontend/assets-app/css/owl.transitions.css') }}">
+    <link rel="stylesheet" href="{{ asset('Frontend/assets-app/css/plyr.css') }}">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ asset('Frontend/css-app/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('Frontend/css-app/responsive.css') }}">
+
+    <!-- Google font -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400%7CUbuntu:400,700%7COpen+Sans" rel="stylesheet">
+
+    {{-- End CSS Android --}}
+
+
       <style>
         .radiuz{
         border-radius: 50%;
@@ -40,7 +60,113 @@
         @include('frontend/layouts.navbar');
     </section>
     
-    <!-- Banner Atas Start-->
+
+   <!-- Banner Area -->
+   <div id="banner" class="banner">
+    {{-- <div class="banner-item banner-1 steller-parallax" data-stellar-background-ratio="0.5"> --}}
+        <div class="single-slider section-overly slider-height2 d-flex align-items-center" data-background="{{ asset('Frontend/assets/img/gallery/s2.jpg') }}">
+        <div class="banner-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-7">
+                        <div class="banner-text-content">
+                            <h2 class="banner-title">Dokternak kini juga tersedia <br/>dalam versi Android</h2>
+                            <p class="banner-text">Download dan install aplikasinya sekarang juga!</p>
+                            <div class="button-group">
+                                <a class="btn btn-lg" href="https://drive.google.com/drive/folders/1Le24EEg1vmJ_rqqMDXPrjwsR_RA1jh5K?usp=sharing" target="_blank">Download</a>
+                                <a class="btn btn-lg video-play" href="https://youtu.be/d8opEP-9AqU" target="_blank"><i class="fa fa-play"></i> Watch Video</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5 hidden-sm hidden-xs">
+                        <div class="mock right-style">
+                            <img class="back-mock wow fadeInRight" data-wow-duration="1.5s" data-wow-delay="1s" src="{{ asset('Frontend/images-app/mocks/banner-mock-back.png') }}" alt="mock back">
+                            <img class="front-mock wow fadeInUp" data-wow-duration="1.5s" src="{{ asset('Frontend/images-app/mocks/banner-mock-front.png') }}" alt="mock front">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- Banner Area End -->
+
+    <div class="main-wrap">
+
+        <!-- Intro Section -->
+        <div class="section section-padding">
+            <div class="container">
+                <div class="intros">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="intro-item wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="0s">
+                                <div class="intro-icon">
+                                    <span class="glyphicon glyphicon-user"></span>
+                                </div>
+                                <h4 class="intro-title">Cari Petugas</h4>
+                                <p class="intro-content">Cari dokter hewan, paramedis,
+                                    dan petugas inseminasi buatan.</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="intro-item wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="0.5s">
+                                <div class="intro-icon">
+                                    <span class="glyphicon glyphicon-envelope"></span>
+                                </div>
+                                <h4 class="intro-title">Konsultasi</h4>
+                                <p class="intro-content">Konsultasi kepada petugas
+                                    kesehatan hewan secara mudah.</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="intro-item wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="1s">
+                                <div class="intro-icon">
+                                    <span class="glyphicon glyphicon-book"></span>
+                                </div>
+                                <h4 class="intro-title">Artikel</h4>
+                                <p class="intro-content">Baca artikel  atau tips dan trik
+                                    seputar kesehatan hewan.</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="intro-item wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="1s">
+                                <div class="intro-icon">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                </div>
+                                <h4 class="intro-title">Cari Puskeswan</h4>
+                                <p class="intro-content">Cek lokasi Puskeswan (Pusat 
+                                    Kesehatan Hewan) terdekat.</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="intro-item wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="1s">
+                                <div class="intro-icon">
+                                    <span class="glyphicon glyphicon-pencil"></span>
+                                </div>
+                                <h4 class="intro-title">Tulis Artikel</h4>
+                                <p class="intro-content">Tulis artikel berdasarkan sumber tertentu 
+                                    atau pengalaman seputar kesehatan hewan yang ingin anda bagikan.</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="intro-item wow fadeInUp" data-wow-duration="1.5s" data-wow-delay="1s">
+                                <div class="intro-icon">
+                                    <span class="glyphicon glyphicon-plus"></span>
+                                </div>
+                                <h4 class="intro-title">Dan 10++ fitur lainnya</h4>
+                                <p class="intro-content">Fitur lainnya terbagi pada hak akses admin, 
+                                    petugas, dan user umum yaitu peternak/pet lovers.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Intro section end -->
+    </div>
+
+    
+<!-- Banner Atas Start-->
    <div class="slider-area ">
       <div class="single-slider section-overly slider-height2 d-flex align-items-center" data-background="{{ asset('Frontend/assets/img/gallery/s2.jpg') }}">
           <div class="container">
@@ -54,8 +180,8 @@
           </div>
       </div>
    </div>
-
    <!-- Banner End -->
+
  <!-- Support Company Start-->
  <div class="support-company-area fix section-padding2">
     <div class="container">
@@ -64,13 +190,13 @@
                 <div class="right-caption">
                     <!-- Section Tittle -->
                     <div class="section-tittle section-tittle2">
-                        <span>Siapa Kami?</span>
+                        {{-- <span>Siapa Kami?</span> --}}
                         <h2>Mahasiswa Politeknik Negeri Jember <br> Kampus Bondowoso</h2>
                     </div>
                     <div class="support-caption">
                         <p class="pera-top">Kami Pengembang Website Dokternak.id</p>
-                        <p>Dokternak.id Adalah
-Sistem Informasi Dokter Hewan yang merupakan sistem informasi berbasis website untuk mempermudah para peternak dalam mencari dokter hewan terdekat serta para peternak dapat berkonsultasi melalui website dengan dokter hewan yang sesuai tentang permasalahan yang dihadapi oleh para peternak seperti penyakit pada ternak. Di dalam website ini juga terdapat tips dan trik dalam berternak yang baik dan benar, sehingga para peternak dapat lebih mudah mengetahui atau menambah ilmu wawasan tentang peternakan. Para peternak juga dapat menulis sebuah catatan pengalaman untuk dibagikan ke website, agar para peternak lain mengetahui tentang pengalaman penulis.
+                        <p>Dokternak.id adalah
+Sistem Informasi Tenaga Kesehatan Hewan yang merupakan sistem informasi berbasis website untuk mempermudah para peternak dalam mencari petugas kesehatan hewan terdekat serta dapat melakukan konsultasi melalui website mengenai permasalahan yang dihadapi oleh para peternak seperti penyakit pada ternak. Di dalam website ini juga terdapat tips dan trik seputar kesehatan hewan, sehingga para peternak dapat lebih mudah mengetahui atau menambah ilmu wawasan tentang kesehatan hewan. Para peternak juga dapat menulis sebuah catatan pengalaman untuk dibagikan ke website, agar peternak lain dapat mengetahui pengalaman penulis.
 </p>
                     </div>
                 </div>
@@ -108,7 +234,7 @@ Sistem Informasi Dokter Hewan yang merupakan sistem informasi berbasis website u
                         <span class="flaticon-curriculum-vitae"></span>
                     </div>
                     <div class="process-cap">
-                        <h5>Sistem Informasi Dokter Hewan berbasis website bertujuan untuk membantu peternak ataupun masyarakat yang mempunyai hewan peliharaan untuk mempermudah mendapatkan informasi seputar hewan peliharaannya dan informasi seputar dokter hewan.</h5>    
+                        <h5>Sistem Informasi Tenaga Kesehatan Hewan berbasis website bertujuan untuk membantu peternak ataupun masyarakat yang mempunyai hewan peliharaan untuk mempermudah mendapatkan informasi seputar hewan peliharaannya dan informasi seputar petugas kesehatan hewan di Bondowoso. Kini website ini juga tersedia versi android, namun hanya dapat digunakan oleh user peternak saja.</h5>    
                     </div>
                 </div>
             </div>
@@ -217,7 +343,7 @@ Sistem Informasi Dokter Hewan yang merupakan sistem informasi berbasis website u
 <section>
         @include('frontend/kritikdansaran');
 </section>
-</main>
+{{-- </main> --}}
 <!-- Testimonial End -->
 <section>
     @include('frontend/layouts.footer');
