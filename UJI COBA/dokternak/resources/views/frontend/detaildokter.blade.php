@@ -69,8 +69,8 @@
               <div class="cc-profile-image"><a href="#"><img src="/data/data_dokter/{{ $dokter->foto }}" /></a></div>
               <div class="h2 title">{{ $dokter->nama_dokter }}</div>
               <p class="capt">{{ $dokter->jabatan}}</p>
-              <!-- <a class="genric-btn primary" href="https://api.whatsapp.com/send?phone=">WhatsApp</a>
-              <a class="genric-btn primary" href="form_konsultasi.php?id_dokter=">Konsultasi</a> -->
+              <a class="genric-btn primary" href="https://api.whatsapp.com/send?phone={{ $dokter->telpon }}">WhatsApp</a>
+              <a class="genric-btn primary" href="/tuliskonsultasi">Konsultasi</a>
             </div>
           </div>
           <div class="section">
