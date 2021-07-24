@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator as FacadesValidator;
 use App\Models\Petugas;
 use App\Models\Role;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class DataPetugasController extends Controller
 {
@@ -24,11 +25,11 @@ class DataPetugasController extends Controller
         return view('backend.datapetugas.index',compact('data'));
     }
 
-        public function cetak_pdf()
+    public function cetak_pdf()
     {
         $dtdokter = DB::table('dokter')->get();
-        $pdf = PDF::loadview('backend/dokter/cetak_pdf',['dtdokter'=>$dtdokter]);
-        return view ('backend.dokter.cetak_pdf',compact('dtdokter'));
+    	$pdf = PDF::loadview('backend/dokter/cetak_pdf',['dtdokter'=>$dtdokter]);
+    	return view ('backend.dokter.cetak_pdf',compact('dtdokter'));
     }
 
     public function create()
@@ -40,7 +41,7 @@ class DataPetugasController extends Controller
             ->where('id',0)
             ->get();
         //return $datapetugas;
-        return view('backend.datapetugas.create',compact('petugas'));
+        return view('backend.datapetugas.buat',compact('petugas'));
     }
 
     public function store(Request $request)
