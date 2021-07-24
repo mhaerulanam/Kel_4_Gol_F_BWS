@@ -108,8 +108,8 @@ class DataDokterController extends Controller
         $gbr=$request->nama_gambar;
         
         if($request->has('foto')) {
-            $getimageName = time().'.'.$request->foto_peternak->getClientOriginalExtension();
-            $request->foto->move(public_path('data/data_peternak'), $getimageName);
+            $getimageName = time().'.'.$request->foto->getClientOriginalExtension();
+            $request->foto->move(public_path('data/data_dokter'), $getimageName);
         }else {
             $getimageName = $gbr;
         }
