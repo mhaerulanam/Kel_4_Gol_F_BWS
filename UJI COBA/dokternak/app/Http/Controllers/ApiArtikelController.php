@@ -50,7 +50,7 @@ class ApiArtikelController extends Controller
 
         return response()->json([
             'status' => 'ok',
-            'message' => 'Artikel Berhasil Dirubah!'
+            'message' => 'Artikel Berhasil Diubah!'
         ], 201);
     }
 
@@ -67,7 +67,9 @@ class ApiArtikelController extends Controller
         $cari = $request->judul;
          //mengambul data dari tabel dokter sesuai pencarian data
         //  $petugas =  Dokter::where('nama_dokter','like',"%".$request."%");
-        $artikel =  Artikel::where('judul','like',"%".$cari."%")->get();
+        $artikel =  Artikel::select('artikel.*','kategori_artikel.*')
+                    ->join('kategori_artikel', 'kategori_artikel.id_ktg', '=', 'artikel.id_ktg')
+                    ->where('judul','like',"%".$cari."%")->get();
 
 
             return response()->json([
