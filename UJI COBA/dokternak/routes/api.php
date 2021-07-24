@@ -22,6 +22,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('api_users/login/peternak','ApiUsersController@loginUser');
 Route::post('api_users/register/peternak','ApiUsersController@registerUser');
 
+//Route Api update Profile
+Route::put('api_users/{id}/updatepeternak','ApiUsersController@updateProfile');
+
 //Route Api Users
 Route::get('api_users', 'ApiUsersController@getAll');
 Route::get('api_users/{id}', 'ApiUsersController@getUsers');
@@ -89,7 +92,8 @@ Route::get('api_konsultasi/konsultasiterkirim/{id}', 'ApiKonsultasiController@ge
 Route::get('api_konsultasi/konsultasimasuk/{id}', 'ApiKonsultasiController@getMasuk');
 // Route::get('api_konsultasi/{id_peternak}/detailmasuk/{id}', 'ApiKonsultasiController@getDetailMasuk');
 Route::post('api_konsultasi', 'ApiKonsultasiController@tulisKonsultasi');
-Route::delete('api_konsultasi/{id_konsultasi}', 'ApiKonsultasiController@deleteKonsultasi');
+Route::delete('api_konsultasi/{id_konsultasi}/hapusterkirim', 'ApiKonsultasiController@deleteKonsultasi');
+Route::delete('api_konsultasi/{id_konsultasi}/hapusmasuk', 'ApiKonsultasiController@hapusMasuk');
 
 // Route::get('api_konsultasi/konsultasiterkirim', 'ApiKonsultasiController@getTerkirim');
 Route::get('api_konsultasi/detailterkirim/{id_konsultasi}', 'ApiKonsultasiController@getDetailTerkirim');

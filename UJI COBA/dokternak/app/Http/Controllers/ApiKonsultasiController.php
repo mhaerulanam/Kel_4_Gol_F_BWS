@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Konsultasi;
 use App\Models\PeternakUser;
+use App\Models\ResponKonsultasi;
 use App\Models\RiwayatKonsultasi;
 use Illuminate\Support\Facades\DB;
 
@@ -155,10 +156,24 @@ class ApiKonsultasiController extends Controller
         ], 201);
     }
 
-    public function deleteKonsultasi($id) 
+    public function deleteKonsultasi($id_konsultasi) 
     {
-        Konsultasi::destroy($id);
+        Konsultasi::destroy($id_konsultasi);
 
+        return response()->json([
+            'status' => 'ok',
+            'message' => 'Konsultasi Berhasil Dihapus!'
+        ], 201);
+    }
+
+    public function hapusmasuk($id_konsultasi)
+    {
+        $riwayat_konsultasi = RiwayatKonsultasi::where('id_konsultasi',$id_konsultasi)->first();
+        $id_respon2 = $riwayat_konsultasi->id_respon;
+        $id_riwayat2 = $riwayat_konsultasi->id_riwayat;
+        RiwayatKonsultasi::destroy($id_riwayat2);
+        Konsultasi::destroy($id_konsultasi);
+        ResponKonsultasi::destroy($id_respon2);
         return response()->json([
             'status' => 'ok',
             'message' => 'Konsultasi Berhasil Dihapus!'

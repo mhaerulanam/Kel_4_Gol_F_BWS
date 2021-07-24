@@ -186,4 +186,45 @@ class ApiUsersController extends Controller
             'message' => $pesan
         ]);
     }
+
+    public function updateProfile(Request $request, $id){
+        
+        $gbr=$request->nama_gambar;
+        // if (isset($request->gambar) == NULL){
+        if($request->has('foto_peternak')) {
+            $getimageName = time().'.'.$request->foto_peternak->getClientOriginalExtension();
+            $request->foto_peternak->move(public_path('data/data_peternak'), $getimageName);
+        }else {
+            $getimageName = $gbr;
+        }
+        
+        $data_simpan = [
+            'namadepan_peternak' => $request->name,
+            'no_hp' => $request->no_hp,
+            'jenis_kelamin' => $request->jenis_kelamin,
+            'alamat' => $request->alamat,
+            'foto_peternak' => $getimageName,
+            'email_peternak' => $request->email,
+        ];
+
+        $data_simpan2 = [
+            'name' => $request->name,
+            'email' => $request->email,
+        ];
+
+        PeternakUser::where('id', $id)->update($data_simpan);
+
+        User::where('id', $id)->update($data_simpan2);
+
+        $user_d = PeternakUser::select('users.*','peternak.*')
+        ->join('users', 'users.id', '=', 'peternak.id')
+        ->where("peternak.id",$id)->first();
+
+        return response()->json([
+            'status' => 'ok',
+            'message' => 'Update profile berhasil',
+            'data' => $user_d,
+        ], 200);
+        
+    }
 }

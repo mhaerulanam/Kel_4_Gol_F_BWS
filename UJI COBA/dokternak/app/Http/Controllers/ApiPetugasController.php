@@ -66,7 +66,9 @@ class ApiPetugasController extends Controller
         $cari = $request->nama_dokter;
          //mengambul data dari tabel dokter sesuai pencarian data
         //  $petugas =  Dokter::where('nama_dokter','like',"%".$request."%");
-        $petugas =  Dokter::where('nama_dokter','like',"%".$cari."%")->get();
+        $petugas =  Dokter::select('dokter.*','jabatan.*')
+        ->join('jabatan', 'jabatan.id_jabatan', '=', 'dokter.id_jabatan')
+        ->where('nama_dokter','like',"%".$cari."%")->get();
 
 
             return response()->json([
