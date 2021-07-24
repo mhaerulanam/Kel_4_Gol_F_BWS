@@ -62,6 +62,10 @@ class DataDokterController extends Controller
         $role = 1;
         $id = 0;
 
+        $getimageName = time().'.'.$request->foto->getClientOriginalExtension();
+        $request->foto->move(public_path('data/data_dokter'), $getimageName);
+
+
         $data_simpan = [
             
             'nama_dokter' => $request->nama,
@@ -70,7 +74,7 @@ class DataDokterController extends Controller
             'alamat' => $request->alamat,
             'tempat' => $request->tempat,
             'telpon' => $request->telpon,
-            'foto' => $request->foto,
+            'foto' => $getimageName,
             'id_jabatan' => $request->id_jabatan,
             'jadwal_kerja' => $request->jadwal_kerja,
             'id' => $id,
@@ -108,8 +112,8 @@ class DataDokterController extends Controller
         $gbr=$request->nama_gambar;
         
         if($request->has('foto')) {
-            $getimageName = time().'.'.$request->foto_peternak->getClientOriginalExtension();
-            $request->foto->move(public_path('data/data_peternak'), $getimageName);
+            $getimageName = time().'.'.$request->foto->getClientOriginalExtension();
+            $request->foto->move(public_path('data/data_dokter'), $getimageName);
         }else {
             $getimageName = $gbr;
         }
@@ -140,6 +144,6 @@ class DataDokterController extends Controller
     {
         $dtdokter = Dokter::where('id_dokter',$id)->delete();
         return redirect()->route('dtdokter.index')
-                        ->with('success','Data artikel telah berhasil dihapus');
+                        ->with('success','Data dokter telah berhasil dihapus');
     }
 }
