@@ -12,6 +12,21 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
+    <!-- CSS here -->
+    <link rel="stylesheet" href="{{ asset('Frontend/assets/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('Frontend/assets/css/owl.carousel.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('Frontend/assets/css/slicknav.css')}}">
+    <link rel="stylesheet" href="{{ asset('Frontend/assets/css/price_rangs.css')}}">
+    <link rel="stylesheet" href="{{ asset('Frontend/assets/css/animate.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('Frontend/assets/css/magnific-popup.css')}}">
+    <link rel="stylesheet" href="{{ asset('Frontend/assets/css/fontawesome-all.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('Frontend/assets/css/themify-icons.css')}}">
+    <link rel="stylesheet" href="{{ asset('Frontend/assets/css/slick.css')}}">
+    <link rel="stylesheet" href="{{ asset('Frontend/assets/css/nice-select.css')}}">
+    <link rel="stylesheet" href="{{ asset('Frontend/assets/css/style.css')}}">
+    <link rel="stylesheet" href="{{ asset('Frontend/assets/css/responsive.css')}}">
+    <link rel="stylesheet" href="{{ asset('Frontend/assets/css/style3.css')}}">
+
 <style>
 body {font-family: Arial, Helvetica, sans-serif;}
 
@@ -282,7 +297,7 @@ form {
             <!--<label><input type="checkbox" value="" checked>Menerima Persyaratan Yang Berlaku</label>-->
           </div>
           <input type="submit" class="btn btn-info" value="Edit" name="edit">
-          <a href="/frontend/profil" class="btn btn info-border" >Batal</a>
+          <a href="/dokternak/profil" class="btn btn info-border" >Batal</a>
           <!-- <input type="reset" class="btn btn-info" value="Batal" name=""> -->
           <!-- </div> -->
 
@@ -320,6 +335,41 @@ window.onclick = function(event) {
   }
 }
 </script>
+
+ <!-- All JS Custom Plugins Link Here here -->
+ <script src="{{ asset('Petugas/assets/js/vendor/modernizr-3.5.0.min.js') }}"></script>
+ <!-- Jquery, Popper, Bootstrap -->
+ <script src="{{ asset('Petugas/assets/js/vendor/jquery-1.12.4.min.js') }}"></script>
+ <script src="{{ asset('Petugas/assets/js/popper.min.js') }}"></script>
+ <script src="{{ asset('Petugas/assets/js/bootstrap.min.js') }}"></script>
+ <!-- Jquery Mobile Menu -->
+ <script src="{{ asset('Petugas/assets/js/jquery.slicknav.min.js') }}"></script>
+
+ <!-- Jquery Slick , Owl-Carousel Plugins -->
+ <script src="{{ asset('Petugas/assets/js/owl.carousel.min.js') }}"></script>
+ <script src="{{ asset('Petugas/assets/js/slick.min.js') }}"></script>
+ <script src="{{ asset('Petugas/assets/js/price_rangs.js') }}"></script>
+ 
+ <!-- One Page, Animated-HeadLin -->
+ <script src="{{ asset('Petugas/assets/js/wow.min.js') }}"></script>
+ <script src="{{ asset('Petugas/assets/js/animated.headline.js') }}"></script>
+ <script src="{{ asset('Petugas/assets/js/jquery.magnific-popup.js') }}"></script>
+
+ <!-- Scrollup, nice-select, sticky -->
+ <script src="{{ asset('Petugas/assets/js/jquery.scrollUp.min.js') }}"></script>
+ <script src="{{ asset('Petugas/assets/js/jquery.nice-select.min.js') }}"></script>
+ <script src="{{ asset('Petugas/assets/js/jquery.sticky.js') }}"></script>
+ 
+ <!-- contact js -->
+ <script src="{{ asset('Petugas/assets/js/contact.js') }}"></script>
+ <script src="{{ asset('Petugas/assets/js/jquery.form.js') }}"></script>
+ <script src="{{ asset('Petugas/assets/js/jquery.validate.min.js') }}"></script>
+ <script src="{{ asset('Petugas/assets/js/mail-script.js') }}"></script>
+ <script src="{{ asset('Petugas/assets/js/jquery.ajaxchimp.min.js') }}"></script>
+ 
+ <!-- Jquery Plugins, main Jquery -->	
+ <script src="{{ asset('Petugas/assets/js/plugins.js') }}"></script>
+ <script src="{{ asset('Petugas/assets/js/main.js') }}"></script>
 
 </body>
 </html>

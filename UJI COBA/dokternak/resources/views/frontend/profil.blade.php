@@ -11,20 +11,21 @@
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
         <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
- <!-- CSS here -->
- <link rel="stylesheet" href="{{ asset('Frontend/assets/css/bootstrap.min.css')}}">
- <link rel="stylesheet" href="{{ asset('Frontend/assets/css/owl.carousel.min.css')}}">
- <link rel="stylesheet" href="{{ asset('Frontend/assets/css/flaticon.css')}}">
- <link rel="stylesheet" href="{{ asset('Frontend/assets/css/price_rangs.css')}}">
- <link rel="stylesheet" href="{{ asset('Frontend/assets/css/slicknav.css')}}">
- <link rel="stylesheet" href="{{ asset('Frontend/assets/css/animate.min.css')}}">
- <link rel="stylesheet" href="{{ asset('Frontend/assets/css/magnific-popup.css')}}">
- <link rel="stylesheet" href="{{ asset('Frontend/assets/css/fontawesome-all.min.css')}}">
- <link rel="stylesheet" href="{{ asset('Frontend/assets/css/themify-icons.css')}}">
- <link rel="stylesheet" href="{{ asset('Frontend/assets/css/slick.css')}}">
- <link rel="stylesheet" href="{{ asset('Frontend/assets/css/nice-select.css')}}">
- <link rel="stylesheet" href="{{ asset('Frontend/assets/css/style.css')}}">
- <link rel="stylesheet" href="{{ asset('Frontend/assets/css/responsive.css')}}">
+  <!-- CSS here -->
+    <!-- CSS here -->
+    <link rel="stylesheet" href="{{ asset('Frontend/assets/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('Frontend/assets/css/owl.carousel.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('Frontend/assets/css/slicknav.css')}}">
+    <link rel="stylesheet" href="{{ asset('Frontend/assets/css/price_rangs.css')}}">
+    <link rel="stylesheet" href="{{ asset('Frontend/assets/css/animate.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('Frontend/assets/css/magnific-popup.css')}}">
+    <link rel="stylesheet" href="{{ asset('Frontend/assets/css/fontawesome-all.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('Frontend/assets/css/themify-icons.css')}}">
+    <link rel="stylesheet" href="{{ asset('Frontend/assets/css/slick.css')}}">
+    <link rel="stylesheet" href="{{ asset('Frontend/assets/css/nice-select.css')}}">
+    <link rel="stylesheet" href="{{ asset('Frontend/assets/css/style.css')}}">
+    <link rel="stylesheet" href="{{ asset('Frontend/assets/css/responsive.css')}}">
+    <link rel="stylesheet" href="{{ asset('Frontend/assets/css/style3.css')}}">
 
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -113,7 +114,7 @@
 <body>
     @include('frontend/layouts.navbar');
  <div class="slider-area ">
-      <div class="single-slider section-overly slider-height2 d-flex align-items-center" data-background="assets/img/gallery/s2.jpg">
+  <div class="single-slider section-overly slider-height2 d-flex align-items-center" data-background="{{ asset('Frontend/assets/img/gallery/s2.jpg') }}">
           <div class="container">
               <div class="row">
                   <div class="col-xl-12">
