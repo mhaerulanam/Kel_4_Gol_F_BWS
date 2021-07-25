@@ -1,10 +1,3 @@
-<?php
-// Start the session
-session_start();
-if (!isset($_SESSION["username"])) {
-    header("location:daftar_artikel.php?pesan=gagal");
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

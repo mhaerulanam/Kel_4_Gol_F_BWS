@@ -196,7 +196,7 @@ form {
 <section>
   <!-- Modal content -->
   <div class="modal-content">
-  <a href="/frontend/profil" class="close">&times;</a>
+  <a href="/lppetugas" class="close">&times;</a>
     <div class="wrapper">
       <div class="tabs">
         <div class="tab">
