@@ -171,6 +171,7 @@ Route::group(['namespace' => 'frontend'], function()
     // Route::resource('artikel', 'ArtikelController');
     // Route::resource('puskeswan', 'PuskeswanController');
     Route::resource('tentangkami', 'TentangKamiController');
+    Route::POST('tentangkami/kritiksaran','TentangKamiController@store')->name('kritiksaran.store');
     Route::resource('dokter', 'DaftarDokterController');
     Route::resource('detailartikel', 'DetailArtikelController');
     Route::resource('tulisartikel', 'TulisArtikelController');
