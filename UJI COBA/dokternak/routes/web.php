@@ -100,9 +100,10 @@ Route::get('/cetak_pdf/dtdokter','DataDokterController@cetak_pdf')->name('backen
 // ------------------------------------------------------------------------
 
 // Route untuk Petugas ----------------------------------------------------
-Route::group(['namespace' => 'Petugas'], function()
+Route::group(['namespace' => 'petugas'], function()
 {
   Route::resource('petugas/tentangkami', 'TentangKamiController');
+  Route::POST('petugas/tentangkami/kritiksaran','TentangKamiController@store')->name('kritiksaran.store');
     // Route::resource('petugas/artikel', 'ArtikelController');
     Route::resource('petugas/home', 'HomeController');
     Route::resource('petugas/detailartikel', 'DetailArtikelController');
@@ -164,7 +165,7 @@ Route::get('/petugas/tutorial', 'petugas\TutorialController@index');
 Route::get('/petugas/tutorial/{id}/detail', 'petugas\TutorialController@detail');
 
 //Route untuk Frontend----------------------------------------------------
-Route::group(['namespace' => 'Frontend'], function()
+Route::group(['namespace' => 'frontend'], function()
 {
     // Route::resource('home', 'HomeController');
     // Route::resource('artikel', 'ArtikelController');

@@ -44,39 +44,28 @@
    <!--================Kritik saran =================-->
    <section class="blog_area single-post-area section-padding">
       <div class="container">
+         @if (session('success'))
+            <div class="alert alert-success" role="alert">
+                  {{ session('success') }}
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                  </button>
+            </div>
+         @endif
          <div class="row">
             <div class="col-lg-8 posts-list">
                
 
-            <!-- Pesan Konfirmasi -->
-            <?php
-                if (isset($_GET['pesan'])){
-                    $pesan = $_GET['pesan'];
-                        if ($pesan == 'berhasil') {
-            ?>
-                        <div class="alert alert-success">
-                            <center>Terkirim. Terima kasih atas saran dan kritik anda!</center>
-                        </div>
-            <?php
-                        }elseif($pesan == 'gagal'){
-            ?>
-                        <div class="alert alert-danger">
-                            <center>Oops! Ada kesalahan, saran dan kritik anda gagal terkirim.</center>
-                        </div>
-            <?php
-                        }
-                }
-            ?>
-            <!-- Akhir dari pesan konfirmasi -->
-
                <div class="comment-form">
                    <h4>Hai, apakah ada sesuatu yang menyulitkan anda di website ini? Mungkin kami bisa membantu anda.</h4>
                   <p>Silahkan tulis kritik / saran anda disini.</p>
-                  <form class="form-contact comment_form" action="kritiksaran_aksi.php" id="commentForm" method="POST">
+                  <form method="POST" action="{{ route('kritiksaran.store') }}" enctype="multipart/form-data">
+                     {!! csrf_field() !!}
+                  {{-- <form class="form-contact comment_form" action="kritiksaran_aksi.php" id="commentForm" method="POST"> --}}
                      <div class="row">
                         <div class="col-12">
                            <div class="form-group">
-                               <input type="hidden" name="tanggal" value="<?php echo date("d-m-Y"); ?>">
+                               <input type="hidden" name="tanggal" value="{{ date("Y-m-d") }}">
                               <textarea class="form-control w-100" name="komentar" id="komentar" cols="30" rows="9"
                                  placeholder="Tuliskan komentar anda disini"></textarea>
                            </div>
