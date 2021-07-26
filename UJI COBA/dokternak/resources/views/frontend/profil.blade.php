@@ -113,6 +113,15 @@
 
 <body>
     @include('frontend/layouts.navbar');
+     {{-- Alert --}}
+     @if ($message = Session::get('success'))
+     <div class="alert alert-success" role="alert">
+         {{ $message }}
+         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+             <span aria-hidden="true">&times;</span>
+         </button>
+     </div>
+     @endif
  <div class="slider-area ">
   <div class="single-slider section-overly slider-height2 d-flex align-items-center" data-background="{{ asset('Frontend/assets/img/gallery/s2.jpg') }}">
           <div class="container">
@@ -134,30 +143,28 @@
                   <div class="card">
                       <div class="box">
                         @csrf
-                        @foreach ($profil as $profils)
-                        @if ($profils->id == Auth::user()->id)
+                        {{-- @foreach ($profil as $profils) --}}
                           <div class="img">
-                              <img src="/data/data_peternak/{{ $profils->foto_peternak }}" alt="gambar peternak" width="300px">
+                              <img src="https://wsjti.id/dokternak/public/data/data_peternak/{{ $profil->foto_peternak }}" alt="gambar peternak" width="300px">
                           </div>        
-                          <br><h3><b>{{ $profils->namadepan_peternak }} {{ $profils->namabelakang_peternak }}</b><br></h3>
+                          <br><h3><b>{{ $profil->namadepan_peternak }} {{ $profil->namabelakang_peternak }}</b><br></h3>
                           <h2><span></span></h2><hr>
                           <span>Email :</span><br>
-                          <span><b>{{ $profils->email_peternak }}</b></span> <BR><hr>
+                          <span><b>{{ $profil->email_peternak }}</b></span> <BR><hr>
                           <span>No. HP/WA :</span><br>
-                          <span><b>{{ $profils->no_hp }}</b></span><HR>
+                          <span><b>{{ $profil->no_hp }}</b></span><HR>
                           <span>Alamat :</span><br>
-                          <span><b>{{ $profils->alamat }}</b></span><HR>
+                          <span><b>{{ $profil->alamat }}</b></span><HR>
                           <span>Jenis Kelamin : </span>
-                          <span><b>{{ $profils->jenis_kelamin }}</b></span> <BR>
+                          <span><b>{{ $profil->jenis_kelamin }}</b></span> <BR>
                           <span>
                               <ul>
-                                  <li><a href="{{ route("editprofil.edit",['id'=>$profils->id_peternak]) }}" ><i class="fas fa-edit" aria-hidden="true"></i><span>Edit Akun</span></a></li>
+                                  <li><a href="{{ route("editprofil.edit",['id'=>$profil->id_peternak]) }}" ><i class="fas fa-edit" aria-hidden="true"></i><span>Edit Akun</span></a></li>
                               </ul>
                           </span>
                       </div>
                   </div>
-                  @endif
-                  @endforeach
+                  {{-- @endforeach --}}
       </div>
 </section>
 

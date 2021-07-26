@@ -6,14 +6,20 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\peternak;
 use App\Models\PeternakUser;
+use Illuminate\Support\Facades\Auth;
 
 class ProfilController extends Controller
 {
     
     public function index()
     {
-        $profil = DB::table('peternak')->paginate();
+        $id = Auth::id();
+        // $profil = DB::table('peternak')->where('id', $id)->first();
+        $profil = PeternakUser::select('peternak.*','users.*')
+                ->join('users', 'users.id', '=', 'peternak.id')
+                ->where('peternak.id', $id)->first();
         return view('frontend.profil',compact('profil'));  
+        return $profil;
     }
 
     public function edit($id)
