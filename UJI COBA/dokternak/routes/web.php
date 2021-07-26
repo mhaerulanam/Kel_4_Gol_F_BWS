@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Auth;
 
 //route tamu
 Route::get('/', 'WelcomeController@index');
+Route::POST('/tamu/cari', [App\Http\Controllers\WelcomeController::class, 'cari'])->name('tamu.cari');
 
 
 Auth::routes();

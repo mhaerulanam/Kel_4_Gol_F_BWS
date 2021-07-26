@@ -72,7 +72,7 @@
                         <div class="row">
                             <div class="col-xl-8">
                                  <!-- form -->
-                                 <form method="POST" action="/home/cari" class="search-box">
+                                 <form method="POST" action="/tamu/cari" class="search-box">
                                     {{ csrf_field() }}
                                     <div class="input-form">
                                         {{-- <input type="text" placeholder="Masukkan Nama Dokter" name="cari_petugas" id="s_keyword" value=""> --}}

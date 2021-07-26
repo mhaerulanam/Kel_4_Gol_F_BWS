@@ -4,10 +4,12 @@ namespace App\Http\Controllers\frontend;
 use App\Http\Controllers\controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use App\Models\dokter;
 
 class DaftarDokterController extends Controller
 {
+    
     public function index()
     {
         $dokter = DB::table('dokter')->join('jabatan', 'jabatan.id_jabatan', '=', 'dokter.id_jabatan')
@@ -76,7 +78,12 @@ class DaftarDokterController extends Controller
                     
     }
 
+
     public function detail($id) {
+        if(!Auth::check()) { // true sekalian session field di users nanti bisa dipanggil via Auth
+            //Login Success
+            return redirect()->route('home');
+        }
         $dokter2 = DB::table('dokter')->join('jabatan', 'jabatan.id_jabatan', '=', 'dokter.id_jabatan')
         ->get();
         $dokter = DB::table('dokter')->join('jabatan', 'jabatan.id_jabatan', '=', 'dokter.id_jabatan')->where('id_dokter',$id)->first();
