@@ -35,6 +35,7 @@ class ArtikelController extends Controller
         $artikel = DB::table('artikel')
         ->join('kategori_artikel', 'kategori_artikel.id_ktg', '=', 'artikel.id_ktg')
         ->where('judul','like',"%".$cari."%")
+        ->where('status','=','tampil')
         ->paginate(2,['*'], 'cariartikel');
         $kategori_artikel = KatArtikel::all();
 
@@ -51,6 +52,7 @@ class ArtikelController extends Controller
         $artikel = DB::table('artikel')
         ->join('kategori_artikel', 'kategori_artikel.id_ktg', '=', 'artikel.id_ktg')
         ->where('kategori_artikel.kategori_artikel',$cari)
+        ->where('status','=','tampil')
         ->paginate(4, ['*'], 'kategoriartikel');
         $kategori_artikel = KatArtikel::all();
 

@@ -49,6 +49,8 @@ Route::group(['namespace' => 'backend'], function()
 // Route::get('/dashboard/data_artikel', 'backend/DataArtikelController@index');
 Route::POST('dashboard/data_artikel/simpandata','DataArtikelController@store')->name('simpandata');
 Route::match(['get','post'], 'dashboard/data_artikel/edit/{id}','DataArtikelController@edit');
+Route::put('dashboard/data_artikel/{id}/konfirmasi','DataArtikelController@konfirmasi')->name('konfirmasi');
+Route::put('dashboard/data_artikel/{id}/batalkonfirmasi','DataArtikelController@batalkonfirmasi')->name('batalkonfirmasi');
 Route::GET('dashboard/data_artikel/delete/{id}','DataArtikelController@delete');
 Route::get('/cetak_pdf/data_artikel','DataArtikelController@cetakartikel')->name('backend.data_artikel.cetak_pdf');
 

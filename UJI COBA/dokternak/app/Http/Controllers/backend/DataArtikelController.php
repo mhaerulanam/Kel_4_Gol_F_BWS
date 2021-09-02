@@ -20,14 +20,16 @@ class DataArtikelController extends Controller
     public function index()
     {
         $artikel = Artikel::join('kategori_artikel', 'kategori_artikel.id_ktg', '=', 'artikel.id_ktg')
+                    ->where('status','=','tampil')
                     ->orderBy('id_artikel','desc')
                     ->get();
-        // $artikel = Artikel::all();
-        // $artikel = DB::table('artikel')
-        //             ->join('kategori_artikel_tabel', 'kategori_artikel_tabel.id_ktg', '=', 'artikel.id_ktg')
-        //             ->get();
 
-        return view('backend.data_artikel.index',compact('artikel'));
+        $artikel2 = Artikel::join('kategori_artikel', 'kategori_artikel.id_ktg', '=', 'artikel.id_ktg')
+                    ->where('status','=','notampil')
+                    ->orderBy('id_artikel','desc')
+                    ->get();
+
+        return view('backend.data_artikel.index',compact('artikel','artikel2'));
         // return view('backend.peternak.index');
     }
 
@@ -94,6 +96,36 @@ class DataArtikelController extends Controller
         $artikel = Artikel::where('id_artikel',$id)->first();
         $kategori = KatArtikel::all();
         return view('backend.data_artikel.create',compact('artikel','kategori'));
+    }
+
+    public function konfirmasi($id)
+    {
+
+        $status = "tampil";
+
+        $data_simpan = [
+            'status' => $status,
+        ];
+
+        Artikel::where('id_artikel', $id)->update($data_simpan);
+
+        return redirect()->route('data_artikel.index')
+                        ->with('konfirmasi','Data artikel telah berhasil ditampilkan pada halaman website');
+    }
+
+    public function batalkonfirmasi($id)
+    {
+
+        $status = "notampil";
+
+        $data_simpan = [
+            'status' => $status,
+        ];
+
+        Artikel::where('id_artikel', $id)->update($data_simpan);
+
+        return redirect()->route('data_artikel.index')
+                        ->with('success','Data artikel telah berhasil disembunyikan pada halaman website');
     }
 
     public function update(Request $request, $id)
