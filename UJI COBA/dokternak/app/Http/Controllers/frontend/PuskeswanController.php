@@ -31,7 +31,14 @@ class PuskeswanController extends Controller
     public function detail($id)
     {
         $puskeswan = DB::table('puskeswan')->where('id_puskeswan',$id)->first();
-        return view('frontend.detailpuskeswan',compact('puskeswan'));
+
+        $petugas = DB::table('dokter_puskeswan')
+                    ->join('dokter','dokter.id_dokter','=','dokter_puskeswan.id_dokter')
+                    ->join('jabatan','jabatan.id_jabatan','=','dokter.id_jabatan')
+                    ->where('id_puskeswan',$id)
+                    ->get();
+                    
+        return view('frontend.detailpuskeswan',compact('puskeswan','petugas'));
     }
 
 }

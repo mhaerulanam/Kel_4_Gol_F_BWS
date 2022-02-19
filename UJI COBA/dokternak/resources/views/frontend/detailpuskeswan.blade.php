@@ -59,7 +59,9 @@
     <div class="profile-page">
       <div class="wrapper">
         <div class="page-header page-header-small" filter-color="green">
-          <div class="page-header-image" data-parallax="true" style="background-image: {{ asset('Frontend/assets/img/gallery/s2.jpg')}}"></div>
+          <div class="page-header-image" data-parallax="true" 
+          data-background="{{ asset('Frontend/assets/img/gallery/s2.jpg') }}"></div>
+          {{-- style="background-image:{{ asset('Frontend/assets/img/gallery/s2.jpg')}}" --}}
           <div class="container">
             <div class="content-center">
               <div class="cc-profile-image"><a href="#"><img src="/data/data_puskeswan/{{ $puskeswan->gambar }}" alt="Image"/></a></div>
@@ -103,7 +105,7 @@
       </div>
     </div>
 
-    <!-- <div class="section" id="reference">
+    <div class="section" id="reference">
       <div class="container cc-reference">
           <div class="h4 mb-4 text-center title">Tenaga Medis</div>
           <div class="card" data-aos="zoom-in">
@@ -111,22 +113,25 @@
               <div class="carousel-item active">
                 <div class="row">
 
+                  @foreach ($petugas as $item)
                   <div class="col-lg-2 col-md-3 cc-reference-header">
-                    <img class="rounded-circle z-depth-0" src="gambar_dokter_puskeswan.php?id_dokter=" alt="Image"/>
+                    <img class="rounded-circle z-depth-0" src="/data/data_dokter/{{ $item->foto }}" alt="Image"/>
                     <div class="h6 pt-2"><b></b></div>
-                    <p class="category"></p>
-                    <p></p>
-                    <a class="genric-btn primary" href="detaildokter.php?id_dokter=" >Detail</a>
+                    {{-- <p class="category">{{ $item->jabatan }}</p> --}}
+                    <strong class="text-uppercase">{{ $item->nama_dokter }}</strong>
+                    <p>{{ $item->jabatan }} | {{ $item->tempat }}</p>
+                    <a class="genric-btn primary" href="/dokter/{{ $item->id_dokter }}/detail" >Detail</a>
                   </div>
+                  @endforeach
 
                 </div>
               </div>
             </div>
           </div>
       </div>
-    </div> -->
+    </div> 
 
-    <!-- <div class="section" id="portfolio">
+    {{-- <div class="section" id="portfolio">
       <div class="container">
         <div class="row">
           <div class="col-md-6 ml-auto mr-auto">
@@ -155,7 +160,7 @@
           </div>
         </div>
       </div>
-    </div> -->
+    </div>  --}}
   </div><br><br>
 
     <!-- Java Script -->
