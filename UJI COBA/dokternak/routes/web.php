@@ -180,6 +180,7 @@ Route::group(['namespace' => 'frontend'], function()
     Route::resource('tulisartikel', 'TulisArtikelController');
     Route::resource('tuliskonsultasi', 'TulisKonsultasiController');
     Route::resource('detailpuskeswan', 'DetailPuskeswanController');
+    Route::resource('penyuluh', 'PenyuluhController');
 });
 Auth::routes();
 
@@ -215,6 +216,12 @@ Route::get('/dokter', 'frontend\DaftarDokterController@index');
 Route::get('/dokter/{id}/detail', 'frontend\DaftarDokterController@detail');
 Route::POST('/dokter/cari', [App\Http\Controllers\frontend\DaftarDokterController::class, 'cari'])->name('dokter.cari');
 Route::POST('/dokter/kategori', [App\Http\Controllers\frontend\DaftarDokterController::class, 'kategori'])->name('dokter.kategori');
+
+//route penyuluh
+Route::get('/penyuluh', 'frontend\PenyuluhController@index');
+Route::get('/penyuluh/cari', 'frontend\PenyuluhController@cari');
+Route::get('/penyuluh/{id}/detail', 'frontend\PenyuluhController@detail');
+// Route::POST('/penyuluh/cari', [App\Http\Controllers\frontend\PenyuluhController::class, 'cari'])->name('penyuluh.cari');
 
 
 //Route Puskeswan
