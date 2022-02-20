@@ -66,10 +66,8 @@ class PenyuluhController extends Controller
             //Login Success
             return redirect()->route('home');
         }
-        $dokter2 = DB::table('dokter')->join('jabatan', 'jabatan.id_jabatan', '=', 'dokter.id_jabatan')
-        ->get();
-        $dokter = DB::table('dokter')->join('jabatan', 'jabatan.id_jabatan', '=', 'dokter.id_jabatan')->where('id_dokter',$id)->first();
-        return view('frontend.detaildokter',compact('dokter','dokter2'));
+        $penyuluh = DB::table('penyuluh')->where('id_penyuluh',$id)->first();
+        return view('frontend.detailpenyuluh',compact('penyuluh'));
     }
 
 }
