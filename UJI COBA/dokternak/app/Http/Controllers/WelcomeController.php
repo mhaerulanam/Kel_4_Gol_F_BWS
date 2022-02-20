@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\artikel;
 use App\Models\dokter;
 use App\Models\puskeswan;
+use App\Models\penyuluh;
 use App\Models\tutorial;
 
 
@@ -19,6 +20,7 @@ class WelcomeController extends Controller
             'pencarian_dokter' => DB::table('dokter')->join('jabatan', 'jabatan.id_jabatan', '=', 'dokter.id_jabatan')->get(),
             'tutorial' => Tutorial::orderBy('id_tutorial')->paginate(4, ['*'], 'tutorial'),
             'dokter' => DB::table('dokter')->join('jabatan', 'jabatan.id_jabatan', '=', 'dokter.id_jabatan')->paginate(3, ['*'], 'dokter'),
+            'penyuluh' => penyuluh::orderBy('id_penyuluh')->paginate(3),
         ];
         return view('welcome',compact('data'));
         // return view('frontend.home');
@@ -67,6 +69,7 @@ class WelcomeController extends Controller
             ->paginate(2),
 
             'tutorial' => Tutorial::orderBy('id_tutorial')->paginate(3),
+            'penyuluh' => penyuluh::orderBy('id_penyuluh')->paginate(3),
 
         ];
 

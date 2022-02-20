@@ -186,6 +186,105 @@
                 </div>
                 
                 <section>
+
+                            <!-- slider Area End-->
+                <!-- Featured_job_start -->
+                <section class="featured-job-area feature-padding">
+                    <div class="container">
+                        <!-- Section Tittle -->
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="section-tittle text-center">
+                                    <h5>KABUPATEN BONDOWOSO</h5>
+                                    <h2>Daftar Penyuluh</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-xl-10">
+                                @if (! $kode = 11)
+                                <table>
+                                <tbody>
+                                <tr>
+                                @foreach ($data['penyuluh'] as $data_penyuluh)
+                                <!-- single-job-content -->
+                                <div class="single-job-items mb-30">
+                                 <div class="job-items">
+                                     <div class="company-img">
+                                         <a><img class="center" src="/data/data_penyuluh/{{ $data_penyuluh->foto }}" alt="" width="100" height="100"></a>
+                                     </div>
+                                     <div class="job-tittle">
+                                         <a href="/penyuluh/{{ $data_penyuluh->id_penyuluh }}/detail/"><h4>{{ $data_penyuluh->nama_penyuluh }}</h4></a>
+                                         <ul>
+                                             <li><i class="fas fa-map-marker-alt"></i>{{ $data_penyuluh->tempat }}</li>
+                                             <li>{{ $data_penyuluh->telpon }}</li>
+                                         </ul>
+                                     </div>
+                                 </div>
+                                 <div class="items-link f-right">
+                                     <a href="/penyuluh/{{ $data_penyuluh->id_penyuluh }}/detail/" >Detail</a>
+                                     {{-- <span>7 hours ago</span> --}}
+                                 </div>
+                             </div>
+                                @endforeach
+                                @endif
+                                @foreach ($data['penyuluh'] as $data_penyuluh)
+                                <!-- single-job-content -->
+                                <div class="single-job-items mb-30">
+                                 <div class="job-items">
+                                     <div class="company-img">
+                                         <a><img class="center" src="/data/data_penyuluh/{{ $data_penyuluh->foto }}" alt="" width="100" height="100"></a>
+                                     </div>
+                                     <div class="job-tittle">
+                                         <a href="/penyuluh/{{ $data_penyuluh->id_penyuluh }}/detail/"><h4>{{ $data_penyuluh->nama_penyuluh }}</h4></a>
+                                         <ul>
+                                             <li><i class="fas fa-map-marker-alt"></i>{{ $data_penyuluh->tempat }}</li>
+                                             <li>{{ $data_penyuluh->telpon }}</li>
+                                         </ul>
+                                     </div>
+                                 </div>
+                                 <div class="items-link f-right">
+                                     <a href="/penyuluh/{{ $data_penyuluh->id_penyuluh }}/detail/" >Detail</a>
+                                     {{-- <span>7 hours ago</span> --}}
+                                 </div>
+                             </div>
+                                @endforeach
+                                </tr>
+                                </tbody>
+                                </table>
+                                @if ($data['penyuluh']->isEmpty())
+                                <div class="col">
+                                    <center>
+                                        <img src="{{ asset('Frontend/assets/img/icon/error.png') }}" class="datatidakada" alt="Data Kosong">
+                                    </center>
+                                </div>
+                                @endif
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!--Pagination Start  -->
+                <div class="pagination-area pb-115 text-center">
+                    <div class="container">
+                        <div class="row">
+                            <!-- <div class="col-xl-10"> -->
+                                <div class="single-wrap d-flex justify-content-center">
+                                    <nav aria-label="Page navigation example">
+                                    <ul class="pagination justify-content-start">     
+                                    {{-- //pagination use bootstrap --}}
+                                    {{-- {{ $data['dokter']->links()}} --}}
+                                    {{ $data['penyuluh']->onEachSide(1)->links() }}
+                                    </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <section>
                     <!-- Tips dan Trik Start -->
                     <div class="home-blog-area blog-h-padding">
                         <div class="container">

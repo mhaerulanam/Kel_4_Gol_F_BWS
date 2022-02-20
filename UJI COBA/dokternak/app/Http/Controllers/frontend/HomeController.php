@@ -8,6 +8,7 @@ use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Http\Request;
 use App\Models\artikel;
 use App\Models\dokter;
+use App\Models\penyuluh;
 use App\Models\puskeswan;
 use App\Models\tutorial;
 use Illuminate\Support\Facades\Auth;
@@ -37,6 +38,7 @@ class HomeController extends Controller
                 ->where('status','=','tampil')
                 ->paginate(2, ['*'], 'artikel'),
                   'tutorial' => Tutorial::orderBy('judul_tutorial', 'desc')->paginate(4, ['*'], 'tutorial'),
+                  'penyuluh' => penyuluh::orderBy('nama_penyuluh', 'desc')->paginate(4, ['*'], 'penyuluh'),
                   
               ];
               return view('frontend.home',compact('data'));
@@ -72,6 +74,7 @@ class HomeController extends Controller
             ->where('status','=','tampil')
             ->paginate(2),
             'tutorial' => Tutorial::orderBy('id_tutorial')->paginate(3),
+            'penyuluh' => penyuluh::orderBy('id_penyuluh')->paginate(3),
         ];
 
         //mengirim data artikel ke view dokter
