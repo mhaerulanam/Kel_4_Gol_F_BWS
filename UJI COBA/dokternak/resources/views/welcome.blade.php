@@ -81,6 +81,9 @@
                                             @foreach ($data['pencarian_dokter'] as $data_doktercari)
                                             <option value="{{ $data_doktercari->nama_dokter }}" >{{ $data_doktercari->nama_dokter }}</option>
                                             @endforeach
+                                            @foreach ($data['penyuluh'] as $data_penyuluh)
+                                            <option value="{{$data_penyuluh->nama_penyuluh}}"> {{$data_penyuluh->nama_penyuluh}}</option>
+                                            @endforeach
                                         </datalist>
                                     </div>
                                     <div class="input-form">

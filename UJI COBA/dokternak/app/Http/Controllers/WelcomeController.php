@@ -69,7 +69,10 @@ class WelcomeController extends Controller
             ->paginate(2),
 
             'tutorial' => Tutorial::orderBy('id_tutorial')->paginate(3),
-            'penyuluh' => penyuluh::orderBy('id_penyuluh')->paginate(3),
+            'penyuluh' => DB::table('penyuluh')
+            ->where('tempat', 'LIKE', '%' . $kategori . '%')
+            ->where('nama_penyuluh', 'LIKE', "%" .$cari. "%")
+            ->paginate(3),
 
         ];
 

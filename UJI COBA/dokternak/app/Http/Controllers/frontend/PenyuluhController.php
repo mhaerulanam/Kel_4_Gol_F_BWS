@@ -20,6 +20,9 @@ class PenyuluhController extends Controller
     {
         //Menangkap data pencarian
         $cari = $request->cari;
+        $penyuluh = DB::table('penyuluh')
+        ->where('nama_penyuluh'.'LIKE'. "%".$cari."%")
+        ->paginate(2);
 
         //mengambil data dari tabel puskeswan sesuai pencarian data
         $puskeswan = DB::table('penyuluh')

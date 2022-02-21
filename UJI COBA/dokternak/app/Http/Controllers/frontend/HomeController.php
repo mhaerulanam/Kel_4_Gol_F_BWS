@@ -61,7 +61,7 @@ class HomeController extends Controller
 
         $kode = 11;
 
-        //mengambul data dari tabel dokter sesuai pencarian data
+        //mengambil data dari tabel dokter sesuai pencarian data
         $data = [
             'dokter' => DB::table('dokter')
             ->join('jabatan', 'jabatan.id_jabatan', '=', 'dokter.id_jabatan')
@@ -74,7 +74,11 @@ class HomeController extends Controller
             ->where('status','=','tampil')
             ->paginate(2),
             'tutorial' => Tutorial::orderBy('id_tutorial')->paginate(3),
-            'penyuluh' => penyuluh::orderBy('id_penyuluh')->paginate(3),
+            'penyuluh' => DB::table('penyuluh')
+            ->where('tempat', 'LIKE', '%' . $kategori . '%')
+            ->where('nama_penyuluh', 'LIKE', "%" .$cari. "%")
+            ->paginate(3),
+            //penyuluh::orderBy('id_penyuluh')->paginate(3),
         ];
 
         //mengirim data artikel ke view dokter
