@@ -52,7 +52,7 @@ class TulisArtikelController extends Controller
 
                         // rename image name or file name 
         $getimageName = time().'.'.$request->gambar->getClientOriginalExtension();
-        $request->gambar->move(public_path('peternak/artikel/gambar'), $getimageName);
+        $request->gambar->move(public_path('data/data_artikel/'), $getimageName);
 
         $data_simpan = [
             'id_ktg' => $request->id_ktg,

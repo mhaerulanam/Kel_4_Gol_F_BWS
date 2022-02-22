@@ -22,7 +22,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth'); //jika mau liat tampilan /penyuluh/artikel dll, komentarin ini
     }
 
     /**
@@ -84,6 +84,39 @@ class HomeController extends Controller
             return view('petugas.home',compact('data','petugas'));
         }
         elseif ($role  == 1) {
+            return redirect()->route('dashboard');
+        }elseif($role  == 0) {
+            return redirect()->route('home');
+        }
+    }
+
+    // Landing Page Penyuluh
+    public function lppenyuluh()
+    {
+        // Komentarin dulu karena authnya belum diatur
+        // $id = Auth::id();
+        // $user = User::where('id',$id)->first();
+
+        // $role = $user->is_admin;
+
+        // Auth manual buat liat tampilan tapi gagal
+        // $id = 33;
+        // $user = User::where('id',$id)->first();
+        // $role = 3;
+
+        if ($role == 3) {
+            $penyuluh = DB::table('users')->join('penyuluh','penyuluh.id','=','users.id')
+            ->get();
+            $data = [
+                'artikel' => DB::table('artikel')->join('kategori_artikel', 'kategori_artikel.id_ktg', '=', 'artikel.id_ktg')
+                ->orderBy('id_artikel','desc')
+                ->where('status','=','tampil')
+                ->paginate(2),
+            ];
+            return view('penyuluh.home',compact('data','penyuluh'));
+        }elseif ($role  == 2) {
+            return redirect()->route('lppetugas');
+        }elseif ($role  == 1) {
             return redirect()->route('dashboard');
         }elseif($role  == 0) {
             return redirect()->route('home');

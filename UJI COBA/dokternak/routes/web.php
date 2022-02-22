@@ -140,6 +140,30 @@ Route::group(['namespace' => 'petugas'], function()
    Route::PUT('lppetugas/editprofil/{id}','EditProfilController@update')->name('editprofilpetugas.update');
 });
 
+// Route untuk Penyuluh ----------------------------------------------------
+Route::group(['namespace' => 'penyuluh'], function()
+{
+  Route::resource('penyuluh/tentangkami', 'TentangKamiController');
+  Route::POST('penyuluh/tentangkami/kritiksaran','TentangKamiController@store')->name('kritiksaran.store');
+    // Route::resource('penyuluh/artikel', 'ArtikelController');
+    Route::resource('penyuluh/home', 'HomeController');
+    // Route::resource('penyuluh/detailartikel', 'DetailArtikelController');
+    Route::resource('penyuluh/tutorial', 'TutorialController');
+    Route::resource('penyuluh/tulisartikel', 'TulisArtikelController');
+    Route::POST('penyuluh/tulisartikel/uploadartikel','TulisArtikelController@store')->name('uploadartikel');
+    Route::resource('penyuluh/respon-konsultasi', 'ResponKonsultasiController');
+   //  Respon Konsultasi
+   Route::get('/penyuluh/respon-konsultasi', 'ResponKonsultasiController@index')->name('respon.index');
+   Route::POST('/penyuluh/respon-konsultasi/kirimbalasan', 'ResponKonsultasiController@store')->name('respon.store');
+   Route::get('/penyuluh/respon-konsultasi/{id}/detail', 'ResponKonsultasiController@detail')->name('respon.detail');
+   Route::get('/penyuluh/respon-konsultasi/{id}/detailterkirim', 'ResponKonsultasiController@detailterkirim')->name('respon.detailterkirim');
+   Route::get('/penyuluh/respon-konsultasi/{id}/hapusterkirim/{idk}/riwayat','ResponKonsultasiController@hapusterkirim')->name('respon.hapusterkirim');
+   //Route Profil
+  //  Route::get('/profil', 'frontend\ProfilController@index')->name('profil.index');
+   Route::get('lppenyuluh/editprofil/{id}', 'EditProfilController@edit')->name('editprofilpenyuluh.edit');
+   Route::PUT('lppenyuluh/editprofil/{id}','EditProfilController@update')->name('editprofilpenyuluh.update');
+});
+
 Auth::routes();
 
 
@@ -152,6 +176,8 @@ Route::POST('/home/cari', [App\Http\Controllers\frontend\HomeController::class, 
 Route::get('admin/{id}', function ($id = null) {
   //  
 })->middleware('auth');
+
+//  ROUTE PETUGAS TAMBAHAN
 
 //Route Reset Password
 Route::get('/petugas/change-password', 'petugas\ResetPasswordController@changePassword')->name('petugas.change-password')->middleware('auth');
@@ -166,6 +192,26 @@ Route::POST('/petugas/update-password', 'petugas\ResetPasswordController@updateP
  //route tutorial
 Route::get('/petugas/tutorial', 'petugas\TutorialController@index');
 Route::get('/petugas/tutorial/{id}/detail', 'petugas\TutorialController@detail');
+
+// -----------------------------------------------------------------------------------------
+
+//  ROUTE PENYULUH TAMBAHAN
+
+//Route Reset Password
+Route::get('/penyuluh/change-password', 'penyuluh\ResetPasswordController@changePassword')->name('penyuluh.change-password')->middleware('auth');
+Route::POST('/penyuluh/update-password', 'penyuluh\ResetPasswordController@updatePassword')->name('penyuluh.update-password')->middleware('auth');
+
+ //Route Artikel
+ Route::get('penyuluh/artikel', 'penyuluh\ArtikelController@index');
+ Route::get('penyuluh/artikel/cari', 'penyuluh\ArtikelController@cari');
+ Route::get('penyuluh/artikel/kategori', 'penyuluh\ArtikelController@kategori');
+ Route::get('penyuluh/artikel/{id}/detail', 'penyuluh\ArtikelController@detail');
+
+ //route tutorial
+Route::get('/penyuluh/tutorial', 'penyuluh\TutorialController@index');
+Route::get('/penyuluh/tutorial/{id}/detail', 'penyuluh\TutorialController@detail');
+
+// -----------------------------------------------------------------------------------------
 
 //Route untuk Frontend----------------------------------------------------
 Route::group(['namespace' => 'frontend'], function()
